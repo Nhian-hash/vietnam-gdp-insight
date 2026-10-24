@@ -44,6 +44,12 @@ DATASET_INFO: dict[str, dict[str, str]] = {
         "source": "Thông cáo NSO quý III và 9 tháng 2026",
         "description": "Số ước tính quý và lũy kế; không phải GDP cả năm hay quy mô GDP danh nghĩa.",
     },
+    "du_lieu_gdp_nganh_chi_tiet.csv": {
+        "title": "GDP theo 3 khu vực và hoạt động kinh tế",
+        "frequency": "annual",
+        "source": "NSO PXWeb E03.04-07",
+        "description": "Giá trị GDP danh nghĩa, giá trị GDP thực theo bảng nguồn, tăng trưởng và đóng góp; các cấp hoạt động được giữ nguyên để tránh cộng trùng.",
+    },
     "du_lieu_tang_truong_gdp_quy.csv": {
         "title": "Tăng trưởng GDP theo quý",
         "frequency": "quarterly",
@@ -86,6 +92,12 @@ DATASET_INFO: dict[str, dict[str, str]] = {
         "source": "NSO",
         "description": "IIP theo chỉ số gốc 2015=100; không đồng nhất với giá trị tăng thêm ngành.",
     },
+}
+
+SECTORS: dict[str, str] = {
+    "agriculture": "Nông, lâm, thủy sản",
+    "industry": "Công nghiệp và xây dựng",
+    "services": "Dịch vụ",
 }
 
 
@@ -368,5 +380,101 @@ def regional_grdp(
         "unit": "billion VND, current prices",
         "note": "Không cộng GRDP cấp tỉnh và cấp vùng trong cùng một tổng.",
         "rows": selected,
+    }
+
+
+@app.get(f"{API_PREFIX}/sectors", tags=["Ngành kinh tế"])
+def list_sectors() -> dict[str, Any]:
+    """Summarize the three GDP sectors without mixing annual and partial-year values."""
+    _, annual_rows = read_csv_rows(csv_path("du_lieu_gdp_nganh_chi_tiet.csv"))
+    _, partial_rows = read_csv_rows(csv_path("du_lieu_gdp_nganh_chi_tiet_2026.csv"))
+    sectors = []
+    for code, title in SECTORS.items():
+        rows = [row for row in annual_rows if row.get("khu_vuc_ma") == code]
+        years = sorted({row["nam"] for row in rows if isinstance(row.get("nam"), int)})
+        activities = sorted({str(row["hoat_dong_kinh_te"]) for row in rows if row.get("hoat_dong_kinh_te")})
+        latest_partial_periods = sorted({
+            str(row["ky"]) for row in partial_rows
+            if row.get("khu_vuc_ma") == code and row.get("ky")
+        })
+        sectors.append({
+            "code": code,
+            "title": title,
+            "annual_from": years[0] if years else None,
+            "annual_to": years[-1] if years else None,
+            "activity_count": len(activities),
+            "activities": activities,
+            "partial_periods": latest_partial_periods,
+        })
+    return {
+        "count": len(sectors),
+        "data_cutoff": data_cutoff(),
+        "sectors": sectors,
+        "note": "GDP 2026 quý III/9 tháng là số ước tính theo kỳ, không phải quy mô GDP cả năm.",
+    }
+
+
+@app.get(f"{API_PREFIX}/sectors/{{sector_code}}", tags=["Ngành kinh tế"])
+def sector_detail(
+    sector_code: str,
+    from_year: int = Query(2005, ge=1980, le=2200),
+    to_year: int = Query(2025, ge=1980, le=2200),
+    activity: str | None = Query(None, min_length=1, max_length=160),
+) -> dict[str, Any]:
+    """Return published annual sector/activity rows and separately labeled 2026 releases."""
+    code = sector_code.strip().lower()
+    if code not in SECTORS:
+        raise HTTPException(
+            status_code=404,
+            detail={"message": "Mã khu vực không hợp lệ.", "available_sectors": list(SECTORS)},
+        )
+    if from_year > to_year:
+        raise HTTPException(status_code=422, detail="from_year phải nhỏ hơn hoặc bằng to_year.")
+
+    _, all_annual_rows = read_csv_rows(csv_path("du_lieu_gdp_nganh_chi_tiet.csv"))
+    sector_rows = [
+        row for row in all_annual_rows
+        if row.get("khu_vuc_ma") == code
+        and isinstance(row.get("nam"), int)
+        and from_year <= row["nam"] <= to_year
+    ]
+    all_activities = sorted({
+        str(row["hoat_dong_kinh_te"]) for row in all_annual_rows
+        if row.get("khu_vuc_ma") == code and row.get("hoat_dong_kinh_te")
+    })
+    if activity is not None:
+        selected_activity = activity.strip()
+        if selected_activity not in all_activities:
+            raise HTTPException(
+                status_code=422,
+                detail={"message": "Hoạt động kinh tế không thuộc khu vực này.", "available_activities": all_activities},
+            )
+        sector_rows = [row for row in sector_rows if row.get("hoat_dong_kinh_te") == selected_activity]
+
+    _, all_partial_rows = read_csv_rows(csv_path("du_lieu_gdp_nganh_chi_tiet_2026.csv"))
+    partial_rows = [
+        row for row in all_partial_rows
+        if row.get("khu_vuc_ma") == code
+        and (activity is None or row.get("hoat_dong_kinh_te") == activity.strip())
+    ]
+    sector_rows.sort(key=lambda row: (row["nam"], str(row.get("hoat_dong_kinh_te"))))
+    partial_rows.sort(key=lambda row: (str(row.get("ky")), str(row.get("hoat_dong_kinh_te"))))
+    return {
+        "sector_code": code,
+        "sector_title": SECTORS[code],
+        "activity_filter": activity.strip() if activity else None,
+        "annual_period": {"from_year": from_year, "to_year": to_year},
+        "annual_count": len(sector_rows),
+        "annual_rows": sector_rows,
+        "partial_2026_count": len(partial_rows),
+        "partial_2026_rows": partial_rows,
+        "available_activities": all_activities,
+        "units": {
+            "gdp_hien_hanh_ty_vnd": "billion VND, current prices",
+            "gdp_thuc_ty_vnd_theo_bang_nguon": "billion VND, source constant-price basis",
+            "tang_truong_gdp_thuc_yoy_pct": "percent year over year",
+        },
+        "note": "Không cộng hoạt động cấp cha với hoạt động cấp con. Bản ghi 2026 là tăng trưởng/cơ cấu theo quý hoặc 9 tháng, không phải mức GDP năm.",
+        "data_cutoff": data_cutoff(),
     }
 
