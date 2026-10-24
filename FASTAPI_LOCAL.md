@@ -1,6 +1,6 @@
 # Chạy hệ thống GDP Insight bằng FastAPI
 
-FastAPI phục vụ dashboard và REST API trên cùng một máy chủ. Toàn bộ mục dashboard (Tổng quan, EDA, ba khu vực kinh tế, GRDP, dự báo và quản lý dữ liệu) dùng chung một địa chỉ: `http://127.0.0.1:8501/`. Các mục được chuyển bên trong giao diện, không cần mở từng địa chỉ riêng.
+FastAPI phục vụ dashboard và REST API trên cùng một máy chủ. Toàn bộ mục dashboard (Tổng quan, EDA, ba khu vực kinh tế, GRDP, dự báo và quản lý dữ liệu) dùng chung một địa chỉ: `http://127.0.0.1:8000/`. Các mục được chuyển bên trong giao diện, không cần mở từng địa chỉ riêng.
 
 GitHub chỉ lưu mã nguồn và dữ liệu. FastAPI đang chạy cục bộ trên máy tính; GitHub Pages không chạy backend Python.
 
@@ -16,17 +16,17 @@ python -m pip install -r requirements.txt
 Hoặc chạy trực tiếp:
 
 ```powershell
-python -m uvicorn api.main:app --host 127.0.0.1 --port 8501
+python -m uvicorn api.main:app --host 127.0.0.1 --port 8000
 ```
 
-Giữ cửa sổ PowerShell mở khi sử dụng. Nhấn `Ctrl+C` trong cửa sổ đó để dừng máy chủ. Nếu cổng 8501 đã được ứng dụng khác sử dụng, hãy dừng ứng dụng đó trước khi chạy FastAPI.
+Giữ cửa sổ PowerShell mở khi sử dụng. Nhấn `Ctrl+C` trong cửa sổ đó để dừng máy chủ. Nếu cổng 8000 đã được ứng dụng khác sử dụng, hãy dừng ứng dụng đó trước khi chạy FastAPI.
 
 ## Địa chỉ hệ thống
 
-- Dashboard đầy đủ: `http://127.0.0.1:8501/`
-- Swagger UI để xem/thử REST API: `http://127.0.0.1:8501/docs`
-- OpenAPI JSON: `http://127.0.0.1:8501/openapi.json`
-- Health: `http://127.0.0.1:8501/api/v1/health`
+- Dashboard đầy đủ: `http://127.0.0.1:8000/`
+- Swagger UI để xem/thử REST API: `http://127.0.0.1:8000/docs`
+- OpenAPI JSON: `http://127.0.0.1:8000/openapi.json`
+- Health: `http://127.0.0.1:8000/api/v1/health`
 
 ## Endpoint dữ liệu
 
@@ -42,6 +42,6 @@ Giữ cửa sổ PowerShell mở khi sử dụng. Nhấn `Ctrl+C` trong cửa s�
 | `GET /api/v1/model-comparison` | So sánh sai số dự báo trên backtest |
 | `GET /api/v1/grdp?year=2025&level=region` | So sánh GRDP vùng hoặc tỉnh |
 
-Ví dụ: `http://127.0.0.1:8501/api/v1/sectors/industry?from_year=2015&to_year=2025`.
+Ví dụ: `http://127.0.0.1:8000/api/v1/sectors/industry?from_year=2015&to_year=2025`.
 
 Ba mã khu vực là `agriculture`, `industry`, `services`. Dữ liệu 2026 theo quý/9 tháng được trả riêng, không xem là GDP cả năm. Dự báo đến 2030 là kịch bản mô hình, không phải số liệu chính thức.
