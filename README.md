@@ -135,8 +135,7 @@ Pipeline `refresh_system.ps1` nay tải thêm PXWeb và World Bank Pink Sheet b�
 
 ## API FastAPI
 
-- `api/main.py` phục vụ dashboard hiện có ở `/`, REST API ở `/api/v1/...` và Swagger UI ở `/docs`.
-- Chạy tại thư mục dự án bằng `python -m pip install -r requirements.txt`, sau đó `python -m uvicorn api.main:app --host 127.0.0.1 --port 8000`.
-- Mở `http://127.0.0.1:8000/` để xem dashboard và `http://127.0.0.1:8000/docs` để xem/thử các endpoint.
+- `api/main.py` phục vụ toàn bộ dashboard tại một địa chỉ gốc `/`; các mục Tổng quan, EDA, ba khu vực, dữ liệu và dự báo là điều hướng bên trong cùng dashboard. REST API dùng `/api/v1/...`; Swagger UI dùng `/docs`.
+- Cài dependencies một lần bằng `python -m pip install -r requirements.txt`, sau đó chạy `./run_fastapi.ps1` trong PowerShell hoặc dùng lệnh `python -m uvicorn api.main:app --host 127.0.0.1 --port 8501`.
+- Mở `http://127.0.0.1:8501/` để dùng toàn bộ hệ thống; `http://127.0.0.1:8501/docs` dành cho xem/thử API.
 - API có danh mục/đọc dữ liệu, tổng quan vĩ mô, dự báo 2030, so sánh mô hình, GRDP và truy vấn chuyên sâu ba khu vực kinh tế. Hướng dẫn chạy: `FASTAPI_LOCAL.md`.
-
