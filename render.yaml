@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: vietnam-gdp-insight-api
+    runtime: python
+    plan: free
+    buildCommand: python -c "import zipfile; zipfile.ZipFile('source_code_and_data.zip').extractall('.')" && pip install -r requirements.txt
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    envVars:
+      - key: CORS_ORIGINS
+        value: https://nhian-hash.github.io
+
