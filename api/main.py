@@ -1,4 +1,4 @@
-"""FastAPI service for the Vietnam GDP Insight dashboard and data."""
+"""FastAPI service for the V-MEST Vietnam GDP dashboard and data."""
 from __future__ import annotations
 
 import csv
@@ -11,6 +11,7 @@ from typing import Any
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 
@@ -190,7 +191,7 @@ def dataset_description(file_name: str, path: Path) -> dict[str, Any]:
 
 
 app = FastAPI(
-    title="Vietnam GDP Insight API",
+    title="V-MEST API",
     description=(
         "API đọc dữ liệu GDP Việt Nam, các chỉ báo vĩ mô, GRDP địa phương, "
         "so sánh mô hình và kịch bản dự báo đến 2030. Số dự báo là kịch bản mô hình, không phải số liệu chính thức."
@@ -199,6 +200,8 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+app.mount("/assets", StaticFiles(directory=str(ROOT / "assets")), name="assets")
 
 default_origins = [
     "https://nhian-hash.github.io",
@@ -233,7 +236,7 @@ def health() -> dict[str, Any]:
     version = read_manifest(VERSION_FILE)
     return {
         "status": "ok",
-        "service": "Vietnam GDP Insight API",
+        "service": "V-MEST API",
         "api_version": app.version,
         "data_version": version.get("version_id"),
         "data_cutoff": version.get("data_cutoff", {}),
@@ -477,4 +480,3 @@ def sector_detail(
         "note": "Không cộng hoạt động cấp cha với hoạt động cấp con. Bản ghi 2026 là tăng trưởng/cơ cấu theo quý hoặc 9 tháng, không phải mức GDP năm.",
         "data_cutoff": data_cutoff(),
     }
-

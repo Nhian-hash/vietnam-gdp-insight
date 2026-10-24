@@ -1,2 +1,1 @@
-"""Vietnam GDP Insight API package."""
-
+"""V-MEST API package."""

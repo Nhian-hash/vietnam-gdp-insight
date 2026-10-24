@@ -1,4 +1,4 @@
-# Chạy API GDP Insight với FastAPI
+# Chạy API V-MEST với FastAPI
 
 Ứng dụng cung cấp REST API đọc các CSV đã phát hành cùng phiên bản dữ liệu, phục vụ dashboard tại `/` và tài liệu tương tác tại `/docs`. API không huấn luyện lại mô hình theo từng yêu cầu; endpoint dự báo đọc các kịch bản đã tạo và đánh giá trong pipeline hiện hữu.
 
@@ -36,4 +36,3 @@ Render cần quyền đọc repository để theo dõi commit. Với gói Free, 
 | `GET /docs` | Swagger UI tương tác |
 
 GDP danh nghĩa, GDP thực, tốc độ tăng cùng kỳ và dự báo giữ đơn vị/phạm vi riêng. Dự báo là kịch bản mô hình, không phải công bố chính thức.
-

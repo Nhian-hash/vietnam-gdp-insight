@@ -1,4 +1,4 @@
-# Gói cập nhật dữ liệu GDP Việt Nam
+# V-MEST — Gói dữ liệu phân tích GDP Việt Nam
 
 Gói này chuẩn bị các tệp thay thế cho dữ liệu mà notebook hiện tại đọc, đồng thời bổ sung dữ liệu thực GDP và CPI để mở rộng hệ thống.
 

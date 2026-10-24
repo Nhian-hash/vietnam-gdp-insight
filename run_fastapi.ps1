@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 Set-Location -LiteralPath $PSScriptRoot
 
-Write-Host "Vietnam GDP Insight"
+Write-Host "V-MEST"
 Write-Host "Dashboard: http://127.0.0.1:8000/"
 Write-Host "API docs:  http://127.0.0.1:8000/docs"
 Write-Host "Stop the server with Ctrl+C."

@@ -1,4 +1,4 @@
-# Chạy hệ thống GDP Insight bằng FastAPI
+# Chạy hệ thống V-MEST bằng FastAPI
 
 FastAPI phục vụ dashboard và REST API trên cùng một máy chủ. Toàn bộ mục dashboard (Tổng quan, EDA, ba khu vực kinh tế, GRDP, dự báo và quản lý dữ liệu) dùng chung một địa chỉ: `http://127.0.0.1:8000/`. Các mục được chuyển bên trong giao diện, không cần mở từng địa chỉ riêng.
 
@@ -45,3 +45,4 @@ Giữ cửa sổ PowerShell mở khi sử dụng. Nhấn `Ctrl+C` trong cửa s�
 Ví dụ: `http://127.0.0.1:8000/api/v1/sectors/industry?from_year=2015&to_year=2025`.
 
 Ba mã khu vực là `agriculture`, `industry`, `services`. Dữ liệu 2026 theo quý/9 tháng được trả riêng, không xem là GDP cả năm. Dự báo đến 2030 là kịch bản mô hình, không phải số liệu chính thức.
+
