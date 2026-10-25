@@ -8,11 +8,12 @@ import os
 import re
 from pathlib import Path
 from typing import Any
+from urllib.parse import parse_qs
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from data_paths import data_path
 
 
@@ -222,20 +223,117 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=sorted(set(default_origins + configured_origins)),
     allow_credentials=False,
-    allow_methods=["GET", "OPTIONS"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
 
 @app.get("/", include_in_schema=False)
-def dashboard() -> FileResponse:
-    """Serve the same dashboard UI from the API service origin."""
+def dashboard() -> Response:
+    """Serve a mobile-safe dashboard and keep obsolete overview notes hidden."""
     page = ROOT / "index.html"
     if not page.is_file():
         page = ROOT / "dashboard.html"
     if not page.is_file():
         raise HTTPException(status_code=404, detail="Chưa có tệp dashboard.html hoặc index.html.")
-    return FileResponse(page, media_type="text/html")
+
+    html = page.read_text(encoding="utf-8")
+    html = re.sub(
+        r'<footer id="page-footer"[^>]*>.*?</footer>',
+        '<footer id="page-footer" class="footnote page-footer" style="display:none"></footer>',
+        html,
+        count=1,
+        flags=re.DOTALL,
+    )
+    export_script = r"""<script>
+(() => {
+  const endpoint = '/api/v1/exports';
+  const csvCell = value => `"${String(value ?? '').replaceAll('"', '""')}"`;
+  function submitExport(fileName, contentType, content) {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = endpoint;
+    form.enctype = 'application/x-www-form-urlencoded';
+    form.acceptCharset = 'UTF-8';
+    form.style.display = 'none';
+    for (const [name, value] of Object.entries({file_name: fileName, content_type: contentType, content})) {
+      const field = document.createElement('textarea');
+      field.name = name;
+      field.value = value;
+      form.appendChild(field);
+    }
+    document.body.appendChild(form);
+    form.submit();
+    window.setTimeout(() => form.remove(), 1000);
+  }
+  window.downloadCsv = (fileName, headers, rows) => {
+    const csv = '\ufeff' + [headers.map(csvCell).join(','), ...rows.map(row => headers.map(key => csvCell(row[key])).join(','))].join('\r\n');
+    submitExport(fileName, 'text/csv; charset=utf-8', csv);
+  };
+  window.downloadJson = (fileName, value) => submitExport(fileName, 'application/json; charset=utf-8', JSON.stringify(value, null, 2));
+})();
+</script>"""
+    html, inserted = re.subn(r"</body\s*>", lambda match: export_script + match.group(0), html, count=1, flags=re.IGNORECASE)
+    if not inserted:
+        html += export_script
+    return Response(
+        content=html,
+        media_type="text/html; charset=utf-8",
+        headers={"Cache-Control": "no-store"},
+    )
+
+
+@app.get("/data_versions/{archive_name}", include_in_schema=False)
+def download_version_archive(archive_name: str) -> FileResponse:
+    """Serve snapshot ZIPs referenced by the public data version manifest."""
+    if not re.fullmatch(r"gdp-[A-Za-z0-9_-]+\.zip", archive_name):
+        raise HTTPException(status_code=404, detail="Không tìm thấy bản snapshot.")
+    archive = ROOT / "data_versions" / archive_name
+    if not archive.is_file() or archive.resolve().parent != (ROOT / "data_versions").resolve():
+        raise HTTPException(status_code=404, detail="Không tìm thấy bản snapshot.")
+    return FileResponse(
+        archive,
+        media_type="application/zip",
+        filename=archive_name,
+        headers={"Cache-Control": "public, max-age=3600", "X-Content-Type-Options": "nosniff"},
+    )
+
+
+@app.post(f"{API_PREFIX}/exports", tags=["Tải dữ liệu"])
+async def export_download(request: Request) -> Response:
+    """Return dashboard-generated CSV/JSON as an HTTP attachment for mobile browsers."""
+    body = await request.body()
+    if len(body) > 12 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Tệp xuất vượt quá giới hạn 12 MB.")
+    try:
+        fields = parse_qs(body.decode("utf-8"), keep_blank_values=True, strict_parsing=True)
+    except (UnicodeDecodeError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail="Dữ liệu xuất không hợp lệ.") from exc
+
+    file_name = fields.get("file_name", [""])[0]
+    content_type = fields.get("content_type", [""])[0]
+    content = fields.get("content", [""])[0]
+    if not re.fullmatch(r"[A-Za-z0-9_.-]{1,120}\.(csv|json)", file_name, flags=re.IGNORECASE):
+        raise HTTPException(status_code=400, detail="Tên tệp xuất không hợp lệ.")
+    media_types = {"csv": "text/csv; charset=utf-8", "json": "application/json; charset=utf-8"}
+    extension = file_name.rsplit(".", 1)[-1].lower()
+    if content_type != media_types[extension]:
+        raise HTTPException(status_code=400, detail="Định dạng tệp xuất không khớp.")
+    if extension == "json":
+        try:
+            json.loads(content)
+        except json.JSONDecodeError as exc:
+            raise HTTPException(status_code=400, detail="Nội dung JSON không hợp lệ.") from exc
+
+    return Response(
+        content=content.encode("utf-8"),
+        media_type=media_types[extension],
+        headers={
+            "Content-Disposition": f'attachment; filename="{file_name}"',
+            "Cache-Control": "no-store",
+            "X-Content-Type-Options": "nosniff",
+        },
+    )
 
 
 @app.get(f"{API_PREFIX}/health", tags=["Hệ thống"])
