@@ -59,6 +59,15 @@ body{color:#43516a}
 .dark .panel{border-color:#354357;box-shadow:0 7px 20px rgba(0,0,0,.18),0 1px 3px rgba(0,0,0,.12)}
 .dark .panel:hover{border-color:#485a70}
 .dark .chart-wrap{border-color:#344257;background:#1b2838}
+/* Simplified header and student identification */
+.topbar{height:62px}
+.top-title{font-size:16px;line-height:1.3}
+.top-sub,.top-actions .pill{display:none}
+.top-actions{gap:0}
+.side-bottom .student-name{display:block;color:inherit;font-size:12px;font-weight:700;line-height:1.4}
+.side-bottom .student-id{display:block;margin-top:2px;color:#777f92;font-size:10px;line-height:1.4}
+.dark .side-bottom .student-id{color:#b0adc4}
+@media(max-width:740px){.topbar{height:58px}}
 </style>
 </head>
 <body>
@@ -80,7 +89,7 @@ body{color:#43516a}
       <button type="button" class="nav-link" data-page="models"><span class="nav-icon">▥</span>Training Lab</button>
       <button type="button" class="nav-link" data-page="data-status"><span class="nav-icon">▤</span>Quản lý dữ liệu</button>
     </nav>
-     <div class="side-bottom">V-MEST<br>Phân tích kinh tế Việt Nam</div>
+     <div class="side-bottom"><span class="student-name">Bùi Nhĩ Ân</span><span class="student-id">MSSV 2311553345</span></div>
   </aside>
   <main class="main">
     <header class="topbar">
