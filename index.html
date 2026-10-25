@@ -71,10 +71,13 @@ body{color:#43516a}
 /* Highlight key numbers and bold content */
 .brand-name{color:#b4232f}
 .dark .brand-name{color:#ff7a84}
-.top-title,.welcome h1,.section-head h2,.panel-title{color:#12633b}
+.top-title{color:#b4232f}
+.welcome h1,.section-head h2,.panel-title{color:#202124}
+.brand-highlight{color:#b4232f}
 .kpi-value,.region-value,.rank,b,strong,.welcome-note b,.model-callout strong{color:#157347}
 .kpi-value{font-weight:850}
-.dark .top-title,.dark .welcome h1,.dark .section-head h2,.dark .panel-title{color:#b0e8c8}
+.dark .top-title,.dark .brand-highlight{color:#ff7a84}
+.dark .welcome h1,.dark .section-head h2,.dark .panel-title{color:#f3f4f6}
 .dark .kpi-value,.dark .region-value,.dark .rank,.dark b,.dark strong,.dark .welcome-note b,.dark .model-callout strong{color:#75d69e}
 </style>
 </head>
@@ -106,7 +109,7 @@ body{color:#43516a}
     </header>
     <div class="content">
       <section id="overview" class="section page active" style="margin-top:0">
-        <div class="welcome"><div><h1>Chào mừng đến với <span style="color:#3288e8">V-MEST</span></h1><p>Theo dõi tăng trưởng, biến động vĩ mô và dự báo trên dữ liệu có nguồn gốc.</p></div><div class="welcome-note">◷ &nbsp; <b>Mốc dữ liệu mới nhất</b><br>GDP năm 2025 · GDP quý III/2026 · CPI tháng 9/2026</div></div>
+        <div class="welcome"><div><h1>Chào mừng đến với <span class="brand-highlight">V-MEST</span></h1><p>Theo dõi tăng trưởng, biến động vĩ mô và dự báo trên dữ liệu có nguồn gốc.</p></div><div class="welcome-note">◷ &nbsp; <b>Mốc dữ liệu mới nhất</b><br>GDP năm 2025 · GDP quý III/2026 · CPI tháng 9/2026</div></div>
         <div class="kpis">
           <article class="kpi"><div class="kpi-head"><span>GDP danh nghĩa</span><span class="kpi-icon">▤</span></div><div class="kpi-value" id="nominal-kpi">—</div><div class="kpi-foot">USD hiện hành · 2025 · World Bank</div></article>
           <article class="kpi"><div class="kpi-head"><span>Tăng trưởng GDP thực</span><span class="kpi-icon">↗</span></div><div class="kpi-value" id="real-kpi">—</div><div class="kpi-foot">USD cố định 2015 · 2025</div></article>
