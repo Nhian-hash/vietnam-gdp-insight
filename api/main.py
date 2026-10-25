@@ -327,7 +327,7 @@ async def export_download(request: Request) -> Response:
 
     return Response(
         content=content.encode("utf-8"),
-        media_type=media_types[extension],
+        media_type="application/octet-stream",
         headers={
             "Content-Disposition": f'attachment; filename="{file_name}"',
             "Cache-Control": "no-store",
