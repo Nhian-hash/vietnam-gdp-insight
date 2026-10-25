@@ -1,0 +1,46 @@
+﻿kiem_tra,trang_thai,so_dong,ghi_chu
+gdp_expenditure: khóa trùng,dat,336,"Khóa: nam, chi_tieu, loai_chi_tieu; trùng=0."
+gdp_expenditure: bảng không rỗng,dat,336,Số dòng chuẩn hóa: 336.
+gdp_contribution: khóa trùng,dat,20,Khóa: nam; trùng=0.
+gdp_contribution: bảng không rỗng,dat,20,Số dòng chuẩn hóa: 20.
+gdp_real_sectors: khóa trùng,dat,105,"Khóa: nam, nganh; trùng=0."
+gdp_real_sectors: bảng không rỗng,dat,105,Số dòng chuẩn hóa: 105.
+gdp_detailed_activities: khóa trùng,dat,436,"Khóa: nam, hoat_dong_kinh_te, hoat_dong_kinh_te_nguon, khu_vuc_ma; trùng=0."
+gdp_detailed_activities: bảng không rỗng,dat,436,Số dòng chuẩn hóa: 436.
+gdp_activity_2026_update: khóa trùng,dat,16,"Khóa: ky, hoat_dong_kinh_te, khu_vuc_ma, cap_phan_tich; trùng=0."
+gdp_activity_2026_update: bảng không rỗng,dat,16,Số dòng chuẩn hóa: 16.
+employment: khóa trùng,dat,880,"Khóa: nam, loai_chi_tieu, hoat_dong_kinh_te; trùng=0."
+employment: bảng không rỗng,dat,880,Số dòng chuẩn hóa: 880.
+labor_productivity: khóa trùng,dat,420,"Khóa: nam, nganh; trùng=0."
+labor_productivity: bảng không rỗng,dat,420,Số dòng chuẩn hóa: 420.
+unemployment: khóa trùng,dat,336,"Khóa: nam, khu_vuc_cu_tru, vung_kinh_te; trùng=0."
+unemployment: bảng không rỗng,dat,336,Số dòng chuẩn hóa: 336.
+investment_ownership: khóa trùng,dat,252,"Khóa: nam, loai_gia_tri, loai_hinh_so_huu; trùng=0."
+investment_ownership: bảng không rỗng,dat,252,Số dòng chuẩn hóa: 252.
+investment_industry: khóa trùng,dat,320,"Khóa: nam, nganh; trùng=0."
+investment_industry: bảng không rỗng,dat,320,Số dòng chuẩn hóa: 320.
+fiscal: khóa trùng,dat,1224,"Khóa: nam, chi_tieu, loai_gia_tri, phan_he; trùng=0."
+fiscal: bảng không rỗng,dat,1224,Số dòng chuẩn hóa: 1224.
+credit: khóa trùng,dat,198,"Khóa: nam, chi_tieu, loai_gia_tri, ky_han_ngoai_te; trùng=0."
+credit: bảng không rỗng,dat,198,Số dòng chuẩn hóa: 198.
+interest_rates: khóa trùng,dat,184,"Khóa: nam, loai_lai_suat; trùng=0."
+interest_rates: bảng không rỗng,dat,184,Số dòng chuẩn hóa: 184.
+bop: khóa trùng,dat,256,"Khóa: nam, chi_tieu, loai_gia_tri; trùng=0."
+bop: bảng không rỗng,dat,256,Số dòng chuẩn hóa: 256.
+tfp: khóa trùng,dat,3,Khóa: giai_doan; trùng=0.
+tfp: bảng không rỗng,dat,3,Số dòng chuẩn hóa: 3.
+commodities: khóa trùng,dat,4949,"Khóa: thoi_gian, hang_hoa; trùng=0."
+commodities: bảng không rỗng,dat,4949,Số dòng chuẩn hóa: 4949.
+productivity_proxy: khóa trùng,dat,60,"Khóa: nam, nganh; trùng=0."
+productivity_proxy: bảng không rỗng,dat,60,Số dòng chuẩn hóa: 60.
+macro_panel: khóa trùng,dat,41,Khóa: nam; trùng=0.
+macro_panel: bảng không rỗng,dat,41,Số dòng chuẩn hóa: 41.
+macro_correlations: khóa trùng,dat,10,"Khóa: bien_x, bien_y, giai_doan; trùng=0."
+macro_correlations: bảng không rỗng,dat,10,Số dòng chuẩn hóa: 10.
+Cơ cấu lao động cộng xấp xỉ 100%,dat,20,"Tổng tỷ trọng theo ngành mỗi năm; sai lệch cho phép 0,25 điểm % do làm tròn. "
+Phân rã GDP theo chi tiêu,dat,20,"Tổng đóng góp các thành phần rời rạc so với tốc độ tăng GDP chính thức; sai lệch trong 0,15 điểm % cho phép làm tròn."
+Năng suất proxy có quan sát dương,dat,60,"GDP thực chia số lao động đã gộp theo ba khu vực; proxy mô tả, không thay chỉ tiêu chính thức."
+Đóng góp TFP + vốn + lao động xấp xỉ 100%,dat,3,Kiểm tra phân rã theo ba kỳ 5 năm; sai số do làm tròn.
+GDP danh nghĩa theo hoạt động cộng bằng tổng NSO,dat,21,"Chênh tương đối lớn nhất giữa tổng ngành + thuế và GDP tổng NSO: 0.00024% (ngưỡng 0,05%)."
+Cơ cấu GDP chi tiết gồm thuế cộng xấp xỉ 100%,dat,21,"Sai lệch tuyệt đối lớn nhất của tỷ trọng ngành + thuế so với 100%: 0.03000 điểm % (ngưỡng 0,15 điểm %)."
+Đóng góp GDP thực chi tiết cộng khớp tăng trưởng NSO,dat,19,"Sai lệch lớn nhất giữa tổng đóng góp theo giá cố định và chỉ số tăng GDP NSO: 0.0050 điểm % (ngưỡng 0,20; bỏ năm đổi mốc 2010)."

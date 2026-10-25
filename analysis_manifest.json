@@ -1,0 +1,64 @@
+{
+  "analysis_date": "2026-10-23",
+  "forecast_target": "World Bank annual real GDP, constant 2015 USD, 1985-2025",
+  "forecast_evaluation": {
+    "method": "expanding-window rolling-origin one-step-ahead",
+    "test_years": "2016-2025",
+    "scaler": "fit on each training fold only",
+    "models": [
+      "Naive_last_value",
+      "Drift_mean_log_change",
+      "Linear_log_trend",
+      "GRU_logGDP",
+      "LSTM_logGDP"
+    ],
+    "gru_lstm": "sequence=5 years, hidden=8, epochs=200, fixed seed per origin; exploratory due short annual series"
+  },
+  "forecast_projection": {
+    "file": "du_lieu_du_bao_gdp_thuc_den_2030.csv",
+    "years": "2026-2030",
+    "models": [
+      "Naive_last_value",
+      "Drift_mean_log_change",
+      "Linear_log_trend",
+      "GRU_logGDP",
+      "LSTM_logGDP"
+    ],
+    "target": "annual real GDP, constant 2015 USD",
+    "interpretation": "Out-of-sample model projections based on observations through 2025; not official estimates. The displayed empirical P80 bands use absolute log errors from rolling-origin backtests at the matching horizon; time-series errors are dependent and small samples do not guarantee nominal coverage. Neural models use recursive five-step forecasts and are exploratory."
+  },
+  "multi_horizon_backtest": {
+    "file": "du_lieu_du_bao_nhieu_chan_troi.csv",
+    "horizons_years": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "method": "expanding-window rolling-origin; baselines forecast in log GDP; GRU/LSTM use recursive multi-step forecasts",
+    "metric_file": "so_sanh_hieu_qua_mo_hinh_theo_chan_troi.csv",
+    "sample_counts_per_model": {
+      "1": 10,
+      "2": 9,
+      "3": 8,
+      "4": 7,
+      "5": 6
+    }
+  },
+  "time_series_methods": {
+    "adf": "ADF with AIC lag selection; trend+constant for log level, constant for log difference",
+    "decomposition": "HP filter on log annual real GDP, lambda=6.25; not an official potential GDP estimate",
+    "fx_volatility": "12-month rolling sample standard deviation of monthly log returns, annualized by sqrt(12)"
+  },
+  "comparisons": [
+    "annual macro indicators and ratios",
+    "GDP sector composition",
+    "province and region GRDP rankings",
+    "CPI and FX monthly comparison",
+    "annual IIP/GDP contemporaneous and lagged correlation",
+    "annual and monthly trade comparisons",
+    "rolling-origin forecast model comparison"
+  ],
+  "quality_check_file": "kiem_tra_chat_luong_du_lieu.csv"
+}

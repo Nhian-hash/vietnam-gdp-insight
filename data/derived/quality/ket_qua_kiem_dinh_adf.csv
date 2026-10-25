@@ -1,0 +1,3 @@
+﻿chuoi,bien_doi,n,adf_statistic,p_value,lag_chon_aic,so_quan_sat_huu_hieu,regression,critical_1pct,critical_5pct,critical_10pct,ket_luan_muc_5pct,ghi_chu
+log_gdp_thuc_muc,log-level,41,-1.32912023,0.88053709,6,34,ct,-4.25304261,-3.54859046,-3.20706180,khong_du_bang_chung_bac_bo_unit_root,ADF nhạy với đặc tả và mẫu nhỏ; GDP spline tháng không được dùng.
+tang_truong_log_gdp_thuc_pct,first-difference-of-log (approx growth %),40,-4.21891715,0.00061197,0,39,c,-3.61039960,-2.93910895,-2.60806297,bac_bo_unit_root,ADF nhạy với đặc tả và mẫu nhỏ; GDP spline tháng không được dùng.

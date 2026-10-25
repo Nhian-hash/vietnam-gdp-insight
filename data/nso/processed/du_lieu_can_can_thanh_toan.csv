@@ -1,0 +1,257 @@
+﻿nam,chi_tieu,gia_tri,don_vi,loai_gia_tri,trang_thai
+2018,CURRENT ACCOUNT,5768.85,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,CURRENT ACCOUNT,12474.58,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,CURRENT ACCOUNT,15060.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,CURRENT ACCOUNT,-8149.52,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,CURRENT ACCOUNT,1403.6,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,CURRENT ACCOUNT,27590.18,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,CURRENT ACCOUNT,30384.57,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,CURRENT ACCOUNT,33135.29,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Goods,16539.63,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Goods,20971.58,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Goods,30708.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Goods,15672.48,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Goods,29399.6,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Goods,44028.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Goods,43231.57,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Goods,41893.29,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Goods - Exports (FOB),243697.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Goods - Exports (FOB),264267.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Goods - Exports (FOB),282629.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Goods - Exports (FOB),336167.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Goods - Exports (FOB),371715.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Goods - Exports (FOB),354721.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Goods - Exports (FOB),405935.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Goods - Exports (FOB),475059.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Goods - Imports (FOB),227157.37,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Goods - Imports (FOB),243295.42,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Goods - Imports (FOB),251921.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Goods - Imports (FOB),320494.52,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Goods - Imports (FOB),342315.4,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Goods - Imports (FOB),310693.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Goods - Imports (FOB),362703.43,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Goods - Imports (FOB),433165.71,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Services,-3810.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Services,-945.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Services,-10287.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Services,-15395.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Services,-13903.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Services,-7030.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Services,-10059.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Services,-10230.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Services - Export,14775.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Services - Export,20422.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Services - Export,7600.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Services - Export,5262.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Services - Export,13526.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Services - Export,21387.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Services - Export,25498.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Services - Export,30307.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Services - Import,18585.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Services - Import,21367.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Services - Import,17887.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Services - Import,20657.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Services - Import,27429.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Services - Import,28417.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Services - Import,35557.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Services - Import,40537.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Incomes,-15817.7,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Incomes,-16795.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Incomes,-14817.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Incomes,-18749.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Incomes,-19728.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Incomes,-22463.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Incomes,-15693.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Incomes,-14399.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Incomes - Receipts,1615.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Incomes - Receipts,2237.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Incomes - Receipts,1428.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Incomes - Receipts,982.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Incomes - Receipts,2321.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Incomes - Receipts,4551.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Incomes - Receipts,5542.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Incomes - Receipts,5388.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Incomes - Payments,17432.7,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Incomes - Payments,19032.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Incomes - Payments,16245.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Incomes - Payments,19731.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Incomes - Payments,22049.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Incomes - Payments,27014.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Incomes - Payments,21235.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Incomes - Payments,19787.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Transfers,8856.92,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Transfers,9243.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Transfers,9456.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Transfers,10322.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Transfers,5635.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Transfers,13055.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Transfers,12905.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Transfers,15871.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Transfers - Receipts,10869.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Transfers - Receipts,11609.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Transfers - Receipts,11427.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Transfers - Receipts,13568.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Transfers - Receipts,12287.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Transfers - Receipts,16112.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Transfers - Receipts,16998.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Transfers - Receipts,19766.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Transfers - Payments,2012.08,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Transfers - Payments,2366.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Transfers - Payments,1971.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Transfers - Payments,3246.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Transfers - Payments,6652.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Transfers - Payments,3057.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Transfers - Payments,4093.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Transfers - Payments,3895.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Current account as percent of GDP (%),1.86,% GDP,ty_trong_pct,theo_bang_nguon
+2019,Current account as percent of GDP (%),3.73,% GDP,ty_trong_pct,theo_bang_nguon
+2020,Current account as percent of GDP (%),4.34,% GDP,ty_trong_pct,theo_bang_nguon
+2021,Current account as percent of GDP (%),-2.22,% GDP,ty_trong_pct,theo_bang_nguon
+2022,Current account as percent of GDP (%),0.34,% GDP,ty_trong_pct,theo_bang_nguon
+2023,Current account as percent of GDP (%),6.36,% GDP,ty_trong_pct,theo_bang_nguon
+2024,Current account as percent of GDP (%),6.38,% GDP,ty_trong_pct,theo_bang_nguon
+2025,Current account as percent of GDP (%),6.44,% GDP,ty_trong_pct,so_bo
+2018,Financial account,8466.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Financial account,18971.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Financial account,8484.56,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Financial account,30837.24,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Financial account,9470.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Financial account,-2838.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Financial account,-7909.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Financial account,-3410.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Direct investment,14902.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Direct investment,15670.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Direct investment,15420.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Direct investment,15283.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Direct investment,15226.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Direct investment,20050.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Direct investment,19690.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Direct investment,21290.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Outward indirect investment,-598.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Outward indirect investment,-450.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Outward indirect investment,-380.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Outward indirect investment,-377.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Outward indirect investment,-2674.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Outward indirect investment,1550.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Outward indirect investment,-480.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Outward indirect investment,-700.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Inward indirect investment,15500.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Inward indirect investment,16120.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Inward indirect investment,15800.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Inward indirect investment,15660.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Inward indirect investment,17900.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Inward indirect investment,18500.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Inward indirect investment,20170.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Inward indirect investment,21990.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Indirect investment,3021.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Indirect investment,2998.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Indirect investment,-1256.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Indirect investment,281.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Indirect investment,1512.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Indirect investment,-1189.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Indirect investment,-5713.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Indirect investment,-4931.0,triệu USD,gia_tri_usd_trieu,so_bo
+2019,Outflow indirect investment,3.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Outflow indirect investment,4.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Outflow indirect investment,10.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Outflow indirect investment,2.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Outflow indirect investment,-34.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Outflow indirect investment,-63.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Outflow indirect investment,-31.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Inflow indirect investment,3021.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Inflow indirect investment,2995.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Inflow indirect investment,-1260.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Inflow indirect investment,271.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Inflow indirect investment,1510.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Inflow indirect investment,-1155.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Inflow indirect investment,-5650.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Inflow indirect investment,-4900.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Other investment (Assets),-11143.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Other investment (Assets),-7789.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Other investment (Assets),-8436.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Other investment (Assets),-626.76,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Other investment (Assets),-13663.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Other investment (Assets),-14341.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Other investment (Assets),-12260.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Other investment (Assets),-20971.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Other investment (Assets) - Currency and deposits,-10804.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Other investment (Assets) - Currency and deposits,-8081.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Other investment (Assets) - Currency and deposits,-8447.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Other investment (Assets) - Currency and deposits,-791.76,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Other investment (Assets) - Currency and deposits,-13750.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Other investment (Assets) - Currency and deposits,-14171.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Other investment (Assets) - Currency and deposits,-12071.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Other investment (Assets) - Currency and deposits,-20507.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Other investment (Assets) - Others,-339.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Other investment (Assets) - Others,292.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Other investment (Assets) - Others,11.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Other investment (Assets) - Others,165.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Other investment (Assets) - Others,87.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Other investment (Assets) - Others,-170.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Other investment (Assets) - Others,-189.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Other investment (Assets) - Others,-464.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Other investment (Liabilities),1686.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Other investment (Liabilities),8092.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Other investment (Liabilities),2756.56,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Other investment (Liabilities),15900.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Other investment (Liabilities),6395.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Other investment (Liabilities),-7358.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Other investment (Liabilities),-9626.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Other investment (Liabilities),1202.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Other investment (Liabilities) - Currency and deposits,-198.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Other investment (Liabilities) - Currency and deposits,2875.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Other investment (Liabilities) - Currency and deposits,397.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Other investment (Liabilities) - Currency and deposits,8851.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Other investment (Liabilities) - Currency and deposits,325.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Other investment (Liabilities) - Currency and deposits,-4090.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Other investment (Liabilities) - Currency and deposits,-3495.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Other investment (Liabilities) - Currency and deposits,6565.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,Other investment (Liabilities) - Loans,1884.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Other investment (Liabilities) - Loans,5217.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Other investment (Liabilities) - Loans,2359.56,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Other investment (Liabilities) - Loans,5439.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Other investment (Liabilities) - Loans,6070.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Other investment (Liabilities) - Loans,-3268.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Other investment (Liabilities) - Loans,-6131.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Other investment (Liabilities) - Loans,-5363.0,triệu USD,gia_tri_usd_trieu,so_bo
+2021,Other investment (Liabilities) - Allocating special drawing right,1610.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2018,Net investment,-9457.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,Net investment,303.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,Net investment,-5679.44,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,Net investment,15273.24,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,Net investment,-7268.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,Net investment,-21699.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,Net investment,-21886.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,Net investment,-19769.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,ERRORS AND OMISSIONS,-8203.85,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,ERRORS AND OMISSIONS,-8191.58,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,ERRORS AND OMISSIONS,-6912.56,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,ERRORS AND OMISSIONS,-8397.72,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,ERRORS AND OMISSIONS,-33618.6,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,ERRORS AND OMISSIONS,-19144.18,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,ERRORS AND OMISSIONS,-31642.57,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,ERRORS AND OMISSIONS,-25863.29,triệu USD,gia_tri_usd_trieu,so_bo
+2018,OVERALL BALANCE,6031.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,OVERALL BALANCE,23254.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,OVERALL BALANCE,16632.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,OVERALL BALANCE,14290.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,OVERALL BALANCE,-22745.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,OVERALL BALANCE,5608.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,OVERALL BALANCE,-9167.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,OVERALL BALANCE,3862.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018,RESERVE AND RELATED ITEMS,-6031.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019,RESERVE AND RELATED ITEMS,-23254.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020,RESERVE AND RELATED ITEMS,-16632.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021,RESERVE AND RELATED ITEMS,-14290.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022,RESERVE AND RELATED ITEMS,22745.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023,RESERVE AND RELATED ITEMS,-5608.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024,RESERVE AND RELATED ITEMS,9167.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025,RESERVE AND RELATED ITEMS,-3862.0,triệu USD,gia_tri_usd_trieu,so_bo
+2018, Reserve assets,-6031.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2019, Reserve assets,-23254.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2020, Reserve assets,-16632.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2021, Reserve assets,-14290.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2022, Reserve assets,22745.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2023, Reserve assets,-5608.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2024, Reserve assets,9167.0,triệu USD,gia_tri_usd_trieu,theo_bang_nguon
+2025, Reserve assets,-3862.0,triệu USD,gia_tri_usd_trieu,so_bo

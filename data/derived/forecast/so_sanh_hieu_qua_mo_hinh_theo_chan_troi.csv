@@ -1,0 +1,26 @@
+﻿chan_troi_nam,mo_hinh,so_diem_kiem_thu,nam_dau,nam_cuoi,MAE_usd_2015,RMSE_usd_2015,MAPE_pct,sMAPE_pct,MASE_vs_naive_train,ghi_chu
+1,Drift_mean_log_change,10,2016,2025,5188601102.98323631,6646061727.14835739,1.49776230,1.48688023,0.62117989,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+1,Linear_log_trend,10,2016,2025,16661328550.50067139,18770925967.49146652,4.78202645,4.64771117,2.00020044,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+1,Naive_last_value,10,2016,2025,19844896126.52201462,21199607339.08049393,5.84459107,6.03774860,2.43453272,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+1,GRU_logGDP,10,2016,2025,28938621318.87081146,30227033298.37336349,8.53441387,8.93596397,3.54614668,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+1,LSTM_logGDP,10,2016,2025,37662487318.95691681,39353586799.18907166,11.06638418,11.74400756,4.60062413,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+2,Drift_mean_log_change,9,2017,2025,7417133018.06393433,10199186994.38689041,2.15334184,2.11919962,0.91391037,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+2,Linear_log_trend,9,2017,2025,19419603483.27360153,21602465772.70721054,5.44772936,5.27588075,2.37562617,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+2,Naive_last_value,9,2017,2025,38710900784.03994751,40223136204.87414551,11.13716654,11.82994255,4.85954407,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+2,GRU_logGDP,9,2017,2025,44223109414.17611694,45827695547.13948059,12.69297156,13.58927869,5.53643288,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+2,LSTM_logGDP,9,2017,2025,53558945795.41290283,55169707156.93503571,15.39942010,16.72373563,6.70516602,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+3,Drift_mean_log_change,8,2018,2025,10149126697.47408295,12585939447.40016365,2.91292575,2.85838219,1.28834070,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+3,Linear_log_trend,8,2018,2025,22680429448.59366608,24732915615.48095322,6.23538150,6.01740687,2.83270366,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+3,Naive_last_value,8,2018,2025,56747767628.61746979,58024688436.15211487,15.94253410,17.36602863,7.25953413,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+3,GRU_logGDP,8,2018,2025,59201069995.95439911,60728253068.64959717,16.59265400,18.13864956,7.55719492,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+3,LSTM_logGDP,8,2018,2025,69239819795.34904480,70465207381.40869141,19.46396264,21.60049577,8.84418089,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+4,Drift_mean_log_change,7,2019,2025,14512319473.75059319,16360287605.40704536,3.96420725,3.88429898,1.85719224,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+4,Linear_log_trend,7,2019,2025,26733411325.63970947,28304824718.68488312,7.24487858,6.96598132,3.42143986,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+4,GRU_logGDP,7,2019,2025,73962332913.25418091,75113851138.71736145,20.25681313,22.57295763,9.62468298,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+4,Naive_last_value,7,2019,2025,74462079949.39714050,75832823469.36758423,20.38220671,22.74475540,9.69517349,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+4,LSTM_logGDP,7,2019,2025,84551122413.27876282,85232066352.92446899,23.23691206,26.31761727,11.01528379,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+5,Drift_mean_log_change,6,2020,2025,16266582694.07830811,18538601692.36293030,4.35530117,4.23805863,2.11736083,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+5,Linear_log_trend,6,2020,2025,31972281295.63294601,32459074730.32007217,8.57712879,8.21629861,4.19532217,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+5,GRU_logGDP,6,2020,2025,87691569123.59677124,88275984669.59761047,23.51466403,26.65961983,11.53444602,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+5,Naive_last_value,6,2020,2025,89755413539.15834045,90485092228.16380310,24.06450548,27.37385710,11.81260425,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.
+5,LSTM_logGDP,6,2020,2025,100685328250.95861816,101189270234.81535339,27.01844953,31.24450898,13.24695556,Expanding-window; chỉ dùng lịch sử có trước năm gốc. Cỡ mẫu giảm khi chân trời dài hơn.

@@ -1,0 +1,7 @@
+tep,dong_moc_du_lieu,ghi_chu
+GDP_Vietnam_Annual.csv,1985-2025,GDP danh nghia USD hien hanh; so thuc 2025 moi nhat World Bank
+GDP_Vietnam_Monthly.csv,1985-01..2025-12,Noi suy natural cubic spline giua cac moc GDP nam gan vao thang 12; khong phai GDP quan sat theo thang
+du_lieu_tang_truong_gdp_quy.csv,2026-Q1..Q3,Tang truong GDP so voi cung ky theo uoc tinh chinh thuc NSO; khong phai quy mo GDP
+du_lieu_gdp_quoc_gia_co_cau_nganh.csv,1985-2025,GDP va gia tri gia tang nganh theo World Bank; sector co the trong o trong khi nguon khong co quan sat
+du_lieu_gdp_thuc_va_tang_truong.csv,1985-2025,GDP thuc USD co dinh nam 2015 va tang truong GDP thuc; dung lam muc tieu mo hinh uu tien
+du_lieu_lam_phat_cpi.csv,2020-01..2026-09,2020-2025 chi so CPI goc 2019 tu PXWeb; 2026-01..09 suy ra tu ty le CPI cong don NSO lam tron den 0.01%

@@ -1,0 +1,96 @@
+{
+  "version_id": "gdp-d2a3266b55c5",
+  "fingerprint_sha256": "d2a3266b55c5898dae71a150e15dd03ae6ecdf4acd3d1972fe659625687cd791",
+  "created_utc": "2026-10-23T12:39:18Z",
+  "retrieved_at_utc": "2026-10-22T18:27:38.639Z",
+  "data_cutoff": {
+    "annual_gdp": 2025,
+    "quarterly_gdp_growth": "2026-Q3",
+    "cpi": "2026-09",
+    "fx_monthly": "2026-07",
+    "grdp_local": "2018-2025",
+    "trade_annual": 2025,
+    "trade_monthly": "2026-09",
+    "retail_annual": 2025,
+    "retail_monthly": "2026-09",
+    "fdi_annual": 2025,
+    "fdi_latest": "2026-09",
+    "iip_annual": 2025,
+    "iip_monthly": "2026-09",
+    "cpi_annual_wdi": 2025
+  },
+  "archive": "data_versions/gdp-d2a3266b55c5.zip",
+  "files": [
+    {
+      "file": "GDP_Vietnam_Annual.csv",
+      "bytes": 1986,
+      "sha256": "e55502061e8d18d9815efd32bcc5019d19772c0234afba4174b8694795214b2b"
+    },
+    {
+      "file": "du_lieu_gdp_tong_hop.csv",
+      "bytes": 3880,
+      "sha256": "687152ffe2d3fdb3695227a0cc1a0476604f22b9f226860d4245da916069038e"
+    },
+    {
+      "file": "du_lieu_gdp_thuc_va_tang_truong.csv",
+      "bytes": 1291,
+      "sha256": "b7710bc35d2febfd205d0716b5867fc8a59a077d03b8468c6313926959b977b0"
+    },
+    {
+      "file": "du_lieu_gdp_co_cau_3_nganh.csv",
+      "bytes": 4847,
+      "sha256": "05b62d70991d471220bfaed3e6f73ed842ac6122663408b94ebd1d2225c4734e"
+    },
+    {
+      "file": "du_lieu_tang_truong_gdp_quy.csv",
+      "bytes": 283,
+      "sha256": "02405dfc0191094e6b3e5a0c30993e281f7f85a3fc27440167c13b75aae0d88f"
+    },
+    {
+      "file": "du_lieu_cpi_phan_tich_thang.csv",
+      "bytes": 7185,
+      "sha256": "07085e4787bdafc9ea98ab8400e5d26c9361c01519b8381408163339d835e571"
+    },
+    {
+      "file": "du_lieu_ty_gia_usd_vnd.csv",
+      "bytes": 36812,
+      "sha256": "be8c752ad7e241cf0103a3fc574c81c7e42577fd4365a35c852266ef508cddca"
+    },
+    {
+      "file": "du_lieu_xuat_nhap_khau_thang_2026.csv",
+      "bytes": 943,
+      "sha256": "ff9013932db69139227f87a0a3378f2312d4acf93560c4d31ebaf7040a618ac6"
+    },
+    {
+      "file": "du_lieu_san_xuat_iip_thang_2026.csv",
+      "bytes": 711,
+      "sha256": "005be595724fd3acdaecceb733aac07983b51d3681ded7876ea9d895f07e63c3"
+    },
+    {
+      "file": "du_lieu_grdp_63_tinh_thanh.csv",
+      "bytes": 87843,
+      "sha256": "2c4e4c9809718b728c24f5d8cc428da094aee591a27519d80966ebdea7205787"
+    },
+    {
+      "file": "du_lieu_ban_le_tieu_dung_thang_2026.csv",
+      "bytes": 1193,
+      "sha256": "5350c55199d16b0e3de372945c989e74e76a0d9db8f13e0a5cee369981cb1cd1"
+    },
+    {
+      "file": "du_lieu_fdi_dau_tu.csv",
+      "bytes": 4829,
+      "sha256": "8b60fe8ff0fa0b2a9bca6f37ba8e6b9e33fc3de791ff1da8ea741f751dcbf472"
+    },
+    {
+      "file": "du_lieu_fdi_luy_ke_2026.csv",
+      "bytes": 350,
+      "sha256": "5130a7001030c61c7c0581934d60a4fa039cd314e892d391c22507587130b0f8"
+    },
+    {
+      "file": "du_lieu_chi_so_kinh_te_hang_nam.csv",
+      "bytes": 35056,
+      "sha256": "905771562eb0b9e715ddb3c6f9354718d3623f98bde9973e38c048bfa6458299"
+    }
+  ],
+  "versioning_note": "Một phiên bản mới được tạo khi nội dung các CSV dữ liệu chuẩn hóa thay đổi. Tệp ZIP giữ ảnh chụp bất biến để truy vết và tái lập phân tích."
+}

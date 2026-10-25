@@ -1,0 +1,6 @@
+﻿mo_hinh,so_diem_kiem_thu,nam_dau,nam_cuoi,MAE_usd_2015,RMSE_usd_2015,MAPE_pct,sMAPE_pct,MASE_vs_naive_train,ghi_chu
+Drift_mean_log_change,10,2016,2025,5188601102.98323631,6646061727.14835739,1.49776230,1.48688023,0.62117989,Mốc so sánh; dùng chung các năm kiểm thử với GRU/LSTM.
+Linear_log_trend,10,2016,2025,16661328550.50067139,18770925967.49146652,4.78202645,4.64771117,2.00020044,Mốc so sánh; dùng chung các năm kiểm thử với GRU/LSTM.
+Naive_last_value,10,2016,2025,19844896126.52201462,21199607339.08049393,5.84459107,6.03774860,2.43453272,Mốc so sánh; dùng chung các năm kiểm thử với GRU/LSTM.
+GRU_logGDP,10,2016,2025,28938621318.87081146,30227033298.37336349,8.53441387,8.93596397,3.54614668,"Chỉ 10 dự báo ngoài mẫu; kết quả nhạy với giai đoạn kiểm thử, không đủ mẫu để khẳng định mô hình thắng ổn định."
+LSTM_logGDP,10,2016,2025,37662487318.95691681,39353586799.18907166,11.06638418,11.74400756,4.60062413,"Chỉ 10 dự báo ngoài mẫu; kết quả nhạy với giai đoạn kiểm thử, không đủ mẫu để khẳng định mô hình thắng ổn định."

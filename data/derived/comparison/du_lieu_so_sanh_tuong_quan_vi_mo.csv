@@ -1,0 +1,13 @@
+﻿so_sanh,bien_x,bien_y,phuong_phap,he_so_tuong_quan,so_quan_sat,ghi_chu
+Tăng trưởng GDP thực và lạm phát CPI năm,tang_truong_gdp_thuc_pct,lam_phat_cpi_yoy_pct,pearson,-0.03807585,30,quan_he_mo_ta; khong_suy_dien_nhan_qua
+Tăng trưởng GDP thực và lạm phát CPI năm,tang_truong_gdp_thuc_pct,lam_phat_cpi_yoy_pct,spearman,-0.07185762,30,quan_he_mo_ta; khong_suy_dien_nhan_qua
+Tăng trưởng GDP thực và biến động tỷ giá bình quân năm,tang_truong_gdp_thuc_pct,tang_truong_ty_gia_binh_quan_nam_yoy_pct,pearson,-0.12584412,40,Tỷ giá tăng nghĩa là VND/USD tăng; tương quan không hàm ý nhân quả.
+Tăng trưởng GDP thực và biến động tỷ giá bình quân năm,tang_truong_gdp_thuc_pct,tang_truong_ty_gia_binh_quan_nam_yoy_pct,spearman,-0.30206379,40,Tỷ giá tăng nghĩa là VND/USD tăng; tương quan không hàm ý nhân quả.
+Tăng trưởng GDP thực và IIP cùng năm,tang_truong_gdp_thuc_pct,tang_truong_iip_yoy_pct,pearson,0.74228475,14,"Mẫu IIP ngắn; chỉ mô tả, không khẳng định IIP dự báo GDP."
+Tăng trưởng GDP thực và IIP cùng năm,tang_truong_gdp_thuc_pct,tang_truong_iip_yoy_pct,spearman,0.74945055,14,"Mẫu IIP ngắn; chỉ mô tả, không khẳng định IIP dự báo GDP."
+Tăng trưởng GDP thực và IIP năm trước,tang_truong_gdp_thuc_pct,tang_truong_iip_t_minus_1_pct,pearson,0.15576342,13,"Lag=1: IIP năm t-1 so với GDP thực năm t; mẫu rất nhỏ, mô tả."
+Tăng trưởng GDP thực và IIP năm trước,tang_truong_gdp_thuc_pct,tang_truong_iip_t_minus_1_pct,spearman,0.20879121,13,"Lag=1: IIP năm t-1 so với GDP thực năm t; mẫu rất nhỏ, mô tả."
+Tăng trưởng GDP thực và tăng trưởng bán lẻ thực ước tính,tang_truong_gdp_thuc_pct,tang_truong_ban_le_thuc_uoc_tinh_yoy_pct,pearson,0.53673323,30,Bán lẻ thực là proxy đã giảm CPI chung; không phải chỉ số khối lượng chính thức.
+Tăng trưởng GDP thực và tăng trưởng bán lẻ thực ước tính,tang_truong_gdp_thuc_pct,tang_truong_ban_le_thuc_uoc_tinh_yoy_pct,spearman,0.47942158,30,Bán lẻ thực là proxy đã giảm CPI chung; không phải chỉ số khối lượng chính thức.
+Tăng trưởng GDP danh nghĩa USD và biến động tỷ giá,tang_truong_gdp_danh_nghia_usd_yoy_pct,tang_truong_ty_gia_binh_quan_nam_yoy_pct,pearson,-0.58046327,40,GDP USD chịu ảnh hưởng quy đổi; chỉ quan hệ mô tả.
+Tăng trưởng GDP danh nghĩa USD và biến động tỷ giá,tang_truong_gdp_danh_nghia_usd_yoy_pct,tang_truong_ty_gia_binh_quan_nam_yoy_pct,spearman,-0.25741088,40,GDP USD chịu ảnh hưởng quy đổi; chỉ quan hệ mô tả.

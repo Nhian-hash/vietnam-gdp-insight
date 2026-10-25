@@ -1,0 +1,481 @@
+{
+  "version": 1,
+  "description": "Danh mục tệp dữ liệu; các đường dẫn trong path tính từ thư mục dự án.",
+  "files": {
+    "balance_of_payments.csv": {
+      "path": "data/nso/raw/expanded/balance_of_payments.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "budget_expenditure.csv": {
+      "path": "data/nso/raw/expanded/budget_expenditure.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "budget_revenue.csv": {
+      "path": "data/nso/raw/expanded/budget_revenue.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "credit_outstanding.csv": {
+      "path": "data/nso/raw/expanded/credit_outstanding.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "du_lieu_ban_le_tieu_dung.csv": {
+      "path": "data/nso/processed/du_lieu_ban_le_tieu_dung.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_ban_le_tieu_dung_thang_2026.csv": {
+      "path": "data/nso/processed/du_lieu_ban_le_tieu_dung_thang_2026.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_can_can_thanh_toan.csv": {
+      "path": "data/nso/processed/du_lieu_can_can_thanh_toan.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_chi_so_kinh_te_hang_nam.csv": {
+      "path": "data/derived/combined/du_lieu_chi_so_kinh_te_hang_nam.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_cpi_phan_tich_thang.csv": {
+      "path": "data/derived/macro/du_lieu_cpi_phan_tich_thang.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_dau_tu_theo_loai_hinh.csv": {
+      "path": "data/nso/processed/du_lieu_dau_tu_theo_loai_hinh.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_dau_tu_theo_nganh_thuc.csv": {
+      "path": "data/nso/processed/du_lieu_dau_tu_theo_nganh_thuc.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_dong_gop_gdp_theo_chi_tieu.csv": {
+      "path": "data/nso/processed/du_lieu_dong_gop_gdp_theo_chi_tieu.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_dong_gop_tfp.csv": {
+      "path": "data/nso/processed/du_lieu_dong_gop_tfp.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_du_bao_gdp_thuc_den_2030.csv": {
+      "path": "data/derived/forecast/du_lieu_du_bao_gdp_thuc_den_2030.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_du_bao_nhieu_chan_troi.csv": {
+      "path": "data/derived/forecast/du_lieu_du_bao_nhieu_chan_troi.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_du_bao_rolling_origin.csv": {
+      "path": "data/derived/forecast/du_lieu_du_bao_rolling_origin.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_fdi_dau_tu.csv": {
+      "path": "data/nso/processed/du_lieu_fdi_dau_tu.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_fdi_giai_doan_1988_1990.csv": {
+      "path": "data/nso/processed/du_lieu_fdi_giai_doan_1988_1990.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_fdi_luy_ke_2026.csv": {
+      "path": "data/nso/processed/du_lieu_fdi_luy_ke_2026.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_fx_bien_dong_thang.csv": {
+      "path": "data/derived/macro/du_lieu_fx_bien_dong_thang.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_gdp_co_cau_3_nganh.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_co_cau_3_nganh.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_gdp_nganh_chi_tiet.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_nganh_chi_tiet.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_gdp_nganh_chi_tiet_2026.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_nganh_chi_tiet_2026.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_gdp_quoc_gia_co_cau_nganh.csv": {
+      "path": "data/world_bank/processed/du_lieu_gdp_quoc_gia_co_cau_nganh.csv",
+      "source": "World Bank",
+      "kind": "processed source series"
+    },
+    "du_lieu_gdp_theo_chi_tieu.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_theo_chi_tieu.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_gdp_thuc_theo_nganh.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_thuc_theo_nganh.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_gdp_thuc_va_tang_truong.csv": {
+      "path": "data/world_bank/processed/du_lieu_gdp_thuc_va_tang_truong.csv",
+      "source": "World Bank",
+      "kind": "processed source series"
+    },
+    "du_lieu_gdp_tong_hop.csv": {
+      "path": "data/derived/combined/du_lieu_gdp_tong_hop.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_gia_hang_hoa_quoc_te.csv": {
+      "path": "data/world_bank/processed/du_lieu_gia_hang_hoa_quoc_te.csv",
+      "source": "World Bank",
+      "kind": "processed source series"
+    },
+    "du_lieu_grdp_63_tinh_thanh.csv": {
+      "path": "data/nso/processed/du_lieu_grdp_63_tinh_thanh.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_iip_ban_le_xuat_nhap_khau.csv": {
+      "path": "data/derived/compatibility/du_lieu_iip_ban_le_xuat_nhap_khau.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_lai_suat_ngan_hang.csv": {
+      "path": "data/nso/processed/du_lieu_lai_suat_ngan_hang.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_lam_phat_cpi.csv": {
+      "path": "data/nso/processed/du_lieu_lam_phat_cpi.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_lam_phat_cpi_nam_lich_su.csv": {
+      "path": "data/world_bank/processed/du_lieu_lam_phat_cpi_nam_lich_su.csv",
+      "source": "World Bank",
+      "kind": "processed source series"
+    },
+    "du_lieu_lao_dong_theo_nganh.csv": {
+      "path": "data/nso/processed/du_lieu_lao_dong_theo_nganh.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_nang_suat_lao_dong.csv": {
+      "path": "data/nso/processed/du_lieu_nang_suat_lao_dong.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_nang_suat_thuc_theo_khu_vuc.csv": {
+      "path": "data/derived/combined/du_lieu_nang_suat_thuc_theo_khu_vuc.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_phan_ra_gdp_thuc_hang_nam.csv": {
+      "path": "data/derived/macro/du_lieu_phan_ra_gdp_thuc_hang_nam.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_san_xuat_iip_nam.csv": {
+      "path": "data/nso/processed/du_lieu_san_xuat_iip_nam.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_san_xuat_iip_so_sanh_2026.csv": {
+      "path": "data/derived/comparison/du_lieu_san_xuat_iip_so_sanh_2026.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_san_xuat_iip_thang_2026.csv": {
+      "path": "data/nso/processed/du_lieu_san_xuat_iip_thang_2026.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_so_sanh_ban_le_thang_2026.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_ban_le_thang_2026.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_co_cau_nganh.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_co_cau_nganh.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_cpi_ty_gia_thang.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_cpi_ty_gia_thang.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_dong_luc_gdp.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_dong_luc_gdp.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_grdp_63_tinh_2025.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_grdp_63_tinh_2025.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_grdp_6_vung_2025.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_grdp_6_vung_2025.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_iip_gdp_hang_nam.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_iip_gdp_hang_nam.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_nganh_2025.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_nganh_2025.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_ngoai_thuong_thang_2026.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_ngoai_thuong_thang_2026.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_so_sanh_tuong_quan_vi_mo.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_tuong_quan_vi_mo.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_tai_khoa_ngan_sach.csv": {
+      "path": "data/nso/processed/du_lieu_tai_khoa_ngan_sach.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_tang_truong_gdp_quy.csv": {
+      "path": "data/nso/processed/du_lieu_tang_truong_gdp_quy.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_that_nghiep_vung.csv": {
+      "path": "data/nso/processed/du_lieu_that_nghiep_vung.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_tin_dung_du_no.csv": {
+      "path": "data/nso/processed/du_lieu_tin_dung_du_no.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_tuong_quan_dong_luc_gdp.csv": {
+      "path": "data/derived/comparison/du_lieu_tuong_quan_dong_luc_gdp.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "du_lieu_ty_gia_usd_vnd.csv": {
+      "path": "data/imf/processed/du_lieu_ty_gia_usd_vnd.csv",
+      "source": "IMF",
+      "kind": "processed source series"
+    },
+    "du_lieu_xuat_nhap_khau.csv": {
+      "path": "data/nso/processed/du_lieu_xuat_nhap_khau.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_xuat_nhap_khau_thang_2026.csv": {
+      "path": "data/nso/processed/du_lieu_xuat_nhap_khau_thang_2026.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "E01-2026-7.xls": {
+      "path": "data/nso/raw/monthly/E01-2026-7.xls",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "E02-2026-7.xls": {
+      "path": "data/nso/raw/monthly/E02-2026-7.xls",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "employment_activity.csv": {
+      "path": "data/nso/raw/expanded/employment_activity.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "gdp_constant_expenditure.csv": {
+      "path": "data/nso/raw/expanded/gdp_constant_expenditure.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "gdp_constant_growth_activity.csv": {
+      "path": "data/nso/raw/expanded/gdp_constant_growth_activity.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "gdp_constant_sector.csv": {
+      "path": "data/nso/raw/expanded/gdp_constant_sector.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "gdp_current_activity.csv": {
+      "path": "data/nso/raw/expanded/gdp_current_activity.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "gdp_current_expenditure.csv": {
+      "path": "data/nso/raw/expanded/gdp_current_expenditure.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "GDP_Vietnam_Annual.csv": {
+      "path": "data/world_bank/processed/GDP_Vietnam_Annual.csv",
+      "source": "World Bank",
+      "kind": "processed source series"
+    },
+    "GDP_Vietnam_Annual.xlsx": {
+      "path": "data/world_bank/raw/GDP_Vietnam_Annual.xlsx",
+      "source": "World Bank",
+      "kind": "source workbook"
+    },
+    "GDP_Vietnam_Monthly.csv": {
+      "path": "data/derived/compatibility/GDP_Vietnam_Monthly.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "IIP-Eng9.xlsx": {
+      "path": "data/nso/raw/monthly/IIP-Eng9.xlsx",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "imf_er_vnm_monthly_response.json": {
+      "path": "data/imf/raw/monthly/imf_er_vnm_monthly_response.json",
+      "source": "IMF",
+      "kind": "raw source"
+    },
+    "interest_rates.csv": {
+      "path": "data/nso/raw/expanded/interest_rates.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "investment_constant_industry.csv": {
+      "path": "data/nso/raw/expanded/investment_constant_industry.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "investment_ownership.csv": {
+      "path": "data/nso/raw/expanded/investment_ownership.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "ket_qua_kiem_dinh_adf.csv": {
+      "path": "data/derived/quality/ket_qua_kiem_dinh_adf.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "kiem_tra_chat_luong_du_lieu.csv": {
+      "path": "data/derived/quality/kiem_tra_chat_luong_du_lieu.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "kiem_tra_du_lieu_mo_rong.csv": {
+      "path": "data/derived/quality/kiem_tra_du_lieu_mo_rong.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "labor_productivity.csv": {
+      "path": "data/nso/raw/expanded/labor_productivity.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_fdi_annual.csv": {
+      "path": "data/nso/raw/pxweb/nso_fdi_annual.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_gdp_activity_q3_2026.html": {
+      "path": "data/nso/raw/expanded/nso_gdp_activity_q3_2026.html",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_gdp_sectors.csv": {
+      "path": "data/nso/raw/pxweb/nso_gdp_sectors.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_grdp_growth.csv": {
+      "path": "data/nso/raw/pxweb/nso_grdp_growth.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_grdp_pc.csv": {
+      "path": "data/nso/raw/pxweb/nso_grdp_pc.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_iip_annual.csv": {
+      "path": "data/nso/raw/pxweb/nso_iip_annual.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_population.csv": {
+      "path": "data/nso/raw/pxweb/nso_population.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_retail_annual.csv": {
+      "path": "data/nso/raw/pxweb/nso_retail_annual.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "nso_trade_annual.csv": {
+      "path": "data/nso/raw/pxweb/nso_trade_annual.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "so_sanh_hieu_qua_mo_hinh_du_bao.csv": {
+      "path": "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_du_bao.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "so_sanh_hieu_qua_mo_hinh_theo_chan_troi.csv": {
+      "path": "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_theo_chan_troi.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "source_manifest.json": {
+      "path": "data/nso/raw/expanded/source_manifest.json",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "tfp_contribution.csv": {
+      "path": "data/nso/raw/expanded/tfp_contribution.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "trang_thai_du_lieu.csv": {
+      "path": "data/derived/quality/trang_thai_du_lieu.csv",
+      "source": "Phân tích hệ thống",
+      "kind": "derived"
+    },
+    "unemployment_region.csv": {
+      "path": "data/nso/raw/expanded/unemployment_region.csv",
+      "source": "NSO/GSO",
+      "kind": "raw source"
+    },
+    "world_bank_commodity_monthly.xlsx": {
+      "path": "data/world_bank/raw/expanded/world_bank_commodity_monthly.xlsx",
+      "source": "World Bank",
+      "kind": "raw source"
+    }
+  }
+}

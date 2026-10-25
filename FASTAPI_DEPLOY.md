@@ -15,9 +15,9 @@ Mở `http://127.0.0.1:8000/` để xem dashboard, `http://127.0.0.1:8000/docs` 
 
 ## Triển khai trên Render
 
-`render.yaml` khai báo web service Python. Build command giải nén `source_code_and_data.zip` vào thư mục service rồi cài dependencies; do đó gói ZIP cần được cập nhật cùng phiên bản API. Đăng nhập Render, tạo Blueprint từ repository công khai `Nhian-hash/vietnam-gdp-insight`, chọn nhánh `main`, xem cấu hình và xác nhận tạo service. Render sẽ cấp domain `onrender.com`; sau khi deploy, kiểm tra `/`, `/api/v1/health` và `/docs` trên domain đó.
+`render.yaml` khai báo web service Python. Repository đưa lên GitHub cần chứa mã nguồn API, `dashboard.html`, `assets/`, `data/`, `data_paths.py`, `requirements.txt` và các manifest dữ liệu; không cần tạo gói ZIP riêng. Đăng nhập Render bằng GitHub, chọn **New → Blueprint**, kết nối repository chứa toàn bộ hệ thống, chọn nhánh `main`, kiểm tra cấu hình trong `render.yaml` rồi xác nhận tạo service. Nếu hệ thống nằm trong thư mục con của repository, đặt thư mục đó làm **Root Directory**. Render sẽ cấp domain `onrender.com`; sau khi deploy, kiểm tra `/`, `/api/v1/health` và `/docs` trên domain đó.
 
-Render cần quyền đọc repository để theo dõi commit. Với gói Free, dịch vụ có thể ngủ sau thời gian không hoạt động nên request đầu tiên sau đó có thể chậm khởi động. GitHub Pages vẫn phục vụ dashboard tĩnh; FastAPI chạy trên web service riêng.
+Render cần quyền đọc repository để theo dõi commit. Với gói Free, dịch vụ ngủ sau 15 phút không có lượt truy cập và lượt mở đầu tiên có thể mất khoảng một phút để khởi động. Gói Free phù hợp cho demo/khóa luận; nếu cần truy cập liên tục, cần chọn gói không ngủ khi nhàn rỗi. GitHub Pages chỉ chạy trang tĩnh; FastAPI cần chạy trên web service. Cấu hình hiện tại để FastAPI phục vụ dashboard tại `/`, API tại `/api/v1/...` và Swagger tại `/docs` cùng một domain.
 
 `CORS_ORIGINS` mặc định cho phép `https://nhian-hash.github.io` và có thể mở rộng bằng cách đặt các origin cách nhau bằng dấu phẩy trong cấu hình Render.
 

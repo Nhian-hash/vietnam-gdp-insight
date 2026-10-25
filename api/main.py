@@ -13,9 +13,11 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from data_paths import data_path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DATA_ROOT = ROOT / "data"
 API_PREFIX = "/api/v1"
 VERSION_FILE = ROOT / "data_version_manifest.json"
 ANALYSIS_FILE = ROOT / "analysis_manifest.json"
@@ -110,11 +112,14 @@ def read_manifest(path: Path) -> dict[str, Any]:
 
 
 def csv_path(file_name: str) -> Path:
-    """Return a safe, root-level CSV path from the public dataset bundle."""
+    """Resolve a cataloged CSV while keeping the public filename stable."""
     if not re.fullmatch(r"[A-Za-z0-9_.-]+\.csv", file_name):
         raise HTTPException(status_code=404, detail="Không tìm thấy bộ dữ liệu.")
-    path = (ROOT / file_name).resolve()
-    if path.parent != ROOT.resolve() or not path.is_file():
+    try:
+        path = data_path(file_name)
+    except (FileNotFoundError, ValueError, FileExistsError) as exc:
+        raise HTTPException(status_code=404, detail="Không tìm thấy bộ dữ liệu.") from exc
+    if not path.is_file() or DATA_ROOT.resolve() not in path.resolve().parents:
         raise HTTPException(status_code=404, detail="Không tìm thấy bộ dữ liệu.")
     return path
 
@@ -178,11 +183,13 @@ def data_cutoff() -> dict[str, Any]:
 def dataset_description(file_name: str, path: Path) -> dict[str, Any]:
     columns, rows = read_csv_rows(path)
     info = DATASET_INFO.get(file_name, {})
+    catalog = read_manifest(DATA_ROOT / "catalog.json").get("files", {}).get(file_name, {})
     return {
         "file": file_name,
+        "path": path.relative_to(ROOT).as_posix(),
         "title": info.get("title", file_name.removesuffix(".csv").replace("_", " ")),
         "frequency": info.get("frequency", "xem trường thời gian trong dữ liệu"),
-        "source": info.get("source", "Xem manifest và thư mục sources/ trong mã nguồn."),
+        "source": info.get("source", catalog.get("source", "Xem data/catalog.json.")),
         "description": info.get("description", "Dữ liệu thực tế được giữ kèm đơn vị, trạng thái hoặc ghi chú nguồn khi có."),
         "columns": columns,
         "rows": len(rows),
@@ -254,7 +261,7 @@ def metadata() -> dict[str, Any]:
 
 @app.get(f"{API_PREFIX}/datasets", tags=["Dữ liệu"])
 def list_datasets() -> dict[str, Any]:
-    files = sorted(ROOT.glob("*.csv"), key=lambda path: path.name.casefold())
+    files = sorted(DATA_ROOT.rglob("*.csv"), key=lambda path: (path.parent.as_posix().casefold(), path.name.casefold()))
     return {
         "data_version": read_manifest(VERSION_FILE).get("version_id"),
         "data_cutoff": data_cutoff(),

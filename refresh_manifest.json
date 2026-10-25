@@ -1,0 +1,85 @@
+{
+  "retrieved_at_utc": "2026-10-22T18:27:38.639Z",
+  "data_cutoff": {
+    "annual_gdp": 2025,
+    "quarterly_gdp_growth": "2026-Q3",
+    "cpi": "2026-09",
+    "fx_monthly": "2026-07",
+    "grdp_local": "2018-2025",
+    "trade_annual": 2025,
+    "trade_monthly": "2026-09",
+    "retail_annual": 2025,
+    "retail_monthly": "2026-09",
+    "fdi_annual": 2025,
+    "fdi_latest": "2026-09",
+    "iip_annual": 2025,
+    "iip_monthly": "2026-09",
+    "cpi_annual_wdi": 2025
+  },
+  "sources": {
+    "world_bank_api": "https://api.worldbank.org/v2/country/VNM/indicator/{indicator}?date=1985:2026&format=json&per_page=1000",
+    "nso_quarterly_gdp_2026": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+    "nso_pxweb_cpi": "https://pxweb.nso.gov.vn/pxweb/en/E%2011.%20CPI/E%2011.%20CPI__Px_E_11/E11.07.px/",
+    "nso_cpi_2026_cumulative_changes": [
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/02/consumer-price-index-gold-price-index-and-us-dollar-price-index-for-january-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/03/consumer-price-index-gold-price-index-and-us-dollar-price-index-for-february-and-the-first-two-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/04/consumer-price-index-gold-us-dollar-price-index-in-march-and-the-first-quarter-in-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/05/consumer-price-index-gold-price-index-and-usd-price-index-for-april-and-the-first-four-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/07/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-june-2026-q2-2026-and-the-first-six-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/08/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-july-and-the-first-seven-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/09/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-august-and-eight-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/10/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-september-2026-q3-2026-and-the-nine-months-of-2026/",
+      "https://www.nso.gov.vn/en/cpi/"
+    ],
+    "nso_pxweb": {
+      "nso_gdp_sectors": "https://pxweb.nso.gov.vn/pxweb/en/E%2003.%20National%20Accounts%20and%20State%20budget/E%2003.%20National%20Accounts%20and%20State%20budget__Px_E_03/E03.02.px/",
+      "nso_grdp_pc": "https://pxweb.nso.gov.vn/pxweb/en/E%2003.%20National%20Accounts%20and%20State%20budget/E%2003.%20National%20Accounts%20and%20State%20budget__Px_E_03/E03.12.px/",
+      "nso_grdp_growth": "https://pxweb.nso.gov.vn/pxweb/en/E%2003.%20National%20Accounts%20and%20State%20budget/E%2003.%20National%20Accounts%20and%20State%20budget__Px_E_03/E03.10.px/",
+      "nso_population": "https://pxweb.nso.gov.vn/pxweb/en/E%2002.%20Population%20and%20Employment/E%2002.%20Population%20and%20Employment__Px_E_02/E02.03-07.px/",
+      "nso_trade_annual": "https://pxweb.nso.gov.vn/pxweb/en/E%2009.%20IMEX/E%2009.%20IMEX__Px_E_09/E09.01.px/",
+      "nso_retail_annual": "https://pxweb.nso.gov.vn/pxweb/en/E%2008.%20Trade/E%2008.%20Trade__Px_E_08/E08.01.px/",
+      "nso_fdi_annual": "https://pxweb.nso.gov.vn/pxweb/en/E%2004.%20Investment%20and%20construction/E%2004.%20Investment%20and%20construction__Px_E_04/E04.11.px/",
+      "nso_iip_annual": "https://pxweb.nso.gov.vn/pxweb/en/E%2007.%20Industry/E%2007.%20Industry__Px_E_07/E07.01.px/"
+    },
+    "imf_er_monthly": "https://api.imf.org/external/sdmx/3.0/data/dataflow/IMF.STA/ER/+/VNM.XDC_USD.PA_RT.M?startPeriod=1980-01&endPeriod=2026-12&format=jsondata",
+    "world_bank_cpi_annual": "https://api.worldbank.org/v2/country/VNM/indicator/FP.CPI.TOTL.ZG?date=1980:2026&format=json&per_page=1000",
+    "nso_fdi_2026": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+    "nso_iip_monthly_file": "https://www.nso.gov.vn/wp-content/uploads/2026/10/IIP-Eng9.xlsx",
+    "nso_trade_monthly_2026_files": [
+      "https://www.nso.gov.vn/wp-content/uploads/2026/03/E01-2026-7.xls",
+      "https://www.nso.gov.vn/wp-content/uploads/2026/03/E02-2026-7.xls"
+    ],
+    "nso_retail_monthly_2026_reports": [
+      "https://www.nso.gov.vn/en/highlight/2026/03/report-socio-economic-performance-in-january-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/03/report-socio-economic-performance-in-february-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/04/report-on-socio-economic-situation-in-quarter-i-in-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/07/report-on-socio-economic-situation-in-april-and-four-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/06/report-on-socio-economic-situation-in-may-and-five-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/08/report-socio-economic-performance-in-second-quarter-and-the-first-half-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/08/report-socio-economic-performance-in-july-and-7-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/09/report-socio-economic-performance-in-august-and-8-months-of-2026/",
+      "https://www.nso.gov.vn/en/data-and-statistics/2026/10/report-socio-economic-performance-in-third-quarter-and-nine-months-of-2026/"
+    ]
+  },
+  "indicators": {
+    "gdpUsd": "NY.GDP.MKTP.CD",
+    "agricultureUsd": "NV.AGR.TOTL.CD",
+    "industryUsd": "NV.IND.TOTL.CD",
+    "servicesUsd": "NV.SRV.TOTL.CD",
+    "gdpReal2015": "NY.GDP.MKTP.KD",
+    "realGrowth": "NY.GDP.MKTP.KD.ZG"
+  },
+  "notes": {
+    "quarterly_gdp_2026": "NSO quarterly year-on-year estimates for Q1-Q3 2026, from the official Q3 and first-nine-months release; not GDP level observations.",
+    "sectors": "World Bank NV.AGR.TOTL.CD, NV.IND.TOTL.CD, NV.SRV.TOTL.CD; definitions are broad value-added groups.",
+    "monthly_gdp": "Cubic spline is only a compatibility series for the current dashboard; do not use it as observed monthly GDP in backtests.",
+    "cpi_2026": "2026 monthly index values are reconstructed as Dec-2025 level times official cumulative CPI rate versus Dec-2025; rates are rounded in NSO press releases.",
+    "fx_monthly": "IMF ER monthly average rate in VND per USD; latest observed period in this refresh is July 2026.",
+    "grdp_local": "GRDP levels derived from NSO GRDP per-capita (million VND/person) multiplied by NSO average population (thousand persons), yielding billion VND. The six region aggregates are shown beside their constituent provinces; do not sum both levels.",
+    "trade_frequency": "Historical merchandise trade is annual through the latest NSO table year; 2026 monthly preliminary exports and imports are supplied separately in du_lieu_xuat_nhap_khau_thang_2026.csv.",
+    "retail_frequency": "Historical retail is annual; the 2026 monthly file contains monthly estimates and official cumulative real growth rates. The cumulative real growth column is not a monthly rate.",
+    "iip_frequency": "Annual IIP uses prior-year=100 indexes (2012-2025); 2026 monthly IIP uses 2015=100. These are separate grains and bases.",
+    "fdi_comparability": "Annual NSO E04.11 observations begin in 1991 because the source groups 1988-1990 into one three-year total stored separately in du_lieu_fdi_giai_doan_1988_1990.csv. Historical registered capital is licensed project capital; the 2026 cumulative registered total includes new registration, adjustments, and capital contributions/share purchases, so those definitions are not directly comparable.",
+    "modeling": "Never use cubic-spline monthly GDP values as observed targets for ADF, training, or test metrics. Forecast evaluation uses observed annual real GDP only."
+  }
+}

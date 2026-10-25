@@ -1,0 +1,226 @@
+{
+  "version_id": "gdp-6216f5259c55",
+  "fingerprint_sha256": "6216f5259c5510f9f3742a389225bd5c577804a46aef4b44a3387cbbf8c46368",
+  "created_utc": "2026-10-25T15:28:13Z",
+  "retrieved_at_utc": "2026-10-24T18:27:10.083Z",
+  "base_sources_retrieved_at_utc": "2026-10-22T18:27:38.639Z",
+  "expanded_sources_retrieved_at_utc": "2026-10-24T18:27:10.083Z",
+  "data_cutoff": {
+    "annual_gdp": 2025,
+    "quarterly_gdp_growth": "2026-Q3",
+    "cpi": "2026-09",
+    "fx_monthly": "2026-07",
+    "grdp_local": "2018-2025",
+    "trade_annual": 2025,
+    "trade_monthly": "2026-09",
+    "retail_annual": 2025,
+    "retail_monthly": "2026-09",
+    "fdi_annual": 2025,
+    "fdi_latest": "2026-09",
+    "iip_annual": 2025,
+    "iip_monthly": "2026-09",
+    "cpi_annual_wdi": 2025
+  },
+  "archive": "data_versions/gdp-6216f5259c55.zip",
+  "files": [
+    {
+      "file": "GDP_Vietnam_Annual.csv",
+      "path": "data/world_bank/processed/GDP_Vietnam_Annual.csv",
+      "bytes": 1986,
+      "sha256": "e55502061e8d18d9815efd32bcc5019d19772c0234afba4174b8694795214b2b"
+    },
+    {
+      "file": "du_lieu_gdp_tong_hop.csv",
+      "path": "data/derived/combined/du_lieu_gdp_tong_hop.csv",
+      "bytes": 3880,
+      "sha256": "687152ffe2d3fdb3695227a0cc1a0476604f22b9f226860d4245da916069038e"
+    },
+    {
+      "file": "du_lieu_gdp_thuc_va_tang_truong.csv",
+      "path": "data/world_bank/processed/du_lieu_gdp_thuc_va_tang_truong.csv",
+      "bytes": 1291,
+      "sha256": "b7710bc35d2febfd205d0716b5867fc8a59a077d03b8468c6313926959b977b0"
+    },
+    {
+      "file": "du_lieu_gdp_co_cau_3_nganh.csv",
+      "path": "data/nso/processed/du_lieu_gdp_co_cau_3_nganh.csv",
+      "bytes": 4847,
+      "sha256": "05b62d70991d471220bfaed3e6f73ed842ac6122663408b94ebd1d2225c4734e"
+    },
+    {
+      "file": "du_lieu_tang_truong_gdp_quy.csv",
+      "path": "data/nso/processed/du_lieu_tang_truong_gdp_quy.csv",
+      "bytes": 283,
+      "sha256": "02405dfc0191094e6b3e5a0c30993e281f7f85a3fc27440167c13b75aae0d88f"
+    },
+    {
+      "file": "du_lieu_cpi_phan_tich_thang.csv",
+      "path": "data/derived/macro/du_lieu_cpi_phan_tich_thang.csv",
+      "bytes": 7185,
+      "sha256": "07085e4787bdafc9ea98ab8400e5d26c9361c01519b8381408163339d835e571"
+    },
+    {
+      "file": "du_lieu_ty_gia_usd_vnd.csv",
+      "path": "data/imf/processed/du_lieu_ty_gia_usd_vnd.csv",
+      "bytes": 36812,
+      "sha256": "be8c752ad7e241cf0103a3fc574c81c7e42577fd4365a35c852266ef508cddca"
+    },
+    {
+      "file": "du_lieu_xuat_nhap_khau_thang_2026.csv",
+      "path": "data/nso/processed/du_lieu_xuat_nhap_khau_thang_2026.csv",
+      "bytes": 943,
+      "sha256": "ff9013932db69139227f87a0a3378f2312d4acf93560c4d31ebaf7040a618ac6"
+    },
+    {
+      "file": "du_lieu_san_xuat_iip_thang_2026.csv",
+      "path": "data/nso/processed/du_lieu_san_xuat_iip_thang_2026.csv",
+      "bytes": 711,
+      "sha256": "005be595724fd3acdaecceb733aac07983b51d3681ded7876ea9d895f07e63c3"
+    },
+    {
+      "file": "du_lieu_grdp_63_tinh_thanh.csv",
+      "path": "data/nso/processed/du_lieu_grdp_63_tinh_thanh.csv",
+      "bytes": 87843,
+      "sha256": "2c4e4c9809718b728c24f5d8cc428da094aee591a27519d80966ebdea7205787"
+    },
+    {
+      "file": "du_lieu_ban_le_tieu_dung_thang_2026.csv",
+      "path": "data/nso/processed/du_lieu_ban_le_tieu_dung_thang_2026.csv",
+      "bytes": 1193,
+      "sha256": "5350c55199d16b0e3de372945c989e74e76a0d9db8f13e0a5cee369981cb1cd1"
+    },
+    {
+      "file": "du_lieu_fdi_dau_tu.csv",
+      "path": "data/nso/processed/du_lieu_fdi_dau_tu.csv",
+      "bytes": 4829,
+      "sha256": "8b60fe8ff0fa0b2a9bca6f37ba8e6b9e33fc3de791ff1da8ea741f751dcbf472"
+    },
+    {
+      "file": "du_lieu_fdi_luy_ke_2026.csv",
+      "path": "data/nso/processed/du_lieu_fdi_luy_ke_2026.csv",
+      "bytes": 350,
+      "sha256": "5130a7001030c61c7c0581934d60a4fa039cd314e892d391c22507587130b0f8"
+    },
+    {
+      "file": "du_lieu_chi_so_kinh_te_hang_nam.csv",
+      "path": "data/derived/combined/du_lieu_chi_so_kinh_te_hang_nam.csv",
+      "bytes": 35056,
+      "sha256": "905771562eb0b9e715ddb3c6f9354718d3623f98bde9973e38c048bfa6458299"
+    },
+    {
+      "file": "du_lieu_gdp_theo_chi_tieu.csv",
+      "path": "data/nso/processed/du_lieu_gdp_theo_chi_tieu.csv",
+      "bytes": 41209,
+      "sha256": "fd1c45d428d84a3b81a499f833481274dbccf94308d3a9d826a6843b49b8382b"
+    },
+    {
+      "file": "du_lieu_dong_gop_gdp_theo_chi_tieu.csv",
+      "path": "data/nso/processed/du_lieu_dong_gop_gdp_theo_chi_tieu.csv",
+      "bytes": 5790,
+      "sha256": "8474096967212f9b32fd3f056c1da8db7ebe371061528eebc70031711954c5c4"
+    },
+    {
+      "file": "du_lieu_gdp_thuc_theo_nganh.csv",
+      "path": "data/nso/processed/du_lieu_gdp_thuc_theo_nganh.csv",
+      "bytes": 12851,
+      "sha256": "42267a22b027830fa1836b115e580506a68a5ec6a9e30de5288b318f85e6a60a"
+    },
+    {
+      "file": "du_lieu_gdp_nganh_chi_tiet.csv",
+      "path": "data/nso/processed/du_lieu_gdp_nganh_chi_tiet.csv",
+      "bytes": 218681,
+      "sha256": "9abd4949419afe4beaa079809d3d325554e2ee2fe3b1754ba6757e6ac4962e53"
+    },
+    {
+      "file": "du_lieu_gdp_nganh_chi_tiet_2026.csv",
+      "path": "data/nso/processed/du_lieu_gdp_nganh_chi_tiet_2026.csv",
+      "bytes": 7964,
+      "sha256": "83b9527ef5ccb1702745cbc64de23a35030fda8e8251efe64ae6005d72cc91a3"
+    },
+    {
+      "file": "du_lieu_lao_dong_theo_nganh.csv",
+      "path": "data/nso/processed/du_lieu_lao_dong_theo_nganh.csv",
+      "bytes": 86126,
+      "sha256": "458ec04b2324e4010e7e8b41d554cb2f28bd2b2957e4330ed1d979554b5ee2f7"
+    },
+    {
+      "file": "du_lieu_nang_suat_lao_dong.csv",
+      "path": "data/nso/processed/du_lieu_nang_suat_lao_dong.csv",
+      "bytes": 110177,
+      "sha256": "97ba32de9cc5bc308702adc24580e988d82581dcbb321fb1f14c5af78eb284ee"
+    },
+    {
+      "file": "du_lieu_nang_suat_thuc_theo_khu_vuc.csv",
+      "path": "data/derived/combined/du_lieu_nang_suat_thuc_theo_khu_vuc.csv",
+      "bytes": 27192,
+      "sha256": "8a476d1f616c4a6bef17b9762660a2c4a1329c0911adf51464e1d9dd24e49718"
+    },
+    {
+      "file": "du_lieu_that_nghiep_vung.csv",
+      "path": "data/nso/processed/du_lieu_that_nghiep_vung.csv",
+      "bytes": 18560,
+      "sha256": "7562c8c556807dbe5954bb91dc9937c6a225a95db4b472929be29f77cab21312"
+    },
+    {
+      "file": "du_lieu_dau_tu_theo_loai_hinh.csv",
+      "path": "data/nso/processed/du_lieu_dau_tu_theo_loai_hinh.csv",
+      "bytes": 21341,
+      "sha256": "4449fccdf23245f4312909f18321c8e8569c6e04172d978f2084a8d84bfed001"
+    },
+    {
+      "file": "du_lieu_dau_tu_theo_nganh_thuc.csv",
+      "path": "data/nso/processed/du_lieu_dau_tu_theo_nganh_thuc.csv",
+      "bytes": 37697,
+      "sha256": "5d08f627a79bb224c9bcf01abeca44a219822a809124f2eb6c9360de19744551"
+    },
+    {
+      "file": "du_lieu_tai_khoa_ngan_sach.csv",
+      "path": "data/nso/processed/du_lieu_tai_khoa_ngan_sach.csv",
+      "bytes": 132706,
+      "sha256": "291bbf962f44293b91a0e3f7af9218276e66d429d8d7076aa37896cede3b0fee"
+    },
+    {
+      "file": "du_lieu_tin_dung_du_no.csv",
+      "path": "data/nso/processed/du_lieu_tin_dung_du_no.csv",
+      "bytes": 15410,
+      "sha256": "580fd515f1f95317e54f619474f44a7fc31b0f35e6618d9a4ad84fb12044b837"
+    },
+    {
+      "file": "du_lieu_lai_suat_ngan_hang.csv",
+      "path": "data/nso/processed/du_lieu_lai_suat_ngan_hang.csv",
+      "bytes": 15321,
+      "sha256": "15a8f66468d48435ed78e8cda4a2bd13ddc99342db50c1a5c61a8fc1d5adde20"
+    },
+    {
+      "file": "du_lieu_can_can_thanh_toan.csv",
+      "path": "data/nso/processed/du_lieu_can_can_thanh_toan.csv",
+      "bytes": 20687,
+      "sha256": "93608449f7ec1e82e9e32283f1e752e7f346e612ce1329211c2c07570aeed790"
+    },
+    {
+      "file": "du_lieu_dong_gop_tfp.csv",
+      "path": "data/nso/processed/du_lieu_dong_gop_tfp.csv",
+      "bytes": 601,
+      "sha256": "1f1c1794d5594e25c8a890a51fdf3a56408d854af90e3eaa89bfb3a39ba920ad"
+    },
+    {
+      "file": "du_lieu_gia_hang_hoa_quoc_te.csv",
+      "path": "data/world_bank/processed/du_lieu_gia_hang_hoa_quoc_te.csv",
+      "bytes": 483125,
+      "sha256": "46bda2587748ed47048dcf79c934f0ec4c6fb8e8dd08b01c8c717b12fbbbcf04"
+    },
+    {
+      "file": "du_lieu_so_sanh_dong_luc_gdp.csv",
+      "path": "data/derived/comparison/du_lieu_so_sanh_dong_luc_gdp.csv",
+      "bytes": 18332,
+      "sha256": "032cba4721f08b81ec53635c3c61f569487e8852309fc6e43ad9fc20b61d077d"
+    },
+    {
+      "file": "du_lieu_tuong_quan_dong_luc_gdp.csv",
+      "path": "data/derived/comparison/du_lieu_tuong_quan_dong_luc_gdp.csv",
+      "bytes": 3251,
+      "sha256": "ab0e1357329326ed33250853a49c057335417e2f37b33e6eccece41c8620e227"
+    }
+  ],
+  "versioning_note": "Một phiên bản mới được tạo khi nội dung các CSV dữ liệu chuẩn hóa thay đổi. Tệp ZIP giữ ảnh chụp bất biến để truy vết và tái lập phân tích."
+}

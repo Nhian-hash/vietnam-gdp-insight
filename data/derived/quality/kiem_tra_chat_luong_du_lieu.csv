@@ -1,0 +1,68 @@
+﻿tep,so_dong_du_lieu,so_dong_trung_khoa,so_o_thieu_tren_khoa,so_o_thieu,so_dong_ky_vong,ket_qua,ghi_chu
+du_lieu_gdp_tong_hop.csv,41,0.0,0.0,45.0,41.0,dat,GDP năm 1985-2025; quan sát annual.
+du_lieu_ty_gia_usd_vnd.csv,513,0.0,0.0,26.0,513.0,dat,Tỷ giá tháng IMF đến 2026-07; không nội suy các tháng sau.
+du_lieu_cpi_phan_tich_thang.csv,81,0.0,0.0,13.0,81.0,dat,CPI 2020-01..2026-09; 2026 được gắn cờ tái tạo từ tỷ lệ lũy kế đã làm tròn.
+du_lieu_xuat_nhap_khau_thang_2026.csv,9,0.0,0.0,2.0,9.0,dat,NSO sơ bộ Jan-Sep 2026; USD chuyển đổi từ 1000 USD.
+du_lieu_san_xuat_iip_thang_2026.csv,9,0.0,0.0,16.0,9.0,dat,IIP 2015=100; chỉ Sep có tỷ lệ MoM/YoY trong bảng nguồn.
+du_lieu_grdp_63_tinh_thanh.csv,552,0.0,0.0,48.0,552.0,dat,"63 tỉnh cũ + 6 vùng thống kê, 2018-2025; vùng không cộng cùng tỉnh."
+du_lieu_ban_le_tieu_dung.csv,36,0.0,0.0,0.0,36.0,dat,Chuỗi bán lẻ năm 1990-2025; giá trị danh nghĩa theo nguồn NSO.
+du_lieu_ban_le_tieu_dung_thang_2026.csv,9,0.0,0.0,1.0,9.0,dat,Bán lẻ tháng 2026-01..09; tăng trưởng thực được công bố theo lũy kế kỳ.
+du_lieu_fdi_dau_tu.csv,35,0.0,0.0,0.0,35.0,dat,Chuỗi năm bắt đầu 1991; số liệu 1988-1990 gộp riêng.
+du_lieu_fdi_luy_ke_2026.csv,1,0.0,0.0,0.0,1.0,dat,FDI lũy kế 9 tháng 2026; phạm vi đăng ký khác vốn dự án cấp phép năm.
+du_lieu_chi_so_kinh_te_hang_nam.csv,41,0.0,0.0,227.0,41.0,dat,"Bảng năm hợp nhất GDP, thương mại, CPI, bán lẻ, FDI và các tỷ lệ vĩ mô."
+du_lieu_so_sanh_nganh_2025.csv,4,0.0,0.0,0.0,4.0,dat,So sánh 2024-2025 gồm ba khu vực kinh tế và thuế sản phẩm ròng.
+du_lieu_du_bao_rolling_origin.csv,50,0.0,0.0,0.0,50.0,dat,5 mô hình x 10 năm kiểm thử 2016-2025; expanding-window.
+so_sanh_hieu_qua_mo_hinh_du_bao.csv,5,0.0,0.0,0.0,5.0,dat,Cùng cửa sổ kiểm thử; bao gồm baseline Naive/Drift/linear và GRU/LSTM.
+du_lieu_du_bao_gdp_thuc_den_2030.csv,25,0.0,0.0,0.0,25.0,dat,5 mô hình x 5 năm dự báo ngoài mẫu 2026-2030; không phải số liệu chính thức.
+du_lieu_du_bao_nhieu_chan_troi.csv,200,0.0,0.0,0.0,200.0,dat,Expanding-window backtest 1-5 năm; cùng gốc dự báo dùng cho từng chân trời khả dụng.
+so_sanh_hieu_qua_mo_hinh_theo_chan_troi.csv,25,0.0,0.0,0.0,25.0,dat,5 mô hình được so sánh riêng cho từng chân trời 1-5 năm; mẫu kiểm thử nhỏ hơn ở chân trời dài.
+CHECK_gdp_years_contiguous_positive,41,0.0,0.0,0.0,41.0,dat,GDP thực quan sát liên tục 1985–2025 và dương ở mọi năm.
+CHECK_grdp_63_provinces_each_year,504,0.0,0.0,0.0,504.0,dat,Mỗi năm 2018–2025 có đủ 63 tỉnh/thành theo phạm vi dữ liệu truyền thống.
+CHECK_grdp_6_regions_each_year,48,0.0,0.0,0.0,48.0,dat,Mỗi năm 2018–2025 có đủ sáu vùng thống kê.
+CHECK_forecast_2030_positive_complete,25,0.0,0.0,0.0,25.0,dat,5 mô hình × 5 năm 2026–2030; dự báo mức GDP thực hữu hạn và dương.
+CHECK_backtest_horizons_1_to_5,200,0.0,0.0,0.0,200.0,dat,Mỗi chân trời 1–5 năm có đầy đủ 5 mô hình và số điểm giảm đúng theo chiều dài chân trời.
+extended::gdp_expenditure: khóa trùng,336,0.0,0.0,0.0,,dat,"Khóa: nam, chi_tieu, loai_chi_tieu; trùng=0."
+extended::gdp_expenditure: bảng không rỗng,336,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 336.
+extended::gdp_contribution: khóa trùng,20,0.0,0.0,0.0,,dat,Khóa: nam; trùng=0.
+extended::gdp_contribution: bảng không rỗng,20,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 20.
+extended::gdp_real_sectors: khóa trùng,105,0.0,0.0,0.0,,dat,"Khóa: nam, nganh; trùng=0."
+extended::gdp_real_sectors: bảng không rỗng,105,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 105.
+extended::gdp_detailed_activities: khóa trùng,436,0.0,0.0,0.0,,dat,"Khóa: nam, hoat_dong_kinh_te, hoat_dong_kinh_te_nguon, khu_vuc_ma; trùng=0."
+extended::gdp_detailed_activities: bảng không rỗng,436,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 436.
+extended::gdp_activity_2026_update: khóa trùng,16,0.0,0.0,0.0,,dat,"Khóa: ky, hoat_dong_kinh_te, khu_vuc_ma, cap_phan_tich; trùng=0."
+extended::gdp_activity_2026_update: bảng không rỗng,16,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 16.
+extended::employment: khóa trùng,880,0.0,0.0,0.0,,dat,"Khóa: nam, loai_chi_tieu, hoat_dong_kinh_te; trùng=0."
+extended::employment: bảng không rỗng,880,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 880.
+extended::labor_productivity: khóa trùng,420,0.0,0.0,0.0,,dat,"Khóa: nam, nganh; trùng=0."
+extended::labor_productivity: bảng không rỗng,420,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 420.
+extended::unemployment: khóa trùng,336,0.0,0.0,0.0,,dat,"Khóa: nam, khu_vuc_cu_tru, vung_kinh_te; trùng=0."
+extended::unemployment: bảng không rỗng,336,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 336.
+extended::investment_ownership: khóa trùng,252,0.0,0.0,0.0,,dat,"Khóa: nam, loai_gia_tri, loai_hinh_so_huu; trùng=0."
+extended::investment_ownership: bảng không rỗng,252,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 252.
+extended::investment_industry: khóa trùng,320,0.0,0.0,0.0,,dat,"Khóa: nam, nganh; trùng=0."
+extended::investment_industry: bảng không rỗng,320,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 320.
+extended::fiscal: khóa trùng,1224,0.0,0.0,0.0,,dat,"Khóa: nam, chi_tieu, loai_gia_tri, phan_he; trùng=0."
+extended::fiscal: bảng không rỗng,1224,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 1224.
+extended::credit: khóa trùng,198,0.0,0.0,0.0,,dat,"Khóa: nam, chi_tieu, loai_gia_tri, ky_han_ngoai_te; trùng=0."
+extended::credit: bảng không rỗng,198,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 198.
+extended::interest_rates: khóa trùng,184,0.0,0.0,0.0,,dat,"Khóa: nam, loai_lai_suat; trùng=0."
+extended::interest_rates: bảng không rỗng,184,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 184.
+extended::bop: khóa trùng,256,0.0,0.0,0.0,,dat,"Khóa: nam, chi_tieu, loai_gia_tri; trùng=0."
+extended::bop: bảng không rỗng,256,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 256.
+extended::tfp: khóa trùng,3,0.0,0.0,0.0,,dat,Khóa: giai_doan; trùng=0.
+extended::tfp: bảng không rỗng,3,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 3.
+extended::commodities: khóa trùng,4949,0.0,0.0,0.0,,dat,"Khóa: thoi_gian, hang_hoa; trùng=0."
+extended::commodities: bảng không rỗng,4949,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 4949.
+extended::productivity_proxy: khóa trùng,60,0.0,0.0,0.0,,dat,"Khóa: nam, nganh; trùng=0."
+extended::productivity_proxy: bảng không rỗng,60,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 60.
+extended::macro_panel: khóa trùng,41,0.0,0.0,0.0,,dat,Khóa: nam; trùng=0.
+extended::macro_panel: bảng không rỗng,41,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 41.
+extended::macro_correlations: khóa trùng,10,0.0,0.0,0.0,,dat,"Khóa: bien_x, bien_y, giai_doan; trùng=0."
+extended::macro_correlations: bảng không rỗng,10,0.0,0.0,0.0,,dat,Số dòng chuẩn hóa: 10.
+extended::Cơ cấu lao động cộng xấp xỉ 100%,20,0.0,0.0,0.0,,dat,"Tổng tỷ trọng theo ngành mỗi năm; sai lệch cho phép 0,25 điểm % do làm tròn. "
+extended::Phân rã GDP theo chi tiêu,20,0.0,0.0,0.0,,dat,"Tổng đóng góp các thành phần rời rạc so với tốc độ tăng GDP chính thức; sai lệch trong 0,15 điểm % cho phép làm tròn."
+extended::Năng suất proxy có quan sát dương,60,0.0,0.0,0.0,,dat,"GDP thực chia số lao động đã gộp theo ba khu vực; proxy mô tả, không thay chỉ tiêu chính thức."
+extended::Đóng góp TFP + vốn + lao động xấp xỉ 100%,3,0.0,0.0,0.0,,dat,Kiểm tra phân rã theo ba kỳ 5 năm; sai số do làm tròn.
+extended::GDP danh nghĩa theo hoạt động cộng bằng tổng NSO,21,0.0,0.0,0.0,,dat,"Chênh tương đối lớn nhất giữa tổng ngành + thuế và GDP tổng NSO: 0.00024% (ngưỡng 0,05%)."
+extended::Cơ cấu GDP chi tiết gồm thuế cộng xấp xỉ 100%,21,0.0,0.0,0.0,,dat,"Sai lệch tuyệt đối lớn nhất của tỷ trọng ngành + thuế so với 100%: 0.03000 điểm % (ngưỡng 0,15 điểm %)."
+extended::Đóng góp GDP thực chi tiết cộng khớp tăng trưởng NSO,19,0.0,0.0,0.0,,dat,"Sai lệch lớn nhất giữa tổng đóng góp theo giá cố định và chỉ số tăng GDP NSO: 0.0050 điểm % (ngưỡng 0,20; bỏ năm đổi mốc 2010)."

@@ -1,0 +1,67 @@
+"Disbursed investment by type of ownership by Items, Year and Type of ownership"
+
+"Items","Year","Total","State","Non- State","Foreign invested sector"
+"At current prices (Bill. VND)","2010",1044875.0,364286.0,466083.0,214506.0
+"At current prices (Bill. VND)","2011",1160185.0,387576.0,545718.0,226891.0
+"At current prices (Bill. VND)","2012",1274196.0,459504.0,596119.0,218573.0
+"At current prices (Bill. VND)","2013",1389036.0,493724.0,655200.0,240112.0
+"At current prices (Bill. VND)","2014",1560135.0,529468.0,765267.0,265400.0
+"At current prices (Bill. VND)","2015",1756240.0,556380.0,881760.0,318100.0
+"At current prices (Bill. VND)","2016",1926864.0,587110.0,988651.0,351103.0
+"At current prices (Bill. VND)","2017",2186560.0,616459.0,1173901.0,396200.0
+"At current prices (Bill. VND)","2018",2426400.0,630142.0,1361156.0,435102.0
+"At current prices (Bill. VND)","2019",2670471.0,643094.0,1557937.0,469440.0
+"At current prices (Bill. VND)","2020",2803065.0,734735.0,1605050.0,463280.0
+"At current prices (Bill. VND)","2021",2896728.0,719293.0,1719354.0,458081.0
+"At current prices (Bill. VND)","2022",3222679.0,832062.0,1868642.0,521975.0
+"At current prices (Bill. VND)","2023",3435842.0,968187.0,1917451.0,550204.0
+"At current prices (Bill. VND)","2024",3702712.0,1030281.0,2063810.0,608621.0
+"At current prices (Bill. VND)","Prel. 2025",4150507.0,1233578.0,2237087.0,679842.0
+"Structure(%)","2010",100.0,34.9,44.6,20.5
+"Structure(%)","2011",100.0,33.4,47.0,19.6
+"Structure(%)","2012",100.0,36.1,46.8,17.2
+"Structure(%)","2013",100.0,35.5,47.2,17.3
+"Structure(%)","2014",100.0,33.9,49.1,17.0
+"Structure(%)","2015",100.0,31.7,50.2,18.1
+"Structure(%)","2016",100.0,30.5,51.3,18.2
+"Structure(%)","2017",100.0,28.2,53.7,18.1
+"Structure(%)","2018",100.0,26.0,56.1,17.9
+"Structure(%)","2019",100.0,24.1,58.3,17.6
+"Structure(%)","2020",100.0,26.2,57.3,16.5
+"Structure(%)","2021",100.0,25.8,58.0,16.2
+"Structure(%)","2022",100.0,25.8,58.0,16.2
+"Structure(%)","2023",100.0,28.2,55.8,16.0
+"Structure(%)","2024",100.0,27.8,55.8,16.4
+"Structure(%)","Prel. 2025",100.0,29.7,53.9,16.4
+"At constant 2010 prices (Bill. VND)","2010",1044875.0,364286.0,466083.0,214506.0
+"At constant 2010 prices (Bill. VND)","2011",966623.0,324940.0,456931.0,184752.0
+"At constant 2010 prices (Bill. VND)","2012",1024957.0,368629.0,478853.0,177475.0
+"At constant 2010 prices (Bill. VND)","2013",1106541.0,392359.0,521070.0,193112.0
+"At constant 2010 prices (Bill. VND)","2014",1223170.0,413319.0,598033.0,211818.0
+"At constant 2010 prices (Bill. VND)","2015",1342311.0,425225.0,673912.0,243174.0
+"At constant 2010 prices (Bill. VND)","2016",1486048.0,453106.0,762756.0,270186.0
+"At constant 2010 prices (Bill. VND)","2017",1664276.0,468411.0,892093.0,303772.0
+"At constant 2010 prices (Bill. VND)","2018",1794452.0,463566.0,1003046.0,327840.0
+"At constant 2010 prices (Bill. VND)","2019",1921367.0,461107.0,1120210.0,340050.0
+"At constant 2010 prices (Bill. VND)","2020",1989373.0,518787.0,1138979.0,331607.0
+"At constant 2010 prices (Bill. VND)","2021",1995905.0,491046.0,1183770.0,321089.0
+"At constant 2010 prices (Bill. VND)","2022",2112566.0,539345.0,1224213.0,349008.0
+"At constant 2010 prices (Bill. VND)","2023",2218304.0,619155.0,1237991.0,361158.0
+"At constant 2010 prices (Bill. VND)","2024",2382518.0,656012.0,1327816.0,398690.0
+"At constant 2010 prices (Bill. VND)","Prel. 2025",2585544.0,761302.0,1393979.0,430263.0
+"Index  (Previous year=100)-%","2010",..,..,..,..
+"Index  (Previous year=100)-%","2011",92.5,89.2,98.0,86.1
+"Index  (Previous year=100)-%","2012",106.0,113.4,104.8,96.1
+"Index  (Previous year=100)-%","2013",108.0,106.4,108.8,108.8
+"Index  (Previous year=100)-%","2014",110.5,105.3,114.8,109.7
+"Index  (Previous year=100)-%","2015",109.7,102.9,112.7,114.8
+"Index  (Previous year=100)-%","2016",110.7,106.6,113.2,111.1
+"Index  (Previous year=100)-%","2017",112.0,103.4,117.0,112.4
+"Index  (Previous year=100)-%","2018",107.8,99.0,112.4,107.9
+"Index  (Previous year=100)-%","2019",107.1,99.5,111.7,103.7
+"Index  (Previous year=100)-%","2020",103.5,112.5,101.7,97.5
+"Index  (Previous year=100)-%","2021",100.3,94.7,103.9,96.8
+"Index  (Previous year=100)-%","2022",105.8,109.8,103.4,108.7
+"Index  (Previous year=100)-%","2023",105.0,114.8,101.1,103.5
+"Index  (Previous year=100)-%","2024",107.4,106.0,107.3,110.4
+"Index  (Previous year=100)-%","Prel. 2025",108.5,116.1,105.0,107.9

@@ -1,0 +1,553 @@
+ma_tinh,ten_tinh,ten_tinh_nguon,ma_vung_kinh_te,ten_vung_kinh_te,loai_dia_ban,nam,quy_mo_grdp_vnd,grdp_binh_quan_dau_nguoi_trieu_vnd,dan_so_binh_quan_nghin_nguoi,tang_truong_grdp_yoy_pct,trang_thai
+,Đồng bằng sông Hồng,Red River Delta,R1,Đồng bằng sông Hồng,vung_thong_ke,2018,1995686.37,89.53,22290.7,9.44,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Hồng,Red River Delta,R1,Đồng bằng sông Hồng,vung_thong_ke,2019,2219946.43,98.14,22620.2,8.92,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Hồng,Red River Delta,R1,Đồng bằng sông Hồng,vung_thong_ke,2020,2357798.92,102.87,22920.18,5.16,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Hồng,Red River Delta,R1,Đồng bằng sông Hồng,vung_thong_ke,2021,2558256.7,110.16,23223.1,6.32,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Hồng,Red River Delta,R1,Đồng bằng sông Hồng,vung_thong_ke,2022,2873852.93,122.53,23454.28,9.15,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Hồng,Red River Delta,R1,Đồng bằng sông Hồng,vung_thong_ke,2023,3077381.6,129.67,23732.41,5.95,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Hồng,Red River Delta,R1,Đồng bằng sông Hồng,vung_thong_ke,2024,3401383.25,141.63,24015.98,7.7,so_bo
+,Đồng bằng sông Hồng,Red River Delta,R1,Đồng bằng sông Hồng,vung_thong_ke,2025,3822678.94,157.24,24311.11,9.47,uoc_tinh
+legacy63_ha_noi,Hà Nội,Ha Noi,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,883258.2,111.6,7914.5,7.32,chinh_thuc_theo_bang_nguon
+legacy63_ha_noi,Hà Nội,Ha Noi,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,973858.05,120.32,8093.9,7.75,chinh_thuc_theo_bang_nguon
+legacy63_ha_noi,Hà Nội,Ha Noi,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,1017623.04,123.4,8246.54,4.11,chinh_thuc_theo_bang_nguon
+legacy63_ha_noi,Hà Nội,Ha Noi,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,1069091.56,128.33,8330.8,2.94,chinh_thuc_theo_bang_nguon
+legacy63_ha_noi,Hà Nội,Ha Noi,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,1190438.93,141.12,8435.65,8.96,chinh_thuc_theo_bang_nguon
+legacy63_ha_noi,Hà Nội,Ha Noi,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,1285400.01,149.69,8587.08,6.21,chinh_thuc_theo_bang_nguon
+legacy63_ha_noi,Hà Nội,Ha Noi,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,1420276.28,162.92,8717.63,6.54,so_bo
+legacy63_ha_noi,Hà Nội,Ha Noi,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,1588066.55,179.29,8857.53,8.16,uoc_tinh
+legacy63_vinh_phuc,Vĩnh Phúc,Vinh Phuc,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,107624.34,94.54,1138.4,8.16,chinh_thuc_theo_bang_nguon
+legacy63_vinh_phuc,Vĩnh Phúc,Vinh Phuc,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,118332.36,102.47,1154.8,8.2,chinh_thuc_theo_bang_nguon
+legacy63_vinh_phuc,Vĩnh Phúc,Vinh Phuc,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,124009.83,105.88,1171.23,2.84,chinh_thuc_theo_bang_nguon
+legacy63_vinh_phuc,Vĩnh Phúc,Vinh Phuc,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,136318.08,114.38,1191.8,8.01,chinh_thuc_theo_bang_nguon
+legacy63_vinh_phuc,Vĩnh Phúc,Vinh Phuc,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,153415.12,128.1,1197.62,9.72,chinh_thuc_theo_bang_nguon
+legacy63_vinh_phuc,Vĩnh Phúc,Vinh Phuc,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,157087.87,129.68,1211.35,1.58,chinh_thuc_theo_bang_nguon
+legacy63_vinh_phuc,Vĩnh Phúc,Vinh Phuc,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,172839.41,141.06,1225.29,7.61,so_bo
+legacy63_vinh_phuc,Vĩnh Phúc,Vinh Phuc,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,195750.44,158.02,1238.77,10.49,uoc_tinh
+legacy63_bac_ninh,Bắc Ninh,Bac Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,193841.63,144.95,1337.3,11.28,chinh_thuc_theo_bang_nguon
+legacy63_bac_ninh,Bắc Ninh,Bac Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,199883.21,144.99,1378.6,1.23,chinh_thuc_theo_bang_nguon
+legacy63_bac_ninh,Bắc Ninh,Bac Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,208981.08,147.26,1419.13,3.42,chinh_thuc_theo_bang_nguon
+legacy63_bac_ninh,Bắc Ninh,Bac Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,230626.19,157.65,1462.9,7.68,chinh_thuc_theo_bang_nguon
+legacy63_bac_ninh,Bắc Ninh,Bac Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,248121.04,166.72,1488.25,5.73,chinh_thuc_theo_bang_nguon
+legacy63_bac_ninh,Bắc Ninh,Bac Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,237843.55,156.74,1517.44,-3.61,chinh_thuc_theo_bang_nguon
+legacy63_bac_ninh,Bắc Ninh,Bac Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,246062.47,159.1,1546.59,5.36,so_bo
+legacy63_bac_ninh,Bắc Ninh,Bac Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,273069.14,173.44,1574.43,6.57,uoc_tinh
+legacy63_quang_ninh,Quảng Ninh,Quang Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,165347.56,126.81,1303.9,10.77,chinh_thuc_theo_bang_nguon
+legacy63_quang_ninh,Quảng Ninh,Quang Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,189857.09,143.31,1324.8,12.05,chinh_thuc_theo_bang_nguon
+legacy63_quang_ninh,Quảng Ninh,Quang Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,208132.12,155.6,1337.61,8.04,chinh_thuc_theo_bang_nguon
+legacy63_quang_ninh,Quảng Ninh,Quang Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,229892.65,170.19,1350.8,9.5,chinh_thuc_theo_bang_nguon
+legacy63_quang_ninh,Quảng Ninh,Quang Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,266129.58,195.27,1362.88,9.52,chinh_thuc_theo_bang_nguon
+legacy63_quang_ninh,Quảng Ninh,Quang Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,294396.39,213.15,1381.17,9.26,chinh_thuc_theo_bang_nguon
+legacy63_quang_ninh,Quảng Ninh,Quang Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,326925.33,234.1,1396.52,8.26,so_bo
+legacy63_quang_ninh,Quảng Ninh,Quang Ninh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,368704.7,261.2,1411.58,11.89,uoc_tinh
+legacy63_hai_duong,Hải Dương,Hai Duong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,114934.02,61.21,1877.7,9.92,chinh_thuc_theo_bang_nguon
+legacy63_hai_duong,Hải Dương,Hai Duong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,126674.98,66.78,1896.9,7.39,chinh_thuc_theo_bang_nguon
+legacy63_hai_duong,Hải Dương,Hai Duong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,131107.07,68.4,1916.77,2.76,chinh_thuc_theo_bang_nguon
+legacy63_hai_duong,Hải Dương,Hai Duong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,149714.64,77.3,1936.8,8.54,chinh_thuc_theo_bang_nguon
+legacy63_hai_duong,Hải Dương,Hai Duong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,170755.58,87.71,1946.82,9.36,chinh_thuc_theo_bang_nguon
+legacy63_hai_duong,Hải Dương,Hai Duong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,185611.02,94.85,1956.89,8.72,chinh_thuc_theo_bang_nguon
+legacy63_hai_duong,Hải Dương,Hai Duong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,210186.94,106.25,1978.23,10.13,so_bo
+legacy63_hai_duong,Hải Dương,Hai Duong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,236129.32,118.2,1997.71,10.63,uoc_tinh
+legacy63_hai_phong,Hải Phòng,Hai Phong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,210552.49,104.42,2016.4,16.2,chinh_thuc_theo_bang_nguon
+legacy63_hai_phong,Hải Phòng,Hai Phong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,248408.26,122.17,2033.3,17.02,chinh_thuc_theo_bang_nguon
+legacy63_hai_phong,Hải Phòng,Hai Phong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,274962.31,133.9,2053.49,10.61,chinh_thuc_theo_bang_nguon
+legacy63_hai_phong,Hải Phòng,Hai Phong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,313201.81,151.13,2072.4,12.86,chinh_thuc_theo_bang_nguon
+legacy63_hai_phong,Hải Phòng,Hai Phong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,358241.59,171.57,2088.02,10.38,chinh_thuc_theo_bang_nguon
+legacy63_hai_phong,Hải Phòng,Hai Phong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,389577.9,185.07,2105.03,8.35,chinh_thuc_theo_bang_nguon
+legacy63_hai_phong,Hải Phòng,Hai Phong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,438076.02,206.2,2124.52,10.65,so_bo
+legacy63_hai_phong,Hải Phòng,Hai Phong,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,498399.53,231.58,2152.17,12.31,uoc_tinh
+legacy63_hung_yen,Hưng Yên,Hung Yen,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,83116.56,66.9,1242.4,9.33,chinh_thuc_theo_bang_nguon
+legacy63_hung_yen,Hưng Yên,Hung Yen,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,92565.02,73.71,1255.8,9.21,chinh_thuc_theo_bang_nguon
+legacy63_hung_yen,Hưng Yên,Hung Yen,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,100308.87,79.04,1269.09,5.97,chinh_thuc_theo_bang_nguon
+legacy63_hung_yen,Hưng Yên,Hung Yen,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,113096.18,88.04,1284.6,8.41,chinh_thuc_theo_bang_nguon
+legacy63_hung_yen,Hưng Yên,Hung Yen,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,132350.85,102.53,1290.85,13.88,chinh_thuc_theo_bang_nguon
+legacy63_hung_yen,Hưng Yên,Hung Yen,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,142954.98,109.88,1301.01,8.03,chinh_thuc_theo_bang_nguon
+legacy63_hung_yen,Hưng Yên,Hung Yen,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,155188.38,117.74,1318.06,7.5,so_bo
+legacy63_hung_yen,Hưng Yên,Hung Yen,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,173704.62,130.27,1333.42,9.29,uoc_tinh
+legacy63_thai_binh,Thái Bình,Thai Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,74126.92,39.98,1854.1,10.6,chinh_thuc_theo_bang_nguon
+legacy63_thai_binh,Thái Bình,Thai Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,84208.68,45.22,1862.2,9.8,chinh_thuc_theo_bang_nguon
+legacy63_thai_binh,Thái Bình,Thai Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,89584.5,47.9,1870.24,1.79,chinh_thuc_theo_bang_nguon
+legacy63_thai_binh,Thái Bình,Thai Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,96693.24,51.6,1873.9,7.57,chinh_thuc_theo_bang_nguon
+legacy63_thai_binh,Thái Bình,Thai Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,108429.33,57.72,1878.54,9.27,chinh_thuc_theo_bang_nguon
+legacy63_thai_binh,Thái Bình,Thai Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,117778.01,62.57,1882.34,7.42,chinh_thuc_theo_bang_nguon
+legacy63_thai_binh,Thái Bình,Thai Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,130303.89,68.93,1890.38,6.33,so_bo
+legacy63_thai_binh,Thái Bình,Thai Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,146111.45,76.83,1901.75,8.2,uoc_tinh
+legacy63_ha_nam,Hà Nam,Ha Nam,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,47700.2,56.31,847.1,11.89,chinh_thuc_theo_bang_nguon
+legacy63_ha_nam,Hà Nam,Ha Nam,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,54713.64,64.03,854.5,11.75,chinh_thuc_theo_bang_nguon
+legacy63_ha_nam,Hà Nam,Ha Nam,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,59923.04,69.53,861.83,7.14,chinh_thuc_theo_bang_nguon
+legacy63_ha_nam,Hà Nam,Ha Nam,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,66480.19,75.96,875.2,8.79,chinh_thuc_theo_bang_nguon
+legacy63_ha_nam,Hà Nam,Ha Nam,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,76486.94,87.11,878.05,10.96,chinh_thuc_theo_bang_nguon
+legacy63_ha_nam,Hà Nam,Ha Nam,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,84825.88,95.75,885.91,8.89,chinh_thuc_theo_bang_nguon
+legacy63_ha_nam,Hà Nam,Ha Nam,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,96155.48,107.53,894.22,11.33,so_bo
+legacy63_ha_nam,Hà Nam,Ha Nam,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,109770.07,121.54,903.16,11.46,uoc_tinh
+legacy63_nam_dinh,Nam Định,Nam Dinh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,62304.26,34.92,1784.2,8.56,chinh_thuc_theo_bang_nguon
+legacy63_nam_dinh,Nam Định,Nam Dinh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,69526.34,39.04,1780.9,7.61,chinh_thuc_theo_bang_nguon
+legacy63_nam_dinh,Nam Định,Nam Dinh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,76002.29,42.69,1780.33,4.54,chinh_thuc_theo_bang_nguon
+legacy63_nam_dinh,Nam Định,Nam Dinh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,81807.16,44.55,1836.3,6.66,chinh_thuc_theo_bang_nguon
+legacy63_nam_dinh,Nam Định,Nam Dinh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,88831.31,47.33,1876.85,6.43,chinh_thuc_theo_bang_nguon
+legacy63_nam_dinh,Nam Định,Nam Dinh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,97393.23,51.61,1887.1,6.71,chinh_thuc_theo_bang_nguon
+legacy63_nam_dinh,Nam Định,Nam Dinh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,111227.42,58.72,1894.2,9.62,so_bo
+legacy63_nam_dinh,Nam Định,Nam Dinh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,127317.17,67.08,1897.99,11.51,uoc_tinh
+legacy63_ninh_binh,Ninh Bình,Ninh Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2018,52935.96,54.31,974.7,9.69,chinh_thuc_theo_bang_nguon
+legacy63_ninh_binh,Ninh Bình,Ninh Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2019,61797.07,62.77,984.5,14.39,chinh_thuc_theo_bang_nguon
+legacy63_ninh_binh,Ninh Bình,Ninh Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2020,67119.42,67.53,993.92,7.39,chinh_thuc_theo_bang_nguon
+legacy63_ninh_binh,Ninh Bình,Ninh Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2021,71267.55,70.73,1007.6,4.17,chinh_thuc_theo_bang_nguon
+legacy63_ninh_binh,Ninh Bình,Ninh Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2022,80627.53,79.77,1010.75,8.57,chinh_thuc_theo_bang_nguon
+legacy63_ninh_binh,Ninh Bình,Ninh Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2023,84612.55,83.19,1017.1,2.47,chinh_thuc_theo_bang_nguon
+legacy63_ninh_binh,Ninh Bình,Ninh Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2024,94162.77,91.39,1030.34,7.52,so_bo
+legacy63_ninh_binh,Ninh Bình,Ninh Binh,R1,Đồng bằng sông Hồng,tinh_thanh_63_truyen_thong,2025,105679.96,101.36,1042.62,8.85,uoc_tinh
+,Trung du và miền núi phía Bắc,Northern midlands and mountain areas,R2,Trung du và miền núi phía Bắc,vung_thong_ke,2018,571989.94,46.11,12404.9,9.3,chinh_thuc_theo_bang_nguon
+,Trung du và miền núi phía Bắc,Northern midlands and mountain areas,R2,Trung du và miền núi phía Bắc,vung_thong_ke,2019,622683.12,49.54,12569.3,7.2,chinh_thuc_theo_bang_nguon
+,Trung du và miền núi phía Bắc,Northern midlands and mountain areas,R2,Trung du và miền núi phía Bắc,vung_thong_ke,2020,679174.88,53.37,12725.78,6,chinh_thuc_theo_bang_nguon
+,Trung du và miền núi phía Bắc,Northern midlands and mountain areas,R2,Trung du và miền núi phía Bắc,vung_thong_ke,2021,724447.93,56.05,12925.03,5.95,chinh_thuc_theo_bang_nguon
+,Trung du và miền núi phía Bắc,Northern midlands and mountain areas,R2,Trung du và miền núi phía Bắc,vung_thong_ke,2022,817986.56,62.81,13023.19,9.92,chinh_thuc_theo_bang_nguon
+,Trung du và miền núi phía Bắc,Northern midlands and mountain areas,R2,Trung du và miền núi phía Bắc,vung_thong_ke,2023,885043.14,67.24,13162.45,6.77,chinh_thuc_theo_bang_nguon
+,Trung du và miền núi phía Bắc,Northern midlands and mountain areas,R2,Trung du và miền núi phía Bắc,vung_thong_ke,2024,991484.15,74.33,13338.95,9.44,so_bo
+,Trung du và miền núi phía Bắc,Northern midlands and mountain areas,R2,Trung du và miền núi phía Bắc,vung_thong_ke,2025,1152546.3,85.44,13489.54,9.6,uoc_tinh
+legacy63_ha_giang,Hà Giang,Ha Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,22068.26,26.07,846.5,6.13,chinh_thuc_theo_bang_nguon
+legacy63_ha_giang,Hà Giang,Ha Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,24189.84,28.19,858.1,6.58,chinh_thuc_theo_bang_nguon
+legacy63_ha_giang,Hà Giang,Ha Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,25933.15,29.8,870.24,2.73,chinh_thuc_theo_bang_nguon
+legacy63_ha_giang,Hà Giang,Ha Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,27286.89,30.76,887.09,5.11,chinh_thuc_theo_bang_nguon
+legacy63_ha_giang,Hà Giang,Ha Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,30138.23,33.76,892.72,7.55,chinh_thuc_theo_bang_nguon
+legacy63_ha_giang,Hà Giang,Ha Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,31217.53,34.69,899.9,3,chinh_thuc_theo_bang_nguon
+legacy63_ha_giang,Hà Giang,Ha Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,34467.26,37.82,911.35,5.76,so_bo
+legacy63_ha_giang,Hà Giang,Ha Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,39499.56,42.87,921.38,5.43,uoc_tinh
+legacy63_cao_bang,Cao Bằng,Cao Bang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,16194.08,30.63,528.7,7.01,chinh_thuc_theo_bang_nguon
+legacy63_cao_bang,Cao Bằng,Cao Bang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,17461.3,32.89,530.9,4.17,chinh_thuc_theo_bang_nguon
+legacy63_cao_bang,Cao Bằng,Cao Bang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,19089.95,35.81,533.09,6.02,chinh_thuc_theo_bang_nguon
+legacy63_cao_bang,Cao Bằng,Cao Bang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,19438.59,35.85,542.22,-0.62,chinh_thuc_theo_bang_nguon
+legacy63_cao_bang,Cao Bằng,Cao Bang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,21021.47,38.71,543.05,4.46,chinh_thuc_theo_bang_nguon
+legacy63_cao_bang,Cao Bằng,Cao Bang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,22451.3,40.98,547.86,4.52,chinh_thuc_theo_bang_nguon
+legacy63_cao_bang,Cao Bằng,Cao Bang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,24711.86,44.25,558.46,6.14,so_bo
+legacy63_cao_bang,Cao Bằng,Cao Bang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,27915.7,49.59,562.93,7.22,uoc_tinh
+legacy63_bac_kan,Bắc Kạn,Bac Kan,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,11038.56,35.38,312,5.14,chinh_thuc_theo_bang_nguon
+legacy63_bac_kan,Bắc Kạn,Bac Kan,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,12013.22,38.21,314.4,5.62,chinh_thuc_theo_bang_nguon
+legacy63_bac_kan,Bắc Kạn,Bac Kan,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,12993.85,41.06,316.46,4.57,chinh_thuc_theo_bang_nguon
+legacy63_bac_kan,Bắc Kạn,Bac Kan,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,13744.73,42.46,323.71,4.41,chinh_thuc_theo_bang_nguon
+legacy63_bac_kan,Bắc Kạn,Bac Kan,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,15260.67,47.05,324.35,5.83,chinh_thuc_theo_bang_nguon
+legacy63_bac_kan,Bắc Kạn,Bac Kan,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,16945.35,51.9,326.5,8.42,chinh_thuc_theo_bang_nguon
+legacy63_bac_kan,Bắc Kạn,Bac Kan,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,18787.14,57.05,329.31,7.3,so_bo
+legacy63_bac_kan,Bắc Kạn,Bac Kan,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,20612.67,62.18,331.5,4.71,uoc_tinh
+legacy63_tuyen_quang,Tuyên Quang,Tuyen Quang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,28166.68,36.19,778.3,7.06,chinh_thuc_theo_bang_nguon
+legacy63_tuyen_quang,Tuyên Quang,Tuyen Quang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,31121.75,39.58,786.3,6.87,chinh_thuc_theo_bang_nguon
+legacy63_tuyen_quang,Tuyên Quang,Tuyen Quang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,34507.01,43.52,792.9,5.89,chinh_thuc_theo_bang_nguon
+legacy63_tuyen_quang,Tuyên Quang,Tuyen Quang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,36259.53,45.23,801.67,7.32,chinh_thuc_theo_bang_nguon
+legacy63_tuyen_quang,Tuyên Quang,Tuyen Quang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,40498.5,50.26,805.78,7.44,chinh_thuc_theo_bang_nguon
+legacy63_tuyen_quang,Tuyên Quang,Tuyen Quang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,43664.41,53.76,812.21,5.83,chinh_thuc_theo_bang_nguon
+legacy63_tuyen_quang,Tuyên Quang,Tuyen Quang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,49242.61,60.03,820.3,8.35,so_bo
+legacy63_tuyen_quang,Tuyên Quang,Tuyen Quang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,55970.83,67.69,826.87,7.08,uoc_tinh
+legacy63_lao_cai,Lào Cai,Lao Cai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,44812.14,62.17,720.8,9.06,chinh_thuc_theo_bang_nguon
+legacy63_lao_cai,Lào Cai,Lao Cai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,49945.06,68.11,733.3,8.33,chinh_thuc_theo_bang_nguon
+legacy63_lao_cai,Lào Cai,Lao Cai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,53722.99,71.98,746.36,3.34,chinh_thuc_theo_bang_nguon
+legacy63_lao_cai,Lào Cai,Lao Cai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,56722.71,74.45,761.89,4.03,chinh_thuc_theo_bang_nguon
+legacy63_lao_cai,Lào Cai,Lao Cai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,64244.09,83.37,770.59,8.05,chinh_thuc_theo_bang_nguon
+legacy63_lao_cai,Lào Cai,Lao Cai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,66542.77,85.32,779.92,4.43,chinh_thuc_theo_bang_nguon
+legacy63_lao_cai,Lào Cai,Lao Cai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,73643.84,92.96,792.21,7.23,so_bo
+legacy63_lao_cai,Lào Cai,Lao Cai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,86760.21,108.25,801.48,8.2,uoc_tinh
+legacy63_yen_bai,Yên Bái,Yen Bai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,27590.5,33.87,814.6,6.34,chinh_thuc_theo_bang_nguon
+legacy63_yen_bai,Yên Bái,Yen Bai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,30525.07,37.09,823,7.24,chinh_thuc_theo_bang_nguon
+legacy63_yen_bai,Yên Bái,Yen Bai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,33155.49,39.87,831.59,5.23,chinh_thuc_theo_bang_nguon
+legacy63_yen_bai,Yên Bái,Yen Bai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,35880.89,42.58,842.67,7.31,chinh_thuc_theo_bang_nguon
+legacy63_yen_bai,Yên Bái,Yen Bai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,40235.9,47.49,847.25,8.88,chinh_thuc_theo_bang_nguon
+legacy63_yen_bai,Yên Bái,Yen Bai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,42879.16,50.12,855.53,5.74,chinh_thuc_theo_bang_nguon
+legacy63_yen_bai,Yên Bái,Yen Bai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,47843.43,55.35,864.38,8,so_bo
+legacy63_yen_bai,Yên Bái,Yen Bai,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,55126.42,63.06,874.19,8.05,uoc_tinh
+legacy63_thai_nguyen,Thái Nguyên,Thai  Nguyen,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,107937.6,84.75,1273.6,9.75,chinh_thuc_theo_bang_nguon
+legacy63_thai_nguyen,Thái Nguyên,Thai  Nguyen,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,117329.9,90.89,1290.9,7.19,chinh_thuc_theo_bang_nguon
+legacy63_thai_nguyen,Thái Nguyên,Thai  Nguyen,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,123371.38,94.33,1307.87,3.32,chinh_thuc_theo_bang_nguon
+legacy63_thai_nguyen,Thái Nguyên,Thai  Nguyen,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,132262.07,99.96,1323.15,6.23,chinh_thuc_theo_bang_nguon
+legacy63_thai_nguyen,Thái Nguyên,Thai  Nguyen,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,144473.96,108.14,1335.99,5.36,chinh_thuc_theo_bang_nguon
+legacy63_thai_nguyen,Thái Nguyên,Thai  Nguyen,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,149105.65,110.42,1350.35,1.08,chinh_thuc_theo_bang_nguon
+legacy63_thai_nguyen,Thái Nguyên,Thai  Nguyen,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,156301.75,114.49,1365.2,3.37,so_bo
+legacy63_thai_nguyen,Thái Nguyên,Thai  Nguyen,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,171778.56,124.47,1380.08,6.52,uoc_tinh
+legacy63_lang_son,Lạng Sơn,Lang Son,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,29678.17,38.25,775.9,7.75,chinh_thuc_theo_bang_nguon
+legacy63_lang_son,Lạng Sơn,Lang Son,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,32799.32,41.9,782.8,6.57,chinh_thuc_theo_bang_nguon
+legacy63_lang_son,Lạng Sơn,Lang Son,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,34884.64,44.23,788.71,3.9,chinh_thuc_theo_bang_nguon
+legacy63_lang_son,Lạng Sơn,Lang Son,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,37591.66,47.17,796.94,6.75,chinh_thuc_theo_bang_nguon
+legacy63_lang_son,Lạng Sơn,Lang Son,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,40890.55,50.98,802.09,6.63,chinh_thuc_theo_bang_nguon
+legacy63_lang_son,Lạng Sơn,Lang Son,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,46686.74,57.83,807.31,6.84,chinh_thuc_theo_bang_nguon
+legacy63_lang_son,Lạng Sơn,Lang Son,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,50760.42,62.36,813.99,5.67,so_bo
+legacy63_lang_son,Lạng Sơn,Lang Son,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,58223.7,70.95,820.63,8.06,uoc_tinh
+legacy63_bac_giang,Bắc Giang,Bac Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,90385.88,50.85,1777.5,16.18,chinh_thuc_theo_bang_nguon
+legacy63_bac_giang,Bắc Giang,Bac Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,104496.29,57.72,1810.4,16.13,chinh_thuc_theo_bang_nguon
+legacy63_bac_giang,Bắc Giang,Bac Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,120883.94,65.64,1841.62,13.52,chinh_thuc_theo_bang_nguon
+legacy63_bac_giang,Bắc Giang,Bac Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,131923.13,70.35,1875.24,8.52,chinh_thuc_theo_bang_nguon
+legacy63_bac_giang,Bắc Giang,Bac Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,159405.4,84.3,1890.93,19.3,chinh_thuc_theo_bang_nguon
+legacy63_bac_giang,Bắc Giang,Bac Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,184986.82,96.21,1922.74,16.71,chinh_thuc_theo_bang_nguon
+legacy63_bac_giang,Bắc Giang,Bac Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,214257.04,109.17,1962.6,15.93,so_bo
+legacy63_bac_giang,Bắc Giang,Bac Giang,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,249040.73,124.65,1997.92,14.08,uoc_tinh
+legacy63_phu_tho,Phú Thọ,Phu Tho,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,61651.49,42.53,1449.6,9.13,chinh_thuc_theo_bang_nguon
+legacy63_phu_tho,Phú Thọ,Phu Tho,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,69023.45,47.07,1466.4,9.4,chinh_thuc_theo_bang_nguon
+legacy63_phu_tho,Phú Thọ,Phu Tho,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,75190.59,50.74,1481.88,3.75,chinh_thuc_theo_bang_nguon
+legacy63_phu_tho,Phú Thọ,Phu Tho,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,81405,54,1507.5,6.94,chinh_thuc_theo_bang_nguon
+legacy63_phu_tho,Phú Thọ,Phu Tho,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,90469.11,59.64,1516.92,8.34,chinh_thuc_theo_bang_nguon
+legacy63_phu_tho,Phú Thọ,Phu Tho,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,99581.79,65.05,1530.85,10.22,chinh_thuc_theo_bang_nguon
+legacy63_phu_tho,Phú Thọ,Phu Tho,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,112842.19,73.09,1543.88,12.36,so_bo
+legacy63_phu_tho,Phú Thọ,Phu Tho,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,130437.12,83.65,1559.32,12.61,uoc_tinh
+legacy63_dien_bien,Điện Biên,Dien Bien,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,18098.83,30.65,590.5,5.54,chinh_thuc_theo_bang_nguon
+legacy63_dien_bien,Điện Biên,Dien Bien,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,19338.64,32.14,601.7,4,chinh_thuc_theo_bang_nguon
+legacy63_dien_bien,Điện Biên,Dien Bien,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,20300.05,33.09,613.48,2.49,chinh_thuc_theo_bang_nguon
+legacy63_dien_bien,Điện Biên,Dien Bien,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,22065.68,35.3,625.09,6.65,chinh_thuc_theo_bang_nguon
+legacy63_dien_bien,Điện Biên,Dien Bien,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,25118.84,39.5,635.92,10.05,chinh_thuc_theo_bang_nguon
+legacy63_dien_bien,Điện Biên,Dien Bien,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,27908.51,43.19,646.18,9.15,chinh_thuc_theo_bang_nguon
+legacy63_dien_bien,Điện Biên,Dien Bien,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,31351.34,47.74,656.71,8.57,so_bo
+legacy63_dien_bien,Điện Biên,Dien Bien,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,35633.55,53.39,667.42,7.34,uoc_tinh
+legacy63_lai_chau,Lai Châu,Lai Chau,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,18362.7,40.5,453.4,6.7,chinh_thuc_theo_bang_nguon
+legacy63_lai_chau,Lai Châu,Lai Chau,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,17976.64,38.86,462.6,-0.95,chinh_thuc_theo_bang_nguon
+legacy63_lai_chau,Lai Châu,Lai Chau,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,20356.87,43.33,469.81,8.19,chinh_thuc_theo_bang_nguon
+legacy63_lai_chau,Lai Châu,Lai Chau,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,21366.68,44.66,478.43,4.2,chinh_thuc_theo_bang_nguon
+legacy63_lai_chau,Lai Châu,Lai Chau,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,23921.8,49.62,482.1,8.24,chinh_thuc_theo_bang_nguon
+legacy63_lai_chau,Lai Châu,Lai Chau,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,24855.42,50.8,489.28,-3.41,chinh_thuc_theo_bang_nguon
+legacy63_lai_chau,Lai Châu,Lai Chau,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,29916.48,60.38,495.47,10.56,so_bo
+legacy63_lai_chau,Lai Châu,Lai Chau,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,39807.14,79.43,501.16,7.52,uoc_tinh
+legacy63_son_la,Sơn La,Son La,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,49780.25,40.37,1233.1,5.83,chinh_thuc_theo_bang_nguon
+legacy63_son_la,Sơn La,Son La,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,49707.14,39.68,1252.7,-2.58,chinh_thuc_theo_bang_nguon
+legacy63_son_la,Sơn La,Son La,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,55040.66,43.32,1270.56,7.21,chinh_thuc_theo_bang_nguon
+legacy63_son_la,Sơn La,Son La,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,56981.61,44.25,1287.72,2.72,chinh_thuc_theo_bang_nguon
+legacy63_son_la,Sơn La,Son La,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,63498.35,48.84,1300.13,7.85,chinh_thuc_theo_bang_nguon
+legacy63_son_la,Sơn La,Son La,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,66770.21,50.84,1313.34,0.51,chinh_thuc_theo_bang_nguon
+legacy63_son_la,Sơn La,Son La,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,76348.68,57.38,1330.58,6.24,so_bo
+legacy63_son_la,Sơn La,Son La,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,95736.28,71.38,1341.22,8.02,uoc_tinh
+legacy63_hoa_binh,Hòa Bình,Hoa Binh,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2018,46278.77,54.42,850.4,8.56,chinh_thuc_theo_bang_nguon
+legacy63_hoa_binh,Hòa Bình,Hoa Binh,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2019,46735.24,54.61,855.8,1,chinh_thuc_theo_bang_nguon
+legacy63_hoa_binh,Hòa Bình,Hoa Binh,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2020,49709.62,57.72,861.22,2.76,chinh_thuc_theo_bang_nguon
+legacy63_hoa_binh,Hòa Bình,Hoa Binh,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2021,51562.24,59.15,871.72,3.6,chinh_thuc_theo_bang_nguon
+legacy63_hoa_binh,Hòa Bình,Hoa Binh,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2022,58834.29,67.21,875.38,9.98,chinh_thuc_theo_bang_nguon
+legacy63_hoa_binh,Hòa Bình,Hoa Binh,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2023,61412.78,69.75,880.47,-0.63,chinh_thuc_theo_bang_nguon
+legacy63_hoa_binh,Hòa Bình,Hoa Binh,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2024,71050.14,79.43,894.5,9.12,so_bo
+legacy63_hoa_binh,Hòa Bình,Hoa Binh,R2,Trung du và miền núi phía Bắc,tinh_thanh_63_truyen_thong,2025,85954.23,95.14,903.45,7.11,uoc_tinh
+,Bắc Trung Bộ và Duyên hải miền Trung,North Central and central coastal areas,R3,Bắc Trung Bộ và Duyên hải miền Trung,vung_thong_ke,2018,1007669.47,50.17,20085.1,9.93,chinh_thuc_theo_bang_nguon
+,Bắc Trung Bộ và Duyên hải miền Trung,North Central and central coastal areas,R3,Bắc Trung Bộ và Duyên hải miền Trung,vung_thong_ke,2019,1130522.56,55.91,20220.4,8.6,chinh_thuc_theo_bang_nguon
+,Bắc Trung Bộ và Duyên hải miền Trung,North Central and central coastal areas,R3,Bắc Trung Bộ và Duyên hải miền Trung,vung_thong_ke,2020,1167901.96,57.41,20343.18,1.04,chinh_thuc_theo_bang_nguon
+,Bắc Trung Bộ và Duyên hải miền Trung,North Central and central coastal areas,R3,Bắc Trung Bộ và Duyên hải miền Trung,vung_thong_ke,2021,1272147.44,61.8,20584.91,4.74,chinh_thuc_theo_bang_nguon
+,Bắc Trung Bộ và Duyên hải miền Trung,North Central and central coastal areas,R3,Bắc Trung Bộ và Duyên hải miền Trung,vung_thong_ke,2022,1458460.85,70.61,20655.16,9.57,chinh_thuc_theo_bang_nguon
+,Bắc Trung Bộ và Duyên hải miền Trung,North Central and central coastal areas,R3,Bắc Trung Bộ và Duyên hải miền Trung,vung_thong_ke,2023,1551418.16,74.7,20768.65,4.8,chinh_thuc_theo_bang_nguon
+,Bắc Trung Bộ và Duyên hải miền Trung,North Central and central coastal areas,R3,Bắc Trung Bộ và Duyên hải miền Trung,vung_thong_ke,2024,1726309.25,82.36,20960.53,8.06,so_bo
+,Bắc Trung Bộ và Duyên hải miền Trung,North Central and central coastal areas,R3,Bắc Trung Bộ và Duyên hải miền Trung,vung_thong_ke,2025,1910629.4,90.54,21102.6,8.27,uoc_tinh
+legacy63_thanh_hoa,Thanh Hóa,Thanh Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,146196.14,40.26,3631.3,16.58,chinh_thuc_theo_bang_nguon
+legacy63_thanh_hoa,Thanh Hóa,Thanh Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,176201.51,48.33,3645.8,16.43,chinh_thuc_theo_bang_nguon
+legacy63_thanh_hoa,Thanh Hóa,Thanh Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,187864.82,51.26,3664.94,5.06,chinh_thuc_theo_bang_nguon
+legacy63_thanh_hoa,Thanh Hóa,Thanh Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,214066.37,57.6,3716.43,9.67,chinh_thuc_theo_bang_nguon
+legacy63_thanh_hoa,Thanh Hóa,Thanh Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,257119.9,69.08,3722.06,11.53,chinh_thuc_theo_bang_nguon
+legacy63_thanh_hoa,Thanh Hóa,Thanh Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,271561.04,72.62,3739.48,5.38,chinh_thuc_theo_bang_nguon
+legacy63_thanh_hoa,Thanh Hóa,Thanh Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,306108,81.32,3764.24,10.49,so_bo
+legacy63_thanh_hoa,Thanh Hóa,Thanh Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,333763.93,88.49,3771.77,8.27,uoc_tinh
+legacy63_nghe_an,Nghệ An,Nghe An,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,120201.93,36.52,3291.4,8.73,chinh_thuc_theo_bang_nguon
+legacy63_nghe_an,Nghệ An,Nghe An,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,132987.42,39.85,3337.2,6.87,chinh_thuc_theo_bang_nguon
+legacy63_nghe_an,Nghệ An,Nghe An,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,144905.51,43.06,3365.2,4.44,chinh_thuc_theo_bang_nguon
+legacy63_nghe_an,Nghệ An,Nghe An,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,157567.32,46.21,3409.81,6.31,chinh_thuc_theo_bang_nguon
+legacy63_nghe_an,Nghệ An,Nghe An,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,175103.49,51.2,3419.99,9.36,chinh_thuc_theo_bang_nguon
+legacy63_nghe_an,Nghệ An,Nghe An,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,189101.83,54.94,3441.97,4.83,chinh_thuc_theo_bang_nguon
+legacy63_nghe_an,Nghệ An,Nghe An,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,210941.62,60.75,3472.29,8.36,so_bo
+legacy63_nghe_an,Nghệ An,Nghe An,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,236482.88,67.61,3497.75,8.44,uoc_tinh
+legacy63_ha_tinh,Hà Tĩnh,Ha Tinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,70081.76,54.73,1280.5,20.85,chinh_thuc_theo_bang_nguon
+legacy63_ha_tinh,Hà Tĩnh,Ha Tinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,78114.76,60.54,1290.3,9.27,chinh_thuc_theo_bang_nguon
+legacy63_ha_tinh,Hà Tĩnh,Ha Tinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,82400.2,63.55,1296.62,2.85,chinh_thuc_theo_bang_nguon
+legacy63_ha_tinh,Hà Tĩnh,Ha Tinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,90538.73,68.9,1314.06,6.11,chinh_thuc_theo_bang_nguon
+legacy63_ha_tinh,Hà Tĩnh,Ha Tinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,94697.1,71.89,1317.25,1.33,chinh_thuc_theo_bang_nguon
+legacy63_ha_tinh,Hà Tĩnh,Ha Tinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,101266.88,76.5,1323.75,8.19,chinh_thuc_theo_bang_nguon
+legacy63_ha_tinh,Hà Tĩnh,Ha Tinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,110123.22,82.81,1329.83,7.14,so_bo
+legacy63_ha_tinh,Hà Tĩnh,Ha Tinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,120843.52,90.51,1335.14,8.78,uoc_tinh
+legacy63_quang_binh,Quảng Bình,Quang Binh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,35394.49,39.72,891.1,7.34,chinh_thuc_theo_bang_nguon
+legacy63_quang_binh,Quảng Bình,Quang Binh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,39226.25,43.75,896.6,7.07,chinh_thuc_theo_bang_nguon
+legacy63_quang_binh,Quảng Bình,Quang Binh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,41779.71,46.32,901.98,3.16,chinh_thuc_theo_bang_nguon
+legacy63_quang_binh,Quảng Bình,Quang Binh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,44886.43,49.29,910.66,4.27,chinh_thuc_theo_bang_nguon
+legacy63_quang_binh,Quảng Bình,Quang Binh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,49622.6,54.3,913.86,7.39,chinh_thuc_theo_bang_nguon
+legacy63_quang_binh,Quảng Bình,Quang Binh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,54439.79,59.26,918.66,6.92,chinh_thuc_theo_bang_nguon
+legacy63_quang_binh,Quảng Bình,Quang Binh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,59841.22,64.71,924.76,6.99,so_bo
+legacy63_quang_binh,Quảng Bình,Quang Binh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,67042.32,71.94,931.92,8.48,uoc_tinh
+legacy63_quang_tri,Quảng Trị,Quang Tri,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,28645.05,45.49,629.7,7.25,chinh_thuc_theo_bang_nguon
+legacy63_quang_tri,Quảng Trị,Quang Tri,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,31885.36,50.34,633.4,7.64,chinh_thuc_theo_bang_nguon
+legacy63_quang_tri,Quảng Trị,Quang Tri,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,33679.69,52.84,637.39,3.73,chinh_thuc_theo_bang_nguon
+legacy63_quang_tri,Quảng Trị,Quang Tri,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,37507.04,57.9,647.79,6.57,chinh_thuc_theo_bang_nguon
+legacy63_quang_tri,Quảng Trị,Quang Tri,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,43737.33,67.19,650.95,7.15,chinh_thuc_theo_bang_nguon
+legacy63_quang_tri,Quảng Trị,Quang Tri,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,46408.95,70.94,654.2,6.03,chinh_thuc_theo_bang_nguon
+legacy63_quang_tri,Quảng Trị,Quang Tri,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,50785.54,77.04,659.21,5.52,so_bo
+legacy63_quang_tri,Quảng Trị,Quang Tri,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,56354.07,85.1,662.21,7.41,uoc_tinh
+legacy63_thua_thien_hue,Thừa Thiên Huế,Thua Thien-Hue,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,47874.52,42.54,1125.4,6.72,chinh_thuc_theo_bang_nguon
+legacy63_thua_thien_hue,Thừa Thiên Huế,Thua Thien-Hue,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,52871.9,46.81,1129.5,7.25,chinh_thuc_theo_bang_nguon
+legacy63_thua_thien_hue,Thừa Thiên Huế,Thua Thien-Hue,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,55047.13,48.56,1133.59,2.04,chinh_thuc_theo_bang_nguon
+legacy63_thua_thien_hue,Thừa Thiên Huế,Thua Thien-Hue,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,58647.65,50.83,1153.8,4.24,chinh_thuc_theo_bang_nguon
+legacy63_thua_thien_hue,Thừa Thiên Huế,Thua Thien-Hue,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,65900.5,56.8,1160.22,8.4,chinh_thuc_theo_bang_nguon
+legacy63_thua_thien_hue,Thừa Thiên Huế,Thua Thien-Hue,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,72337.77,62.01,1166.55,6.52,chinh_thuc_theo_bang_nguon
+legacy63_thua_thien_hue,Thừa Thiên Huế,Thua Thien-Hue,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,79811.41,67.72,1178.55,7.19,so_bo
+legacy63_thua_thien_hue,Thừa Thiên Huế,Thua Thien-Hue,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,89596.89,75.27,1190.34,8.5,uoc_tinh
+legacy63_da_nang,Đà Nẵng,Da Nang,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,101410.4,91,1114.4,8.17,chinh_thuc_theo_bang_nguon
+legacy63_da_nang,Đà Nẵng,Da Nang,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,111188.78,97.44,1141.1,7.04,chinh_thuc_theo_bang_nguon
+legacy63_da_nang,Đà Nẵng,Da Nang,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,103908.3,88.85,1169.48,-7.8,chinh_thuc_theo_bang_nguon
+legacy63_da_nang,Đà Nẵng,Da Nang,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,108084.25,90.41,1195.49,1.4,chinh_thuc_theo_bang_nguon
+legacy63_da_nang,Đà Nẵng,Da Nang,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,125533.15,102.88,1220.19,13.65,chinh_thuc_theo_bang_nguon
+legacy63_da_nang,Đà Nẵng,Da Nang,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,134856.24,108.3,1245.21,2.94,chinh_thuc_theo_bang_nguon
+legacy63_da_nang,Đà Nẵng,Da Nang,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,152239.56,119.31,1276,7.85,so_bo
+legacy63_da_nang,Đà Nẵng,Da Nang,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,176306.81,135.13,1304.72,11.82,uoc_tinh
+legacy63_quang_nam,Quảng Nam,Quang  Nam,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,91758.74,61.55,1490.8,7.99,chinh_thuc_theo_bang_nguon
+legacy63_quang_nam,Quảng Nam,Quang  Nam,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,98909.88,66.05,1497.5,4.26,chinh_thuc_theo_bang_nguon
+legacy63_quang_nam,Quảng Nam,Quang  Nam,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,98444.67,65.41,1505.04,-0.98,chinh_thuc_theo_bang_nguon
+legacy63_quang_nam,Quảng Nam,Quang  Nam,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,105944.35,69.77,1518.48,5,chinh_thuc_theo_bang_nguon
+legacy63_quang_nam,Quảng Nam,Quang  Nam,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,119529.62,78.67,1519.38,10.45,chinh_thuc_theo_bang_nguon
+legacy63_quang_nam,Quảng Nam,Quang  Nam,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,116133.17,76.1,1526.06,-7.83,chinh_thuc_theo_bang_nguon
+legacy63_quang_nam,Quảng Nam,Quang  Nam,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,128301.41,83.1,1543.94,7.26,so_bo
+legacy63_quang_nam,Quảng Nam,Quang  Nam,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,139742.5,90.06,1551.66,6.06,uoc_tinh
+legacy63_quang_ngai,Quảng Ngãi,Quang  Ngai,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,83341.76,67.73,1230.5,8.31,chinh_thuc_theo_bang_nguon
+legacy63_quang_ngai,Quảng Ngãi,Quang  Ngai,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,86885.91,70.53,1231.9,4.25,chinh_thuc_theo_bang_nguon
+legacy63_quang_ngai,Quảng Ngãi,Quang  Ngai,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,85696.63,69.48,1233.4,-0.6,chinh_thuc_theo_bang_nguon
+legacy63_quang_ngai,Quảng Ngãi,Quang  Ngai,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,101409.04,81.51,1244.13,6.95,chinh_thuc_theo_bang_nguon
+legacy63_quang_ngai,Quảng Ngãi,Quang  Ngai,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,124427.98,99.89,1245.65,8.93,chinh_thuc_theo_bang_nguon
+legacy63_quang_ngai,Quảng Ngãi,Quang  Ngai,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,125934.3,100.9,1248.11,4.92,chinh_thuc_theo_bang_nguon
+legacy63_quang_ngai,Quảng Ngãi,Quang  Ngai,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,131382.37,104.28,1259.9,4.27,so_bo
+legacy63_quang_ngai,Quảng Ngãi,Quang  Ngai,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,145205,114.45,1268.72,11.43,uoc_tinh
+legacy63_binh_dinh,Bình Định,Binh Dinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,74761.95,50.25,1487.8,7.31,chinh_thuc_theo_bang_nguon
+legacy63_binh_dinh,Bình Định,Binh Dinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,82825.83,55.67,1487.8,6.83,chinh_thuc_theo_bang_nguon
+legacy63_binh_dinh,Bình Định,Binh Dinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,89393.03,60.08,1487.9,3.55,chinh_thuc_theo_bang_nguon
+legacy63_binh_dinh,Bình Định,Binh Dinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,96019.65,63.66,1508.32,3.97,chinh_thuc_theo_bang_nguon
+legacy63_binh_dinh,Bình Định,Binh Dinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,107782.38,71.65,1504.29,8,chinh_thuc_theo_bang_nguon
+legacy63_binh_dinh,Bình Định,Binh Dinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,117644.37,78.1,1506.33,6.18,chinh_thuc_theo_bang_nguon
+legacy63_binh_dinh,Bình Định,Binh Dinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,129463.05,85.26,1518.45,7.35,so_bo
+legacy63_binh_dinh,Bình Định,Binh Dinh,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,142663.16,93.38,1527.77,6.7,uoc_tinh
+legacy63_phu_yen,Phú Yên,Phu Yen,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,38607.45,44.3,871.5,7.75,chinh_thuc_theo_bang_nguon
+legacy63_phu_yen,Phú Yên,Phu Yen,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,42463.72,48.63,873.2,7.64,chinh_thuc_theo_bang_nguon
+legacy63_phu_yen,Phú Yên,Phu Yen,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,44143.41,50.49,874.3,3.09,chinh_thuc_theo_bang_nguon
+legacy63_phu_yen,Phú Yên,Phu Yen,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,45116.58,51.53,875.54,-0.14,chinh_thuc_theo_bang_nguon
+legacy63_phu_yen,Phú Yên,Phu Yen,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,50309.22,57.39,876.62,7.31,chinh_thuc_theo_bang_nguon
+legacy63_phu_yen,Phú Yên,Phu Yen,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,55347.76,63.06,877.7,7.6,chinh_thuc_theo_bang_nguon
+legacy63_phu_yen,Phú Yên,Phu Yen,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,60412.17,68.25,885.16,6.1,so_bo
+legacy63_phu_yen,Phú Yên,Phu Yen,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,65896.94,74.23,887.74,6.22,uoc_tinh
+legacy63_khanh_hoa,Khánh Hòa,Khanh  Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,78233.31,63.89,1224.5,7.53,chinh_thuc_theo_bang_nguon
+legacy63_khanh_hoa,Khánh Hòa,Khanh  Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,86739.81,70.36,1232.8,8.46,chinh_thuc_theo_bang_nguon
+legacy63_khanh_hoa,Khánh Hòa,Khanh  Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,79723.08,64.27,1240.44,-10.15,chinh_thuc_theo_bang_nguon
+legacy63_khanh_hoa,Khánh Hòa,Khanh  Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,79264.29,63.51,1248.06,-5.32,chinh_thuc_theo_bang_nguon
+legacy63_khanh_hoa,Khánh Hòa,Khanh  Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,96806.48,77.2,1253.97,18.89,chinh_thuc_theo_bang_nguon
+legacy63_khanh_hoa,Khánh Hòa,Khanh  Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,111602.69,88.53,1260.62,10.07,chinh_thuc_theo_bang_nguon
+legacy63_khanh_hoa,Khánh Hòa,Khanh  Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,132425.03,104.33,1269.29,11.73,so_bo
+legacy63_khanh_hoa,Khánh Hòa,Khanh  Hoa,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,146088.3,114.21,1279.12,7.35,uoc_tinh
+legacy63_ninh_thuan,Ninh Thuận,Ninh  Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,25711.37,43.66,588.9,7.41,chinh_thuc_theo_bang_nguon
+legacy63_ninh_thuan,Ninh Thuận,Ninh  Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,31145.7,52.7,591,14.69,chinh_thuc_theo_bang_nguon
+legacy63_ninh_thuan,Ninh Thuận,Ninh  Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,35090.06,59.11,593.64,10.38,chinh_thuc_theo_bang_nguon
+legacy63_ninh_thuan,Ninh Thuận,Ninh  Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,41538.72,69.69,596.05,9.13,chinh_thuc_theo_bang_nguon
+legacy63_ninh_thuan,Ninh Thuận,Ninh  Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,46517.44,77.7,598.68,8.23,chinh_thuc_theo_bang_nguon
+legacy63_ninh_thuan,Ninh Thuận,Ninh  Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,51416.33,85.52,601.22,8.51,chinh_thuc_theo_bang_nguon
+legacy63_ninh_thuan,Ninh Thuận,Ninh  Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,58015.62,94.69,612.69,8.77,so_bo
+legacy63_ninh_thuan,Ninh Thuận,Ninh  Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,63355.3,102.28,619.43,6.56,uoc_tinh
+legacy63_binh_thuan,Bình Thuận,Binh Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2018,65525.55,53.39,1227.3,8.54,chinh_thuc_theo_bang_nguon
+legacy63_binh_thuan,Bình Thuận,Binh Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2019,79162.95,64.24,1232.3,10.31,chinh_thuc_theo_bang_nguon
+legacy63_binh_thuan,Bình Thuận,Binh Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2020,85793.97,69.23,1239.26,4.7,chinh_thuc_theo_bang_nguon
+legacy63_binh_thuan,Bình Thuận,Binh Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2021,91529.01,73.44,1246.31,2.58,chinh_thuc_theo_bang_nguon
+legacy63_binh_thuan,Bình Thuận,Binh Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2022,101454.42,81.03,1252.06,5.72,chinh_thuc_theo_bang_nguon
+legacy63_binh_thuan,Bình Thuận,Binh Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2023,103459.95,82.19,1258.79,6.49,chinh_thuc_theo_bang_nguon
+legacy63_binh_thuan,Bình Thuận,Binh Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2024,116441.59,91.96,1266.22,7.5,so_bo
+legacy63_binh_thuan,Bình Thuận,Binh Thuan,R3,Bắc Trung Bộ và Duyên hải miền Trung,tinh_thanh_63_truyen_thong,2025,127252.6,99.86,1274.31,6.37,uoc_tinh
+,Tây Nguyên,Central Highlands,R4,Tây Nguyên,vung_thong_ke,2018,251273.94,43.35,5796.4,7.14,chinh_thuc_theo_bang_nguon
+,Tây Nguyên,Central Highlands,R4,Tây Nguyên,vung_thong_ke,2019,268213.09,45.76,5861.3,5.64,chinh_thuc_theo_bang_nguon
+,Tây Nguyên,Central Highlands,R4,Tây Nguyên,vung_thong_ke,2020,289605.61,48.82,5932.11,4.59,chinh_thuc_theo_bang_nguon
+,Tây Nguyên,Central Highlands,R4,Tây Nguyên,vung_thong_ke,2021,324076.47,53.71,6033.82,6.61,chinh_thuc_theo_bang_nguon
+,Tây Nguyên,Central Highlands,R4,Tây Nguyên,vung_thong_ke,2022,369323.11,60.62,6092.43,8.35,chinh_thuc_theo_bang_nguon
+,Tây Nguyên,Central Highlands,R4,Tây Nguyên,vung_thong_ke,2023,403959.72,65.54,6163.56,4.7,chinh_thuc_theo_bang_nguon
+,Tây Nguyên,Central Highlands,R4,Tây Nguyên,vung_thong_ke,2024,484865.62,77.69,6241.03,4.61,so_bo
+,Tây Nguyên,Central Highlands,R4,Tây Nguyên,vung_thong_ke,2025,564007.81,89.37,6310.93,6.82,uoc_tinh
+legacy63_kon_tum,Kon Tum,Kon Tum,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2018,20130.04,37.81,532.4,8.3,chinh_thuc_theo_bang_nguon
+legacy63_kon_tum,Kon Tum,Kon Tum,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2019,21915.32,40.33,543.4,7.62,chinh_thuc_theo_bang_nguon
+legacy63_kon_tum,Kon Tum,Kon Tum,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2020,23898.08,43.01,555.64,6.81,chinh_thuc_theo_bang_nguon
+legacy63_kon_tum,Kon Tum,Kon Tum,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2021,27142.18,47.72,568.78,6.55,chinh_thuc_theo_bang_nguon
+legacy63_kon_tum,Kon Tum,Kon Tum,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2022,30868.61,53.23,579.91,9,chinh_thuc_theo_bang_nguon
+legacy63_kon_tum,Kon Tum,Kon Tum,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2023,34867.19,58.97,591.27,6.12,chinh_thuc_theo_bang_nguon
+legacy63_kon_tum,Kon Tum,Kon Tum,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2024,40773.31,67.75,601.82,7.59,so_bo
+legacy63_kon_tum,Kon Tum,Kon Tum,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2025,46404.52,75.76,612.52,5.52,uoc_tinh
+legacy63_gia_lai,Gia Lai,Gia Lai,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2018,58855.8,39.35,1495.7,7.21,chinh_thuc_theo_bang_nguon
+legacy63_gia_lai,Gia Lai,Gia Lai,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2019,61188.05,40.25,1520.2,4.41,chinh_thuc_theo_bang_nguon
+legacy63_gia_lai,Gia Lai,Gia Lai,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2020,65666.54,42.59,1541.83,4.08,chinh_thuc_theo_bang_nguon
+legacy63_gia_lai,Gia Lai,Gia Lai,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2021,75660.5,48.2,1569.72,9.81,chinh_thuc_theo_bang_nguon
+legacy63_gia_lai,Gia Lai,Gia Lai,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2022,86040.2,54.08,1590.98,6.53,chinh_thuc_theo_bang_nguon
+legacy63_gia_lai,Gia Lai,Gia Lai,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2023,93315.7,57.82,1613.9,4.12,chinh_thuc_theo_bang_nguon
+legacy63_gia_lai,Gia Lai,Gia Lai,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2024,109015.13,66.68,1634.9,3.24,so_bo
+legacy63_gia_lai,Gia Lai,Gia Lai,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2025,127971.87,77.33,1654.88,7.82,uoc_tinh
+legacy63_dak_lak,Đắk Lắk,Dak Lak,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2018,72859.11,39.14,1861.5,6.47,chinh_thuc_theo_bang_nguon
+legacy63_dak_lak,Đắk Lắk,Dak Lak,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2019,78031.24,41.67,1872.6,5.35,chinh_thuc_theo_bang_nguon
+legacy63_dak_lak,Đắk Lắk,Dak Lak,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2020,86969.06,46.09,1886.94,6.11,chinh_thuc_theo_bang_nguon
+legacy63_dak_lak,Đắk Lắk,Dak Lak,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2021,97282.64,50.96,1909,5.79,chinh_thuc_theo_bang_nguon
+legacy63_dak_lak,Đắk Lắk,Dak Lak,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2022,108756.36,56.69,1918.44,8.3,chinh_thuc_theo_bang_nguon
+legacy63_dak_lak,Đắk Lắk,Dak Lak,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2023,116891.96,60.52,1931.46,4.17,chinh_thuc_theo_bang_nguon
+legacy63_dak_lak,Đắk Lắk,Dak Lak,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2024,141019.48,72.46,1946.17,5.06,so_bo
+legacy63_dak_lak,Đắk Lắk,Dak Lak,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2025,163644.61,83.43,1961.46,6.91,uoc_tinh
+legacy63_dak_nong,Đắk Nông,Dak Nong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2018,27083.75,44.01,615.4,6.45,chinh_thuc_theo_bang_nguon
+legacy63_dak_nong,Đắk Nông,Dak Nong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2019,28455.13,45.47,625.8,6.06,chinh_thuc_theo_bang_nguon
+legacy63_dak_nong,Đắk Nông,Dak Nong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2020,30708.99,48.14,637.91,5.09,chinh_thuc_theo_bang_nguon
+legacy63_dak_nong,Đắk Nông,Dak Nong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2021,35367.08,53.23,664.42,8.96,chinh_thuc_theo_bang_nguon
+legacy63_dak_nong,Đắk Nông,Dak Nong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2022,40421.36,60.28,670.56,6.84,chinh_thuc_theo_bang_nguon
+legacy63_dak_nong,Đắk Nông,Dak Nong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2023,44626.81,65.44,681.95,4.84,chinh_thuc_theo_bang_nguon
+legacy63_dak_nong,Đắk Nông,Dak Nong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2024,57929.27,83.27,695.68,5.45,so_bo
+legacy63_dak_nong,Đắk Nông,Dak Nong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2025,69116,98.08,704.69,7.52,uoc_tinh
+legacy63_lam_dong,Lâm Đồng,Lam Dong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2018,72382.97,56.05,1291.4,7.69,chinh_thuc_theo_bang_nguon
+legacy63_lam_dong,Lâm Đồng,Lam Dong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2019,78607.65,60.5,1299.3,6.2,chinh_thuc_theo_bang_nguon
+legacy63_lam_dong,Lâm Đồng,Lam Dong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2020,82372.69,62.89,1309.79,2.64,chinh_thuc_theo_bang_nguon
+legacy63_lam_dong,Lâm Đồng,Lam Dong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2021,88620.18,67.04,1321.9,3.9,chinh_thuc_theo_bang_nguon
+legacy63_lam_dong,Lâm Đồng,Lam Dong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2022,103244.42,77.48,1332.53,10.39,chinh_thuc_theo_bang_nguon
+legacy63_lam_dong,Lâm Đồng,Lam Dong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2023,114271.2,84.96,1345,5.22,chinh_thuc_theo_bang_nguon
+legacy63_lam_dong,Lâm Đồng,Lam Dong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2024,136110.75,99.9,1362.47,4.03,so_bo
+legacy63_lam_dong,Lâm Đồng,Lam Dong,R4,Tây Nguyên,tinh_thanh_63_truyen_thong,2025,156883.58,113.9,1377.38,6.03,uoc_tinh
+,Đông Nam Bộ,South East,R5,Đông Nam Bộ,vung_thong_ke,2018,2344815.57,133.78,17527.4,6.77,chinh_thuc_theo_bang_nguon
+,Đông Nam Bộ,South East,R5,Đông Nam Bộ,vung_thong_ke,2019,2541620.02,141.75,17930.3,7.28,chinh_thuc_theo_bang_nguon
+,Đông Nam Bộ,South East,R5,Đông Nam Bộ,vung_thong_ke,2020,2574424.61,140.35,18342.89,0.83,chinh_thuc_theo_bang_nguon
+,Đông Nam Bộ,South East,R5,Đông Nam Bộ,vung_thong_ke,2021,2643037.65,144.31,18315,-2.12,chinh_thuc_theo_bang_nguon
+,Đông Nam Bộ,South East,R5,Đông Nam Bộ,vung_thong_ke,2022,3002575.11,159.62,18810.77,8.53,chinh_thuc_theo_bang_nguon
+,Đông Nam Bộ,South East,R5,Đông Nam Bộ,vung_thong_ke,2023,3120422.72,164.07,19018.85,3.23,chinh_thuc_theo_bang_nguon
+,Đông Nam Bộ,South East,R5,Đông Nam Bộ,vung_thong_ke,2024,3393830.16,176.4,19239.4,6.16,so_bo
+,Đông Nam Bộ,South East,R5,Đông Nam Bộ,vung_thong_ke,2025,3791281.89,194.34,19508.5,7.9,uoc_tinh
+legacy63_binh_phuoc,Bình Phước,Binh Phuoc,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2018,55233.19,56.08,984.9,8.27,chinh_thuc_theo_bang_nguon
+legacy63_binh_phuoc,Bình Phước,Binh Phuoc,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2019,62472.26,62.61,997.8,10.33,chinh_thuc_theo_bang_nguon
+legacy63_binh_phuoc,Bình Phước,Binh Phuoc,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2020,68480.45,67.73,1011.08,4.94,chinh_thuc_theo_bang_nguon
+legacy63_binh_phuoc,Bình Phước,Binh Phuoc,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2021,77968.95,76.12,1024.29,9.03,chinh_thuc_theo_bang_nguon
+legacy63_binh_phuoc,Bình Phước,Binh Phuoc,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2022,90388.77,87.36,1034.67,11.35,chinh_thuc_theo_bang_nguon
+legacy63_binh_phuoc,Bình Phước,Binh Phuoc,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2023,98945.17,94.64,1045.49,9.32,chinh_thuc_theo_bang_nguon
+legacy63_binh_phuoc,Bình Phước,Binh Phuoc,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2024,114324.73,107.62,1062.3,9.42,so_bo
+legacy63_binh_phuoc,Bình Phước,Binh Phuoc,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2025,132700.89,123.13,1077.73,7.19,uoc_tinh
+legacy63_tay_ninh,Tây Ninh,Tay Ninh,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2018,72381.25,62.36,1160.7,7.85,chinh_thuc_theo_bang_nguon
+legacy63_tay_ninh,Tây Ninh,Tay Ninh,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2019,82710.3,70.59,1171.7,9.32,chinh_thuc_theo_bang_nguon
+legacy63_tay_ninh,Tây Ninh,Tay Ninh,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2020,87219.99,74.02,1178.33,3.23,chinh_thuc_theo_bang_nguon
+legacy63_tay_ninh,Tây Ninh,Tay Ninh,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2021,90510.67,76.58,1181.91,0.74,chinh_thuc_theo_bang_nguon
+legacy63_tay_ninh,Tây Ninh,Tay Ninh,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2022,103243.81,86.85,1188.76,10.38,chinh_thuc_theo_bang_nguon
+legacy63_tay_ninh,Tây Ninh,Tay Ninh,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2023,111329.76,93.17,1194.91,5.67,chinh_thuc_theo_bang_nguon
+legacy63_tay_ninh,Tây Ninh,Tay Ninh,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2024,124558.86,103.56,1202.77,8.64,so_bo
+legacy63_tay_ninh,Tây Ninh,Tay Ninh,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2025,141058.44,116.48,1211.01,9.42,uoc_tinh
+legacy63_binh_duong,Bình Dương,Binh  Duong,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2018,322863.68,137.67,2345.2,8.51,chinh_thuc_theo_bang_nguon
+legacy63_binh_duong,Bình Dương,Binh  Duong,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2019,362009.49,147.38,2456.3,10.65,chinh_thuc_theo_bang_nguon
+legacy63_binh_duong,Bình Dương,Binh  Duong,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2020,388321.16,150.48,2580.55,6.24,chinh_thuc_theo_bang_nguon
+legacy63_binh_duong,Bình Dương,Binh  Duong,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2021,408734.75,157.4,2596.79,2.78,chinh_thuc_theo_bang_nguon
+legacy63_binh_duong,Bình Dương,Binh  Duong,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2022,451631.96,163.45,2763.12,7.19,chinh_thuc_theo_bang_nguon
+legacy63_binh_duong,Bình Dương,Binh  Duong,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2023,469903.45,166.43,2823.43,3.38,chinh_thuc_theo_bang_nguon
+legacy63_binh_duong,Bình Dương,Binh  Duong,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2024,508672.09,177.2,2870.61,6.61,so_bo
+legacy63_binh_duong,Bình Dương,Binh  Duong,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2025,570684.65,196.09,2910.32,8.88,uoc_tinh
+legacy63_dong_nai,Đồng Nai,Dong Nai,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2018,314919.71,103.08,3055.1,8.72,chinh_thuc_theo_bang_nguon
+legacy63_dong_nai,Đồng Nai,Dong Nai,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2019,344624.32,110.68,3113.7,7.49,chinh_thuc_theo_bang_nguon
+legacy63_dong_nai,Đồng Nai,Dong Nai,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2020,365623.42,115.07,3177.4,3.05,chinh_thuc_theo_bang_nguon
+legacy63_dong_nai,Đồng Nai,Dong Nai,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2021,377439.81,119.1,3169.1,1.37,chinh_thuc_theo_bang_nguon
+legacy63_dong_nai,Đồng Nai,Dong Nai,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2022,420520.42,129.16,3255.81,8.29,chinh_thuc_theo_bang_nguon
+legacy63_dong_nai,Đồng Nai,Dong Nai,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2023,440112.62,132.93,3310.86,3.66,chinh_thuc_theo_bang_nguon
+legacy63_dong_nai,Đồng Nai,Dong Nai,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2024,478903.54,142.3,3365.45,6.76,so_bo
+legacy63_dong_nai,Đồng Nai,Dong Nai,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2025,544948.1,159.53,3415.96,10.22,uoc_tinh
+legacy63_ba_ria_vung_tau,Bà Rịa - Vũng Tàu,Ba Ria - Vung Tau,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2018,352440.45,309.62,1138.3,-0.27,chinh_thuc_theo_bang_nguon
+legacy63_ba_ria_vung_tau,Bà Rịa - Vũng Tàu,Ba Ria - Vung Tau,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2019,346097.84,300.38,1152.2,0.59,chinh_thuc_theo_bang_nguon
+legacy63_ba_ria_vung_tau,Bà Rịa - Vũng Tàu,Ba Ria - Vung Tau,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2020,293339.81,251.16,1167.94,-9.13,chinh_thuc_theo_bang_nguon
+legacy63_ba_ria_vung_tau,Bà Rịa - Vũng Tàu,Ba Ria - Vung Tau,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2021,350048.45,297.64,1176.08,-5.68,chinh_thuc_theo_bang_nguon
+legacy63_ba_ria_vung_tau,Bà Rịa - Vũng Tàu,Ba Ria - Vung Tau,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2022,438594.27,372.1,1178.7,6.18,chinh_thuc_theo_bang_nguon
+legacy63_ba_ria_vung_tau,Bà Rịa - Vũng Tàu,Ba Ria - Vung Tau,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2023,402538.75,338.98,1187.5,-3.6,chinh_thuc_theo_bang_nguon
+legacy63_ba_ria_vung_tau,Bà Rịa - Vũng Tàu,Ba Ria - Vung Tau,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2024,404950.51,338.97,1194.65,-1.96,so_bo
+legacy63_ba_ria_vung_tau,Bà Rịa - Vũng Tàu,Ba Ria - Vung Tau,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2025,417183.79,346.89,1202.64,2.43,uoc_tinh
+legacy63_ho_chi_minh_city,TP. Hồ Chí Minh,Ho Chi Minh city,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2018,1227082.43,138.76,8843.2,7.86,chinh_thuc_theo_bang_nguon
+legacy63_ho_chi_minh_city,TP. Hồ Chí Minh,Ho Chi Minh city,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2019,1343678.28,148.66,9038.6,7.95,chinh_thuc_theo_bang_nguon
+legacy63_ho_chi_minh_city,TP. Hồ Chí Minh,Ho Chi Minh city,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2020,1371498.19,148.63,9227.6,1.16,chinh_thuc_theo_bang_nguon
+legacy63_ho_chi_minh_city,TP. Hồ Chí Minh,Ho Chi Minh city,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2021,1338266.97,145.99,9166.84,-4.01,chinh_thuc_theo_bang_nguon
+legacy63_ho_chi_minh_city,TP. Hồ Chí Minh,Ho Chi Minh city,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2022,1498129.83,159.55,9389.72,9.25,chinh_thuc_theo_bang_nguon
+legacy63_ho_chi_minh_city,TP. Hồ Chí Minh,Ho Chi Minh city,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2023,1597513.57,168.93,9456.66,4.12,chinh_thuc_theo_bang_nguon
+legacy63_ho_chi_minh_city,TP. Hồ Chí Minh,Ho Chi Minh city,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2024,1762326.72,184.66,9543.63,7.19,so_bo
+legacy63_ho_chi_minh_city,TP. Hồ Chí Minh,Ho Chi Minh city,R5,Đông Nam Bộ,tinh_thanh_63_truyen_thong,2025,1984681.98,204.8,9690.83,8.07,uoc_tinh
+,Đồng bằng sông Cửu Long,Mekong River Delta,R6,Đồng bằng sông Cửu Long,vung_thong_ke,2018,856431.49,49.56,17280.7,7.4,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Cửu Long,Mekong River Delta,R6,Đồng bằng sông Cửu Long,vung_thong_ke,2019,928588.72,53.73,17282.5,6.56,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Cửu Long,Mekong River Delta,R6,Đồng bằng sông Cửu Long,vung_thong_ke,2020,961872.27,55.54,17318.55,2.17,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Cửu Long,Mekong River Delta,R6,Đồng bằng sông Cửu Long,vung_thong_ke,2021,999709.94,57.38,17422.62,0.45,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Cửu Long,Mekong River Delta,R6,Đồng bằng sông Cửu Long,vung_thong_ke,2022,1143022.8,65.57,17432.1,8.59,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Cửu Long,Mekong River Delta,R6,Đồng bằng sông Cửu Long,vung_thong_ke,2023,1248799.87,71.51,17463.29,5.55,chinh_thuc_theo_bang_nguon
+,Đồng bằng sông Cửu Long,Mekong River Delta,R6,Đồng bằng sông Cửu Long,vung_thong_ke,2024,1396808.86,79.6,17547.85,7.3,so_bo
+,Đồng bằng sông Cửu Long,Mekong River Delta,R6,Đồng bằng sông Cửu Long,vung_thong_ke,2025,1539512.96,87.36,17622.63,7.55,uoc_tinh
+legacy63_long_an,Long An,Long An,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,110337.31,65.72,1678.9,10.59,chinh_thuc_theo_bang_nguon
+legacy63_long_an,Long An,Long An,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,123403.28,72.8,1695.1,9.66,chinh_thuc_theo_bang_nguon
+legacy63_long_an,Long An,Long An,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,130855.08,76.36,1713.66,4.12,chinh_thuc_theo_bang_nguon
+legacy63_long_an,Long An,Long An,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,137801.14,79.85,1725.75,1.29,chinh_thuc_theo_bang_nguon
+legacy63_long_an,Long An,Long An,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,156603.68,90.3,1734.26,9,chinh_thuc_theo_bang_nguon
+legacy63_long_an,Long An,Long An,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,163237.35,93.63,1743.43,2.73,chinh_thuc_theo_bang_nguon
+legacy63_long_an,Long An,Long An,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,181807,103.52,1756.25,7.73,so_bo
+legacy63_long_an,Long An,Long An,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,203502.59,115.02,1769.28,9.58,uoc_tinh
+legacy63_tien_giang,Tiền Giang,Tien Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,88904.91,50.54,1759.1,7.07,chinh_thuc_theo_bang_nguon
+legacy63_tien_giang,Tiền Giang,Tien Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,96386.99,54.57,1766.3,4.87,chinh_thuc_theo_bang_nguon
+legacy63_tien_giang,Tiền Giang,Tien Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,98854.56,55.77,1772.54,0.3,chinh_thuc_theo_bang_nguon
+legacy63_tien_giang,Tiền Giang,Tien Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,99309.43,55.81,1779.42,-1.06,chinh_thuc_theo_bang_nguon
+legacy63_tien_giang,Tiền Giang,Tien Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,112363.01,62.94,1785.24,7.23,chinh_thuc_theo_bang_nguon
+legacy63_tien_giang,Tiền Giang,Tien Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,123805.54,69.14,1790.65,6.42,chinh_thuc_theo_bang_nguon
+legacy63_tien_giang,Tiền Giang,Tien Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,137955.37,76.81,1796.06,7.14,so_bo
+legacy63_tien_giang,Tiền Giang,Tien Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,152925.94,84.89,1801.46,8.11,uoc_tinh
+legacy63_ben_tre,Bến Tre,Ben Tre,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,47260.5,36.75,1286,7.6,chinh_thuc_theo_bang_nguon
+legacy63_ben_tre,Bến Tre,Ben Tre,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,51963.62,40.31,1289.1,6.48,chinh_thuc_theo_bang_nguon
+legacy63_ben_tre,Bến Tre,Ben Tre,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,54099.86,41.86,1292.4,0.84,chinh_thuc_theo_bang_nguon
+legacy63_ben_tre,Bến Tre,Ben Tre,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,57814.13,44.62,1295.7,2.64,chinh_thuc_theo_bang_nguon
+legacy63_ben_tre,Bến Tre,Ben Tre,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,62771.76,48.36,1298.01,5.71,chinh_thuc_theo_bang_nguon
+legacy63_ben_tre,Bến Tre,Ben Tre,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,67305.29,51.8,1299.33,4.25,chinh_thuc_theo_bang_nguon
+legacy63_ben_tre,Bến Tre,Ben Tre,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,73712.82,56.43,1306.27,5.58,so_bo
+legacy63_ben_tre,Bến Tre,Ben Tre,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,82515.77,62.98,1310.19,5.62,uoc_tinh
+legacy63_tra_vinh,Trà Vinh,Tra Vinh,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,54021.24,53.55,1008.8,8.93,chinh_thuc_theo_bang_nguon
+legacy63_tra_vinh,Trà Vinh,Tra Vinh,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,59397.31,58.85,1009.3,11.19,chinh_thuc_theo_bang_nguon
+legacy63_tra_vinh,Trà Vinh,Tra Vinh,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,61616.44,61.01,1009.94,3,chinh_thuc_theo_bang_nguon
+legacy63_tra_vinh,Trà Vinh,Tra Vinh,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,64265.37,63.09,1018.63,-2.07,chinh_thuc_theo_bang_nguon
+legacy63_tra_vinh,Trà Vinh,Tra Vinh,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,73865.77,72.47,1019.26,4.73,chinh_thuc_theo_bang_nguon
+legacy63_tra_vinh,Trà Vinh,Tra Vinh,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,84058.51,82.42,1019.88,8.03,chinh_thuc_theo_bang_nguon
+legacy63_tra_vinh,Trà Vinh,Tra Vinh,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,97228.59,94.96,1023.89,10.5,so_bo
+legacy63_tra_vinh,Trà Vinh,Tra Vinh,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,104986.12,102.23,1026.96,4.42,uoc_tinh
+legacy63_vinh_long,Vĩnh Long,Vinh Long,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,49171.42,48.08,1022.7,5.79,chinh_thuc_theo_bang_nguon
+legacy63_vinh_long,Vĩnh Long,Vinh Long,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,54136.44,52.94,1022.6,6.74,chinh_thuc_theo_bang_nguon
+legacy63_vinh_long,Vĩnh Long,Vinh Long,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,58657.1,57.34,1022.97,4.96,chinh_thuc_theo_bang_nguon
+legacy63_vinh_long,Vĩnh Long,Vinh Long,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,59168.65,57.5,1029.02,0.01,chinh_thuc_theo_bang_nguon
+legacy63_vinh_long,Vĩnh Long,Vinh Long,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,70577.05,68.6,1028.82,14.11,chinh_thuc_theo_bang_nguon
+legacy63_vinh_long,Vĩnh Long,Vinh Long,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,75358.62,73.19,1029.63,1.74,chinh_thuc_theo_bang_nguon
+legacy63_vinh_long,Vĩnh Long,Vinh Long,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,83884.02,80.87,1037.27,6.09,so_bo
+legacy63_vinh_long,Vĩnh Long,Vinh Long,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,90975.48,87.27,1042.46,7.61,uoc_tinh
+legacy63_dong_thap,Đồng Tháp,Dong Thap,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,76048.83,47.35,1606.1,7.01,chinh_thuc_theo_bang_nguon
+legacy63_dong_thap,Đồng Tháp,Dong Thap,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,82290.24,51.47,1598.8,6.29,chinh_thuc_theo_bang_nguon
+legacy63_dong_thap,Đồng Tháp,Dong Thap,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,85424.53,53.39,1600.01,1.21,chinh_thuc_theo_bang_nguon
+legacy63_dong_thap,Đồng Tháp,Dong Thap,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,87063.22,54.37,1601.31,-0.58,chinh_thuc_theo_bang_nguon
+legacy63_dong_thap,Đồng Tháp,Dong Thap,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,99482.57,62.17,1600.17,8.48,chinh_thuc_theo_bang_nguon
+legacy63_dong_thap,Đồng Tháp,Dong Thap,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,110033.19,68.76,1600.25,5.94,chinh_thuc_theo_bang_nguon
+legacy63_dong_thap,Đồng Tháp,Dong Thap,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,123014.05,76.83,1601.12,6.34,so_bo
+legacy63_dong_thap,Đồng Tháp,Dong Thap,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,133056.65,83.04,1602.32,6.58,uoc_tinh
+legacy63_an_giang,An Giang,An Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,78070.33,40.43,1931,5.69,chinh_thuc_theo_bang_nguon
+legacy63_an_giang,An Giang,An Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,84860.23,44.49,1907.4,6.84,chinh_thuc_theo_bang_nguon
+legacy63_an_giang,An Giang,An Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,88827.28,46.64,1904.53,2.94,chinh_thuc_theo_bang_nguon
+legacy63_an_giang,An Giang,An Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,91102.72,47.71,1909.51,0.24,chinh_thuc_theo_bang_nguon
+legacy63_an_giang,An Giang,An Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,100363.74,52.67,1905.52,5.82,chinh_thuc_theo_bang_nguon
+legacy63_an_giang,An Giang,An Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,111840.86,58.67,1906.27,6.04,chinh_thuc_theo_bang_nguon
+legacy63_an_giang,An Giang,An Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,126192.03,65.98,1912.58,6.84,so_bo
+legacy63_an_giang,An Giang,An Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,137536.96,71.84,1914.49,7.85,uoc_tinh
+legacy63_kien_giang,Kiên Giang,Kien  Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,89409.92,52.04,1718.1,8.89,chinh_thuc_theo_bang_nguon
+legacy63_kien_giang,Kiên Giang,Kien  Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,95096.53,55.17,1723.7,4.89,chinh_thuc_theo_bang_nguon
+legacy63_kien_giang,Kiên Giang,Kien  Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,96211.62,55.65,1728.87,3.01,chinh_thuc_theo_bang_nguon
+legacy63_kien_giang,Kiên Giang,Kien  Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,103439.45,59.03,1752.32,0.34,chinh_thuc_theo_bang_nguon
+legacy63_kien_giang,Kiên Giang,Kien  Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,116316.86,66.4,1751.76,7.67,chinh_thuc_theo_bang_nguon
+legacy63_kien_giang,Kiên Giang,Kien  Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,127349.92,72.55,1755.34,5.51,chinh_thuc_theo_bang_nguon
+legacy63_kien_giang,Kiên Giang,Kien  Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,143205.46,81.06,1766.66,6.96,so_bo
+legacy63_kien_giang,Kiên Giang,Kien  Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,158838.32,89.23,1780.1,8.85,uoc_tinh
+legacy63_can_tho,Cần Thơ,Can Tho,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,83213.51,67.78,1227.7,8.15,chinh_thuc_theo_bang_nguon
+legacy63_can_tho,Cần Thơ,Can Tho,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,89807.76,72.66,1236,5.38,chinh_thuc_theo_bang_nguon
+legacy63_can_tho,Cần Thơ,Can Tho,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,89841.26,72.41,1240.73,-0.56,chinh_thuc_theo_bang_nguon
+legacy63_can_tho,Cần Thơ,Can Tho,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,92189.97,73.93,1246.99,0.11,chinh_thuc_theo_bang_nguon
+legacy63_can_tho,Cần Thơ,Can Tho,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,108628.84,86.74,1252.35,13.32,chinh_thuc_theo_bang_nguon
+legacy63_can_tho,Cần Thơ,Can Tho,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,118737.56,94.32,1258.88,4.84,chinh_thuc_theo_bang_nguon
+legacy63_can_tho,Cần Thơ,Can Tho,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,132589.53,104.26,1271.72,7.5,so_bo
+legacy63_can_tho,Cần Thơ,Can Tho,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,147393.79,114.64,1285.71,7.68,uoc_tinh
+legacy63_hau_giang,Hậu Giang,Hau Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,32534.02,44.27,734.9,6.24,chinh_thuc_theo_bang_nguon
+legacy63_hau_giang,Hậu Giang,Hau Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,35614.21,48.64,732.2,7.37,chinh_thuc_theo_bang_nguon
+legacy63_hau_giang,Hậu Giang,Hau Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,37569.07,51.48,729.78,2.47,chinh_thuc_theo_bang_nguon
+legacy63_hau_giang,Hậu Giang,Hau Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,39706.02,54.4,729.89,3.6,chinh_thuc_theo_bang_nguon
+legacy63_hau_giang,Hậu Giang,Hau Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,49363.23,67.67,729.47,14.63,chinh_thuc_theo_bang_nguon
+legacy63_hau_giang,Hậu Giang,Hau Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,57935.47,79.55,728.29,12.51,chinh_thuc_theo_bang_nguon
+legacy63_hau_giang,Hậu Giang,Hau Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,65883.4,90.25,730.01,8.44,so_bo
+legacy63_hau_giang,Hậu Giang,Hau Giang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,71465.65,100.29,712.59,7.58,uoc_tinh
+legacy63_soc_trang,Sóc Trăng,Soc Trang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,50128.94,41.47,1208.8,6.47,chinh_thuc_theo_bang_nguon
+legacy63_soc_trang,Sóc Trăng,Soc Trang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,53377.75,44.5,1199.5,5.91,chinh_thuc_theo_bang_nguon
+legacy63_soc_trang,Sóc Trăng,Soc Trang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,54812.72,45.84,1195.74,1.25,chinh_thuc_theo_bang_nguon
+legacy63_soc_trang,Sóc Trăng,Soc Trang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,57987.7,48.05,1206.82,2.41,chinh_thuc_theo_bang_nguon
+legacy63_soc_trang,Sóc Trăng,Soc Trang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,66251.42,55.31,1197.82,8.12,chinh_thuc_theo_bang_nguon
+legacy63_soc_trang,Sóc Trăng,Soc Trang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,71784.14,59.88,1198.8,4.56,chinh_thuc_theo_bang_nguon
+legacy63_soc_trang,Sóc Trăng,Soc Trang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,79046.2,65.58,1205.34,6.5,so_bo
+legacy63_soc_trang,Sóc Trăng,Soc Trang,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,87250.9,71.13,1226.64,6.26,uoc_tinh
+legacy63_bac_lieu,Bạc Liêu,Bac Lieu,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,39686.85,43.95,903,7.31,chinh_thuc_theo_bang_nguon
+legacy63_bac_lieu,Bạc Liêu,Bac Lieu,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,41731.79,45.95,908.2,4.91,chinh_thuc_theo_bang_nguon
+legacy63_bac_lieu,Bạc Liêu,Bac Lieu,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,43865.31,48.02,913.48,4.25,chinh_thuc_theo_bang_nguon
+legacy63_bac_lieu,Bạc Liêu,Bac Lieu,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,47248.15,51.44,918.51,5.31,chinh_thuc_theo_bang_nguon
+legacy63_bac_lieu,Bạc Liêu,Bac Lieu,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,54663.33,59.3,921.81,8.38,chinh_thuc_theo_bang_nguon
+legacy63_bac_lieu,Bạc Liêu,Bac Lieu,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,59627.21,64.45,925.17,7.21,chinh_thuc_theo_bang_nguon
+legacy63_bac_lieu,Bạc Liêu,Bac Lieu,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,65722.68,70.77,928.68,7.06,so_bo
+legacy63_bac_lieu,Bạc Liêu,Bac Lieu,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,72802.57,78.08,932.41,7.09,uoc_tinh
+legacy63_ca_mau,Cà Mau,Ca Mau,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2018,57639.88,48.21,1195.6,3.19,chinh_thuc_theo_bang_nguon
+legacy63_ca_mau,Cà Mau,Ca Mau,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2019,60515.18,50.67,1194.3,4.58,chinh_thuc_theo_bang_nguon
+legacy63_ca_mau,Cà Mau,Ca Mau,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2020,61139.11,51.21,1193.89,1,chinh_thuc_theo_bang_nguon
+legacy63_ca_mau,Cà Mau,Ca Mau,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2021,62625.34,51.81,1208.75,-2.54,chinh_thuc_theo_bang_nguon
+legacy63_ca_mau,Cà Mau,Ca Mau,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2022,71781.53,59.44,1207.63,7.02,chinh_thuc_theo_bang_nguon
+legacy63_ca_mau,Cà Mau,Ca Mau,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2023,77730.48,64.38,1207.37,7.48,chinh_thuc_theo_bang_nguon
+legacy63_ca_mau,Cà Mau,Ca Mau,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2024,86488.32,71.36,1212,8.4,so_bo
+legacy63_ca_mau,Cà Mau,Ca Mau,R6,Đồng bằng sông Cửu Long,tinh_thanh_63_truyen_thong,2025,96248.73,79.02,1218.03,7.33,uoc_tinh

@@ -12,15 +12,19 @@ Gói này chuẩn bị các tệp thay thế cho dữ liệu mà notebook hiện
 
 ## Tệp
 
-- `GDP_Vietnam_Annual.csv` — đầu vào CSV tương thích với notebook; có `Nam_Goc`, `Year`, `Date`, `GDP_USD`, `GDP_USD_Billion`.
-- `GDP_Vietnam_Annual.xlsx` — bản Excel đã sửa thang đo USD và cập nhật năm 2025.
-- `GDP_Vietnam_Monthly.csv` — cùng tên và các trường chính mà dashboard/notebook hiện tại dùng: `Date`, `Year`, `Month`, `GDP_USD_Billion`.
+CSV và tệp nguồn nằm trong các thư mục theo nguồn; xem `data/catalog.json` để tra đường dẫn đầy đủ. Các tên dưới đây là tên tệp, không còn nằm trực tiếp ở thư mục gốc dự án.
+
+- `GDP_Vietnam_Annual.csv` — đầu vào CSV tương thích với notebook; ở `data/world_bank/processed/`, có `Nam_Goc`, `Year`, `Date`, `GDP_USD`, `GDP_USD_Billion`.
+- `GDP_Vietnam_Annual.xlsx` — bản Excel đã sửa thang đo USD và cập nhật năm 2025; ở `data/world_bank/raw/`.
+- `GDP_Vietnam_Monthly.csv` — chuỗi nội suy tương thích; ở `data/derived/compatibility/`.
 - `du_lieu_gdp_quoc_gia_co_cau_nganh.csv` — GDP và ba nhóm giá trị gia tăng theo schema tiếng Việt.
 - `du_lieu_gdp_thuc_va_tang_truong.csv` — GDP thực USD 2015 và tốc độ tăng trưởng GDP thực.
 - `du_lieu_tang_truong_gdp_quy.csv` — tốc độ tăng GDP chính thức theo quý đến quý III/2026; một số chỉ tiêu ngành chỉ có cho quý III theo báo cáo nguồn.
 - `du_lieu_lam_phat_cpi.csv` — CPI chỉ số, ngày đầu tháng, đến 2026-09.
 - `trang_thai_du_lieu.csv`, `refresh_manifest.json` — mốc dữ liệu, nguồn và ghi chú tình trạng từng chuỗi.
-- `refresh_data.mjs` — script tải lại WDI và PXWeb, rồi ghi các CSV tương thích vào cùng thư mục.
+- `data/nso/`, `data/world_bank/`, `data/imf/` — dữ liệu nguồn và bảng chuẩn hóa do từng nhà cung cấp phát hành.
+- `data/derived/` — các bảng ghép, so sánh, dự báo, kiểm định và dữ liệu tương thích.
+- `refresh_data.mjs` — script tải lại WDI và PXWeb, rồi ghi tệp vào thư mục nguồn tương ứng.
 - `DACN_refresh_2026.ipynb` — bản notebook đã đổi API sang HTTPS, làm mới biểu đồ theo dữ liệu đến 2025 và cập nhật mốc dự báo từ 2026.
 - `du_lieu_chi_so_kinh_te_hang_nam.csv` — bảng năm ghép GDP, tỷ giá bình quân năm, thương mại, CPI, bán lẻ và FDI; có các tỷ lệ Trade/GDP, FDI/GDP và bán lẻ/GDP.
 - `du_lieu_cpi_phan_tich_thang.csv`, `du_lieu_fx_bien_dong_thang.csv` — CPI MoM/YoY và tỷ giá MoM/YoY, biến động 12 tháng thường niên hóa; có cờ phân biệt CPI 2026 tái tạo.
@@ -67,9 +71,10 @@ World Bank phân ngành theo giá trị gia tăng nông nghiệp, công nghiệp
 ## Cập nhật và chạy lại
 
 1. Cài Node.js và Python dependencies `xlrd`, `openpyxl`, `pandas`, `numpy`, `statsmodels`, `torch`.
-2. Trên Windows, chạy `./refresh_system.ps1` để tải nguồn mới rồi chạy lần lượt trích xuất, phân tích, QA, snapshot và dựng dashboard. Nếu muốn dùng nguồn workbook đã có sẵn trong `sources/` mà không tải lại, chạy `./refresh_system.ps1 -SkipSourceDownload`.
-3. Có thể chạy riêng từng bước: `node build_extended_data.mjs`, `python extract_monthly_official.py`, `python analyze_observed_data.py`, `python build_dashboard.py`.
-4. `analyze_observed_data.py` gọi `snapshot_data.py` sau khi phân tích thành công. Script tạo ZIP dữ liệu chuẩn hóa theo mã nội dung; chạy lại với cùng dữ liệu sẽ giữ nguyên phiên bản thay vì tạo snapshot trùng.
+2. CSV và tệp nguồn được nhóm theo nhà cung cấp trong `data/nso/`, `data/world_bank/`, `data/imf/`; dữ liệu kết hợp, dự báo và kiểm định nằm trong `data/derived/`. Mở `data/catalog.json` để xem đường dẫn và nguồn của từng tệp.
+3. Trên Windows, chạy `./refresh_system.ps1` để tải nguồn mới rồi chạy lần lượt trích xuất, phân tích, QA, snapshot và dựng dashboard. Nếu muốn dùng workbook đã có sẵn trong `data/nso/raw/monthly/` mà không tải lại, chạy `./refresh_system.ps1 -SkipSourceDownload`.
+4. Có thể chạy riêng từng bước: `node build_extended_data.mjs`, `python extract_monthly_official.py`, `python analyze_observed_data.py`, `python build_dashboard.py`.
+5. `analyze_observed_data.py` gọi `snapshot_data.py` sau khi phân tích thành công. Script tạo ZIP dữ liệu chuẩn hóa theo mã nội dung; chạy lại với cùng dữ liệu sẽ giữ nguyên phiên bản thay vì tạo snapshot trùng.
 
 Dashboard có tải các bảng đang hiển thị ra CSV/JSON; có thể chọn chân trời 1–5 năm để xem backtest và so sánh mô hình. Dải P80 được tính riêng cho từng mô hình và từng chân trời, kèm số mẫu hiệu chuẩn trong bảng dự báo. Tệp ZIP của phiên bản hiện tại mở từ mục danh mục nguồn dữ liệu.
 
@@ -88,7 +93,7 @@ Ngày tải: xem `refresh_manifest.json`.
 
 ## Mở rộng dữ liệu và phân tích động lực GDP
 
-Gói dữ liệu bổ sung lấy từ các bảng PXWeb chính thức của Cục Thống kê (NSO) và World Bank Pink Sheet. Dữ liệu gốc được lưu tại `sources/expanded/`; `source_manifest.json` ghi URL truy cập. Các bảng chuẩn hóa được đưa vào dashboard và snapshot có mã nội dung.
+Gói dữ liệu bổ sung lấy từ các bảng PXWeb chính thức của Cục Thống kê (NSO) và World Bank Pink Sheet. Dữ liệu gốc PXWeb ở `data/nso/raw/expanded/`, Pink Sheet ở `data/world_bank/raw/expanded/`; `source_manifest.json` ghi URL truy cập. Các bảng chuẩn hóa được đưa vào dashboard và snapshot có mã nội dung.
 
 | Lớp dữ liệu | Tệp chuẩn hóa | Phạm vi / đơn vị | Phân tích được bổ sung |
 |---|---|---|---|
@@ -122,7 +127,7 @@ Nguồn chính: [NSO – Tài khoản quốc gia và ngân sách](https://pxweb.
 
 ### Cập nhật các bảng mở rộng
 
-Pipeline `refresh_system.ps1` nay tải thêm PXWeb và World Bank Pink Sheet bằng `refresh_expanded_data.mjs`, giữ bản nguồn thô, chuẩn hóa/phân tích bằng `analyze_expanded_data.py`, chạy QA, đóng snapshot mới và dựng `dashboard.html`. Với `-SkipSourceDownload`, pipeline chạy trên các tệp nguồn đã có trong thư mục `sources/expanded/`.
+Pipeline `refresh_system.ps1` nay tải thêm PXWeb và World Bank Pink Sheet bằng `refresh_expanded_data.mjs`, giữ bản nguồn thô, chuẩn hóa/phân tích bằng `analyze_expanded_data.py`, chạy QA, đóng snapshot mới và dựng `dashboard.html`. Với `-SkipSourceDownload`, pipeline chạy trên các tệp có sẵn trong `data/nso/raw/expanded/` và `data/world_bank/raw/expanded/`.
 
 ## GDP chi tiết theo 3 khu vực kinh tế
 
