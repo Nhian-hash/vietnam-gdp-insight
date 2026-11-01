@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+from html import escape as html_escape
 import json
 import math
 import os
@@ -228,6 +229,81 @@ app.add_middleware(
 )
 
 
+def _source_urls(value: Any) -> list[str]:
+    if isinstance(value, str):
+        return [value] if value.startswith(("https://", "http://")) else []
+    if isinstance(value, dict):
+        return [url for child in value.values() for url in _source_urls(child)]
+    if isinstance(value, list):
+        return [url for child in value for url in _source_urls(child)]
+    return []
+
+
+def _project_info_markup() -> tuple[str, str]:
+    manifests: dict[str, Any] = {}
+    for name, path in {
+        "catalog": ROOT / "data" / "catalog.json",
+        "refresh": ROOT / "refresh_manifest.json",
+        "analysis": ROOT / "analysis_manifest.json",
+    }.items():
+        try:
+            manifests[name] = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            manifests[name] = {}
+
+    files = manifests["catalog"].get("files", {})
+    records = files.values() if isinstance(files, dict) else files if isinstance(files, list) else []
+    file_count = len(files) if isinstance(files, (dict, list)) else 0
+    sources = sorted({
+        str(record.get("source")) for record in records
+        if isinstance(record, dict) and record.get("source") and record.get("source") != "Phân tích hệ thống"
+    })
+    urls = sorted(set(_source_urls(manifests["refresh"].get("sources", {}))))
+    models = manifests["analysis"].get("forecast_evaluation", {}).get("models", [])
+    labels = {
+        "Naive_last_value": "Naive — giữ nguyên mức GDP gần nhất",
+        "Drift_mean_log_change": "Drift — ngoại suy thay đổi log trung bình",
+        "Linear_log_trend": "Xu hướng tuyến tính trên log GDP",
+        "GRU_logGDP": "GRU",
+        "LSTM_logGDP": "LSTM",
+    }
+    model_items = "".join(f"<li>{html_escape(labels.get(name, str(name)))}</li>" for name in models)
+    source_items = "".join(
+        f'<li><a href="{html_escape(url, quote=True)}" target="_blank" rel="noopener noreferrer">{html_escape(url)}</a></li>'
+        for url in urls
+    ) or "<li>Chưa có URL nguồn trong manifest.</li>"
+    source_text = " · ".join(html_escape(name) for name in sources) or "Chưa phân loại"
+
+    nav = '<button type="button" class="nav-link" data-page="project-info"><span class="nav-icon">ⓘ</span>Thông tin đề tài</button>'
+    section = f'''<section id="project-info" class="section page">
+  <div class="section-head"><div><h2>Thông tin đề tài</h2><span class="sub">Thông tin sinh viên, hướng dẫn, dữ liệu và phương pháp nghiên cứu</span></div></div>
+  <div class="grid-equal">
+    <article class="panel"><div class="panel-title">Thông tin sinh viên và đề tài</div>
+      <div class="status-row"><span>Họ tên</span><strong>Bùi Nhĩ Ân</strong></div>
+      <div class="status-row"><span>MSSV</span><strong>2311553345</strong></div>
+      <div class="status-row"><span>Giảng viên hướng dẫn</span><strong>ThS. Vương Xuân Chí</strong></div>
+      <div class="panel-title" style="margin-top:14px">Tên đề tài</div>
+      <p>Xây dựng hệ thống xử lý và phân tích dự báo GDP toàn diện (End-to-End) tại Việt Nam</p>
+    </article>
+    <article class="panel"><div class="panel-title">Quy mô dữ liệu</div><div class="data-footer">
+      <div class="data-box"><b>{file_count}</b><span>Tệp dữ liệu<br>trong catalog</span></div>
+      <div class="data-box"><b>{len(urls)}</b><span>Địa chỉ nguồn<br>trong manifest</span></div>
+      <div class="data-box"><b>{len(sources)}</b><span>Nhóm nguồn<br>bên ngoài</span></div>
+    </div><div class="footnote" style="margin-top:12px">Nguồn ngoài: {source_text}</div></article>
+  </div>
+  <article class="panel" style="margin-top:14px"><div class="panel-title">Thuật toán và mô hình dự báo · {len(models)} mô hình</div>
+    <div class="panel-sub">Các mô hình được so sánh để dự báo GDP thực đến năm 2030</div>
+    <ol class="table" style="padding-left:24px">{model_items}</ol>
+    <div class="footnote">Kỹ thuật phân tích bổ sung: nội suy Cubic Spline chỉ để tương thích/hiển thị; kiểm định ADF; bộ lọc HP; tương quan Pearson và Spearman; backtest expanding-window rolling-origin. MAPE, sMAPE, MAE, RMSE và MASE là chỉ số đánh giá, không phải thuật toán.</div>
+  </article>
+  <details class="panel" style="margin-top:14px"><summary class="panel-title" style="cursor:pointer">Danh sách địa chỉ nguồn dữ liệu ({len(urls)} địa chỉ)</summary>
+    <div class="panel-sub" style="margin:6px 0 10px">Các URL được ghi trong refresh manifest. Chọn một địa chỉ để mở nguồn gốc.</div>
+    <ol style="padding-left:24px;overflow-wrap:anywhere">{source_items}</ol>
+  </details>
+</section>'''
+    return nav, section
+
+
 @app.get("/", include_in_schema=False)
 def dashboard() -> Response:
     """Serve a mobile-safe dashboard and keep obsolete overview notes hidden."""
@@ -245,6 +321,20 @@ def dashboard() -> Response:
         count=1,
         flags=re.DOTALL,
     )
+    if 'id="project-info"' not in html:
+        nav_item, info_section = _project_info_markup()
+        html = html.replace("</nav>", nav_item + "</nav>", 1)
+        footer_marker = '<footer id="page-footer"'
+        if footer_marker in html:
+            html = html.replace(footer_marker, info_section + "\n      " + footer_marker, 1)
+        else:
+            html = html.replace("</main>", info_section + "</main>", 1)
+        meta_key = "'data-status':['Quản lý dữ liệu','Danh mục cấu trúc, nguồn và chất lượng dữ liệu']"
+        info_meta = "'project-info':['Thông tin đề tài','Sinh viên · giảng viên hướng dẫn · dữ liệu · thuật toán']"
+        if meta_key in html:
+            html = html.replace(meta_key, meta_key + "," + info_meta, 1)
+        else:
+            html = html.replace("}[page];$('top-title')", "," + info_meta + "}[page];$('top-title')", 1)
     export_script = r"""<script>
 (() => {
   const endpoint = '/api/v1/exports';
