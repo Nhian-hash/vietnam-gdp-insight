@@ -1,10 +1,11 @@
 {
-  "version_id": "gdp-6216f5259c55",
-  "fingerprint_sha256": "6216f5259c5510f9f3742a389225bd5c577804a46aef4b44a3387cbbf8c46368",
-  "created_utc": "2026-10-25T15:28:13Z",
-  "retrieved_at_utc": "2026-10-24T18:27:10.083Z",
+  "version_id": "gdp-a70118cd3427",
+  "fingerprint_sha256": "a70118cd3427e081a8b510352c18f3c4e0e3566ad2ec616374a369e02d0f6159",
+  "created_utc": "2026-11-10T16:46:22Z",
+  "retrieved_at_utc": "2026-11-10T16:07:20Z",
   "base_sources_retrieved_at_utc": "2026-10-22T18:27:38.639Z",
   "expanded_sources_retrieved_at_utc": "2026-10-24T18:27:10.083Z",
+  "quarterly_gdp_source_retrieved_at_utc": "2026-11-10T16:07:20Z",
   "data_cutoff": {
     "annual_gdp": 2025,
     "quarterly_gdp_growth": "2026-Q3",
@@ -19,10 +20,72 @@
     "fdi_latest": "2026-09",
     "iip_annual": 2025,
     "iip_monthly": "2026-09",
-    "cpi_annual_wdi": 2025
+    "cpi_annual_wdi": 2025,
+    "quarterly_gdp_constant_2010": "2025-Q4",
+    "quarterly_gdp_constant_2020": "2026-Q3"
   },
-  "archive": "data_versions/gdp-6216f5259c55.zip",
+  "archive": "data_versions/gdp-a70118cd3427.zip",
   "files": [
+    {
+      "file": "GDP_VNM.xlsx",
+      "path": "data/nso/raw/quarterly/GDP_VNM.xlsx",
+      "bytes": 137886,
+      "sha256": "5e1b4edb822f64938d529181e1169c11babb6571b2c9981ff9a9f3cf32dd14ef"
+    },
+    {
+      "file": "quarterly_gdp_download_manifest.json",
+      "path": "data/nso/raw/quarterly/quarterly_gdp_download_manifest.json",
+      "bytes": 576,
+      "sha256": "a5acae6d6e173c9b80bb4112f5aefd2e8b4d0803269f2e351c428f7120d54bd5"
+    },
+    {
+      "file": "quarterly_gdp_source_manifest.json",
+      "path": "data/nso/processed/quarterly_gdp_source_manifest.json",
+      "bytes": 1979,
+      "sha256": "31b1d1f4dd252cc0ccb544cabe09002bfa56a41a75231709bb26170ac47ccfaa"
+    },
+    {
+      "file": "du_lieu_gdp_quy_muc_thuc_gia_2010.csv",
+      "path": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2010.csv",
+      "bytes": 19936,
+      "sha256": "e73cd59422ba0e01a11a229e634ca6d0693d9560c14f1deea1ba3e91434c0bd8"
+    },
+    {
+      "file": "du_lieu_gdp_quy_muc_thuc_gia_2020.csv",
+      "path": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2020.csv",
+      "bytes": 2019,
+      "sha256": "893f1a4b45d86bcf2d1c71cec1ae51815ec6bc0876529b3dd67146f96c288926"
+    },
+    {
+      "file": "doi_chieu_gdp_thuc_quy_va_nam.csv",
+      "path": "data/derived/quality/doi_chieu_gdp_thuc_quy_va_nam.csv",
+      "bytes": 3439,
+      "sha256": "1e633034dc69998b8c51e2525e2a546552c2cc3015ca7caedbb2038e7f85577e"
+    },
+    {
+      "file": "du_lieu_du_bao_gdp_quy_backtest.csv",
+      "path": "data/derived/forecast/du_lieu_du_bao_gdp_quy_backtest.csv",
+      "bytes": 166326,
+      "sha256": "a7de9996fdb1e05ad7a6145e4cb3ee0c7b6f7677c84796b698dae1a2c1425013"
+    },
+    {
+      "file": "so_sanh_hieu_qua_mo_hinh_gdp_quy.csv",
+      "path": "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_gdp_quy.csv",
+      "bytes": 5112,
+      "sha256": "d86b81773ac75ddf1a554ce08ab95db90882485c5357339da90950142d253c99"
+    },
+    {
+      "file": "manifest_phan_tich_gdp_quy.json",
+      "path": "data/derived/forecast/manifest_phan_tich_gdp_quy.json",
+      "bytes": 1816,
+      "sha256": "1d79945f004340d4bad5844e9f97f3ababb9ea44ac0a42214eecee0e1c7666ae"
+    },
+    {
+      "file": "kiem_tra_chat_luong_du_lieu.csv",
+      "path": "data/derived/quality/kiem_tra_chat_luong_du_lieu.csv",
+      "bytes": 3789,
+      "sha256": "c44fc44e51ed40a52e82b2e3a18e33b41d366496afc7e958792ced6d321c8ee6"
+    },
     {
       "file": "GDP_Vietnam_Annual.csv",
       "path": "data/world_bank/processed/GDP_Vietnam_Annual.csv",
@@ -222,5 +285,7 @@
       "sha256": "ab0e1357329326ed33250853a49c057335417e2f37b33e6eccece41c8620e227"
     }
   ],
-  "versioning_note": "Một phiên bản mới được tạo khi nội dung các CSV dữ liệu chuẩn hóa thay đổi. Tệp ZIP giữ ảnh chụp bất biến để truy vết và tái lập phân tích."
+  "vintage_scope": "Snapshot theo thời điểm hệ thống tải nguồn; bản GDP_VNM.xlsx gốc và manifest tải được giữ trong ZIP cùng dữ liệu đã chuẩn hóa.",
+  "vintage_note": "Nguồn NSDP hiện cung cấp trạng thái Published nhưng không kèm các bản sửa đổi lịch sử theo ngày công bố. Snapshot hỗ trợ tái lập các lần tải về sau này; không tái dựng được vintage lịch sử trước khi bắt đầu lưu trữ.",
+  "versioning_note": "Một phiên bản mới được tạo khi nội dung tệp đầu vào trong snapshot thay đổi. Tệp ZIP giữ dữ liệu chuẩn hóa và workbook GDP quý gốc để truy vết, tái lập phân tích."
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Danh mục tệp dữ liệu; các đường dẫn trong path tính từ thư mục dự án.",
+  "description": "Danh mục tệp dữ liệu; các đường dẫn trong path tính từ thư mục dự án. Bổ sung GDP quý NSDP, giữ riêng giá 2010 và giá 2020.",
   "files": {
     "balance_of_payments.csv": {
       "path": "data/nso/raw/expanded/balance_of_payments.csv",
@@ -476,6 +476,51 @@
       "path": "data/world_bank/raw/expanded/world_bank_commodity_monthly.xlsx",
       "source": "World Bank",
       "kind": "raw source"
+    },
+    "GDP_VNM.xlsx": {
+      "path": "data/nso/raw/quarterly/GDP_VNM.xlsx",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "raw source"
+    },
+    "quarterly_gdp_download_manifest.json": {
+      "path": "data/nso/raw/quarterly/quarterly_gdp_download_manifest.json",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "download metadata"
+    },
+    "quarterly_gdp_source_manifest.json": {
+      "path": "data/nso/processed/quarterly_gdp_source_manifest.json",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "dataset metadata"
+    },
+    "du_lieu_gdp_quy_muc_thuc_gia_2010.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2010.csv",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "processed observed data"
+    },
+    "du_lieu_gdp_quy_muc_thuc_gia_2020.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2020.csv",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "processed observed data"
+    },
+    "doi_chieu_gdp_thuc_quy_va_nam.csv": {
+      "path": "data/derived/quality/doi_chieu_gdp_thuc_quy_va_nam.csv",
+      "source": "Derived from NSDP",
+      "kind": "quality comparison"
+    },
+    "du_lieu_du_bao_gdp_quy_backtest.csv": {
+      "path": "data/derived/forecast/du_lieu_du_bao_gdp_quy_backtest.csv",
+      "source": "Derived from NSDP",
+      "kind": "forecast evaluation"
+    },
+    "so_sanh_hieu_qua_mo_hinh_gdp_quy.csv": {
+      "path": "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_gdp_quy.csv",
+      "source": "Derived from NSDP",
+      "kind": "forecast evaluation"
+    },
+    "manifest_phan_tich_gdp_quy.json": {
+      "path": "data/derived/forecast/manifest_phan_tich_gdp_quy.json",
+      "source": "Derived from NSDP",
+      "kind": "analysis metadata"
     }
   }
 }

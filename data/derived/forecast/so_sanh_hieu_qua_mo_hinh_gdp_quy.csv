@@ -1,0 +1,21 @@
+﻿chan_troi_quy,chan_troi_nam,mo_hinh,so_diem_kiem_thu,ky_dau,ky_cuoi,MAE_ty_vnd,RMSE_ty_vnd,MAPE_pct,MASE_mua_vu,ghi_chu
+1,0.25000000,SeasonalDrift,32,2018Q1,2025Q4,28409.32773103,43396.21009135,2.08288471,0.47248211,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+1,0.25000000,ETS_DampedAdditive,32,2018Q1,2025Q4,33709.84856376,48909.95563095,2.47654331,0.56735762,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+1,0.25000000,LogTrendQuarterDummies,32,2018Q1,2025Q4,47396.41545331,58582.09102464,3.45324098,0.78884357,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+1,0.25000000,SeasonalNaive,32,2018Q1,2025Q4,84394.45623627,90724.52770375,6.06132875,1.40409600,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+4,1.00000000,SeasonalDrift,29,2018Q4,2025Q4,32712.10623388,46921.03152352,2.37563712,0.55402555,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+4,1.00000000,ETS_DampedAdditive,29,2018Q4,2025Q4,43587.01699925,53527.97165350,3.09617895,0.73543124,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+4,1.00000000,LogTrendQuarterDummies,29,2018Q4,2025Q4,50273.95979741,61258.83740471,3.64083220,0.85308982,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+4,1.00000000,SeasonalNaive,29,2018Q4,2025Q4,85321.94953842,92159.17096945,5.97937157,1.43985773,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+8,2.00000000,SeasonalDrift,25,2019Q4,2025Q4,53573.94045563,69905.73467410,3.86026654,0.92108092,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+8,2.00000000,ETS_DampedAdditive,25,2019Q4,2025Q4,58444.69899355,74330.00974657,4.05752590,0.99721721,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+8,2.00000000,LogTrendQuarterDummies,25,2019Q4,2025Q4,58547.25535165,70766.89520163,4.19398305,1.00923919,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+8,2.00000000,SeasonalNaive,25,2019Q4,2025Q4,155456.30697548,165756.90133759,10.57212178,2.66050436,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+12,3.00000000,LogTrendQuarterDummies,21,2020Q4,2025Q4,66836.87644163,78905.91497512,4.70778630,1.17225297,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+12,3.00000000,SeasonalDrift,21,2020Q4,2025Q4,69777.77436699,86194.76823636,4.91294327,1.21873472,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+12,3.00000000,ETS_DampedAdditive,21,2020Q4,2025Q4,75088.20426308,87383.85556176,5.02125296,1.29950957,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+12,3.00000000,SeasonalNaive,21,2020Q4,2025Q4,224352.35472737,237187.81697885,14.89195936,3.89833850,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+20,5.00000000,ETS_DampedAdditive,13,2022Q4,2025Q4,74435.30290632,88907.73048363,4.71914137,1.31787672,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+20,5.00000000,LogTrendQuarterDummies,13,2022Q4,2025Q4,78108.56195028,86982.31492085,5.13552750,1.38799753,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+20,5.00000000,SeasonalDrift,13,2022Q4,2025Q4,98617.86490252,111869.43153977,6.51206122,1.74754724,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.
+20,5.00000000,SeasonalNaive,13,2022Q4,2025Q4,374964.84684734,383026.09478608,23.66023454,6.66185195,Các origin có cửa sổ kiểm thử chồng lấp; điểm kiểm thử không độc lập. Không suy rộng thành bảo đảm xác suất.

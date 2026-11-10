@@ -1,0 +1,10 @@
+{
+  "retrieved_at_utc": "2026-11-10T16:07:20Z",
+  "retrieval_timestamp_source": "filesystem_last_modified_fallback",
+  "source": "National Summary Data Page (NSDP), Cục Thống kê Việt Nam",
+  "source_url": "https://nsdp.nso.gov.vn/GSO-chung/Tu%E1%BA%A5n%20Anh/excel%20chung/GDP_VNM.xlsx",
+  "file": "GDP_VNM.xlsx",
+  "bytes": 137886,
+  "sha256": "5e1b4edb822f64938d529181e1169c11babb6571b2c9981ff9a9f3cf32dd14ef",
+  "note": "Thời điểm tải ban đầu không có log HTTP; timestamp dùng thời gian sửa đổi tệp cục bộ làm mốc xấp xỉ."
+}

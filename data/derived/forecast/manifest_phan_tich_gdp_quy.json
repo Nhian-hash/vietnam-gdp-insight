@@ -1,0 +1,46 @@
+{
+  "target": "Observed quarterly real GDP level, constant 2010 prices, billion VND",
+  "source_file": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2010.csv",
+  "period": {
+    "start": "2010Q1",
+    "end": "2025Q4",
+    "observations": 64
+  },
+  "minimum_training_quarters": 32,
+  "horizons_quarters": [
+    1,
+    4,
+    8,
+    12,
+    20
+  ],
+  "models": [
+    {
+      "name": "SeasonalNaive",
+      "description": "Lặp lại mức của cùng quý năm trước."
+    },
+    {
+      "name": "SeasonalDrift",
+      "description": "Seasonal naive cộng mức tăng log cùng quý bình quân 5 năm gần nhất."
+    },
+    {
+      "name": "LogTrendQuarterDummies",
+      "description": "OLS log GDP theo xu hướng tuyến tính và biến giả quý; fit lại từng origin."
+    },
+    {
+      "name": "ETS_DampedAdditive",
+      "description": "ETS trên log GDP; xu hướng cộng có giảm tốc, mùa vụ cộng chu kỳ 4 quý."
+    }
+  ],
+  "evaluation": "Expanding-window rolling-origin; each model is refit at each origin; no random split; all transformations use only each fold's training history.",
+  "caveats": [
+    "Quarterly level series is available at constant 2010 prices through 2025-Q4. The newer 2020-price series is kept separate.",
+    "The sample is larger than the annual series but the origins overlap, so forecast errors are dependent.",
+    "This quarterly branch supplements but does not replace the annual GDP USD 2015 forecast to 2030.",
+    "Seasonal naive and ETS are exploratory forecasting baselines; model selection must use the displayed out-of-sample metrics."
+  ],
+  "outputs": [
+    "data/derived/forecast/du_lieu_du_bao_gdp_quy_backtest.csv",
+    "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_gdp_quy.csv"
+  ]
+}

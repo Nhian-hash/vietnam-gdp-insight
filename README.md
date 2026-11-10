@@ -2,11 +2,23 @@
 
 Gói này chuẩn bị các tệp thay thế cho dữ liệu mà notebook hiện tại đọc, đồng thời bổ sung dữ liệu thực GDP và CPI để mở rộng hệ thống.
 
+## Cấu trúc thư mục
+
+- `api/`, `dashboard.html`, `assets/` — ứng dụng FastAPI và giao diện.
+- `data/nso/`, `data/world_bank/`, `data/imf/` — dữ liệu gốc và dữ liệu chuẩn hóa, xếp theo nguồn.
+- `data/derived/` — bảng phân tích, so sánh, kiểm định và kết quả dự báo.
+- `data_versions/` — các snapshot dữ liệu đã phát hành.
+- `scripts/` — script tải, xử lý, phân tích và dựng dashboard.
+- `docs/analysis/`, `docs/guides/` — báo cáo phân tích và hướng dẫn sử dụng.
+- `notebooks/` — notebook làm việc cục bộ; nội dung cá nhân không được đưa lên GitHub.
+- `outputs/design_previews/` — ảnh xem trước thiết kế cục bộ, không dùng khi chạy ứng dụng.
+
 ## Đã cập nhật
 
 - GDP danh nghĩa Việt Nam theo USD hiện hành đến **2025** từ World Bank. Giá trị 2025 mới nhất trong API là khoảng **514,70 tỷ USD**; 2024 là **476,32 tỷ USD**.
 - Cập nhật mới nhất về tăng trưởng GDP trong năm 2026 từ Cục Thống kê: quý I **8,15%**, quý II **8,81%**, quý III **9,95%** so với cùng kỳ; 9 tháng tăng **9,01%**. Đây là tốc độ tăng trưởng ước tính, không phải quy mô GDP.
 - GDP giá cố định năm 2015 và tăng trưởng GDP thực đến 2025 được lưu riêng để dùng làm mục tiêu dự báo phù hợp hơn với tăng trưởng kinh tế.
+- Bổ sung mức GDP thực theo quý từ NSDP: giá so sánh 2010 từ 2010-Q1 đến 2025-Q4 (64 quan sát); tổng bốn quý được đối chiếu với GDP năm cùng workbook. Bộ mới hơn theo giá so sánh 2020 từ 2025-Q1 đến 2026-Q3 được lưu riêng, không nối hai năm gốc giá.
 - CPI tháng theo gốc 2019 từ PXWeb của Tổng cục Thống kê cho 2020–2025; tháng 1–9/2026 được suy ra từ chỉ số tháng 12/2025 và mức tăng CPI lũy kế chính thức mà NSO công bố. Các giá trị 2026 có sai số làm tròn do tỷ lệ công bố được làm tròn đến 0,01 điểm phần trăm.
 - Chuỗi GDP tháng được tính lại đến tháng 12/2025 để các biểu đồ hiện tại có thể đọc mốc năm mới nhất; giá trị năm được đặt tại tháng 12 tương ứng để tháng 12/2025 khớp GDP năm 2025.
 
@@ -20,12 +32,14 @@ CSV và tệp nguồn nằm trong các thư mục theo nguồn; xem `data/catalo
 - `du_lieu_gdp_quoc_gia_co_cau_nganh.csv` — GDP và ba nhóm giá trị gia tăng theo schema tiếng Việt.
 - `du_lieu_gdp_thuc_va_tang_truong.csv` — GDP thực USD 2015 và tốc độ tăng trưởng GDP thực.
 - `du_lieu_tang_truong_gdp_quy.csv` — tốc độ tăng GDP chính thức theo quý đến quý III/2026; một số chỉ tiêu ngành chỉ có cho quý III theo báo cáo nguồn.
+- `du_lieu_gdp_quy_muc_thuc_gia_2010.csv`, `du_lieu_gdp_quy_muc_thuc_gia_2020.csv` — mức GDP thực quý theo hai năm gốc giá của workbook NSDP; xem manifest trước khi so sánh.
+- `doi_chieu_gdp_thuc_quy_va_nam.csv` — đối chiếu tổng 4 quý với GDP năm cùng nguồn, giữ sai số công bố/ làm tròn để kiểm tra.
+- `du_lieu_du_bao_gdp_quy_backtest.csv`, `so_sanh_hieu_qua_mo_hinh_gdp_quy.csv` — backtest theo quý trên mức GDP quan sát, tách biệt với dự báo năm bằng USD cố định 2015.
 - `du_lieu_lam_phat_cpi.csv` — CPI chỉ số, ngày đầu tháng, đến 2026-09.
 - `trang_thai_du_lieu.csv`, `refresh_manifest.json` — mốc dữ liệu, nguồn và ghi chú tình trạng từng chuỗi.
 - `data/nso/`, `data/world_bank/`, `data/imf/` — dữ liệu nguồn và bảng chuẩn hóa do từng nhà cung cấp phát hành.
 - `data/derived/` — các bảng ghép, so sánh, dự báo, kiểm định và dữ liệu tương thích.
-- `refresh_data.mjs` — script tải lại WDI và PXWeb, rồi ghi tệp vào thư mục nguồn tương ứng.
-- `DACN_refresh_2026.ipynb` — bản notebook đã đổi API sang HTTPS, làm mới biểu đồ theo dữ liệu đến 2025 và cập nhật mốc dự báo từ 2026.
+- `scripts/refresh_data.mjs` — script tải lại WDI và PXWeb, rồi ghi tệp vào thư mục nguồn tương ứng.
 - `du_lieu_chi_so_kinh_te_hang_nam.csv` — bảng năm ghép GDP, tỷ giá bình quân năm, thương mại, CPI, bán lẻ và FDI; có các tỷ lệ Trade/GDP, FDI/GDP và bán lẻ/GDP.
 - `du_lieu_cpi_phan_tich_thang.csv`, `du_lieu_fx_bien_dong_thang.csv` — CPI MoM/YoY và tỷ giá MoM/YoY, biến động 12 tháng thường niên hóa; có cờ phân biệt CPI 2026 tái tạo.
 - `du_lieu_so_sanh_co_cau_nganh.csv`, `du_lieu_so_sanh_nganh_2025.csv` — so sánh cơ cấu và biến động danh nghĩa của các khu vực kinh tế.
@@ -38,14 +52,15 @@ CSV và tệp nguồn nằm trong các thư mục theo nguồn; xem `data/catalo
 - `du_lieu_du_bao_rolling_origin.csv`, `so_sanh_hieu_qua_mo_hinh_du_bao.csv` — dự báo ngoài mẫu cuốn chiếu, đối chiếu baseline với GRU/LSTM.
 - `du_lieu_du_bao_gdp_thuc_den_2030.csv` — dự báo GDP thực 2026–2030 của Naive, Drift, xu hướng log tuyến tính, GRU và LSTM; đây là kịch bản mô hình, không phải số liệu chính thức.
 - `du_lieu_du_bao_nhieu_chan_troi.csv`, `so_sanh_hieu_qua_mo_hinh_theo_chan_troi.csv` — dự báo kiểm thử rolling-origin và chỉ số đánh giá riêng cho chân trời 1–5 năm.
-- `kiem_tra_chat_luong_du_lieu.csv`, `analysis_manifest.json`, `bao_cao_phan_tich_du_lieu.md`, `goi_y_bo_sung_dashboard.md` — kiểm tra khóa trùng/thiếu, cân đối và miền dữ liệu (lần chạy hiện tại 45/45 đạt), cấu hình phân tích, nhận định kết quả và trạng thái phát triển dashboard.
-- `data_version_manifest.json`, `data_versions/` và `snapshot_data.py` — mã phiên bản theo nội dung, bản kê nguồn/đầu vào và ZIP bất biến của các CSV chuẩn hóa cho mỗi phiên bản dữ liệu mới.
-- `dashboard.html` — dashboard ngoại tuyến theo từng trang: tổng quan KPI; EDA GDP; ba mục chuyển hướng riêng cho Nông–lâm–thủy sản, Công nghiệp–xây dựng và Dịch vụ; CPI/tỷ giá; ngoại thương/IIP; bán lẻ/FDI; GRDP; dự báo GDP đến 2030; quản lý nguồn và QA. Các trang ngành có bộ lọc, so sánh cấu trúc GDP hiện hành, tăng trưởng GDP thực, đóng góp và tải CSV. `build_dashboard.py` tạo lại dashboard từ các CSV cập nhật.
-- `refresh_system.ps1`, `build_extended_data.mjs`, `extract_monthly_official.py`, `analyze_observed_data.py`, `snapshot_data.py` — pipeline cập nhật/tải nguồn, trích xuất workbook, đánh giá mô hình, kiểm tra chất lượng và đóng gói snapshot có thể tái lập.
+- `kiem_tra_chat_luong_du_lieu.csv`, `analysis_manifest.json`, `docs/analysis/bao_cao_phan_tich_du_lieu.md`, `docs/guides/goi_y_bo_sung_dashboard.md` — kiểm tra khóa trùng/thiếu, cân đối và miền dữ liệu (lần chạy hiện tại 45/45 đạt), cấu hình phân tích, nhận định kết quả và trạng thái phát triển dashboard.
+- `data_version_manifest.json`, `data_versions/` và `scripts/snapshot_data.py` — mã phiên bản theo nội dung, bản kê nguồn/đầu vào và ZIP bất biến của các CSV chuẩn hóa cho mỗi phiên bản dữ liệu mới.
+- Snapshot mới giữ thêm workbook GDP quý gốc và thời điểm tải. Đây là vintage theo thời điểm hệ thống thu thập; NSDP không cung cấp trong workbook các bản sửa đổi lịch sử theo ngày công bố, nên không thể khôi phục tập thông tin đã biết tại các năm gốc dự báo cũ.
+- `dashboard.html` — dashboard ngoại tuyến theo từng trang: tổng quan KPI; EDA GDP; ba mục chuyển hướng riêng cho Nông–lâm–thủy sản, Công nghiệp–xây dựng và Dịch vụ; CPI/tỷ giá; ngoại thương/IIP; bán lẻ/FDI; GRDP; dự báo GDP đến 2030; quản lý nguồn và QA. Các trang ngành có bộ lọc, so sánh cấu trúc GDP hiện hành, tăng trưởng GDP thực, đóng góp và tải CSV. `scripts/build_dashboard.py` tạo lại dashboard từ các CSV cập nhật.
+- `refresh_system.ps1` và `scripts/` — pipeline cập nhật/tải nguồn, trích xuất workbook, đánh giá mô hình, kiểm tra chất lượng và đóng gói snapshot có thể tái lập.
 
 ## Áp dụng dữ liệu và dashboard vào đồ án
 
-Các tệp cùng tên như `GDP_Vietnam_Annual.csv`, `GDP_Vietnam_Annual.xlsx` và `GDP_Vietnam_Monthly.csv` đã được cập nhật để thay tệp dữ liệu cũ. Dashboard mới đọc trực tiếp các CSV trong gói này và chạy ngoại tuyến. Để cập nhật PBIX, mở **Transform data / Data source settings**, trỏ các truy vấn tới CSV mới rồi **Refresh**; nếu PBIX dùng bản sao nhúng, cần thay nguồn truy vấn thay vì chỉ chép file vào thư mục. Notebook cũ không bị sửa; `DACN_refresh_2026.ipynb` là bản riêng dùng bộ dữ liệu mới.
+Các tệp cùng tên như `GDP_Vietnam_Annual.csv`, `GDP_Vietnam_Annual.xlsx` và `GDP_Vietnam_Monthly.csv` đã được cập nhật để thay tệp dữ liệu cũ. Dashboard mới đọc trực tiếp các CSV trong gói này và chạy ngoại tuyến. Để cập nhật PBIX, mở **Transform data / Data source settings**, trỏ các truy vấn tới CSV mới rồi **Refresh**; nếu PBIX dùng bản sao nhúng, cần thay nguồn truy vấn thay vì chỉ chép file vào thư mục. Notebook làm việc cá nhân nằm trong `notebooks/` trên máy và không được đưa vào repository công khai.
 
 ## Giới hạn cần giữ khi trình bày khóa luận
 
@@ -58,10 +73,10 @@ World Bank phân ngành theo giá trị gia tăng nông nghiệp, công nghiệp
 - Mọi so sánh theo tháng/quý/năm được giữ ở đúng tần suất. Ví dụ, số tăng GDP quý 2026 là tỷ lệ so cùng kỳ, không ghép với chuỗi GDP năm như thể cùng đại lượng.
 - ADF thực hiện trên log GDP thực năm và sai phân log của chuỗi này. Kết quả hiện tại không bác bỏ nghiệm đơn vị ở mức GDP thực (p≈0,881), nhưng bác bỏ ở sai phân log (p≈0,0006). Đây là kiểm định trên 41 quan sát năm, nhạy với cấu trúc xu hướng và thay đổi chế độ.
 - Phân rã xu hướng/chu kỳ dùng HP filter trên log GDP thực năm với λ=6,25. Thành phần chu kỳ nhạy ở hai đầu chuỗi và không phải ước tính GDP tiềm năng. Không thực hiện seasonal decomposition vì GDP thực đầu vào là dữ liệu năm, không có chu kỳ mùa vụ quan sát.
-- Đánh giá dự báo dùng expanding-window rolling-origin với chân trời 1–5 năm. Chân trời một năm kiểm thử 2016–2025 (10 điểm); chân trời năm năm có 6 điểm kiểm thử vì dữ liệu quan sát kết thúc năm 2025. Số fold giảm theo chân trời (10, 9, 8, 7, 6). Mỗi fold chỉ sử dụng dữ liệu có sẵn đến năm gốc; chuẩn hóa được fit trên tập huấn luyện, không chia ngẫu nhiên chuỗi thời gian.
-- Trong lần chạy hiện tại, Drift có MAPE≈1,50% và RMSE≈6,65 tỷ USD (giá 2015); GRU có MAPE≈8,53%; LSTM≈11,07%. Với chỉ 41 điểm năm và 10 năm kiểm thử, đây là kết quả thăm dò, chưa đủ để khẳng định mô hình thắng ổn định. Không nên đưa GRU/LSTM thành mô hình chính nếu không vượt baseline qua nhiều cửa sổ kiểm thử và nhiều lần cập nhật dữ liệu.
-- Trong kết quả hiện tại, Drift có MAPE thấp nhất ở cả năm chân trời (xấp xỉ 1,50%, 2,15%, 2,91%, 3,96%, 4,36% từ chân trời 1 đến 5 năm). Sai số tăng theo thời hạn và số fold nhỏ dần; đây là mô tả của cửa sổ kiểm thử hiện tại, không bảo đảm Drift sẽ luôn tốt nhất khi có dữ liệu mới.
-- Dự báo 2026–2030 được tạo sau backtest bằng cùng định nghĩa GDP thực năm: Naive giữ mức 2025, Drift ngoại suy mức thay đổi log trung bình, xu hướng tuyến tính ngoại suy hồi quy trên log GDP, GRU/LSTM dự báo đệ quy 5 bước sau khi fit trên toàn bộ chuỗi quan sát đến 2025. Dashboard hiển thị dải P80 kinh nghiệm từ sai số log tuyệt đối cùng chân trời; thứ hạng phân vị dùng hiệu chỉnh hữu hạn mẫu `ceil((n+1)×0,8)`. Đây không phải khoảng tin cậy có bảo đảm coverage 80%: chuỗi thời gian có phụ thuộc và mẫu hiệu chuẩn nhỏ. Không diễn giải dự báo thành số GDP chính thức.
+- Đánh giá GDP năm dùng expanding-window rolling-origin từ 2005–2025, với ít nhất 20 năm huấn luyện ở mỗi origin; số điểm giảm từ 21 ở chân trời một năm xuống 17 ở chân trời năm năm (các chân trời 1–5 năm lần lượt có 21, 20, 19, 18, 17 origin). Mỗi fold chỉ dùng dữ liệu có trước mốc dự báo; chuẩn hóa được fit riêng trong train, không chia ngẫu nhiên. Các cửa sổ chồng lấp nên sai số giữa origin có phụ thuộc.
+- Backtest GDP năm mở rộng hiện cho Drift MAPE≈1,03%, RMSE≈4,68 tỷ USD giá cố định 2015 ở chân trời một năm; GRU≈7,17% và LSTM≈9,66%. Ở chân trời năm năm, Drift MAPE≈2,95%, xu hướng log tuyến tính≈6,43%, còn GRU/LSTM có sai số cao hơn đáng kể. Đây là kết quả ngoài mẫu trên lịch sử quan sát, không bảo đảm mô hình thắng trong tương lai. Chuỗi GDP năm vẫn chỉ có 41 quan sát; GRU/LSTM tiếp tục là mô hình thử nghiệm.
+- Hệ thống bổ sung GDP thực quý quan sát từ NSDP: 64 quý giá so sánh 2010 (2010-Q1–2025-Q4) và một chuỗi giá so sánh 2020 riêng (2025-Q1–Q3, 2026-Q1–Q3). Hai năm gốc không bị ghép; GDP quý giá 2010 được đối chiếu tổng bốn quý với GDP năm cùng workbook trong 16 năm, sai lệch lớn nhất 0,001757%. Backtest quý so sánh Seasonal Naive, Seasonal Drift, xu hướng log có biến giả quý và ETS ở các chân trời 1, 4, 8, 12, 20 quý; lần lượt có 32, 29, 25, 21, 13 origin. Nhánh này thêm tần suất quý nhưng không làm chuỗi GDP năm dài hơn và không thay dự báo năm đến 2030.
+- Workbook NSDP gốc, hash và dấu thời gian tải được lưu cùng snapshot dữ liệu trong `data_versions/`. Lần nạp đầu, do không có log HTTP cũ, thời gian tải được ước lượng từ thời gian sửa đổi tệp cục bộ và được gắn nhãn rõ; các lần refresh tiếp theo ghi dấu thời gian tải thực. NSDP không cung cấp vintage lịch sử theo từng ngày công bố nên hệ thống không thể tái dựng các bản sửa đổi trước ngày bắt đầu lưu snapshot.
 - Tương quan IIP tăng trưởng cùng năm và GDP thực tăng trưởng 2012–2025 hiện khoảng 0,74 (n=14); tương quan IIP trễ một năm khoảng 0,16 (n=13). Đây là mô tả mẫu ngắn, không phải bằng chứng IIP dự báo hoặc gây ra GDP. IIP tháng 2026 chưa có GDP tháng quan sát để kiểm định độ trễ tháng.
 - Dashboard cho phép scatter GDP thực với CPI, biến động tỷ giá, IIP trễ 0–3 năm và tăng trưởng bán lẻ thực ước tính; hiển thị Pearson, Spearman và số quan sát. CPI và tỷ giá theo tháng được quy chỉ số 100 tại tháng 1/2020 để so hình dạng chuỗi, không so hai mức tuyệt đối trên cùng đơn vị.
 - Bán lẻ thực theo năm là proxy gần đúng, tính từ tăng trưởng bán lẻ danh nghĩa đã giảm lạm phát CPI chung; đây không phải chỉ số khối lượng bán lẻ chính thức. Tăng trưởng thực bán lẻ lũy kế 2026 của NSO phải được hiển thị riêng và không gán thành tăng trưởng thực riêng từng tháng.
@@ -70,11 +85,11 @@ World Bank phân ngành theo giá trị gia tăng nông nghiệp, công nghiệp
 
 ## Cập nhật và chạy lại
 
-1. Cài Node.js và Python dependencies `xlrd`, `openpyxl`, `pandas`, `numpy`, `statsmodels`, `torch`.
+1. Cài Node.js. Cài các thư viện phân tích Python bằng `python -m pip install -r requirements-analysis.txt`; môi trường API triển khai vẫn dùng `requirements.txt`.
 2. CSV và tệp nguồn được nhóm theo nhà cung cấp trong `data/nso/`, `data/world_bank/`, `data/imf/`; dữ liệu kết hợp, dự báo và kiểm định nằm trong `data/derived/`. Mở `data/catalog.json` để xem đường dẫn và nguồn của từng tệp.
 3. Trên Windows, chạy `./refresh_system.ps1` để tải nguồn mới rồi chạy lần lượt trích xuất, phân tích, QA, snapshot và dựng dashboard. Nếu muốn dùng workbook đã có sẵn trong `data/nso/raw/monthly/` mà không tải lại, chạy `./refresh_system.ps1 -SkipSourceDownload`.
-4. Có thể chạy riêng từng bước: `node build_extended_data.mjs`, `python extract_monthly_official.py`, `python analyze_observed_data.py`, `python build_dashboard.py`.
-5. `analyze_observed_data.py` gọi `snapshot_data.py` sau khi phân tích thành công. Script tạo ZIP dữ liệu chuẩn hóa theo mã nội dung; chạy lại với cùng dữ liệu sẽ giữ nguyên phiên bản thay vì tạo snapshot trùng.
+4. Có thể chạy riêng từng bước: `node scripts/build_extended_data.mjs`, `node scripts/refresh_expanded_data.mjs`, `python scripts/extract_monthly_official.py`, `python scripts/extract_quarterly_gdp.py`, `python scripts/analyze_observed_data.py`, `python scripts/analyze_quarterly_gdp.py`, `python scripts/build_dashboard.py`.
+5. `scripts/analyze_observed_data.py` gọi `scripts/snapshot_data.py` sau khi phân tích thành công. Script tạo ZIP dữ liệu chuẩn hóa theo mã nội dung; chạy lại với cùng dữ liệu sẽ giữ nguyên phiên bản thay vì tạo snapshot trùng.
 
 Dashboard có tải các bảng đang hiển thị ra CSV/JSON; có thể chọn chân trời 1–5 năm để xem backtest và so sánh mô hình. Dải P80 được tính riêng cho từng mô hình và từng chân trời, kèm số mẫu hiệu chuẩn trong bảng dự báo. Tệp ZIP của phiên bản hiện tại mở từ mục danh mục nguồn dữ liệu.
 
@@ -88,6 +103,7 @@ Tệp trống trong các bảng ghép biểu thị ngoài phạm vi nguồn, k�
 - NSO PXWeb: [CPI tháng so với gốc 2019](https://pxweb.nso.gov.vn/pxweb/en/E%2011.%20CPI/E%2011.%20CPI__Px_E_11/E11.07.px/).
 - NSO CPI tháng 9/2026: [thông cáo chính thức](https://www.nso.gov.vn/en/data-and-statistics/2026/10/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-september-2026-q3-2026-and-the-nine-months-of-2026/); các mức lũy kế tháng 1–8/2026 nằm trong kho thông cáo CPI trên nso.gov.vn.
 - NSO GDP quý III và 9 tháng năm 2026: [thông cáo chính thức](https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/).
+- NSDP, GDP Việt Nam theo năm/quý, mức thực theo giá so sánh 2010 và 2020: [bảng dữ liệu quốc gia](https://nsdp.nso.gov.vn/) · [tệp Excel gốc](https://nsdp.nso.gov.vn/GSO-chung/Tu%E1%BA%A5n%20Anh/excel%20chung/GDP_VNM.xlsx).
 
 Ngày tải: xem `refresh_manifest.json`.
 
@@ -111,7 +127,7 @@ Gói dữ liệu bổ sung lấy từ các bảng PXWeb chính thức của Cụ
 | Giá hàng hóa quốc tế | `du_lieu_gia_hang_hoa_quoc_te.csv` | Tháng, chuỗi theo phạm vi nguồn đến 2026-09; USD danh nghĩa | Dầu, than, khí châu Âu, gạo Việt Nam 5%, urê, quặng sắt và đồng |
 | Bảng phân tích tích hợp | `du_lieu_so_sanh_dong_luc_gdp.csv`, `du_lieu_tuong_quan_dong_luc_gdp.csv` | Năm, 1985–2025 tùy biến số | So sánh GDP, ngành, đầu tư, lao động, CPI, ngân sách, tín dụng, cán cân và giá hàng hóa |
 
-`phan_tich_du_lieu_mo_rong.md` ghi kết quả số liệu của lần cập nhật đang có. Trong bảng GDP theo chi tiêu, đóng góp được tính là `100 × (thành phần_t − thành phần_t−1) / GDP_(t−1)`. Chỉ dùng các thành phần lá để không cộng trùng tiêu dùng cuối cùng với tiêu dùng hộ/nhà nước hoặc tổng tích lũy với vốn cố định/tồn kho. Năm 2010 được để trống đóng góp do chuỗi đổi sang giá cố định 2010; tốc độ tăng GDP chính thức của NSO vẫn được giữ. Cơ cấu đóng góp kiểm tra khớp tốc độ tăng GDP theo bảng nguồn với sai lệch tối đa khoảng 0,005 điểm phần trăm do làm tròn.
+`docs/analysis/phan_tich_du_lieu_mo_rong.md` ghi kết quả số liệu của lần cập nhật đang có. Trong bảng GDP theo chi tiêu, đóng góp được tính là `100 × (thành phần_t − thành phần_t−1) / GDP_(t−1)`. Chỉ dùng các thành phần lá để không cộng trùng tiêu dùng cuối cùng với tiêu dùng hộ/nhà nước hoặc tổng tích lũy với vốn cố định/tồn kho. Năm 2010 được để trống đóng góp do chuỗi đổi sang giá cố định 2010; tốc độ tăng GDP chính thức của NSO vẫn được giữ. Cơ cấu đóng góp kiểm tra khớp tốc độ tăng GDP theo bảng nguồn với sai lệch tối đa khoảng 0,005 điểm phần trăm do làm tròn.
 
 ### Cách đọc kết quả và các giới hạn phương pháp
 
@@ -127,7 +143,7 @@ Nguồn chính: [NSO – Tài khoản quốc gia và ngân sách](https://pxweb.
 
 ### Cập nhật các bảng mở rộng
 
-Pipeline `refresh_system.ps1` nay tải thêm PXWeb và World Bank Pink Sheet bằng `refresh_expanded_data.mjs`, giữ bản nguồn thô, chuẩn hóa/phân tích bằng `analyze_expanded_data.py`, chạy QA, đóng snapshot mới và dựng `dashboard.html`. Với `-SkipSourceDownload`, pipeline chạy trên các tệp có sẵn trong `data/nso/raw/expanded/` và `data/world_bank/raw/expanded/`.
+Pipeline `refresh_system.ps1` nay tải thêm PXWeb và World Bank Pink Sheet bằng `scripts/refresh_expanded_data.mjs`, giữ bản nguồn thô, chuẩn hóa/phân tích bằng `scripts/analyze_expanded_data.py`, chạy QA, đóng snapshot mới và dựng `dashboard.html`. Với `-SkipSourceDownload`, pipeline chạy trên các tệp có sẵn trong `data/nso/raw/expanded/` và `data/world_bank/raw/expanded/`.
 
 ## GDP chi tiết theo 3 khu vực kinh tế
 
@@ -136,11 +152,11 @@ Pipeline `refresh_system.ps1` nay tải thêm PXWeb và World Bank Pink Sheet b�
 - Dashboard có ba nút chuyển hướng và ba trang riêng cho từng khu vực. Mỗi trang so sánh quy mô/tỷ trọng GDP hiện hành, tăng trưởng GDP thực, đóng góp điểm phần trăm, thay đổi tỷ trọng 5 năm, và số công bố 2026. Danh mục nguồn nêu kỳ, trường và giới hạn của từng bộ dữ liệu.
 - Tăng trưởng thực lấy từ chỉ số NSO `năm trước = 100 − 100`; tăng danh nghĩa được giữ thành cột riêng. Đóng góp GDP thực tính bằng `100 × (VAᵢ,t − VAᵢ,t−1) / GDPₜ₋₁`; bỏ năm 2010 khi mức giá có điểm đổi mốc. Ba kiểm tra đối chiếu GDP danh nghĩa, tỷ trọng 100% và tổng đóng góp thực đều đạt trong lần chạy mới.
 - **Giới hạn độ sâu của nguồn:** Bảng GDP năm chỉ công bố nông-lâm-thủy sản như một nhóm gộp; không có giá trị GDP năm riêng cho trồng trọt, chăn nuôi, lâm nghiệp và thủy sản. Bảng cũng không tách GDP chế biến chế tạo thành các ngành nhỏ hơn. Dashboard chỉ hiển thị mức chi tiết NSO thực sự công bố; các bảng IIP hoặc sản lượng vật chất có thể mở rộng phân tích ngành con nhưng là chỉ số sản lượng, không thay cho GDP/giá trị tăng thêm.
-- Báo cáo phân tích mới: `phan_tich_gdp_chi_tiet_hoat_dong.md`. Hai CSV GDP chi tiết được thêm vào `snapshot_data.py` và phiên bản ZIP.
+- Báo cáo phân tích mới: `docs/analysis/phan_tich_gdp_chi_tiet_hoat_dong.md`. Hai CSV GDP chi tiết được thêm vào `scripts/snapshot_data.py` và phiên bản ZIP.
 
 ## API FastAPI
 
 - `api/main.py` phục vụ toàn bộ dashboard tại một địa chỉ gốc `/`; các mục Tổng quan, EDA, ba khu vực, dữ liệu và dự báo là điều hướng bên trong cùng dashboard. REST API dùng `/api/v1/...`; Swagger UI dùng `/docs`.
 - Cài dependencies một lần bằng `python -m pip install -r requirements.txt`, sau đó chạy `./run_fastapi.ps1` trong PowerShell hoặc dùng lệnh `python -m uvicorn api.main:app --host 127.0.0.1 --port 8000`.
 - Mở `http://127.0.0.1:8000/` để dùng toàn bộ hệ thống; `http://127.0.0.1:8000/docs` dành cho xem/thử API.
-- API có danh mục/đọc dữ liệu, tổng quan vĩ mô, dự báo 2030, so sánh mô hình, GRDP và truy vấn chuyên sâu ba khu vực kinh tế. Hướng dẫn chạy: `FASTAPI_LOCAL.md`.
+- API có danh mục/đọc dữ liệu, tổng quan vĩ mô, dự báo 2030, so sánh mô hình, GRDP và truy vấn chuyên sâu ba khu vực kinh tế. Hướng dẫn chạy: `docs/guides/FASTAPI_LOCAL.md`.

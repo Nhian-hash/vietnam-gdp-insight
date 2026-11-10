@@ -14,7 +14,9 @@
     "fdi_latest": "2026-09",
     "iip_annual": 2025,
     "iip_monthly": "2026-09",
-    "cpi_annual_wdi": 2025
+    "cpi_annual_wdi": 2025,
+    "quarterly_gdp_constant_2010": "2025-Q4",
+    "quarterly_gdp_constant_2020": "2026-Q3"
   },
   "sources": {
     "world_bank_api": "https://api.worldbank.org/v2/country/VNM/indicator/{indicator}?date=1985:2026&format=json&per_page=1000",
@@ -59,7 +61,8 @@
       "https://www.nso.gov.vn/en/data-and-statistics/2026/08/report-socio-economic-performance-in-july-and-7-months-of-2026/",
       "https://www.nso.gov.vn/en/data-and-statistics/2026/09/report-socio-economic-performance-in-august-and-8-months-of-2026/",
       "https://www.nso.gov.vn/en/data-and-statistics/2026/10/report-socio-economic-performance-in-third-quarter-and-nine-months-of-2026/"
-    ]
+    ],
+    "nsdp_quarterly_gdp_levels": "https://nsdp.nso.gov.vn/GSO-chung/Tu%E1%BA%A5n%20Anh/excel%20chung/GDP_VNM.xlsx"
   },
   "indicators": {
     "gdpUsd": "NY.GDP.MKTP.CD",
@@ -80,6 +83,7 @@
     "retail_frequency": "Historical retail is annual; the 2026 monthly file contains monthly estimates and official cumulative real growth rates. The cumulative real growth column is not a monthly rate.",
     "iip_frequency": "Annual IIP uses prior-year=100 indexes (2012-2025); 2026 monthly IIP uses 2015=100. These are separate grains and bases.",
     "fdi_comparability": "Annual NSO E04.11 observations begin in 1991 because the source groups 1988-1990 into one three-year total stored separately in du_lieu_fdi_giai_doan_1988_1990.csv. Historical registered capital is licensed project capital; the 2026 cumulative registered total includes new registration, adjustments, and capital contributions/share purchases, so those definitions are not directly comparable.",
-    "modeling": "Never use cubic-spline monthly GDP values as observed targets for ADF, training, or test metrics. Forecast evaluation uses observed annual real GDP only."
+    "modeling": "Never use cubic-spline monthly GDP values as observed targets for ADF, training, or test metrics. Forecast evaluation uses observed annual real GDP only.",
+    "quarterly_gdp_levels": "NSDP workbook contains observed quarterly real GDP at constant 2010 prices through 2025-Q4 and a distinct constant-2020-price series from 2025-Q1 to 2026-Q3. Price bases are not spliced."
   }
 }

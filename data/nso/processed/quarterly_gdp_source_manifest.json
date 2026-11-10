@@ -1,0 +1,46 @@
+{
+  "source": "National Summary Data Page (NSDP), Cục Thống kê Việt Nam",
+  "source_url": "https://nsdp.nso.gov.vn/GSO-chung/Tu%E1%BA%A5n%20Anh/excel%20chung/GDP_VNM.xlsx",
+  "workbook": "data/nso/raw/quarterly/GDP_VNM.xlsx",
+  "retrieved_at_utc": "2026-11-10T16:07:20Z",
+  "retrieval_timestamp_source": "filesystem_last_modified_fallback",
+  "indicator_code": "NGDP_R_PA_XDC",
+  "indicator_name": "Real Gross Domestic Product, production approach",
+  "historical_series": {
+    "sheet": "Dataset_Q",
+    "frequency": "quarterly",
+    "price_base_year": 2010,
+    "unit": "billion VND",
+    "period_start": "2010-Q1",
+    "period_end": "2025-Q4",
+    "observations": 64,
+    "status": "Workbook metadata says Published"
+  },
+  "newer_price_base_series": {
+    "sheet": "Dataset_QI.2026",
+    "frequency": "quarterly",
+    "price_base_year": 2020,
+    "unit": "billion VND",
+    "period_start": "2025-Q1",
+    "period_end": "2026-Q3",
+    "observations": 6,
+    "status": "Workbook metadata says Published"
+  },
+  "reconciliation": {
+    "method": "Sum four quarterly real GDP levels at constant 2010 prices; compare with annual real GDP at constant 2010 prices in same workbook.",
+    "years": 16,
+    "max_absolute_difference_pct": 0.0017569306617157337,
+    "tolerance_pct": 0.01,
+    "all_within_tolerance": true
+  },
+  "limitations": [
+    "Keep the constant-2010 and constant-2020 series separate; this build does not chain-link or splice price bases.",
+    "The newer-base file covers overlapping quarters 2025-Q1 to 2025-Q3 and 2026-Q1 to 2026-Q3; 2025-Q4 is unavailable there.",
+    "The workbook identifies the series as published but does not provide historical release-vintage values per observation."
+  ],
+  "outputs": [
+    "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2010.csv",
+    "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2020.csv",
+    "data/derived/quality/doi_chieu_gdp_thuc_quy_va_nam.csv"
+  ]
+}
