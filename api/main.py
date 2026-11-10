@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 from html import escape as html_escape
+import io
 import json
 import math
 import os
@@ -10,6 +12,8 @@ import re
 from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs
+import zipfile
+from datetime import datetime, timezone
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -199,6 +203,147 @@ def dataset_description(file_name: str, path: Path) -> dict[str, Any]:
     }
 
 
+def catalogued_csv(dataset_path: str) -> Path:
+    """Resolve a candidate target only when it is an existing catalogued CSV."""
+    catalog = read_manifest(DATA_ROOT / "catalog.json").get("files", {})
+    if not isinstance(catalog, dict):
+        raise HTTPException(status_code=503, detail="Danh mục dữ liệu hiện không đọc được.")
+    matched = None
+    for record in catalog.values():
+        if isinstance(record, dict) and record.get("path") == dataset_path:
+            matched = record
+            break
+    if not matched or not isinstance(dataset_path, str) or not dataset_path.endswith(".csv"):
+        raise HTTPException(status_code=404, detail="Chỉ có thể kiểm tra một tệp CSV đang có trong danh mục.")
+    target = (ROOT / dataset_path).resolve()
+    if DATA_ROOT.resolve() not in target.parents or not target.is_file():
+        raise HTTPException(status_code=404, detail="Không tìm thấy tệp dữ liệu hiện hành.")
+    return target
+
+
+def validate_candidate_csv(dataset_path: str, candidate: bytes) -> dict[str, Any]:
+    """Check candidate structure against its live file without writing to disk."""
+    target = catalogued_csv(dataset_path)
+    if not candidate:
+        raise HTTPException(status_code=422, detail="Tệp CSV đang rỗng.")
+    if len(candidate) > 8 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Tệp CSV vượt giới hạn 8 MB.")
+    try:
+        content = candidate.decode("utf-8-sig")
+    except UnicodeDecodeError as exc:
+        raise HTTPException(status_code=422, detail="CSV cần được mã hóa UTF-8 hoặc UTF-8 BOM.") from exc
+
+    try:
+        reader = csv.reader(io.StringIO(content, newline=""), strict=True)
+        rows = list(reader)
+    except csv.Error as exc:
+        raise HTTPException(status_code=422, detail=f"Cấu trúc CSV không hợp lệ: {exc}.") from exc
+    if not rows:
+        raise HTTPException(status_code=422, detail="CSV chưa có dòng tiêu đề.")
+
+    current_columns, current_rows = read_csv_rows(target)
+    candidate_columns = [value.strip() for value in rows[0]]
+    errors: list[str] = []
+    warnings: list[str] = []
+    if not candidate_columns or any(not name for name in candidate_columns):
+        errors.append("Tên cột không được để trống.")
+    if len(candidate_columns) != len(set(candidate_columns)):
+        errors.append("Tên cột bị trùng.")
+    if candidate_columns != current_columns:
+        errors.append("Tên hoặc thứ tự cột không khớp bộ dữ liệu đang dùng.")
+
+    field_count = len(candidate_columns)
+    valid_rows: list[list[str]] = []
+    malformed_lines: list[int] = []
+    blank_lines = 0
+    seen: set[tuple[str, ...]] = set()
+    duplicate_count = 0
+    missing_by_column = {name: 0 for name in candidate_columns}
+    numeric_columns: set[str] = set()
+    for column in current_columns:
+        nonempty = [row.get(column) for row in current_rows if row.get(column) is not None]
+        if nonempty and sum(isinstance(value, (int, float)) and not isinstance(value, bool) for value in nonempty) / len(nonempty) >= 0.8:
+            numeric_columns.add(column)
+    invalid_numeric: dict[str, int] = {name: 0 for name in numeric_columns}
+
+    for line_number, cells in enumerate(rows[1:], start=2):
+        if not cells or all(not value.strip() for value in cells):
+            blank_lines += 1
+            continue
+        if len(cells) != field_count:
+            malformed_lines.append(line_number)
+            continue
+        normalized = tuple(value.strip() for value in cells)
+        if normalized in seen:
+            duplicate_count += 1
+        else:
+            seen.add(normalized)
+        valid_rows.append(cells)
+        for column, value in zip(candidate_columns, cells):
+            value = value.strip()
+            if not value:
+                missing_by_column[column] = missing_by_column.get(column, 0) + 1
+            elif column in numeric_columns:
+                try:
+                    numeric = float(value)
+                    if not math.isfinite(numeric):
+                        raise ValueError("non-finite")
+                except ValueError:
+                    invalid_numeric[column] += 1
+
+    if malformed_lines:
+        errors.append(f"{len(malformed_lines)} dòng có số trường khác tiêu đề (ví dụ dòng {', '.join(map(str, malformed_lines[:5]))}).")
+    if not valid_rows:
+        errors.append("CSV không có dòng dữ liệu hợp lệ.")
+    if duplicate_count:
+        errors.append(f"Phát hiện {duplicate_count} dòng trùng hoàn toàn.")
+    for column, count in invalid_numeric.items():
+        if count:
+            errors.append(f"Cột số '{column}' có {count} giá trị không phải số hữu hạn.")
+    if blank_lines:
+        warnings.append(f"Bỏ qua {blank_lines} dòng trắng cuối/giữa tệp.")
+    missing_total = sum(missing_by_column.values())
+    if missing_total:
+        warnings.append(f"Có {missing_total} ô trống; cần đối chiếu với trạng thái công bố của nguồn.")
+
+    return {
+        "ok": not errors,
+        "dataset_path": dataset_path,
+        "dataset_title": dataset_description(target.name, target)["title"],
+        "current_rows": len(current_rows),
+        "candidate_rows": len(valid_rows),
+        "columns_match": candidate_columns == current_columns,
+        "columns": candidate_columns,
+        "missing_cells": missing_total,
+        "missing_by_column": {key: value for key, value in missing_by_column.items() if value},
+        "duplicate_rows": duplicate_count,
+        "errors": errors,
+        "warnings": warnings,
+        "preview": [dict(zip(candidate_columns, row)) for row in valid_rows[:8]],
+        "candidate_sha256": hashlib.sha256(candidate).hexdigest(),
+        "candidate_bytes": len(candidate),
+    }
+
+
+def version_history(limit: int = 12) -> list[dict[str, Any]]:
+    history: list[dict[str, Any]] = []
+    for path in (ROOT / "data_versions").glob("gdp-*.json"):
+        if not re.fullmatch(r"gdp-[A-Za-z0-9_-]+\.json", path.name):
+            continue
+        manifest = read_manifest(path)
+        if not manifest.get("version_id"):
+            continue
+        history.append({
+            "version_id": manifest["version_id"],
+            "created_utc": manifest.get("created_utc"),
+            "retrieved_at_utc": manifest.get("retrieved_at_utc"),
+            "archive_url": f"/data_versions/{manifest['version_id']}.zip",
+            "file_count": len(manifest.get("files", [])),
+        })
+    history.sort(key=lambda item: str(item.get("created_utc") or ""), reverse=True)
+    return history[:limit]
+
+
 app = FastAPI(
     title="V-MEST API",
     description=(
@@ -363,7 +508,113 @@ def dashboard() -> Response:
   window.downloadJson = (fileName, value) => submitExport(fileName, 'application/json; charset=utf-8', JSON.stringify(value, null, 2));
 })();
 </script>"""
-    html, inserted = re.subn(r"</body\s*>", lambda match: export_script + match.group(0), html, count=1, flags=re.IGNORECASE)
+    release_markup = r'''<style>
+.vmest-release-center{margin-top:14px}.vmest-release-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.vmest-release-box{border:1px solid var(--line,#dbe3ee);border-radius:12px;padding:14px;background:var(--surface,#fff);min-width:0}.vmest-release-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}.vmest-release-controls select,.vmest-release-controls input{max-width:100%;min-height:42px}.vmest-release-status{font-weight:700}.vmest-release-report{margin-top:12px}.vmest-release-table{max-height:300px;overflow:auto}.vmest-release-note{line-height:1.6}.vmest-release-box .panel-title{margin-bottom:6px}@media(max-width:760px){.vmest-release-grid{grid-template-columns:1fr}.vmest-release-controls>*{width:100%}}
+</style>
+<article class="panel vmest-release-center" id="release-center">
+  <div class="section-head"><div><div class="panel-title">Trung tâm vận hành dữ liệu</div><div class="panel-sub">Theo dõi phiên bản đang chạy, kiểm tra CSV cập nhật và chuẩn bị gói thay đổi</div></div><span id="ops-live-status" class="status-tag">Đang kết nối…</span></div>
+  <div class="vmest-release-grid">
+    <div class="vmest-release-box"><div class="panel-title">Bản dữ liệu công khai</div><div class="status-row"><span>Phiên bản đang chạy</span><strong id="ops-current-version">—</strong></div><div class="status-row"><span>Số bộ dữ liệu</span><strong id="ops-dataset-count">—</strong></div><div class="status-row"><span>Cập nhật nguồn gần nhất</span><strong id="ops-source-date">—</strong></div><div class="vmest-release-controls"><a id="ops-current-snapshot" class="select export-btn" href="#" download>Tải snapshot hiện hành</a></div></div>
+    <div class="vmest-release-box"><div class="panel-title">Kiểm tra dữ liệu ứng viên</div><div class="panel-sub">Chọn CSV hiện có để thay thế, tải tệp mới và đối chiếu cấu trúc/giá trị trước khi đưa vào repo.</div><div class="vmest-release-controls"><select id="ops-dataset-target" class="select" aria-label="Bộ dữ liệu cần cập nhật"></select><input id="ops-candidate-file" type="file" accept=".csv,text/csv" aria-label="Chọn tệp CSV ứng viên"></div><div class="vmest-release-controls"><button id="ops-validate" class="select export-btn" type="button">Kiểm tra và xem trước</button><button id="ops-package" class="select export-btn" type="button" disabled>Tải gói đề xuất</button></div><div id="ops-release-report" class="vmest-release-report" aria-live="polite"></div></div>
+  </div>
+  <div class="footnote vmest-release-note" style="margin-top:12px">Các chức năng xem, lọc, tải dữ liệu và đổi giao diện vẫn mở cho mọi người. Kiểm tra và đóng gói ứng viên không ghi đè dữ liệu công khai. Để phát hành/khôi phục thật, chủ repo cập nhật hoặc khôi phục tệp trong GitHub; Render tự triển khai theo phiên bản đã duyệt. Tệp CSV được kiểm tra tạm thời trong bộ nhớ, không lưu lên máy chủ.</div>
+  <div class="vmest-release-grid" style="margin-top:12px"><div class="vmest-release-box"><div class="panel-title">Lịch sử snapshot</div><div class="panel-sub">Tải một bản chụp dữ liệu trước đó để đối chiếu hoặc phục hồi qua repo.</div><div class="vmest-release-controls"><select id="ops-history-version" class="select" aria-label="Chọn snapshot dữ liệu"></select><a id="ops-history-download" class="select export-btn" href="#" download>Tải snapshot đã chọn</a></div></div><div class="vmest-release-box"><div class="panel-title">Quy trình phát hành</div><ol class="vmest-release-note" style="padding-left:22px;margin:6px 0"><li>Kiểm tra schema, dòng trùng, ô trống và giá trị số.</li><li>Tải gói đề xuất gồm CSV cùng manifest kiểm tra.</li><li>Đưa tệp vào đúng đường dẫn trong repo, xem lại diff rồi commit.</li><li>Render tự deploy từ GitHub; bản mới xuất hiện sau khi deploy thành công.</li></ol></div></div>
+</article>'''
+    if 'id="release-center"' not in html:
+        html = re.subn(
+            r'(<section id="data-status"[^>]*>)',
+            lambda match: match.group(1) + release_markup,
+            html,
+            count=1,
+        )[0]
+    operations_script = r"""<script>
+(() => {
+  const api = '/api/v1/operations';
+  const el = id => document.getElementById(id);
+  const show = (node, value) => { if (node) node.textContent = value ?? ''; };
+  let candidateReport = null;
+  async function jsonRequest(url, options) {
+    const response = await fetch(url, options);
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload.detail || `Lỗi máy chủ (${response.status})`);
+    return payload;
+  }
+  function renderPreview(report) {
+    const root = el('ops-release-report');
+    root.replaceChildren();
+    const summary = document.createElement('div');
+    summary.className = report.ok ? 'status-tag' : 'status-tag warn';
+    summary.textContent = report.ok ? `Đạt kiểm tra cấu trúc · ${Number(report.candidate_rows).toLocaleString('vi-VN')} dòng · ${Number(report.columns.length).toLocaleString('vi-VN')} cột` : `Chưa đạt · ${report.errors.length} lỗi cần xử lý`;
+    root.appendChild(summary);
+    const metrics = document.createElement('p');
+    metrics.className = 'panel-sub';
+    metrics.textContent = `Dữ liệu hiện hành: ${Number(report.current_rows).toLocaleString('vi-VN')} dòng · Ứng viên: ${Number(report.candidate_rows).toLocaleString('vi-VN')} dòng · Ô trống: ${Number(report.missing_cells).toLocaleString('vi-VN')} · Trùng hoàn toàn: ${Number(report.duplicate_rows).toLocaleString('vi-VN')}`;
+    root.appendChild(metrics);
+    for (const message of [...report.errors, ...report.warnings]) {
+      const line = document.createElement('p'); line.className = 'footnote'; line.textContent = `${report.errors.includes(message) ? 'Lỗi: ' : 'Lưu ý: '}${message}`; root.appendChild(line);
+    }
+    if (report.preview?.length) {
+      const wrap = document.createElement('div'); wrap.className = 'table-wrap vmest-release-table';
+      const table = document.createElement('table'); table.className = 'table';
+      const head = document.createElement('thead'), headRow = document.createElement('tr');
+      for (const key of report.columns) { const th = document.createElement('th'); th.textContent = key; headRow.appendChild(th); }
+      head.appendChild(headRow); table.appendChild(head);
+      const body = document.createElement('tbody');
+      for (const row of report.preview) { const tr = document.createElement('tr'); for (const key of report.columns) { const td = document.createElement('td'); td.textContent = row[key] ?? ''; tr.appendChild(td); } body.appendChild(tr); }
+      table.appendChild(body); wrap.appendChild(table); root.appendChild(wrap);
+    }
+  }
+  async function init() {
+    try {
+      const [status, datasets, versions] = await Promise.all([
+        jsonRequest(`${api}/status`), jsonRequest(`${api}/datasets`), jsonRequest(`${api}/versions`)
+      ]);
+      show(el('ops-live-status'), 'Đang hoạt động');
+      show(el('ops-current-version'), status.version_id || '—');
+      show(el('ops-dataset-count'), Number(status.dataset_count || 0).toLocaleString('vi-VN'));
+      show(el('ops-source-date'), status.retrieved_at_utc || 'Chưa ghi nhận');
+      el('ops-current-snapshot').href = status.archive_url || '#';
+      const target = el('ops-dataset-target');
+      target.replaceChildren();
+      for (const item of datasets.datasets || []) target.add(new Option(`${item.title} · ${item.path}`, item.path));
+      const history = el('ops-history-version'); history.replaceChildren();
+      for (const item of versions.versions || []) history.add(new Option(`${item.version_id} · ${item.created_utc || 'không rõ ngày'}`, item.archive_url));
+      const setArchive = () => { el('ops-history-download').href = history.value || '#'; };
+      history.addEventListener('change', setArchive); setArchive();
+    } catch (error) {
+      show(el('ops-live-status'), 'Chưa kết nối API');
+      show(el('ops-release-report'), error.message);
+    }
+  }
+  el('ops-candidate-file')?.addEventListener('change', () => { candidateReport = null; el('ops-package').disabled = true; el('ops-release-report').replaceChildren(); });
+  el('ops-validate')?.addEventListener('click', async () => {
+    const file = el('ops-candidate-file').files?.[0], datasetPath = el('ops-dataset-target').value;
+    if (!file) { show(el('ops-release-report'), 'Hãy chọn tệp CSV để kiểm tra.'); return; }
+    if (file.size > 8 * 1024 * 1024) { show(el('ops-release-report'), 'Tệp vượt giới hạn 8 MB.'); return; }
+    const button = el('ops-validate'); button.disabled = true; button.textContent = 'Đang kiểm tra…';
+    try {
+      candidateReport = await jsonRequest(`${api}/validate?dataset_path=${encodeURIComponent(datasetPath)}`, {method:'POST',headers:{'Content-Type':'text/csv'},body:file});
+      renderPreview(candidateReport); el('ops-package').disabled = !candidateReport.ok;
+    } catch (error) { candidateReport = null; el('ops-package').disabled = true; show(el('ops-release-report'), error.message); }
+    finally { button.disabled = false; button.textContent = 'Kiểm tra và xem trước'; }
+  });
+  el('ops-package')?.addEventListener('click', async () => {
+    const file = el('ops-candidate-file').files?.[0], datasetPath = el('ops-dataset-target').value;
+    if (!file || !candidateReport?.ok) return;
+    const button = el('ops-package'); button.disabled = true; button.textContent = 'Đang tạo gói…';
+    try {
+      const response = await fetch(`${api}/package?dataset_path=${encodeURIComponent(datasetPath)}`, {method:'POST',headers:{'Content-Type':'text/csv'},body:file});
+      if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(body.detail?.message || body.detail || `Lỗi máy chủ (${response.status})`); }
+      const blob = await response.blob(), url = URL.createObjectURL(blob), link = document.createElement('a');
+      link.href = url; link.download = `de_xuat_${file.name.replace(/[^A-Za-z0-9_.-]/g,'_').replace(/\.csv$/i,'')}.zip`; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+    } catch (error) { show(el('ops-release-report'), error.message); }
+    finally { button.disabled = false; button.textContent = 'Tải gói đề xuất'; }
+  });
+  init();
+})();
+</script>"""
+    all_scripts = export_script + operations_script
+    html, inserted = re.subn(r"</body\s*>", lambda match: all_scripts + match.group(0), html, count=1, flags=re.IGNORECASE)
     if not inserted:
         html += export_script
     return Response(
@@ -486,6 +737,107 @@ def get_dataset(
         "total_rows": total,
         "rows": rows[offset:offset + limit],
     }
+
+
+@app.get(f"{API_PREFIX}/operations/status", tags=["Vận hành dữ liệu"])
+def operations_status() -> dict[str, Any]:
+    manifest = read_manifest(VERSION_FILE)
+    files = list(DATA_ROOT.rglob("*.csv"))
+    return {
+        "status": "ok",
+        "version_id": manifest.get("version_id"),
+        "created_utc": manifest.get("created_utc"),
+        "retrieved_at_utc": manifest.get("retrieved_at_utc"),
+        "data_cutoff": manifest.get("data_cutoff", {}),
+        "dataset_count": len(files),
+        "archive_url": f"/data_versions/{manifest['version_id']}.zip" if manifest.get("version_id") else None,
+        "storage_mode": "source-controlled",
+        "write_enabled": False,
+        "publish_method": "GitHub commit followed by Render auto-deploy",
+    }
+
+
+@app.get(f"{API_PREFIX}/operations/datasets", tags=["Vận hành dữ liệu"])
+def operations_datasets() -> dict[str, Any]:
+    files = sorted(DATA_ROOT.rglob("*.csv"), key=lambda path: (path.parent.as_posix().casefold(), path.name.casefold()))
+    return {"datasets": [dataset_description(path.name, path) | {"path": path.relative_to(ROOT).as_posix()} for path in files]}
+
+
+@app.get(f"{API_PREFIX}/operations/versions", tags=["Vận hành dữ liệu"])
+def operations_versions() -> dict[str, Any]:
+    return {"versions": version_history()}
+
+
+async def _candidate_body(request: Request) -> bytes:
+    content_length = request.headers.get("content-length")
+    if content_length and content_length.isdigit() and int(content_length) > 8 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Tệp CSV vượt giới hạn 8 MB.")
+    candidate = await request.body()
+    if len(candidate) > 8 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Tệp CSV vượt giới hạn 8 MB.")
+    return candidate
+
+
+@app.post(f"{API_PREFIX}/operations/validate", tags=["Vận hành dữ liệu"])
+async def validate_candidate(
+    request: Request,
+    dataset_path: str = Query(..., min_length=1, max_length=300),
+) -> dict[str, Any]:
+    """Non-mutating quality check; candidate content is held in memory only."""
+    candidate = await _candidate_body(request)
+    return validate_candidate_csv(dataset_path, candidate)
+
+
+@app.post(f"{API_PREFIX}/operations/package", tags=["Vận hành dữ liệu"])
+async def package_candidate(
+    request: Request,
+    dataset_path: str = Query(..., min_length=1, max_length=300),
+) -> Response:
+    """Build a downloadable GitHub-ready candidate package without publishing it."""
+    candidate = await _candidate_body(request)
+    report = validate_candidate_csv(dataset_path, candidate)
+    if not report["ok"]:
+        raise HTTPException(status_code=422, detail={"message": "Bản ứng viên chưa đạt kiểm tra.", "validation": report})
+
+    current = read_manifest(VERSION_FILE)
+    created = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    package_manifest = {
+        "release_type": "candidate",
+        "status": "not_published",
+        "created_utc": created,
+        "based_on_data_version": current.get("version_id"),
+        "target_path": dataset_path,
+        "candidate_sha256": report["candidate_sha256"],
+        "validation": {
+            "ok": report["ok"],
+            "rows": report["candidate_rows"],
+            "columns": report["columns"],
+            "missing_cells": report["missing_cells"],
+            "duplicate_rows": report["duplicate_rows"],
+            "warnings": report["warnings"],
+        },
+        "publication_note": "Tệp chỉ là đề xuất. Đối chiếu nguồn, cập nhật đúng đường dẫn trong GitHub, xem diff và để Render triển khai sau khi commit được duyệt.",
+    }
+    readme = (
+        "V-MEST - GÓI ĐỀ XUẤT CẬP NHẬT DỮ LIỆU\n\n"
+        "Tệp CSV trong gói nằm tại đúng đường dẫn repo ghi trong V-MEST_release_manifest.json.\n"
+        "Gói này chưa được phát hành và không thay đổi dữ liệu đang chạy.\n"
+        "Hãy đối chiếu nguồn, xem diff, commit vào GitHub; Render sẽ tự động deploy.\n"
+    )
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
+        archive.writestr(dataset_path, candidate)
+        archive.writestr("V-MEST_release_manifest.json", json.dumps(package_manifest, ensure_ascii=False, indent=2))
+        archive.writestr("README_phat_hanh.txt", readme)
+    return Response(
+        content=buffer.getvalue(),
+        media_type="application/zip",
+        headers={
+            "Content-Disposition": 'attachment; filename="vmest_data_candidate.zip"',
+            "Cache-Control": "no-store",
+            "X-Content-Type-Options": "nosniff",
+        },
+    )
 
 
 @app.get(f"{API_PREFIX}/summary", tags=["Phân tích"])
@@ -675,3 +1027,4 @@ def sector_detail(
         "note": "Không cộng hoạt động cấp cha với hoạt động cấp con. Bản ghi 2026 là tăng trưởng/cơ cấu theo quý hoặc 9 tháng, không phải mức GDP năm.",
         "data_cutoff": data_cutoff(),
     }
+
