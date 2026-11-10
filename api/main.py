@@ -306,10 +306,10 @@ def _project_info_markup() -> tuple[str, str]:
 
 @app.get("/", include_in_schema=False)
 def dashboard() -> Response:
-    """Serve a mobile-safe dashboard and keep obsolete overview notes hidden."""
-    page = ROOT / "index.html"
+    """Serve the refreshed dashboard, falling back to a legacy index file."""
+    page = ROOT / "dashboard.html"
     if not page.is_file():
-        page = ROOT / "dashboard.html"
+        page = ROOT / "index.html"
     if not page.is_file():
         raise HTTPException(status_code=404, detail="Chưa có tệp dashboard.html hoặc index.html.")
 
