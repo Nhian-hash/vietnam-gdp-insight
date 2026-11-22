@@ -17,6 +17,7 @@ on:
       - 'scripts/record_auto_refresh.py'
       - 'scripts/snapshot_data.py'
       - 'scripts/build_dashboard.py'
+      - 'scripts/update_dashboard_cpi.py'
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
@@ -77,6 +78,7 @@ jobs:
           python scripts/record_auto_refresh.py
           python scripts/snapshot_data.py
           python scripts/build_dashboard.py
+          python scripts/update_dashboard_cpi.py
 
       - name: Lưu phiên bản dữ liệu và kích hoạt Render
         if: steps.source-change.outputs.changed == 'true'

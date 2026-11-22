@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import csv
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,6 +52,21 @@ def main() -> None:
     require(all(float(row["chi_so_cpi"]) > 0 for row in cpi), "NSO CPI có giá trị không dương")
     require(cpi_dates[-1][:7] <= date.today().strftime("%Y-%m"), "NSO CPI có kỳ quan sát nằm trong tương lai")
 
+    cpi_release = read_rows("du_lieu_cpi_cong_bo_thang.csv")
+    release_dates = unique_nonempty(cpi_release, "thoi_gian", "NSO CPI công bố tháng")
+    require(release_dates == sorted(release_dates), "NSO CPI công bố tháng chưa được sắp xếp theo thời gian")
+    require(release_dates[-1][:7] <= date.today().strftime("%Y-%m"), "NSO CPI công bố có kỳ nằm trong tương lai")
+    latest_release_date = datetime.strptime(release_dates[-1], "%Y-%m-%d").date()
+    age_months = (date.today().year - latest_release_date.year) * 12 + date.today().month - latest_release_date.month
+    require(age_months <= 2, f"NSO CPI release đã cũ {age_months} tháng; dừng phát hành để cập nhật nguồn")
+    for row in cpi_release:
+        month_over_month = float(row["cpi_thay_doi_so_voi_thang_truoc_pct"])
+        year_over_year = float(row["cpi_thay_doi_cung_ky_pct"])
+        require(-15 <= month_over_month <= 15, f"CPI tháng ngoài ngưỡng kiểm tra tại {row['thoi_gian']}")
+        require(-20 <= year_over_year <= 30, f"CPI cùng kỳ ngoài ngưỡng kiểm tra tại {row['thoi_gian']}")
+        require(row.get("trang_thai") == "cong_bo_chinh_thuc_nso", f"CPI không mang trạng thái NSO chính thức tại {row['thoi_gian']}")
+        require(row.get("nguon", "").startswith("https://www.nso.gov.vn/"), f"Thiếu URL nguồn NSO tại {row['thoi_gian']}")
+
     fx = read_rows("du_lieu_ty_gia_usd_vnd.csv")
     fx_dates = unique_nonempty(fx, "thoi_gian", "IMF tỷ giá")
     require(len(fx) >= 120, "IMF tỷ giá trả về ít hơn 120 tháng")
@@ -72,8 +87,8 @@ def main() -> None:
         sys.stdout.reconfigure(encoding="utf-8")
     print(
         "Nguồn đạt kiểm tra: "
-        f"GDP World Bank đến {annual_years[-1]}, CPI NSO đến {cpi_dates[-1][:7]}, "
-        f"tỷ giá IMF đến {fx_dates[-1][:7]}."
+        f"GDP World Bank đến {annual_years[-1]}, CPI index NSO đến {cpi_dates[-1][:7]}, "
+        f"CPI công bố NSO đến {release_dates[-1][:7]}, tỷ giá IMF đến {fx_dates[-1][:7]}."
     )
 
 

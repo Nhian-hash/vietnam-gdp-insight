@@ -86,10 +86,31 @@ cpi = read_csv("du_lieu_lam_phat_cpi.csv")
 cpi["thoi_gian"] = pd.to_datetime(cpi["thoi_gian"], errors="coerce")
 cpi["chi_so_cpi"] = numcol(cpi, "chi_so_cpi")
 cpi = cpi.dropna(subset=["thoi_gian", "chi_so_cpi"]).sort_values("thoi_gian")
-cpi["tang_cpi_mom_pct"] = cpi["chi_so_cpi"].pct_change() * 100
-cpi["tang_cpi_yoy_pct"] = cpi["chi_so_cpi"].pct_change(12) * 100
-cpi["trang_thai_chi_so"] = np.where(cpi["thoi_gian"].dt.year.le(2025), "quan_sat_nso", "tai_tao_tu_ty_le_luy_ke_da_lam_tron")
-cpi["trang_thai_bien_dong"] = np.where(cpi["thoi_gian"].dt.year.le(2025), "tinh_tu_chi_so_quan_sat", "tinh_tu_chi_so_tai_tao_co_sai_so_lam_tron")
+# The CPI index has a large January 2025 discontinuity, consistent with a
+# base/definition break. Keep the index as published and compute rates only
+# within regimes separated by that discontinuity.
+raw_cpi_mom = cpi["chi_so_cpi"].pct_change() * 100
+cpi["diem_gay_do_goc"] = (
+    cpi["thoi_gian"].dt.month.eq(1) & raw_cpi_mom.abs().gt(5)
+)
+cpi["che_do_goc_chi_so"] = cpi["diem_gay_do_goc"].astype(int).cumsum()
+cpi["tang_cpi_mom_pct"] = (
+    cpi.groupby("che_do_goc_chi_so", sort=False)["chi_so_cpi"].pct_change() * 100
+)
+cpi["tang_cpi_yoy_pct"] = (
+    cpi.groupby("che_do_goc_chi_so", sort=False)["chi_so_cpi"].pct_change(12) * 100
+)
+cpi["trang_thai_chi_so"] = "quan_sat_nso_pxweb"
+cpi["trang_thai_bien_dong"] = np.where(
+    cpi["diem_gay_do_goc"],
+    "bo_trong_qua_diem_gay_do_goc",
+    np.where(cpi["tang_cpi_yoy_pct"].isna(), "khong_du_12_thang_cung_goc", "tinh_trong_cung_che_do_goc"),
+)
+cpi["ghi_chu_chuoi"] = np.where(
+    cpi["diem_gay_do_goc"],
+    "Phát hiện điểm gãy mức chỉ số tại tháng Một; không tính biến động băng qua điểm này.",
+    "Chỉ so sánh biến động khi các mốc có cùng chế độ gốc chỉ số.",
+)
 write_csv("du_lieu_cpi_phan_tich_thang.csv", cpi)
 
 trade = read_csv("du_lieu_xuat_nhap_khau.csv")
@@ -538,7 +559,7 @@ def domain_check(name: str, passed: bool, observed: int, expected: int, note: st
 
 quality("du_lieu_gdp_tong_hop.csv", gdp, ["nam"], None, f"GDP năm quan sát {int(gdp['nam'].min())}-{int(gdp['nam'].max())}; phạm vi theo nguồn đang dùng.")
 quality("du_lieu_ty_gia_usd_vnd.csv", fx, ["thoi_gian"], None, f"Tỷ giá tháng quan sát theo IMF đến {str(fx['thoi_gian'].max())[:7]}; không nội suy tháng thiếu.")
-quality("du_lieu_cpi_phan_tich_thang.csv", cpi, ["thoi_gian"], None, f"CPI quan sát theo NSO đến {str(cpi['thoi_gian'].max())[:7]}; không dựng tháng từ tỷ lệ lũy kế.")
+quality("du_lieu_cpi_phan_tich_thang.csv", cpi, ["thoi_gian"], None, f"CPI PXWeb quan sát; biến động được để trống qua điểm phát hiện đổi gốc chỉ số.")
 quality("du_lieu_xuat_nhap_khau_thang_2026.csv", trade26, ["thoi_gian"], 9, "NSO sơ bộ Jan-Sep 2026; USD chuyển đổi từ 1000 USD.")
 quality("du_lieu_san_xuat_iip_thang_2026.csv", read_csv("du_lieu_san_xuat_iip_thang_2026.csv"), ["thoi_gian"], 9, "IIP 2015=100; chỉ Sep có tỷ lệ MoM/YoY trong bảng nguồn.")
 quality("du_lieu_grdp_63_tinh_thanh.csv", grdp, ["ten_tinh", "nam", "loai_dia_ban"], 552, "63 tỉnh cũ + 6 vùng thống kê, 2018-2025; vùng không cộng cùng tỉnh.")

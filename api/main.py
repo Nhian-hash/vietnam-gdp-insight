@@ -84,11 +84,17 @@ DATASET_INFO: dict[str, dict[str, str]] = {
         "source": "NSO, World Bank, IMF và FRED; xem manifest nguồn",
         "description": "GDP, thương mại, CPI, FDI, bán lẻ và tỷ giá; có cột trạng thái và đơn vị.",
     },
-    "du_lieu_cpi_phan_tich_thang.csv": {
-        "title": "CPI và lạm phát theo tháng",
+    "du_lieu_cpi_cong_bo_thang.csv": {
+        "title": "Tỷ lệ CPI theo công bố hàng tháng",
         "frequency": "monthly",
-        "source": "NSO PXWeb; số 2026 tái tạo từ mức tăng CPI đã công bố",
-        "description": "Chỉ số CPI và biến động tháng/năm; cờ trạng thái phân biệt quan sát và giá trị tái tạo.",
+        "source": "Cục Thống kê Việt Nam (NSO), thông cáo giá tiêu dùng",
+        "description": "Các tỷ lệ CPI công bố theo tháng được lưu riêng với chỉ số mức; không tái tạo mức chỉ số hoặc nối qua đổi gốc.",
+    },
+    "du_lieu_cpi_phan_tich_thang.csv": {
+        "title": "Chỉ số CPI và biến động cùng gốc",
+        "frequency": "monthly",
+        "source": "NSO PXWeb E11.07",
+        "description": "Mức CPI quan sát; biến động được để trống qua điểm phát hiện đổi gốc chỉ số.",
     },
     "du_lieu_xuat_nhap_khau_thang_2026.csv": {
         "title": "Xuất nhập khẩu năm 2026",
@@ -861,7 +867,12 @@ def summary() -> dict[str, Any]:
     _, quarter_rows = read_csv_rows(csv_path("du_lieu_tang_truong_gdp_quy.csv"))
     quarterly = max(quarter_rows, key=lambda row: str(row.get("thoi_gian") or ""), default=None)
     _, cpi_rows = read_csv_rows(csv_path("du_lieu_cpi_phan_tich_thang.csv"))
-    cpi = max(cpi_rows, key=lambda row: str(row.get("thoi_gian") or ""), default=None)
+    cpi_index = max(cpi_rows, key=lambda row: str(row.get("thoi_gian") or ""), default=None)
+    try:
+        _, cpi_release_rows = read_csv_rows(csv_path("du_lieu_cpi_cong_bo_thang.csv"))
+    except HTTPException:
+        cpi_release_rows = []
+    cpi = max(cpi_release_rows, key=lambda row: str(row.get("thoi_gian") or ""), default=None)
     return {
         "data_cutoff": data_cutoff(),
         "latest_annual_gdp": {
@@ -879,9 +890,12 @@ def summary() -> dict[str, Any]:
         },
         "latest_cpi": {
             "period": cpi.get("thoi_gian") if cpi else None,
-            "index": cpi.get("chi_so_cpi") if cpi else None,
-            "inflation_yoy_percent": cpi.get("tang_cpi_yoy_pct") if cpi else None,
-            "status": cpi.get("trang_thai_chi_so") if cpi else None,
+            "index_period": cpi_index.get("thoi_gian") if cpi_index else None,
+            "index": cpi_index.get("chi_so_cpi") if cpi_index else None,
+            "month_over_month_percent": cpi.get("cpi_thay_doi_so_voi_thang_truoc_pct") if cpi else None,
+            "inflation_yoy_percent": cpi.get("cpi_thay_doi_cung_ky_pct") if cpi else None,
+            "status": cpi.get("trang_thai") if cpi else None,
+            "source_url": cpi.get("nguon") if cpi else None,
         },
         "forecast_note": "Dự báo đến 2030 là kịch bản mô hình, không phải số liệu chính thức.",
     }

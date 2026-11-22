@@ -22,13 +22,18 @@
       "source": "NSO/GSO",
       "kind": "raw source"
     },
-    "du_lieu_ban_le_tieu_dung.csv": {
-      "path": "data/nso/processed/du_lieu_ban_le_tieu_dung.csv",
-      "source": "NSO/GSO",
-      "kind": "processed source series"
+    "doi_chieu_gdp_thuc_quy_va_nam.csv": {
+      "path": "data/derived/quality/doi_chieu_gdp_thuc_quy_va_nam.csv",
+      "source": "Derived from NSDP",
+      "kind": "quality comparison"
     },
     "du_lieu_ban_le_tieu_dung_thang_2026.csv": {
       "path": "data/nso/processed/du_lieu_ban_le_tieu_dung_thang_2026.csv",
+      "source": "NSO/GSO",
+      "kind": "processed source series"
+    },
+    "du_lieu_ban_le_tieu_dung.csv": {
+      "path": "data/nso/processed/du_lieu_ban_le_tieu_dung.csv",
       "source": "NSO/GSO",
       "kind": "processed source series"
     },
@@ -41,6 +46,11 @@
       "path": "data/derived/combined/du_lieu_chi_so_kinh_te_hang_nam.csv",
       "source": "Phân tích hệ thống",
       "kind": "derived"
+    },
+    "du_lieu_cpi_cong_bo_thang.csv": {
+      "path": "data/nso/processed/du_lieu_cpi_cong_bo_thang.csv",
+      "source": "NSO/GSO",
+      "kind": "processed official monthly release rates"
     },
     "du_lieu_cpi_phan_tich_thang.csv": {
       "path": "data/derived/macro/du_lieu_cpi_phan_tich_thang.csv",
@@ -66,6 +76,11 @@
       "path": "data/nso/processed/du_lieu_dong_gop_tfp.csv",
       "source": "NSO/GSO",
       "kind": "processed source series"
+    },
+    "du_lieu_du_bao_gdp_quy_backtest.csv": {
+      "path": "data/derived/forecast/du_lieu_du_bao_gdp_quy_backtest.csv",
+      "source": "Derived from NSDP",
+      "kind": "forecast evaluation"
     },
     "du_lieu_du_bao_gdp_thuc_den_2030.csv": {
       "path": "data/derived/forecast/du_lieu_du_bao_gdp_thuc_den_2030.csv",
@@ -107,13 +122,13 @@
       "source": "NSO/GSO",
       "kind": "processed source series"
     },
-    "du_lieu_gdp_nganh_chi_tiet.csv": {
-      "path": "data/nso/processed/du_lieu_gdp_nganh_chi_tiet.csv",
+    "du_lieu_gdp_nganh_chi_tiet_2026.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_nganh_chi_tiet_2026.csv",
       "source": "NSO/GSO",
       "kind": "processed source series"
     },
-    "du_lieu_gdp_nganh_chi_tiet_2026.csv": {
-      "path": "data/nso/processed/du_lieu_gdp_nganh_chi_tiet_2026.csv",
+    "du_lieu_gdp_nganh_chi_tiet.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_nganh_chi_tiet.csv",
       "source": "NSO/GSO",
       "kind": "processed source series"
     },
@@ -121,6 +136,16 @@
       "path": "data/world_bank/processed/du_lieu_gdp_quoc_gia_co_cau_nganh.csv",
       "source": "World Bank",
       "kind": "processed source series"
+    },
+    "du_lieu_gdp_quy_muc_thuc_gia_2010.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2010.csv",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "processed observed data"
+    },
+    "du_lieu_gdp_quy_muc_thuc_gia_2020.csv": {
+      "path": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2020.csv",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "processed observed data"
     },
     "du_lieu_gdp_theo_chi_tieu.csv": {
       "path": "data/nso/processed/du_lieu_gdp_theo_chi_tieu.csv",
@@ -162,14 +187,14 @@
       "source": "NSO/GSO",
       "kind": "processed source series"
     },
-    "du_lieu_lam_phat_cpi.csv": {
-      "path": "data/nso/processed/du_lieu_lam_phat_cpi.csv",
-      "source": "NSO/GSO",
-      "kind": "processed source series"
-    },
     "du_lieu_lam_phat_cpi_nam_lich_su.csv": {
       "path": "data/world_bank/processed/du_lieu_lam_phat_cpi_nam_lich_su.csv",
       "source": "World Bank",
+      "kind": "processed source series"
+    },
+    "du_lieu_lam_phat_cpi.csv": {
+      "path": "data/nso/processed/du_lieu_lam_phat_cpi.csv",
+      "source": "NSO/GSO",
       "kind": "processed source series"
     },
     "du_lieu_lao_dong_theo_nganh.csv": {
@@ -227,13 +252,13 @@
       "source": "Phân tích hệ thống",
       "kind": "derived"
     },
-    "du_lieu_so_sanh_grdp_63_tinh_2025.csv": {
-      "path": "data/derived/comparison/du_lieu_so_sanh_grdp_63_tinh_2025.csv",
+    "du_lieu_so_sanh_grdp_6_vung_2025.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_grdp_6_vung_2025.csv",
       "source": "Phân tích hệ thống",
       "kind": "derived"
     },
-    "du_lieu_so_sanh_grdp_6_vung_2025.csv": {
-      "path": "data/derived/comparison/du_lieu_so_sanh_grdp_6_vung_2025.csv",
+    "du_lieu_so_sanh_grdp_63_tinh_2025.csv": {
+      "path": "data/derived/comparison/du_lieu_so_sanh_grdp_63_tinh_2025.csv",
       "source": "Phân tích hệ thống",
       "kind": "derived"
     },
@@ -287,13 +312,13 @@
       "source": "IMF",
       "kind": "processed source series"
     },
-    "du_lieu_xuat_nhap_khau.csv": {
-      "path": "data/nso/processed/du_lieu_xuat_nhap_khau.csv",
+    "du_lieu_xuat_nhap_khau_thang_2026.csv": {
+      "path": "data/nso/processed/du_lieu_xuat_nhap_khau_thang_2026.csv",
       "source": "NSO/GSO",
       "kind": "processed source series"
     },
-    "du_lieu_xuat_nhap_khau_thang_2026.csv": {
-      "path": "data/nso/processed/du_lieu_xuat_nhap_khau_thang_2026.csv",
+    "du_lieu_xuat_nhap_khau.csv": {
+      "path": "data/nso/processed/du_lieu_xuat_nhap_khau.csv",
       "source": "NSO/GSO",
       "kind": "processed source series"
     },
@@ -352,6 +377,11 @@
       "source": "Phân tích hệ thống",
       "kind": "derived"
     },
+    "GDP_VNM.xlsx": {
+      "path": "data/nso/raw/quarterly/GDP_VNM.xlsx",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "raw source"
+    },
     "IIP-Eng9.xlsx": {
       "path": "data/nso/raw/monthly/IIP-Eng9.xlsx",
       "source": "NSO/GSO",
@@ -396,6 +426,11 @@
       "path": "data/nso/raw/expanded/labor_productivity.csv",
       "source": "NSO/GSO",
       "kind": "raw source"
+    },
+    "manifest_phan_tich_gdp_quy.json": {
+      "path": "data/derived/forecast/manifest_phan_tich_gdp_quy.json",
+      "source": "Derived from NSDP",
+      "kind": "analysis metadata"
     },
     "nso_fdi_annual.csv": {
       "path": "data/nso/raw/pxweb/nso_fdi_annual.csv",
@@ -442,10 +477,25 @@
       "source": "NSO/GSO",
       "kind": "raw source"
     },
+    "quarterly_gdp_download_manifest.json": {
+      "path": "data/nso/raw/quarterly/quarterly_gdp_download_manifest.json",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "download metadata"
+    },
+    "quarterly_gdp_source_manifest.json": {
+      "path": "data/nso/processed/quarterly_gdp_source_manifest.json",
+      "source": "NSDP / Cục Thống kê",
+      "kind": "dataset metadata"
+    },
     "so_sanh_hieu_qua_mo_hinh_du_bao.csv": {
       "path": "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_du_bao.csv",
       "source": "Phân tích hệ thống",
       "kind": "derived"
+    },
+    "so_sanh_hieu_qua_mo_hinh_gdp_quy.csv": {
+      "path": "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_gdp_quy.csv",
+      "source": "Derived from NSDP",
+      "kind": "forecast evaluation"
     },
     "so_sanh_hieu_qua_mo_hinh_theo_chan_troi.csv": {
       "path": "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_theo_chan_troi.csv",
@@ -476,51 +526,6 @@
       "path": "data/world_bank/raw/expanded/world_bank_commodity_monthly.xlsx",
       "source": "World Bank",
       "kind": "raw source"
-    },
-    "GDP_VNM.xlsx": {
-      "path": "data/nso/raw/quarterly/GDP_VNM.xlsx",
-      "source": "NSDP / Cục Thống kê",
-      "kind": "raw source"
-    },
-    "quarterly_gdp_download_manifest.json": {
-      "path": "data/nso/raw/quarterly/quarterly_gdp_download_manifest.json",
-      "source": "NSDP / Cục Thống kê",
-      "kind": "download metadata"
-    },
-    "quarterly_gdp_source_manifest.json": {
-      "path": "data/nso/processed/quarterly_gdp_source_manifest.json",
-      "source": "NSDP / Cục Thống kê",
-      "kind": "dataset metadata"
-    },
-    "du_lieu_gdp_quy_muc_thuc_gia_2010.csv": {
-      "path": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2010.csv",
-      "source": "NSDP / Cục Thống kê",
-      "kind": "processed observed data"
-    },
-    "du_lieu_gdp_quy_muc_thuc_gia_2020.csv": {
-      "path": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2020.csv",
-      "source": "NSDP / Cục Thống kê",
-      "kind": "processed observed data"
-    },
-    "doi_chieu_gdp_thuc_quy_va_nam.csv": {
-      "path": "data/derived/quality/doi_chieu_gdp_thuc_quy_va_nam.csv",
-      "source": "Derived from NSDP",
-      "kind": "quality comparison"
-    },
-    "du_lieu_du_bao_gdp_quy_backtest.csv": {
-      "path": "data/derived/forecast/du_lieu_du_bao_gdp_quy_backtest.csv",
-      "source": "Derived from NSDP",
-      "kind": "forecast evaluation"
-    },
-    "so_sanh_hieu_qua_mo_hinh_gdp_quy.csv": {
-      "path": "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_gdp_quy.csv",
-      "source": "Derived from NSDP",
-      "kind": "forecast evaluation"
-    },
-    "manifest_phan_tich_gdp_quy.json": {
-      "path": "data/derived/forecast/manifest_phan_tich_gdp_quy.json",
-      "source": "Derived from NSDP",
-      "kind": "analysis metadata"
     }
   }
 }

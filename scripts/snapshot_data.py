@@ -31,6 +31,8 @@ SNAPSHOT_FILES = [
     "du_lieu_gdp_thuc_va_tang_truong.csv",
     "du_lieu_gdp_co_cau_3_nganh.csv",
     "du_lieu_tang_truong_gdp_quy.csv",
+    "du_lieu_lam_phat_cpi.csv",
+    "du_lieu_cpi_cong_bo_thang.csv",
     "du_lieu_cpi_phan_tich_thang.csv",
     "du_lieu_ty_gia_usd_vnd.csv",
     "du_lieu_xuat_nhap_khau_thang_2026.csv",

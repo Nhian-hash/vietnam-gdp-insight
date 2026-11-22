@@ -252,22 +252,25 @@ async function main() {
       summary.match(/(\d+(?:[.,]\d+)?)\s*%\s*(?:year[- ]on[- ]year|year on year)/i) ??
       summary.match(/(\d+(?:[.,]\d+)?)\s*%\s+(?:over|compared (?:with|to))\s+(?:the\s+)?same period (?:last year|of the previous year)/i);
     const decemberMatch = summary.match(/(\d+(?:[.,]\d+)?)\s*%\s+compared (?:with|to) December/i);
-    const averageSentence = paragraphs.find(text => /on average/i.test(text) && /consumer price index/i.test(text)) ?? '';
-    const averageMatch = averageSentence.match(/consumer price index[^.]*?(\d+(?:[.,]\d+)?)\s*%/i);
+    const averageSentence = paragraphs
+      .flatMap(text => text.split(/(?<=[.!?])\s+/))
+      .find(text => /on average/i.test(text) && /(?:consumer price index|\bCPI\b)/i.test(text) && /\bmonths?\b/i.test(text)) ?? '';
+    const averageMatch = averageSentence.match(/(?:consumer price index|\bCPI\b)[^.]*?(\d+(?:[.,]\d+)?)\s*%/i);
     const coreMatch = averageSentence.match(/core inflation[^.]*?(\d+(?:[.,]\d+)?)\s*%/i);
     if (!monthlyMatch || !annualMatch) throw new Error(`NSO CPI release ${item.period}: cannot parse official month-on-month or year-on-year rate`);
     const toNumber = match => match ? Number(match[1].replace(',', '.')) : '';
+    const formatReported = value => value === '' ? '' : fmtNumber(value, 6);
     const monthlyText = monthlySentence.toLowerCase();
     const monthlySign = /decreas|fell|declin|drop|down/.test(monthlyText) ? -1 : 1;
     reportedReleases.push([
       item.period,
       item.period.slice(0, 4),
       item.period.slice(5, 7),
-      fmtNumber(monthlySign * toNumber(monthlyMatch), 6),
-      fmtNumber(toNumber(decemberMatch), 6),
-      fmtNumber(toNumber(annualMatch), 6),
-      fmtNumber(toNumber(averageMatch), 6),
-      fmtNumber(toNumber(coreMatch), 6),
+      formatReported(monthlySign * toNumber(monthlyMatch)),
+      formatReported(toNumber(decemberMatch)),
+      formatReported(toNumber(annualMatch)),
+      formatReported(toNumber(averageMatch)),
+      formatReported(toNumber(coreMatch)),
       'cong_bo_chinh_thuc_nso',
       item.issueDate,
       item.url,
@@ -303,7 +306,8 @@ async function main() {
     ['du_lieu_tang_truong_gdp_quy.csv', '2026-Q1..Q3', 'Tang truong GDP so voi cung ky theo uoc tinh chinh thuc NSO; khong phai quy mo GDP'],
     ['du_lieu_gdp_quoc_gia_co_cau_nganh.csv', `${years[0]}-${years.at(-1)}`, 'GDP va gia tri gia tang nganh theo World Bank WDI; gia tri nganh de trong neu nguon khong co quan sat'],
     ['du_lieu_gdp_thuc_va_tang_truong.csv', `${years[0]}-${Math.max(...gdpReal2015.keys())}`, 'GDP thuc USD co dinh nam 2015 va tang truong GDP thuc theo World Bank WDI'],
-    ['du_lieu_lam_phat_cpi.csv', `${earliestCpiPeriod}..${latestCpiPeriod}`, 'Chi so CPI quan sat theo NSO PXWeb; khong noi suy tu ty le cong don']
+    ['du_lieu_lam_phat_cpi.csv', `${earliestCpiPeriod}..${latestCpiPeriod}`, 'Chi so CPI quan sat theo NSO PXWeb; khong noi suy tu ty le cong don'],
+    ['du_lieu_cpi_cong_bo_thang.csv', `${allReleases[0]?.[0] ?? ''}..${latestReportedCpi?.[0] ?? ''}`, 'Ty le CPI do thong cao NSO cong bo; luu rieng voi muc chi so PXWeb']
   ];
   await writeDataset('trang_thai_du_lieu.csv', csv(status));
   const quarterSource = parseCsv(await readFile(await dataPath('du_lieu_tang_truong_gdp_quy.csv'), 'utf8'));
