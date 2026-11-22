@@ -263,19 +263,12 @@
     }
   }
 
-  document.querySelectorAll('.nav-link[data-page="model-arena"]').forEach((button) => {
-    // Capture before the legacy dashboard handler, whose page metadata predates this page.
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      document.querySelectorAll(".page").forEach((page) => page.classList.toggle("active", page.id === "model-arena"));
-      document.querySelectorAll(".nav-link").forEach((link) => link.classList.toggle("active", link === button));
-      $("page-footer")?.classList.remove("active");
-      $("top-title").textContent = "Đấu trường kiểm định dự báo";
-      $("top-subtitle").textContent = "Kiểm thử ngoài mẫu GDP thực theo mốc lịch sử";
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      loadScenario();
-    }, true);
+  // Keep the detailed cutoff evaluation collapsed until requested. Rendering
+  // after expansion ensures the chart measures its visible container correctly.
+  $("model-arena").addEventListener("toggle", () => {
+    if (!$("model-arena").open) return;
+    if (!currentResponse) loadScenario();
+    else { renderLegend(); renderScoreboard(); drawChart(); }
   });
   $("arena-cutoff").addEventListener("change", loadScenario);
   $("arena-horizon").addEventListener("change", loadScenario);

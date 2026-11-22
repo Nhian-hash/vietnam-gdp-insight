@@ -1,9 +1,12 @@
-<button type="button" class="nav-link" data-page="model-arena"><span class="nav-icon">◎</span>Đấu trường kiểm định</button>
-<section id="model-arena" class="section page">
+<details id="model-arena" class="arena-subsection">
+  <summary class="arena-summary">
+    <span class="arena-summary-copy"><strong>Kiểm định theo mốc lịch sử</strong><small>Đánh giá dự báo tại các giai đoạn 2008, 2019 và 2021</small></span>
+    <span class="arena-summary-action">Mở phần kiểm định</span>
+  </summary>
+  <div class="arena-content">
   <div class="arena-intro">
     <div>
-      <h2>Đấu trường kiểm định dự báo theo mốc lịch sử</h2>
-      <p>Đặt điểm cắt trong quá khứ, huấn luyện lại chỉ bằng lịch sử đến mốc đó và đối chiếu các dự báo với GDP thực đã công bố.</p>
+      <p>Chọn mốc và chân trời để xem đường dự báo so với GDP thực tế sau mốc cắt.</p>
     </div>
     <div class="arena-controls">
       <label class="sub" for="arena-cutoff">Kịch bản</label>
@@ -30,19 +33,20 @@
         <label class="arena-toggle"><input id="arena-model-GRU" type="checkbox" checked>GRU</label>
         <label class="arena-toggle"><input id="arena-model-LSTM" type="checkbox" checked>LSTM</label>
       </div>
-      <div id="arena-status" class="arena-status" role="status" aria-live="polite">Chọn mục này để tải kết quả đã tiền tính.</div>
+      <div id="arena-status" class="arena-status" role="status" aria-live="polite">Mở Training Lab để tải kết quả đã tiền tính.</div>
       <div class="arena-chart-wrap"><canvas id="arena-chart" role="img" aria-label="GDP thực tế và các đường dự báo từ mốc cắt lịch sử"></canvas><div id="arena-tooltip" class="arena-tooltip"></div></div>
       <div id="arena-legend" class="arena-legend" aria-label="Chú giải biểu đồ"></div>
       <div id="arena-method-meta" class="footnote">World Bank WDI · NY.GDP.MKTP.KD · GDP thực hằng năm.</div>
     </article>
     <article class="panel">
-      <div class="section-head"><div><div class="panel-title">Bảng xếp hạng trên cửa sổ đang chọn</div><div class="panel-sub">Chỉ tính các năm có GDP thực tế để đối chiếu</div></div>
+      <div class="section-head"><div><div class="panel-title">Xếp hạng trên cửa sổ đang chọn</div><div class="panel-sub">Chỉ tính các năm có GDP thực tế để đối chiếu</div></div>
         <select id="arena-rank-by" class="select" aria-label="Sắp xếp xếp hạng theo sai số"><option value="rmse">RMSE thấp nhất</option><option value="mae">MAE thấp nhất</option></select>
       </div>
       <div class="arena-table table-wrap"><table class="table"><thead><tr><th>#</th><th>Mô hình</th><th>n</th><th>MAE</th><th>RMSE</th><th>MAPE</th><th>Phủ 95%</th></tr></thead><tbody id="arena-scoreboard"></tbody></table></div>
-      <div class="arena-note"><strong>Đọc kết quả:</strong> MAE/RMSE hiển thị theo tỷ USD cố định 2015; MAPE theo phần trăm. “n” là số năm holdout có số thực tế. Cutoff hiện tại chưa có dữ liệu tương lai nên không xếp hạng mô hình.</div>
+      <div class="arena-note"><strong>Đọc kết quả:</strong> MAE/RMSE hiển thị theo tỷ USD cố định 2015; MAPE theo phần trăm. “n” là số năm holdout có số thực tế. Mốc hiện tại chưa có dữ liệu tương lai nên không xếp hạng mô hình.</div>
       <div id="arena-caveat" class="arena-note">Các điểm kiểm thử tại mốc cắt lịch sử là kịch bản hữu hạn, không đại diện mọi cú sốc. Khoảng và độ phủ 95% của SARIMAX cần được đọc cùng số lượng điểm kiểm thử.</div>
     </article>
   </div>
-</section>
+  </div>
+</details>
 

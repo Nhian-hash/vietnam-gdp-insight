@@ -1,8 +1,8 @@
-# Đấu trường kiểm định dự báo theo mốc lịch sử
+# Kiểm định dự báo theo mốc lịch sử trong Training Lab
 
 ## Mục tiêu và chuỗi GDP
 
-Đấu trường dùng biến mục tiêu GDP thực Việt Nam theo năm trong `data/world_bank/processed/du_lieu_gdp_thuc_va_tang_truong.csv`. Chuỗi có 41 quan sát từ 1985 đến 2025, đơn vị USD cố định năm 2015, chỉ tiêu World Bank WDI `NY.GDP.MKTP.KD`. Không nội suy thêm quan sát để backtest.
+Phần kiểm định lịch sử nằm bên trong Training Lab, dùng biến mục tiêu GDP thực Việt Nam theo năm trong `data/world_bank/processed/du_lieu_gdp_thuc_va_tang_truong.csv`. Chuỗi có 41 quan sát từ 1985 đến 2025, đơn vị USD cố định năm 2015, chỉ tiêu World Bank WDI `NY.GDP.MKTP.KD`. Không nội suy thêm quan sát để backtest.
 
 ## Cách tái tạo artifact
 

@@ -161,7 +161,9 @@ Pipeline `refresh_system.ps1` nay tải thêm PXWeb và World Bank Pink Sheet b�
 - Mở `http://127.0.0.1:8000/` để dùng toàn bộ hệ thống; `http://127.0.0.1:8000/docs` dành cho xem/thử API.
 - API có danh mục/đọc dữ liệu, tổng quan vĩ mô, dự báo 2030, so sánh mô hình, GRDP và truy vấn chuyên sâu ba khu vực kinh tế. Hướng dẫn chạy: `docs/guides/FASTAPI_LOCAL.md`.
 
-## Đấu trường kiểm định dự báo theo mốc lịch sử
+## Kiểm định theo mốc lịch sử trong Training Lab
+
+Phần kiểm định lịch sử nằm thu gọn bên trong Training Lab để dùng chung một khu vực so sánh mô hình, không tạo thêm mục điều hướng riêng.
 
 Tạo lại artifact GDP năm trước khi phát hành phiên bản mới:
 
@@ -171,3 +173,4 @@ python scripts/build_dashboard.py
 ```
 
 Artifact `data/derived/forecast/backtest_arena.json` được FastAPI phục vụ qua `GET /api/v1/backtest-arena?cutoff_year=2019&horizon=3`. Script dùng GDP thực World Bank WDI (`NY.GDP.MKTP.KD`, USD cố định 2015, năm 1985–2025), kiểm định tại cutoff 2008/2019/2021 và dự báo tương lai tại `LATEST`. Xem `docs/guides/DOU_TRUONG_KIEM_DINH.md` để biết chi tiết phương pháp và giới hạn.
+
