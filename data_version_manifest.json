@@ -1,15 +1,16 @@
 {
-  "version_id": "gdp-08d39951e957",
-  "fingerprint_sha256": "08d39951e957c922666932b6de4ffadb69ad6a28bc5c690792001efc56adba93",
-  "created_utc": "2026-11-22T11:56:03Z",
-  "retrieved_at_utc": "2026-11-22T11:54:19.695Z",
-  "base_sources_retrieved_at_utc": "2026-11-22T11:53:57.393Z",
-  "expanded_sources_retrieved_at_utc": "2026-11-22T11:54:19.695Z",
+  "version_id": "gdp-e1104a9fdb6b",
+  "fingerprint_sha256": "e1104a9fdb6bb92e28f46ebdfc0608273bcf0533342cce9fd426c20095787bbd",
+  "created_utc": "2026-11-22T14:10:23Z",
+  "retrieved_at_utc": "2026-11-22T14:08:42.214Z",
+  "base_sources_retrieved_at_utc": "2026-11-22T14:08:20.382Z",
+  "expanded_sources_retrieved_at_utc": "2026-11-22T14:08:42.214Z",
   "quarterly_gdp_source_retrieved_at_utc": "2026-11-10T16:07:20Z",
   "data_cutoff": {
     "annual_gdp": 2025,
     "quarterly_gdp_growth": "2026-Q3",
     "cpi": "2025-12",
+    "cpi_official_release": "2026-10",
     "fx_monthly": "2026-08",
     "grdp_local": "2018-2025",
     "trade_annual": 2025,
@@ -22,7 +23,7 @@
     "iip_monthly": "2026-09",
     "cpi_annual_wdi": 2025
   },
-  "archive": "data_versions/gdp-08d39951e957.zip",
+  "archive": "data_versions/gdp-e1104a9fdb6b.zip",
   "files": [
     {
       "file": "GDP_VNM.xlsx",
@@ -81,8 +82,8 @@
     {
       "file": "kiem_tra_chat_luong_du_lieu.csv",
       "path": "data/derived/quality/kiem_tra_chat_luong_du_lieu.csv",
-      "bytes": 8166,
-      "sha256": "793bc4018b07292baf07f0aeef80cbe0d11adafbce82702c630e08e5a5412c95"
+      "bytes": 8189,
+      "sha256": "298021d0cf5280110386ec67e2fc67b5ea4f6180b54e5c0f814da90fef04de31"
     },
     {
       "file": "GDP_Vietnam_Annual.csv",
@@ -115,10 +116,22 @@
       "sha256": "02405dfc0191094e6b3e5a0c30993e281f7f85a3fc27440167c13b75aae0d88f"
     },
     {
+      "file": "du_lieu_lam_phat_cpi.csv",
+      "path": "data/nso/processed/du_lieu_lam_phat_cpi.csv",
+      "bytes": 1383,
+      "sha256": "591337a65027e2ae5aa4847c420f42e13db7380694ce7dca8103d9723ec5aba0"
+    },
+    {
+      "file": "du_lieu_cpi_cong_bo_thang.csv",
+      "path": "data/nso/processed/du_lieu_cpi_cong_bo_thang.csv",
+      "bytes": 1995,
+      "sha256": "447e79a904a84ed51fb6e8efda897f4ede3d76e3a30ae9e04f51ae140ff1e750"
+    },
+    {
       "file": "du_lieu_cpi_phan_tich_thang.csv",
       "path": "data/derived/macro/du_lieu_cpi_phan_tich_thang.csv",
-      "bytes": 5985,
-      "sha256": "f9490f7904f9100ae479f751e487a91a8a15e196baf0e588d45b0d619f1ed825"
+      "bytes": 13252,
+      "sha256": "ba30c555f0e906c4a14328f504728b258ae369de7379dd8edb0a767fa48271cc"
     },
     {
       "file": "du_lieu_ty_gia_usd_vnd.csv",

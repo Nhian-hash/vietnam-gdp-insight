@@ -1,5 +1,5 @@
 {
-  "retrieved_at_utc": "2026-11-22T11:54:19.695Z",
+  "retrieved_at_utc": "2026-11-22T14:08:42.214Z",
   "method": "PXWeb CSV download with all table selections; original source responses retained as-is. World Bank Commodity Markets monthly workbook and NSO Q3/9M GDP release page retained as source files.",
   "sources": {
     "gdp_constant_sector": "https://pxweb.nso.gov.vn/pxweb/en/E%2003.%20National%20Accounts%20and%20State%20budget/E%2003.%20National%20Accounts%20and%20State%20budget__Px_E_03/E03.03.px/",

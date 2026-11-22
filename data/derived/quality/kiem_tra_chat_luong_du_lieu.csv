@@ -1,7 +1,7 @@
 ﻿tep,so_dong_du_lieu,so_dong_trung_khoa,so_o_thieu_tren_khoa,so_o_thieu,so_dong_ky_vong,ket_qua,ghi_chu
 du_lieu_gdp_tong_hop.csv,41,0,0,45,,dat,GDP năm quan sát 1985-2025; phạm vi theo nguồn đang dùng.
 du_lieu_ty_gia_usd_vnd.csv,514,0,0,26,,dat,Tỷ giá tháng quan sát theo IMF đến 2026-08; không nội suy tháng thiếu.
-du_lieu_cpi_phan_tich_thang.csv,72,0,0,13,,dat,CPI quan sát theo NSO đến 2025-12; không dựng tháng từ tỷ lệ lũy kế.
+du_lieu_cpi_phan_tich_thang.csv,72,0,0,26,,dat,CPI PXWeb quan sát; biến động được để trống qua điểm phát hiện đổi gốc chỉ số.
 du_lieu_xuat_nhap_khau_thang_2026.csv,9,0,0,2,9.0,dat,NSO sơ bộ Jan-Sep 2026; USD chuyển đổi từ 1000 USD.
 du_lieu_san_xuat_iip_thang_2026.csv,9,0,0,16,9.0,dat,IIP 2015=100; chỉ Sep có tỷ lệ MoM/YoY trong bảng nguồn.
 du_lieu_grdp_63_tinh_thanh.csv,552,0,0,48,552.0,dat,"63 tỉnh cũ + 6 vùng thống kê, 2018-2025; vùng không cộng cùng tỉnh."

@@ -5,3 +5,4 @@ du_lieu_tang_truong_gdp_quy.csv,2026-Q1..Q3,Tang truong GDP so voi cung ky theo 
 du_lieu_gdp_quoc_gia_co_cau_nganh.csv,1985-2025,GDP va gia tri gia tang nganh theo World Bank WDI; gia tri nganh de trong neu nguon khong co quan sat
 du_lieu_gdp_thuc_va_tang_truong.csv,1985-2025,GDP thuc USD co dinh nam 2015 va tang truong GDP thuc theo World Bank WDI
 du_lieu_lam_phat_cpi.csv,2020-01-01..2025-12-01,Chi so CPI quan sat theo NSO PXWeb; khong noi suy tu ty le cong don
+du_lieu_cpi_cong_bo_thang.csv,2026-06-01..2026-10-01,Ty le CPI do thong cao NSO cong bo; luu rieng voi muc chi so PXWeb
