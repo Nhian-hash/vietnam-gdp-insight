@@ -56,6 +56,20 @@ class InsightRulesTests(unittest.TestCase):
         self.assertFalse(any("bình quân giai đoạn" in statement for statement in statements))
         self.assert_no_causal_terms(statements)
 
+    def test_overview_rank_counts_zero_growth_above_a_negative_latest_value(self) -> None:
+        statements = generate_insights(
+            "overview",
+            {
+                "growth_rows": [
+                    {"nam": 2020, "tang_truong_gdp_thuc_pct": 0.0},
+                    {"nam": 2021, "tang_truong_gdp_thuc_pct": -1.0},
+                ],
+                "source": "World Bank WDI",
+            },
+        )
+        self.assertIn("xếp thứ 2/2", statements[-1])
+        self.assert_no_causal_terms(statements)
+
     def test_overview_omits_rules_without_valid_growth_data(self) -> None:
         self.assertEqual(
             generate_insights("overview", {"growth_rows": [{"nam": 2025, "tang_truong_gdp_thuc_pct": None}]}),
