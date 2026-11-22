@@ -1,5 +1,5 @@
 {
-  "analysis_date": "2026-11-10",
+  "analysis_date": "2026-11-22",
   "forecast_target": "World Bank annual real GDP, constant 2015 USD, 1985-2025",
   "forecast_evaluation": {
     "method": "expanding-window rolling-origin one-step-ahead",
@@ -61,39 +61,5 @@
     "annual and monthly trade comparisons",
     "rolling-origin forecast model comparison"
   ],
-  "quality_check_file": "kiem_tra_chat_luong_du_lieu.csv",
-  "quarterly_real_gdp_evaluation": {
-    "source": "NSDP / National Summary Data Page of Vietnam Statistics Office",
-    "source_file": "data/nso/processed/du_lieu_gdp_quy_muc_thuc_gia_2010.csv",
-    "target": "Quarterly observed real GDP level, constant 2010 prices, billion VND",
-    "period": "2010Q1–2025Q4",
-    "observations": 64,
-    "minimum_training_quarters": 32,
-    "horizons_quarters": [
-      1,
-      4,
-      8,
-      12,
-      20
-    ],
-    "sample_counts_per_model": {
-      "1": 32,
-      "4": 29,
-      "8": 25,
-      "12": 21,
-      "20": 13
-    },
-    "models": [
-      "SeasonalNaive",
-      "SeasonalDrift",
-      "LogTrendQuarterDummies",
-      "ETS_DampedAdditive"
-    ],
-    "method": "Expanding-window rolling-origin; each model is refit at each origin. Origins overlap and errors are dependent.",
-    "separate_price_base_series": "2025-Q1–2025-Q3 and 2026-Q1–2026-Q3 at constant 2020 prices; stored separately and not spliced into the constant-2010 series.",
-    "outputs": [
-      "data/derived/forecast/du_lieu_du_bao_gdp_quy_backtest.csv",
-      "data/derived/forecast/so_sanh_hieu_qua_mo_hinh_gdp_quy.csv"
-    ]
-  }
+  "quality_check_file": "kiem_tra_chat_luong_du_lieu.csv"
 }

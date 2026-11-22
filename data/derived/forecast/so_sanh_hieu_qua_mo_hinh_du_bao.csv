@@ -1,6 +1,6 @@
 ﻿mo_hinh,so_diem_kiem_thu,nam_dau,nam_cuoi,MAE_usd_2015,RMSE_usd_2015,MAPE_pct,sMAPE_pct,MASE_vs_naive_train,ghi_chu
 Drift_mean_log_change,21,2005,2025,3031448712.89882565,4679977856.29929829,1.03035745,1.02432872,0.39784914,Mốc so sánh; dùng chung các năm kiểm thử với GRU/LSTM.
-Linear_log_trend,21,2005,2025,10699443992.55107498,13792840230.83468056,3.65635558,3.56688560,1.42186954,Mốc so sánh; dùng chung các năm kiểm thử với GRU/LSTM.
+Linear_log_trend,21,2005,2025,10699443992.55122948,13792840230.83488464,3.65635558,3.56688560,1.42186954,Mốc so sánh; dùng chung các năm kiểm thử với GRU/LSTM.
 Naive_last_value,21,2005,2025,15062836382.97095871,16626339747.62121964,5.91560081,6.10526779,2.17537146,Mốc so sánh; dùng chung các năm kiểm thử với GRU/LSTM.
-GRU_logGDP,21,2005,2025,19398492155.09993744,22353710141.25890350,7.17241712,7.46122426,2.70053575,"Expanding-window 21 dự báo ngoài mẫu, giai đoạn 2005–2025; vẫn cần kiểm tra theo giai đoạn và cập nhật dữ liệu."
-LSTM_logGDP,21,2005,2025,25905252898.12565613,29462687535.90050888,9.66033655,10.17871316,3.62262364,"Expanding-window 21 dự báo ngoài mẫu, giai đoạn 2005–2025; vẫn cần kiểm tra theo giai đoạn và cập nhật dữ liệu."
+GRU_logGDP,21,2005,2025,19398484878.27311325,22353702784.99691010,7.17241459,7.46122154,2.70053478,"Expanding-window 21 dự báo ngoài mẫu, giai đoạn 2005–2025; vẫn cần kiểm tra theo giai đoạn và cập nhật dữ liệu."
+LSTM_logGDP,21,2005,2025,25905254714.81444931,29462688098.00542068,9.66033762,10.17871430,3.62262400,"Expanding-window 21 dự báo ngoài mẫu, giai đoạn 2005–2025; vẫn cần kiểm tra theo giai đoạn và cập nhật dữ liệu."

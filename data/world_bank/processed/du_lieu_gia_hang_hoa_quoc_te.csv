@@ -680,6 +680,7 @@
 2026-07-01,"Coal, Australian",Than Australia,131.9,($/mt),quan_sat,16.829052258635958,-4.76534296028881
 2026-08-01,"Coal, Australian",Than Australia,135.2,($/mt),quan_sat,20.49910873440284,2.501895375284291
 2026-09-01,"Coal, Australian",Than Australia,147.1,($/mt),quan_sat,38.38193791157103,8.801775147928993
+2026-10-01,"Coal, Australian",Than Australia,152.3,($/mt),quan_sat,41.67441860465117,3.5350101971448167
 1960-01-01,Copper,Đồng,715.0,($/mt),quan_sat,,
 1960-02-01,Copper,Đồng,728.0,($/mt),quan_sat,,1.8181818181818077
 1960-03-01,Copper,Đồng,685.0,($/mt),quan_sat,,-5.906593406593408
@@ -1481,6 +1482,7 @@
 2026-07-01,Copper,Đồng,13543.0,($/mt),quan_sat,38.60403234059972,-0.0664108618654069
 2026-08-01,Copper,Đồng,14326.0,($/mt),quan_sat,48.148914167528446,5.781584582441113
 2026-09-01,Copper,Đồng,14474.0,($/mt),quan_sat,44.97195512820513,1.033086695518648
+2026-10-01,Copper,Đồng,14508.0,($/mt),quan_sat,35.08379888268156,0.23490396573164762
 1960-01-01,"Crude oil, average",Dầu thô bình quân,1.6,($/bbl),quan_sat,,
 1960-02-01,"Crude oil, average",Dầu thô bình quân,1.6,($/bbl),quan_sat,,0.0
 1960-03-01,"Crude oil, average",Dầu thô bình quân,1.6,($/bbl),quan_sat,,0.0
@@ -2282,6 +2284,7 @@
 2026-07-01,"Crude oil, average",Dầu thô bình quân,79.8,($/bbl),quan_sat,15.317919075144504,-2.3255813953488413
 2026-08-01,"Crude oil, average",Dầu thô bình quân,84.4,($/bbl),quan_sat,26.536731634182907,5.7644110275689275
 2026-09-01,"Crude oil, average",Dầu thô bình quân,102.3,($/bbl),quan_sat,53.83458646616541,21.208530805687186
+2026-10-01,"Crude oil, average",Dầu thô bình quân,108.5,($/bbl),quan_sat,72.22222222222223,6.060606060606055
 1960-01-01,"Iron ore, cfr spot",Quặng sắt CFR,11.4,($/dmtu),quan_sat,,
 1960-02-01,"Iron ore, cfr spot",Quặng sắt CFR,11.4,($/dmtu),quan_sat,,0.0
 1960-03-01,"Iron ore, cfr spot",Quặng sắt CFR,11.4,($/dmtu),quan_sat,,0.0
@@ -3083,6 +3086,7 @@
 2026-07-01,"Iron ore, cfr spot",Quặng sắt CFR,98.2,($/dmtu),quan_sat,0.9249743062692772,-2.57936507936507
 2026-08-01,"Iron ore, cfr spot",Quặng sắt CFR,96.3,($/dmtu),quan_sat,-3.4102306920762326,-1.93482688391039
 2026-09-01,"Iron ore, cfr spot",Quặng sắt CFR,97.7,($/dmtu),quan_sat,-5.42110358180058,1.4537902388369828
+2026-10-01,"Iron ore, cfr spot",Quặng sắt CFR,90.8,($/dmtu),quan_sat,-12.270531400966188,-7.062436028659169
 1960-01-01,"Natural gas, Europe",Khí tự nhiên châu Âu,0.4,($/mmbtu),quan_sat,,
 1960-02-01,"Natural gas, Europe",Khí tự nhiên châu Âu,0.4,($/mmbtu),quan_sat,,0.0
 1960-03-01,"Natural gas, Europe",Khí tự nhiên châu Âu,0.4,($/mmbtu),quan_sat,,0.0
@@ -3884,6 +3888,7 @@
 2026-07-01,"Natural gas, Europe",Khí tự nhiên châu Âu,18.06,($/mmbtu),quan_sat,55.42168674698795,19.05075807514831
 2026-08-01,"Natural gas, Europe",Khí tự nhiên châu Âu,21.11,($/mmbtu),quan_sat,89.32735426008966,16.888150609080842
 2026-09-01,"Natural gas, Europe",Khí tự nhiên châu Âu,25.42,($/mmbtu),quan_sat,128.59712230215828,20.41686404547609
+2026-10-01,"Natural gas, Europe",Khí tự nhiên châu Âu,28.5,($/mmbtu),quan_sat,161.70798898071627,12.116443745082606
 2003-12-01,"Rice, Viet Namese 5%",Gạo Việt Nam 5% tấm,197.0,($/mt),quan_sat,,
 2004-01-01,"Rice, Viet Namese 5%",Gạo Việt Nam 5% tấm,198.8,($/mt),quan_sat,,0.9137055837563413
 2004-02-01,"Rice, Viet Namese 5%",Gạo Việt Nam 5% tấm,204.1,($/mt),quan_sat,,2.665995975855129
@@ -4147,6 +4152,7 @@
 2026-07-01,"Rice, Viet Namese 5%",Gạo Việt Nam 5% tấm,396.1,($/mt),quan_sat,6.8807339449541205,1.2266802964477463
 2026-08-01,"Rice, Viet Namese 5%",Gạo Việt Nam 5% tấm,410.9,($/mt),quan_sat,8.474128827877504,3.736430194395335
 2026-09-01,"Rice, Viet Namese 5%",Gạo Việt Nam 5% tấm,418.5,($/mt),quan_sat,12.651413189771187,1.849598442443412
+2026-10-01,"Rice, Viet Namese 5%",Gạo Việt Nam 5% tấm,413.9,($/mt),quan_sat,13.211159737417933,-1.0991636798088456
 1960-01-01,Urea ,Urê,42.3,($/mt),quan_sat,,
 1960-02-01,Urea ,Urê,42.3,($/mt),quan_sat,,0.0
 1960-03-01,Urea ,Urê,42.3,($/mt),quan_sat,,0.0
@@ -4948,3 +4954,4 @@
 2026-07-01,Urea ,Urê,400.0,($/mt),quan_sat,-19.354838709677423,-11.719267269918344
 2026-08-01,Urea ,Urê,390.0,($/mt),quan_sat,-23.182982076029145,-2.500000000000002
 2026-09-01,Urea ,Urê,407.5,($/mt),quan_sat,-11.624376490999788,4.487179487179493
+2026-10-01,Urea ,Urê,420.0,($/mt),quan_sat,6.490872210953347,3.0674846625766916

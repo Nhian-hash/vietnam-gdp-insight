@@ -29,8 +29,8 @@ bop: khóa trùng,dat,256,"Khóa: nam, chi_tieu, loai_gia_tri; trùng=0."
 bop: bảng không rỗng,dat,256,Số dòng chuẩn hóa: 256.
 tfp: khóa trùng,dat,3,Khóa: giai_doan; trùng=0.
 tfp: bảng không rỗng,dat,3,Số dòng chuẩn hóa: 3.
-commodities: khóa trùng,dat,4949,"Khóa: thoi_gian, hang_hoa; trùng=0."
-commodities: bảng không rỗng,dat,4949,Số dòng chuẩn hóa: 4949.
+commodities: khóa trùng,dat,4956,"Khóa: thoi_gian, hang_hoa; trùng=0."
+commodities: bảng không rỗng,dat,4956,Số dòng chuẩn hóa: 4956.
 productivity_proxy: khóa trùng,dat,60,"Khóa: nam, nganh; trùng=0."
 productivity_proxy: bảng không rỗng,dat,60,Số dòng chuẩn hóa: 60.
 macro_panel: khóa trùng,dat,41,Khóa: nam; trùng=0.

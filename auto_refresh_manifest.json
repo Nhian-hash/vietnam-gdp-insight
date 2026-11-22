@@ -1,12 +1,14 @@
 {
-  "status": "scheduled",
+  "status": "ok",
+  "last_successful_data_update_utc": "2026-11-22T11:56:03Z",
   "check_interval_hours": 6,
   "schedule": "GitHub Actions kiểm tra mỗi 6 giờ; có thể chạy thủ công.",
   "policy": "Chỉ phát hành khi tải nguồn thành công, kiểm tra dữ liệu đạt và nội dung nguồn thay đổi. Không tự tạo quan sát khi nguồn chưa công bố.",
-  "last_successful_data_update_utc": null,
   "sources": {
     "World Bank WDI": {
       "url": "https://api.worldbank.org/v2/country/VNM/indicator/NY.GDP.MKTP.KD?date=1985:2026&format=json&per_page=1000",
+      "latest_annual_gdp_year": "2025",
+      "latest_real_gdp_year": "2025",
       "datasets": [
         "GDP_Vietnam_Annual.csv",
         "du_lieu_gdp_quoc_gia_co_cau_nganh.csv",
@@ -15,6 +17,7 @@
     },
     "NSO PXWeb CPI": {
       "url": "https://pxweb.nso.gov.vn/pxweb/en/E%2011.%20CPI/E%2011.%20CPI__Px_E_11/E11.07.px/",
+      "latest_observation": "2025-12-01",
       "datasets": [
         "du_lieu_lam_phat_cpi.csv",
         "du_lieu_cpi_phan_tich_thang.csv"
@@ -22,14 +25,16 @@
     },
     "IMF Exchange Rates": {
       "url": "https://api.imf.org/external/sdmx/3.0/data/dataflow/IMF.STA/ER/+/VNM.XDC_USD.PA_RT.M?startPeriod=1980-01&endPeriod=2026-12&format=jsondata",
+      "latest_observation": "2026-08-01",
       "datasets": [
         "du_lieu_ty_gia_usd_vnd.csv",
         "du_lieu_fx_bien_dong_thang.csv"
       ]
     },
     "NSO PXWeb annual tables and World Bank commodity prices": {
+      "method": "Tải lại các bảng PXWeb và bảng giá hàng hóa World Bank trong mỗi lần kiểm tra.",
       "datasets": [
-        "Dữ liệu NSO theo năm",
+        "dữ liệu NSO theo năm",
         "du_lieu_gia_hang_hoa_quoc_te.csv"
       ]
     }
@@ -40,4 +45,3 @@
   ],
   "deployment": "Khi có thay đổi nguồn hợp lệ, GitHub lưu phiên bản mới và Render tự triển khai theo commit."
 }
-
