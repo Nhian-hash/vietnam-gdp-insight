@@ -37,6 +37,11 @@
     }
   }
 
+  const initialStatus = $("arena-status");
+  if (initialStatus?.textContent.trim() === "Mở Training Lab để tải kết quả đã tiền tính.") {
+    setStatus("Kết quả kiểm định sẽ tự tải khi mục này xuất hiện trên màn hình.");
+  }
+
   function checkedModels() {
     return Object.keys(modelStyle).filter((key) => $(`arena-model-${key}`).checked);
   }
@@ -311,8 +316,8 @@
   arena.addEventListener("toggle", () => {
     if (!arena.open) return;
     autoLoadEligible = true;
-    if (!currentResponse) loadScenario();
-    else { renderLegend(); renderScoreboard(); drawChart(); }
+    if (!currentResponse && !activeController) loadScenario();
+    else if (currentResponse) { renderLegend(); renderScoreboard(); drawChart(); }
   });
   if ("IntersectionObserver" in window) {
     const arenaObserver = new IntersectionObserver((entries) => {
