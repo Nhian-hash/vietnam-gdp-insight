@@ -10,6 +10,10 @@
   };
   let currentResponse = null;
   let requestNumber = 0;
+  let activeController = null;
+  let autoLoadEligible = false;
+  let retryTimer = null;
+  let retryDelayMs = 5000;
 
   const format = (value, digits = 2) => Number(value).toLocaleString("vi-VN", {
     minimumFractionDigits: digits, maximumFractionDigits: digits,
@@ -18,8 +22,19 @@
 
   function setStatus(message, isError = false) {
     const node = $("arena-status");
-    node.textContent = message;
+    node.replaceChildren(document.createTextNode(message));
     node.classList.toggle("error", isError);
+    if (isError) {
+      const retry = document.createElement("button");
+      retry.type = "button";
+      retry.className = "select export-btn";
+      retry.textContent = "Thử lại";
+      retry.addEventListener("click", () => {
+        autoLoadEligible = true;
+        loadScenario();
+      });
+      node.append(document.createTextNode(" "), retry);
+    }
   }
 
   function checkedModels() {
@@ -238,40 +253,77 @@
     renderLegend(); renderScoreboard(); drawChart();
   }
 
+  function scheduleRetry() {
+    if (!autoLoadEligible || retryTimer) return;
+    retryTimer = setTimeout(() => {
+      retryTimer = null;
+      if (autoLoadEligible && !currentResponse) loadScenario();
+    }, retryDelayMs);
+    retryDelayMs = Math.min(retryDelayMs * 2, 30000);
+  }
+
   async function loadScenario() {
+    clearTimeout(retryTimer);
+    retryTimer = null;
+    if (activeController) activeController.abort();
+    const controller = new AbortController();
+    activeController = controller;
     const currentRequest = ++requestNumber;
     const cutoff = $("arena-cutoff").value;
     const horizon = $("arena-horizon").value;
     setStatus("Đang tải kết quả đã tiền tính…");
+    const slowTimer = setTimeout(() => {
+      if (currentRequest === requestNumber) setStatus("Máy chủ đang khởi động, vui lòng chờ…");
+    }, 5000);
+    const timeoutTimer = setTimeout(() => controller.abort(), 60000);
     try {
       const url = `/api/v1/backtest-arena?cutoff_year=${encodeURIComponent(cutoff)}&horizon=${encodeURIComponent(horizon)}`;
-      const response = await fetch(url, { cache: "no-store" });
+      const response = await fetch(url, { cache: "no-store", signal: controller.signal });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.detail || `HTTP ${response.status}`);
       if (currentRequest !== requestNumber) return;
       currentResponse = payload;
+      retryDelayMs = 5000;
       setStatus("Đã tải kết quả kiểm định.");
       renderResponse();
     } catch (error) {
       if (currentRequest !== requestNumber) return;
       currentResponse = null;
-      setStatus(`Không tải được artifact: ${error.message}`, true);
+      const message = controller.signal.aborted
+        ? "Máy chủ đang khởi động, vui lòng chờ…"
+        : `Không tải được artifact: ${error.message}`;
+      setStatus(message, true);
       $("arena-scoreboard").replaceChildren();
       const canvas = $("arena-chart");
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      scheduleRetry();
+    } finally {
+      clearTimeout(slowTimer);
+      clearTimeout(timeoutTimer);
+      if (activeController === controller) activeController = null;
     }
   }
 
   // Keep the detailed cutoff evaluation collapsed until requested. Rendering
   // after expansion ensures the chart measures its visible container correctly.
-  $("model-arena").addEventListener("toggle", () => {
-    if (!$("model-arena").open) return;
+  const arena = $("model-arena");
+  arena.addEventListener("toggle", () => {
+    if (!arena.open) return;
+    autoLoadEligible = true;
     if (!currentResponse) loadScenario();
     else { renderLegend(); renderScoreboard(); drawChart(); }
   });
-  $("arena-cutoff").addEventListener("change", loadScenario);
-  $("arena-horizon").addEventListener("change", loadScenario);
+  if ("IntersectionObserver" in window) {
+    const arenaObserver = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      autoLoadEligible = Boolean(entry?.isIntersecting);
+      if (autoLoadEligible && !currentResponse && !activeController) loadScenario();
+    }, { rootMargin: "120px 0px" });
+    arenaObserver.observe(arena);
+  }
+  $("arena-cutoff").addEventListener("change", () => loadScenario());
+  $("arena-horizon").addEventListener("change", () => loadScenario());
   $("arena-rank-by").addEventListener("change", renderScoreboard);
   Object.keys(modelStyle).forEach((key) => $(`arena-model-${key}`).addEventListener("change", () => {
     if (currentResponse) { renderLegend(); drawChart(); }
