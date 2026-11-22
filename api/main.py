@@ -459,6 +459,10 @@ def dashboard() -> Response:
         raise HTTPException(status_code=404, detail="Chưa có tệp dashboard.html hoặc index.html.")
 
     html = page.read_text(encoding="utf-8")
+    html = html.replace(
+        "Mở Training Lab để tải kết quả đã tiền tính.",
+        "Kết quả kiểm định sẽ tự tải khi mục này xuất hiện trên màn hình.",
+    )
     html = re.sub(
         r'<footer id="page-footer"[^>]*>.*?</footer>',
         '<footer id="page-footer" class="footnote page-footer" style="display:none"></footer>',
@@ -574,7 +578,7 @@ def dashboard() -> Response:
 .vmest-release-center{margin-top:14px}.vmest-release-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.vmest-release-box{border:1px solid var(--line,#dbe3ee);border-radius:12px;padding:14px;background:var(--surface,#fff);min-width:0}.vmest-release-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}.vmest-release-controls select,.vmest-release-controls input{max-width:100%;min-height:42px}.vmest-release-status{font-weight:700}.vmest-release-report{margin-top:12px}.vmest-release-table{max-height:300px;overflow:auto}.vmest-release-note{line-height:1.6}.vmest-release-box .panel-title{margin-bottom:6px}@media(max-width:760px){.vmest-release-grid{grid-template-columns:1fr}.vmest-release-controls>*{width:100%}}
 </style>
 <article class="panel vmest-release-center" id="release-center">
-  <div class="section-head"><div><div class="panel-title">Trung tâm vận hành dữ liệu</div><div class="panel-sub">Theo dõi phiên bản đang chạy, kiểm tra CSV cập nhật và chuẩn bị gói thay đổi</div></div><span id="ops-live-status" class="status-tag">Đang kết nối…</span></div>
+  <div class="section-head"><div><div class="panel-title">Trung tâm vận hành dữ liệu</div><div class="panel-sub">Theo dõi phiên bản đang chạy, kiểm tra CSV cập nhật và chuẩn bị gói thay đổi</div></div><span id="ops-live-status" class="status-tag" role="status" aria-live="polite">Đang kết nối…</span><button id="ops-retry" class="select export-btn" type="button" style="display:none">Thử lại</button></div>
   <div class="vmest-release-grid">
     <div class="vmest-release-box"><div class="panel-title">Bản dữ liệu công khai</div><div class="status-row"><span>Phiên bản đang chạy</span><strong id="ops-current-version">—</strong></div><div class="status-row"><span>Số bộ dữ liệu</span><strong id="ops-dataset-count">—</strong></div><div class="status-row"><span>Cập nhật nguồn gần nhất</span><strong id="ops-source-date">—</strong></div><div class="vmest-release-controls"><a id="ops-current-snapshot" class="select export-btn" href="#" download>Tải snapshot hiện hành</a></div></div>
     <div class="vmest-release-box"><div class="panel-title">Kiểm tra dữ liệu ứng viên</div><div class="panel-sub">Chọn CSV hiện có để thay thế, tải tệp mới và đối chiếu cấu trúc/giá trị trước khi đưa vào repo.</div><div class="vmest-release-controls"><select id="ops-dataset-target" class="select" aria-label="Bộ dữ liệu cần cập nhật"></select><input id="ops-candidate-file" type="file" accept=".csv,text/csv" aria-label="Chọn tệp CSV ứng viên"></div><div class="vmest-release-controls"><button id="ops-validate" class="select export-btn" type="button">Kiểm tra và xem trước</button><button id="ops-package" class="select export-btn" type="button" disabled>Tải gói đề xuất</button></div><div id="ops-release-report" class="vmest-release-report" aria-live="polite"></div></div>
@@ -595,11 +599,23 @@ def dashboard() -> Response:
   const el = id => document.getElementById(id);
   const show = (node, value) => { if (node) node.textContent = value ?? ''; };
   let candidateReport = null;
-  async function jsonRequest(url, options) {
-    const response = await fetch(url, options);
-    const payload = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(payload.detail || `Lỗi máy chủ (${response.status})`);
-    return payload;
+  async function jsonRequest(url, options = {}, timeoutMs = 0) {
+    const controller = timeoutMs ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+    try {
+      const response = await fetch(url, {
+        ...options,
+        ...(controller ? { signal: controller.signal } : {}),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.detail || `Lỗi máy chủ (${response.status})`);
+      return payload;
+    } catch (error) {
+      if (controller?.signal.aborted) throw new Error("Hết thời gian chờ kết nối API.");
+      throw error;
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
   }
   function renderPreview(report) {
     const root = el('ops-release-report');
@@ -626,13 +642,33 @@ def dashboard() -> Response:
       table.appendChild(body); wrap.appendChild(table); root.appendChild(wrap);
     }
   }
+  let initRunning = false;
+  let retryTimer = null;
+  let slowTimer = null;
+  let retryDelayMs = 5000;
   async function init() {
+    if (initRunning) return;
+    initRunning = true;
+    clearTimeout(retryTimer);
+    const retryButton = el('ops-retry');
+    if (retryButton) {
+      retryButton.disabled = true;
+      retryButton.style.display = 'none';
+    }
+    show(el('ops-live-status'), 'Đang kết nối API…');
+    slowTimer = setTimeout(() => {
+      if (initRunning) show(el('ops-live-status'), 'Máy chủ đang khởi động, vui lòng chờ…');
+    }, 5000);
     try {
       const [status, datasets, versions] = await Promise.all([
-        jsonRequest(`${api}/status`), jsonRequest(`${api}/datasets`), jsonRequest(`${api}/versions`)
+        jsonRequest(`${api}/status`, {}, 60000),
+        jsonRequest(`${api}/datasets`, {}, 60000),
+        jsonRequest(`${api}/versions`, {}, 60000)
       ]);
       show(el('ops-live-status'), 'Đang hoạt động');
-      show(el('ops-current-version'), status.version_id || '—');
+      if (retryButton) retryButton.style.display = 'none';
+      retryDelayMs = 5000;
+      show(el('ops-current-version'), status.version_id || 'Chưa có dữ liệu');
       show(el('ops-dataset-count'), Number(status.dataset_count || 0).toLocaleString('vi-VN'));
       show(el('ops-source-date'), status.retrieved_at_utc || 'Chưa ghi nhận');
       el('ops-current-snapshot').href = status.archive_url || '#';
@@ -644,10 +680,20 @@ def dashboard() -> Response:
       const setArchive = () => { el('ops-history-download').href = history.value || '#'; };
       history.addEventListener('change', setArchive); setArchive();
     } catch (error) {
-      show(el('ops-live-status'), 'Chưa kết nối API');
-      show(el('ops-release-report'), error.message);
+      const message = error.message || 'Không rõ lỗi kết nối.';
+      show(el('ops-live-status'), `Không kết nối được API: ${message}`);
+      if (retryButton) {
+        retryButton.disabled = false;
+        retryButton.style.display = 'inline-flex';
+      }
+      retryTimer = setTimeout(init, retryDelayMs);
+      retryDelayMs = Math.min(retryDelayMs * 2, 30000);
+    } finally {
+      clearTimeout(slowTimer);
+      initRunning = false;
     }
   }
+  el('ops-retry')?.addEventListener('click', init);
   el('ops-candidate-file')?.addEventListener('change', () => { candidateReport = null; el('ops-package').disabled = true; el('ops-release-report').replaceChildren(); });
   el('ops-validate')?.addEventListener('click', async () => {
     const file = el('ops-candidate-file').files?.[0], datasetPath = el('ops-dataset-target').value;
@@ -898,8 +944,10 @@ def summary() -> dict[str, Any]:
     real = latest_row("du_lieu_gdp_thuc_va_tang_truong.csv")
     _, quarter_rows = read_csv_rows(csv_path("du_lieu_tang_truong_gdp_quy.csv"))
     quarterly = max(quarter_rows, key=lambda row: str(row.get("thoi_gian") or ""), default=None)
-    _, cpi_rows = read_csv_rows(csv_path("du_lieu_cpi_phan_tich_thang.csv"))
-    cpi = max(cpi_rows, key=lambda row: str(row.get("thoi_gian") or ""), default=None)
+    _, cpi_index_rows = read_csv_rows(csv_path("du_lieu_cpi_phan_tich_thang.csv"))
+    cpi_index = max(cpi_index_rows, key=lambda row: str(row.get("thoi_gian") or ""), default=None)
+    _, cpi_release_rows = read_csv_rows(csv_path("du_lieu_cpi_cong_bo_thang.csv"))
+    cpi_release = max(cpi_release_rows, key=lambda row: str(row.get("thoi_gian") or ""), default=None)
     return {
         "data_cutoff": data_cutoff(),
         "latest_annual_gdp": {
@@ -916,10 +964,17 @@ def summary() -> dict[str, Any]:
             "status": quarterly.get("trang_thai") if quarterly else None,
         },
         "latest_cpi": {
-            "period": cpi.get("thoi_gian") if cpi else None,
-            "index": cpi.get("chi_so_cpi") if cpi else None,
-            "inflation_yoy_percent": cpi.get("tang_cpi_yoy_pct") if cpi else None,
-            "status": cpi.get("trang_thai_chi_so") if cpi else None,
+            "period": cpi_release.get("thoi_gian") if cpi_release else None,
+            "index": None,
+            "inflation_yoy_percent": cpi_release.get("cpi_binh_quan_luy_ke_yoy_pct") if cpi_release else None,
+            "status": cpi_release.get("trang_thai") if cpi_release else None,
+            "source": cpi_release.get("nguon") if cpi_release else None,
+            "release_date": cpi_release.get("ngay_cong_bo") if cpi_release else None,
+        },
+        "latest_cpi_index": {
+            "period": cpi_index.get("thoi_gian") if cpi_index else None,
+            "index": cpi_index.get("chi_so_cpi") if cpi_index else None,
+            "status": cpi_index.get("trang_thai_chi_so") if cpi_index else None,
         },
         "forecast_note": "Dự báo đến 2030 là kịch bản mô hình, không phải số liệu chính thức.",
     }
