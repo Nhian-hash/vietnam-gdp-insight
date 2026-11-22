@@ -623,7 +623,43 @@ def dashboard() -> Response:
   init();
 })();
 </script>"""
-    all_scripts = export_script + operations_script
+    mobile_swipe_script = r"""<style>
+@media(max-width:740px){
+  .nav{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;overscroll-behavior-x:contain}
+  .nav .nav-link{scroll-snap-align:center}
+}
+</style>
+<script>
+(() => {
+  const links = Array.from(document.querySelectorAll('.nav-link'));
+  const content = document.querySelector('.content');
+  if (!links.length || !content) return;
+  let start = null;
+  const excluded = 'button,a,input,select,textarea,canvas,.chart-wrap,.table-wrap,.nav,[data-no-page-swipe]';
+  content.addEventListener('touchstart', event => {
+    if (window.innerWidth > 740 || event.touches.length !== 1) { start = null; return; }
+    if (event.target.closest(excluded)) { start = null; return; }
+    const touch = event.touches[0];
+    if (touch.clientX < 24 || touch.clientX > window.innerWidth - 24) { start = null; return; }
+    start = { x: touch.clientX, y: touch.clientY };
+  }, { passive: true });
+  content.addEventListener('touchend', event => {
+    if (!start || window.innerWidth > 740 || event.changedTouches.length !== 1) { start = null; return; }
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    start = null;
+    if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.35) return;
+    const current = links.findIndex(link => link.classList.contains('active'));
+    const next = current + (dx < 0 ? 1 : -1);
+    if (current >= 0 && next >= 0 && next < links.length) links[next].click();
+  }, { passive: true });
+  links.forEach(link => link.addEventListener('click', () => {
+    if (window.innerWidth <= 740) requestAnimationFrame(() => link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }));
+  }));
+})();
+</script>"""
+    all_scripts = export_script + operations_script + mobile_swipe_script
     html, inserted = re.subn(r"</body\s*>", lambda match: all_scripts + match.group(0), html, count=1, flags=re.IGNORECASE)
     if not inserted:
         html += export_script
