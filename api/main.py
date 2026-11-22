@@ -1075,7 +1075,7 @@ async def package_candidate(
 
 
 def _gdp_pulse_quarter(value: Any) -> tuple[int, int] | None:
-    match = re.fullmatch(r"(\\d{4})-?Q([1-4])", str(value or "").strip(), flags=re.IGNORECASE)
+    match = re.fullmatch(r"(\d{4})-?Q([1-4])", str(value or "").strip(), flags=re.IGNORECASE)
     return (int(match.group(1)), int(match.group(2))) if match else None
 
 
