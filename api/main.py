@@ -20,6 +20,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, Response
 from data_paths import data_path
+from api.insights import (
+    REAL_GDP_SOURCE,
+    SECTOR_SOURCE,
+    SUPPORTED_INSIGHT_SECTIONS,
+    generate_insights,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -936,6 +942,55 @@ async def package_candidate(
             "X-Content-Type-Options": "nosniff",
         },
     )
+
+
+@app.get(f"{API_PREFIX}/insights/{{section_id}}", tags=["Nhận định tự động"])
+def automated_insights(section_id: str) -> dict[str, Any]:
+    """Return deterministic insight sentences for one dashboard section."""
+    if section_id not in SUPPORTED_INSIGHT_SECTIONS:
+        raise HTTPException(
+            status_code=404,
+            detail={
+                "message": "Mục nhận định chưa được hỗ trợ.",
+                "available_sections": sorted(SUPPORTED_INSIGHT_SECTIONS),
+            },
+        )
+
+    if section_id == "overview":
+        file_names = ["du_lieu_gdp_thuc_va_tang_truong.csv"]
+        _, growth_rows = read_csv_rows(csv_path(file_names[0]))
+        rule_data: dict[str, Any] = {
+            "growth_rows": growth_rows,
+            "source": REAL_GDP_SOURCE,
+        }
+        title = "Tổng quan GDP Việt Nam"
+    else:
+        file_names = [
+            "du_lieu_gdp_thuc_va_tang_truong.csv",
+            "du_lieu_gdp_co_cau_3_nganh.csv",
+        ]
+        _, real_rows = read_csv_rows(csv_path(file_names[0]))
+        _, sector_rows = read_csv_rows(csv_path(file_names[1]))
+        rule_data = {
+            "real_rows": real_rows,
+            "real_source": REAL_GDP_SOURCE,
+            "sector_rows": sector_rows,
+            "sector_source": SECTOR_SOURCE,
+        }
+        title = "GDP thực và cơ cấu"
+
+    statements = generate_insights(section_id, rule_data)
+    manifest = read_manifest(VERSION_FILE)
+    return {
+        "section_id": section_id,
+        "section_title": title,
+        "insight_status": "ready" if statements else "insufficient_data",
+        "statements": statements,
+        "method": "deterministic_rules",
+        "version_id": manifest.get("version_id"),
+        "data_cutoff": manifest.get("data_cutoff", {}),
+        "source_files": file_names,
+    }
 
 
 @app.get(f"{API_PREFIX}/summary", tags=["Phân tích"])
