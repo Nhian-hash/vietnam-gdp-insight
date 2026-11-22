@@ -27,6 +27,7 @@ DATA_ROOT = ROOT / "data"
 API_PREFIX = "/api/v1"
 VERSION_FILE = ROOT / "data_version_manifest.json"
 ANALYSIS_FILE = ROOT / "analysis_manifest.json"
+AUTO_REFRESH_FILE = ROOT / "auto_refresh_manifest.json"
 
 DATASET_INFO: dict[str, dict[str, str]] = {
     "du_lieu_gdp_tong_hop.csv": {
@@ -514,7 +515,7 @@ def dashboard() -> Response:
 <article class="panel vmest-release-center" id="release-center">
   <div class="section-head"><div><div class="panel-title">Trung tâm vận hành dữ liệu</div><div class="panel-sub">Phiên bản hiện tại và cập nhật dữ liệu</div></div><span id="ops-live-status" class="status-tag">Đang kết nối…</span></div>
   <div class="vmest-release-grid">
-    <div class="vmest-release-box"><div class="panel-title">Dữ liệu hiện tại</div><div class="status-row"><span>Phiên bản</span><strong id="ops-current-version">—</strong></div><div class="status-row"><span>Số bộ dữ liệu</span><strong id="ops-dataset-count">—</strong></div><div class="status-row"><span>Cập nhật nguồn</span><strong id="ops-source-date">—</strong></div><div class="vmest-release-controls"><a id="ops-current-snapshot" class="select export-btn" href="#" download>Tải dữ liệu hiện tại</a></div></div>
+    <div class="vmest-release-box"><div class="panel-title">Dữ liệu hiện tại</div><div class="status-row"><span>Phiên bản</span><strong id="ops-current-version">—</strong></div><div class="status-row"><span>Số bộ dữ liệu</span><strong id="ops-dataset-count">—</strong></div><div class="status-row"><span>Cập nhật nguồn</span><strong id="ops-source-date">—</strong></div><div class="status-row"><span>Kiểm tra tự động</span><strong id="ops-refresh-schedule">Mỗi 6 giờ</strong></div><div class="status-row"><span>Lần đổi dữ liệu gần nhất</span><strong id="ops-refresh-last">Chưa có</strong></div><div class="status-row"><span>Nguồn theo dõi</span><strong id="ops-refresh-sources">World Bank · NSO · IMF</strong></div><div class="vmest-release-controls"><a id="ops-current-snapshot" class="select export-btn" href="#" download>Tải dữ liệu hiện tại</a></div></div>
     <div class="vmest-release-box"><div class="panel-title">Kiểm tra dữ liệu mới</div><div class="panel-sub">Chọn bộ dữ liệu và tệp CSV để kiểm tra trước khi cập nhật.</div><div class="vmest-release-controls"><select id="ops-dataset-target" class="select" aria-label="Bộ dữ liệu cần cập nhật"></select><input id="ops-candidate-file" type="file" accept=".csv,text/csv" aria-label="Chọn tệp CSV"></div><div class="vmest-release-controls"><button id="ops-validate" class="select export-btn" type="button">Kiểm tra và xem trước</button><button id="ops-package" class="select export-btn" type="button" disabled>Tải gói đề xuất</button></div><div id="ops-release-report" class="vmest-release-report" aria-live="polite"></div></div>
   </div>
   <div class="vmest-release-grid" style="margin-top:12px"><div class="vmest-release-box"><div class="panel-title">Lịch sử dữ liệu</div><div class="panel-sub">Chọn và tải một phiên bản trước.</div><div class="vmest-release-controls"><select id="ops-history-version" class="select" aria-label="Chọn phiên bản dữ liệu"></select><a id="ops-history-download" class="select export-btn" href="#" download>Tải phiên bản đã chọn</a></div></div><div class="vmest-release-box"><div class="panel-title">Cập nhật hệ thống</div><div class="panel-sub">Kiểm tra dữ liệu → tải gói đề xuất → cập nhật trên GitHub.</div></div></div>
@@ -572,6 +573,10 @@ def dashboard() -> Response:
       show(el('ops-current-version'), status.version_id || '—');
       show(el('ops-dataset-count'), Number(status.dataset_count || 0).toLocaleString('vi-VN'));
       show(el('ops-source-date'), status.retrieved_at_utc || 'Chưa ghi nhận');
+      const refresh = status.auto_refresh || {};
+      show(el('ops-refresh-schedule'), `Mỗi ${Number(refresh.check_interval_hours || 6)} giờ`);
+      show(el('ops-refresh-last'), refresh.last_successful_data_update_utc || 'Chưa có thay đổi nguồn đạt kiểm tra');
+      show(el('ops-refresh-sources'), Object.keys(refresh.sources || {}).join(' · ') || 'World Bank · NSO · IMF');
       el('ops-current-snapshot').href = status.archive_url || '#';
       const target = el('ops-dataset-target');
       target.replaceChildren();
@@ -741,6 +746,7 @@ def get_dataset(
 @app.get(f"{API_PREFIX}/operations/status", tags=["Vận hành dữ liệu"])
 def operations_status() -> dict[str, Any]:
     manifest = read_manifest(VERSION_FILE)
+    auto_refresh = read_manifest(AUTO_REFRESH_FILE)
     files = list(DATA_ROOT.rglob("*.csv"))
     return {
         "status": "ok",
@@ -753,6 +759,15 @@ def operations_status() -> dict[str, Any]:
         "storage_mode": "source-controlled",
         "write_enabled": False,
         "publish_method": "GitHub commit followed by Render auto-deploy",
+        "auto_refresh": auto_refresh or {
+            "status": "scheduled",
+            "check_interval_hours": 6,
+            "last_successful_data_update_utc": None,
+            "not_yet_automated": [
+                "Tăng trưởng GDP quý từ thông cáo báo chí NSO",
+                "Thương mại, bán lẻ, IIP và FDI tháng lấy từ workbook/thông cáo NSO theo kỳ",
+            ],
+        },
     }
 
 
