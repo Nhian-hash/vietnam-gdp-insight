@@ -1,0 +1,6356 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-22T16:21:22Z",
+  "target": {
+    "name": "GDP thực Việt Nam",
+    "source": "World Bank, World Development Indicators (WDI)",
+    "source_url": "https://api.worldbank.org/v2/country/VNM/indicator/NY.GDP.MKTP.KD?date=1985:2025&format=json&per_page=1000",
+    "indicator": "NY.GDP.MKTP.KD",
+    "dataset_path": "data/world_bank/processed/du_lieu_gdp_thuc_va_tang_truong.csv",
+    "frequency": "annual",
+    "unit": "USD cố định năm 2015",
+    "model_scale": "log(GDP thực USD cố định 2015)",
+    "observed_from": 1985,
+    "observed_to": 2025,
+    "observation_count": 41,
+    "interpolation_used": false
+  },
+  "methodology": {
+    "evaluation": "Fixed-origin cutoff backtest; each model is refit using observations through the cutoff and forecasts the next 1–5 years.",
+    "preprocessing": "Log transform; neural standardization is fit inside each cutoff using only its training observations. No interpolation or random split.",
+    "minimum_training_years": 20,
+    "models": {
+      "Naive": "Giữ nguyên log GDP cuối cùng.",
+      "Drift": "Ngoại suy mức thay đổi log GDP bình quân trong cửa sổ huấn luyện.",
+      "SARIMAX": "SARIMAX(1,1,0), xu hướng tuyến tính trên log GDP; đặc tả cố định trước kiểm thử.",
+      "GRU": "GRU một biến, cửa sổ 5 năm, hidden=8, 200 epochs; dự báo đệ quy.",
+      "LSTM": "LSTM một biến, cửa sổ 5 năm, hidden=8, 200 epochs; dự báo đệ quy."
+    },
+    "metrics": {
+      "mae_rmse_unit": "USD cố định 2015",
+      "mape": "Chỉ tính khi toàn bộ giá trị thực dương.",
+      "sarimax_interval": "Khoảng dự báo 95% trên log-scale biến đổi ngược; empirical coverage được báo cùng n kiểm định."
+    },
+    "limitations": [
+      "Chuỗi năm chỉ có khoảng 41 quan sát; GRU/LSTM tại cutoff sớm có ít cửa sổ huấn luyện và dễ bất ổn.",
+      "Các cutoff lịch sử là những phép thử tình huống, không phải bằng chứng mô hình luôn chịu được mọi cú sốc.",
+      "Cutoff LATEST chưa có holdout thực tế nên không có bảng xếp hạng sai số.",
+      "Empirical coverage từ 1–5 điểm không đủ để khẳng định khoảng dự báo đạt độ bao phủ 95% dài hạn."
+    ]
+  },
+  "supported_cutoffs": [
+    "2008",
+    "2019",
+    "2021",
+    "LATEST"
+  ],
+  "supported_horizons": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "scenarios": [
+    {
+      "cutoff_key": "2008",
+      "cutoff_year": 2008,
+      "event_label": "Khủng hoảng tài chính toàn cầu",
+      "horizon": 1,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2009,
+          "actual_usd_2015": 166620063722.29
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 158086705343.27005
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 168658166009.67545
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 166655739147.17145,
+              "lower95_usd_2015": 162671446393.85043,
+              "upper95_usd_2015": 170737618717.94614
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 159828809423.6303
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 155991503999.16318
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 1,
+          "mae_usd_2015": 8533358379.0199585,
+          "rmse_usd_2015": 8533358379.0199585,
+          "mape_pct": 5.121447074490818,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 1,
+          "mae_usd_2015": 2038102287.385437,
+          "rmse_usd_2015": 2038102287.385437,
+          "mape_pct": 1.22320340171181,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 1,
+          "mae_usd_2015": 35675424.88143921,
+          "rmse_usd_2015": 35675424.88143921,
+          "mape_pct": 0.021411241890352633,
+          "coverage_95_pct": 100.0,
+          "coverage_n": 1,
+          "covered_n": 1,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 1,
+          "mae_usd_2015": 6791254298.6596985,
+          "rmse_usd_2015": 6791254298.6596985,
+          "mape_pct": 4.075892270680473,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 1,
+          "mae_usd_2015": 10628559723.126831,
+          "rmse_usd_2015": 10628559723.126831,
+          "mape_pct": 6.37891949245784,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2008",
+      "cutoff_year": 2008,
+      "event_label": "Khủng hoảng tài chính toàn cầu",
+      "horizon": 2,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2009,
+          "actual_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "actual_usd_2015": 177322478338.4
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 158086705343.27005
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 168658166009.67545
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 179936553804.32153
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 166655739147.17145,
+              "lower95_usd_2015": 162671446393.85043,
+              "upper95_usd_2015": 170737618717.94614
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 175253425783.9233,
+              "lower95_usd_2015": 165942657494.01447,
+              "upper95_usd_2015": 185086605896.43118
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 159828809423.6303
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 163844843645.44028
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 155991503999.16318
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 158317569668.49612
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 2,
+          "mae_usd_2015": 13884565687.074951,
+          "rmse_usd_2015": 14880073385.991089,
+          "mape_pct": 7.98467575564962,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 2,
+          "mae_usd_2015": 2326088876.653488,
+          "rmse_usd_2015": 2343848488.6377215,
+          "mape_pct": 1.3486981734567647,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 2,
+          "mae_usd_2015": 1052363989.6790619,
+          "rmse_usd_2015": 1463258556.9759989,
+          "mape_pct": 0.5941208128217896,
+          "coverage_95_pct": 100.0,
+          "coverage_n": 2,
+          "covered_n": 2,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 2,
+          "mae_usd_2015": 10134444495.809708,
+          "rmse_usd_2015": 10671639327.346458,
+          "mape_pct": 5.838263731634815,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 2,
+          "mae_usd_2015": 14816734196.51535,
+          "rmse_usd_2015": 15397286048.837652,
+          "mape_pct": 8.548314655090259,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2008",
+      "cutoff_year": 2008,
+      "event_label": "Khủng hoảng tài chính toàn cầu",
+      "horizon": 3,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2009,
+          "actual_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "actual_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "actual_usd_2015": 188694468366.27
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 158086705343.27005
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 168658166009.67545
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 179936553804.32153
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 191969141850.61298
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 166655739147.17145,
+              "lower95_usd_2015": 162671446393.85043,
+              "upper95_usd_2015": 170737618717.94614
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 175253425783.9233,
+              "lower95_usd_2015": 165942657494.01447,
+              "upper95_usd_2015": 185086605896.43118
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 183800395252.94302,
+              "lower95_usd_2015": 167622278876.91254,
+              "upper95_usd_2015": 201539947562.37103
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 159828809423.6303
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 163844843645.44028
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 167056040105.31958
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 155991503999.16318
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 158317569668.49612
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 160179215761.5306
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 3,
+          "mae_usd_2015": 19458964799.049946,
+          "rmse_usd_2015": 21445033031.89407,
+          "mape_pct": 10.730052393637042,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 3,
+          "mae_usd_2015": 2642283745.8833213,
+          "rmse_usd_2015": 2690151043.1224055,
+          "mape_pct": 1.4776110915003118,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 3,
+          "mae_usd_2015": 2332933697.5616965,
+          "rmse_usd_2015": 3067800669.7370276,
+          "mape_pct": 1.2606303713312728,
+          "coverage_95_pct": 100.0,
+          "coverage_n": 3,
+          "covered_n": 3,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 3,
+          "mae_usd_2015": 13969105750.856607,
+          "rmse_usd_2015": 15231429671.025988,
+          "mape_pct": 7.714656407174787,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 3,
+          "mae_usd_2015": 19382906999.256695,
+          "rmse_usd_2015": 20714507528.553967,
+          "mape_pct": 10.736164643358164,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2008",
+      "cutoff_year": 2008,
+      "event_label": "Khủng hoảng tài chính toàn cầu",
+      "horizon": 4,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2009,
+          "actual_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "actual_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "actual_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "actual_usd_2015": 199081239731.69
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 158086705343.27005
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 168658166009.67545
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 179936553804.32153
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 191969141850.61298
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 204806364486.32236
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 166655739147.17145,
+              "lower95_usd_2015": 162671446393.85043,
+              "upper95_usd_2015": 170737618717.94614
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 175253425783.9233,
+              "lower95_usd_2015": 165942657494.01447,
+              "upper95_usd_2015": 185086605896.43118
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 183800395252.94302,
+              "lower95_usd_2015": 167622278876.91254,
+              "upper95_usd_2015": 201539947562.37103
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 192207558248.34164,
+              "lower95_usd_2015": 167761756375.49115,
+              "upper95_usd_2015": 220215538069.95593
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 159828809423.6303
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 163844843645.44028
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 167056040105.31958
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 169570501097.34018
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 155991503999.16318
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 158317569668.49612
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 160179215761.5306
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 161505049634.40634
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 4,
+          "mae_usd_2015": 24842857196.39245,
+          "rmse_usd_2015": 27659628409.20151,
+          "mape_pct": 13.195504824735984,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 4,
+          "mae_usd_2015": 3412993998.0705795,
+          "rmse_usd_2015": 3690792305.2016177,
+          "mape_pct": 1.8271515955442872,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 4,
+          "mae_usd_2015": 3468120644.008362,
+          "rmse_usd_2015": 4344010243.491691,
+          "mape_pct": 1.8086482204200922,
+          "coverage_95_pct": 100.0,
+          "coverage_n": 4,
+          "covered_n": 4,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 4,
+          "mae_usd_2015": 17854513971.72991,
+          "rmse_usd_2015": 19791873611.504925,
+          "mape_pct": 9.491858648453228,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 4,
+          "mae_usd_2015": 23931227773.763435,
+          "rmse_usd_2015": 25977117472.30029,
+          "mape_pct": 12.770824017527174,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2008",
+      "cutoff_year": 2008,
+      "event_label": "Khủng hoảng tài chính toàn cầu",
+      "horizon": 5,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2009,
+          "actual_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "actual_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "actual_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "actual_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "actual_usd_2015": 210137237901.39
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 158086705343.27005
+            },
+            {
+              "year": 2013,
+              "predicted_usd_2015": 158086705343.27005
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 168658166009.67545
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 179936553804.32153
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 191969141850.61298
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 204806364486.32236
+            },
+            {
+              "year": 2013,
+              "predicted_usd_2015": 218502028658.05222
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 166655739147.17145,
+              "lower95_usd_2015": 162671446393.85043,
+              "upper95_usd_2015": 170737618717.94614
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 175253425783.9233,
+              "lower95_usd_2015": 165942657494.01447,
+              "upper95_usd_2015": 185086605896.43118
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 183800395252.94302,
+              "lower95_usd_2015": 167622278876.91254,
+              "upper95_usd_2015": 201539947562.37103
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 192207558248.34164,
+              "lower95_usd_2015": 167761756375.49115,
+              "upper95_usd_2015": 220215538069.95593
+            },
+            {
+              "year": 2013,
+              "predicted_usd_2015": 200376595714.09808,
+              "lower95_usd_2015": 166406891348.8263,
+              "upper95_usd_2015": 241280753366.19342
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 159828809423.6303
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 163844843645.44028
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 167056040105.31958
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 169570501097.34018
+            },
+            {
+              "year": 2013,
+              "predicted_usd_2015": 171484092391.00912
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2009,
+              "predicted_usd_2015": 155991503999.16318
+            },
+            {
+              "year": 2010,
+              "predicted_usd_2015": 158317569668.49612
+            },
+            {
+              "year": 2011,
+              "predicted_usd_2015": 160179215761.5306
+            },
+            {
+              "year": 2012,
+              "predicted_usd_2015": 161505049634.40634
+            },
+            {
+              "year": 2013,
+              "predicted_usd_2015": 162379081434.08777
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 5,
+          "mae_usd_2015": 30284392268.737953,
+          "rmse_usd_2015": 33969039181.36142,
+          "mape_pct": 15.51035995799785,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 5,
+          "mae_usd_2015": 4403353349.788904,
+          "rmse_usd_2015": 4989138518.08673,
+          "mape_pct": 2.2578477355247517,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 5,
+          "mae_usd_2015": 4726624952.665075,
+          "rmse_usd_2015": 5843831549.430322,
+          "mape_pct": 2.375896446681191,
+          "coverage_95_pct": 100.0,
+          "coverage_n": 5,
+          "covered_n": 5,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 5,
+          "mae_usd_2015": 22014240279.460106,
+          "rmse_usd_2015": 24742427940.935055,
+          "mape_pct": 11.272334694283401,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 5,
+          "mae_usd_2015": 28696613512.4712,
+          "rmse_usd_2015": 31559733959.062702,
+          "mape_pct": 14.76208456978029,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2019",
+      "cutoff_year": 2019,
+      "event_label": "Trước cú sốc COVID-19",
+      "horizon": 1,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2020,
+          "actual_usd_2015": 323972192107.07
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 314947640805.60034
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 335783633127.8666
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 338458942683.38525,
+              "lower95_usd_2015": 331530370782.97095,
+              "upper95_usd_2015": 345532313108.4892
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 308119029949.3164
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 296386571130.0167
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 1,
+          "mae_usd_2015": 9024551301.469666,
+          "rmse_usd_2015": 9024551301.469666,
+          "mape_pct": 2.785594418698482,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 1,
+          "mae_usd_2015": 11811441020.79657,
+          "rmse_usd_2015": 11811441020.79657,
+          "mape_pct": 3.645819397021887,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 1,
+          "mae_usd_2015": 14486750576.315247,
+          "rmse_usd_2015": 14486750576.315247,
+          "mape_pct": 4.4716030971965335,
+          "coverage_95_pct": 0.0,
+          "coverage_n": 1,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 1,
+          "mae_usd_2015": 15853162157.753601,
+          "rmse_usd_2015": 15853162157.753601,
+          "mape_pct": 4.893371265801192,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 1,
+          "mae_usd_2015": 27585620977.053284,
+          "rmse_usd_2015": 27585620977.053284,
+          "mape_pct": 8.514811347739522,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2019",
+      "cutoff_year": 2019,
+      "event_label": "Trước cú sốc COVID-19",
+      "horizon": 2,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2020,
+          "actual_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "actual_usd_2015": 332245562394.77
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 314947640805.60034
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 335783633127.8666
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 357998072276.85956
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 338458942683.38525,
+              "lower95_usd_2015": 331530370782.97095,
+              "upper95_usd_2015": 345532313108.4892
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 364098451920.5219,
+              "lower95_usd_2015": 347711538841.43,
+              "upper95_usd_2015": 381257645727.3585
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 308119029949.3164
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 313840513196.1781
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 296386571130.0167
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 298405485641.0123
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 2,
+          "mae_usd_2015": 13161236445.319672,
+          "rmse_usd_2015": 13796025106.854515,
+          "mape_pct": 3.995980448952077,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 2,
+          "mae_usd_2015": 18781975451.443054,
+          "rmse_usd_2015": 20033745333.996777,
+          "mape_pct": 5.69843322642051,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 2,
+          "mae_usd_2015": 23169820051.03357,
+          "rmse_usd_2015": 24743408348.488743,
+          "mape_pct": 7.029377916655921,
+          "coverage_95_pct": 0.0,
+          "coverage_n": 2,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 2,
+          "mae_usd_2015": 17129105678.17276,
+          "rmse_usd_2015": 17176562321.993011,
+          "mape_pct": 5.216481723769564,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 2,
+          "mae_usd_2015": 30712848865.405487,
+          "rmse_usd_2015": 30871647829.27738,
+          "mape_pct": 9.350036032849445,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2019",
+      "cutoff_year": 2019,
+      "event_label": "Trước cú sốc COVID-19",
+      "horizon": 3,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2020,
+          "actual_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "actual_usd_2015": 332245562394.77
+        },
+        {
+          "year": 2022,
+          "actual_usd_2015": 360611028653.68
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 314947640805.60034
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 335783633127.8666
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 357998072276.85956
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 381682152164.76373
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 338458942683.38525,
+              "lower95_usd_2015": 331530370782.97095,
+              "upper95_usd_2015": 345532313108.4892
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 364098451920.5219,
+              "lower95_usd_2015": 347711538841.43,
+              "upper95_usd_2015": 381257645727.3585
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 392097239357.3287,
+              "lower95_usd_2015": 363133207495.825,
+              "upper95_usd_2015": 423371484452.86664
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 308119029949.3164
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 313840513196.1781
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 318502449377.4249
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 296386571130.0167
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 298405485641.0123
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 300181042161.6578
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 3,
+          "mae_usd_2015": 23995286912.90633,
+          "rmse_usd_2015": 28669412313.835274,
+          "mape_pct": 6.884914245846431,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 3,
+          "mae_usd_2015": 19545024804.656616,
+          "rmse_usd_2015": 20385404502.848118,
+          "mape_pct": 5.746679563394203,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 3,
+          "mae_usd_2015": 25941950268.57194,
+          "rmse_usd_2015": 27177527345.674683,
+          "mape_pct": 7.596701912389416,
+          "coverage_95_pct": 0.0,
+          "coverage_n": 3,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 3,
+          "mae_usd_2015": 25455596877.533527,
+          "rmse_usd_2015": 28066593636.488186,
+          "mape_pct": 7.369990539035863,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 3,
+          "mae_usd_2015": 40618561407.61106,
+          "rmse_usd_2015": 43042229445.10751,
+          "mape_pct": 11.819245536711497,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2019",
+      "cutoff_year": 2019,
+      "event_label": "Trước cú sốc COVID-19",
+      "horizon": 4,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2020,
+          "actual_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "actual_usd_2015": 332245562394.77
+        },
+        {
+          "year": 2022,
+          "actual_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "actual_usd_2015": 378564624231.77
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 314947640805.60034
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 335783633127.8666
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 357998072276.85956
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 381682152164.76373
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 406933099819.77515
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 338458942683.38525,
+              "lower95_usd_2015": 331530370782.97095,
+              "upper95_usd_2015": 345532313108.4892
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 364098451920.5219,
+              "lower95_usd_2015": 347711538841.43,
+              "upper95_usd_2015": 381257645727.3585
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 392097239357.3287,
+              "lower95_usd_2015": 363133207495.825,
+              "upper95_usd_2015": 423371484452.86664
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 422714919854.117,
+              "lower95_usd_2015": 377971567653.84515,
+              "upper95_usd_2015": 472754880946.2805
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 308119029949.3164
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 313840513196.1781
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 318502449377.4249
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 322198839408.7249
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 296386571130.0167
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 298405485641.0123
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 300181042161.6578
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 301279365553.5664
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 4,
+          "mae_usd_2015": 33900711041.222168,
+          "rmse_usd_2015": 40351351239.79002,
+          "mape_pct": 9.364882742566705,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 4,
+          "mae_usd_2015": 21750887500.493744,
+          "rmse_usd_2015": 22646548067.097687,
+          "mape_pct": 6.183433242271292,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 4,
+          "mae_usd_2015": 30494036607.0157,
+          "rmse_usd_2015": 32268802973.674576,
+          "mape_pct": 8.613164399140349,
+          "coverage_95_pct": 25.0,
+          "coverage_n": 4,
+          "covered_n": 1,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 4,
+          "mae_usd_2015": 33183143863.911423,
+          "rmse_usd_2015": 37216604942.50214,
+          "mape_pct": 9.249828617593316,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 4,
+          "mae_usd_2015": 49785235725.2592,
+          "rmse_usd_2015": 53691041514.7925,
+          "mape_pct": 13.968269385094006,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2019",
+      "cutoff_year": 2019,
+      "event_label": "Trước cú sốc COVID-19",
+      "horizon": 5,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2020,
+          "actual_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "actual_usd_2015": 332245562394.77
+        },
+        {
+          "year": 2022,
+          "actual_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "actual_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "actual_usd_2015": 405213877699.26
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 314947640805.60034
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 314947640805.60034
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 335783633127.8666
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 357998072276.85956
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 381682152164.76373
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 406933099819.77515
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 433854574518.9756
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 338458942683.38525,
+              "lower95_usd_2015": 331530370782.97095,
+              "upper95_usd_2015": 345532313108.4892
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 364098451920.5219,
+              "lower95_usd_2015": 347711538841.43,
+              "upper95_usd_2015": 381257645727.3585
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 392097239357.3287,
+              "lower95_usd_2015": 363133207495.825,
+              "upper95_usd_2015": 423371484452.86664
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 422714919854.117,
+              "lower95_usd_2015": 377971567653.84515,
+              "upper95_usd_2015": 472754880946.2805
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 456243569070.29346,
+              "lower95_usd_2015": 392349677873.73,
+              "upper95_usd_2015": 530542539109.695
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 308119029949.3164
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 313840513196.1781
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 318502449377.4249
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 322198839408.7249
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 325011220038.5827
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2020,
+              "predicted_usd_2015": 296386571130.0167
+            },
+            {
+              "year": 2021,
+              "predicted_usd_2015": 298405485641.0123
+            },
+            {
+              "year": 2022,
+              "predicted_usd_2015": 300181042161.6578
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 301279365553.5664
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 301720173162.5282
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 5,
+          "mae_usd_2015": 45173816211.70967,
+          "rmse_usd_2015": 54149643970.11286,
+          "mape_pct": 11.947145358426361,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 5,
+          "mae_usd_2015": 23128849364.33811,
+          "rmse_usd_2015": 23965617337.094948,
+          "mape_pct": 6.360355475246905,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 5,
+          "mae_usd_2015": 34601167559.81925,
+          "rmse_usd_2015": 36794379959.005264,
+          "mape_pct": 9.409186194259343,
+          "coverage_95_pct": 40.0,
+          "coverage_n": 5,
+          "covered_n": 2,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 5,
+          "mae_usd_2015": 42587046623.2646,
+          "rmse_usd_2015": 48934178300.28599,
+          "mape_pct": 11.358397488993033,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 5,
+          "mae_usd_2015": 60526929487.55373,
+          "rmse_usd_2015": 66696114781.161026,
+          "mape_pct": 16.28271817841575,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2021",
+      "cutoff_year": 2021,
+      "event_label": "Giai đoạn phục hồi sau đại dịch",
+      "horizon": 1,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2022,
+          "actual_usd_2015": 360611028653.68
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 332245562394.7703
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 353492135573.66174
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 339227602423.4361,
+              "lower95_usd_2015": 331068611176.9415,
+              "upper95_usd_2015": 347587667211.52594
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 333507528560.17413
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 320711169498.9798
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 1,
+          "mae_usd_2015": 28365466258.909668,
+          "rmse_usd_2015": 28365466258.909668,
+          "mape_pct": 7.8659452997903205,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 1,
+          "mae_usd_2015": 7118893080.0182495,
+          "rmse_usd_2015": 7118893080.0182495,
+          "mape_pct": 1.9741196231840765,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 1,
+          "mae_usd_2015": 21383426230.243896,
+          "rmse_usd_2015": 21383426230.243896,
+          "mape_pct": 5.929775999940339,
+          "coverage_95_pct": 0.0,
+          "coverage_n": 1,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 1,
+          "mae_usd_2015": 27103500093.50586,
+          "rmse_usd_2015": 27103500093.50586,
+          "mape_pct": 7.515993117208638,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 1,
+          "mae_usd_2015": 39899859154.700195,
+          "rmse_usd_2015": 39899859154.700195,
+          "mape_pct": 11.064514389275327,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2021",
+      "cutoff_year": 2021,
+      "event_label": "Giai đoạn phục hồi sau đại dịch",
+      "horizon": 2,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2022,
+          "actual_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "actual_usd_2015": 378564624231.77
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 332245562394.7703
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 353492135573.66174
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 376097393180.397
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 339227602423.4361,
+              "lower95_usd_2015": 331068611176.9415,
+              "upper95_usd_2015": 347587667211.52594
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 344757621990.73785,
+              "lower95_usd_2015": 326369338551.99945,
+              "upper95_usd_2015": 364181937090.18176
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 333507528560.17413
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 338441925014.518
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 320711169498.9798
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 321934082507.9882
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 2,
+          "mae_usd_2015": 37342264047.95468,
+          "rmse_usd_2015": 38406087834.77656,
+          "mape_pct": 10.050694548896692,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 2,
+          "mae_usd_2015": 4793062065.695648,
+          "rmse_usd_2015": 5327563596.316381,
+          "mape_pct": 1.3129263735271182,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 2,
+          "mae_usd_2015": 27595214235.63803,
+          "rmse_usd_2015": 28285723588.67134,
+          "mape_pct": 7.430044023150822,
+          "coverage_95_pct": 0.0,
+          "coverage_n": 2,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 2,
+          "mae_usd_2015": 33613099655.378937,
+          "rmse_usd_2015": 34237630684.648342,
+          "mape_pct": 9.057316232051612,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 2,
+          "mae_usd_2015": 48265200439.241,
+          "rmse_usd_2015": 48984778332.1202,
+          "mape_pct": 13.011897142335297,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2021",
+      "cutoff_year": 2021,
+      "event_label": "Giai đoạn phục hồi sau đại dịch",
+      "horizon": 3,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2022,
+          "actual_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "actual_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "actual_usd_2015": 405213877699.26
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 332245562394.7703
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 353492135573.66174
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 376097393180.397
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 400148220914.56256
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 339227602423.4361,
+              "lower95_usd_2015": 331068611176.9415,
+              "upper95_usd_2015": 347587667211.52594
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 344757621990.73785,
+              "lower95_usd_2015": 326369338551.99945,
+              "upper95_usd_2015": 364181937090.18176
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 348687108155.57025,
+              "lower95_usd_2015": 317935487452.9596,
+              "upper95_usd_2015": 382413112697.535
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 333507528560.17413
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 338441925014.518
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 342279724941.3523
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 320711169498.9798
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 321934082507.9882
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 322713070056.1864
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 3,
+          "mae_usd_2015": 49217614466.79968,
+          "rmse_usd_2015": 52518029297.63126,
+          "mape_pct": 12.702915837586623,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 3,
+          "mae_usd_2015": 4883926972.029582,
+          "rmse_usd_2015": 5241715571.767903,
+          "mape_pct": 1.291990673574204,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 3,
+          "mae_usd_2015": 37239066004.98861,
+          "rmse_usd_2015": 39980995455.81979,
+          "mape_pct": 9.603316089803808,
+          "coverage_95_pct": 0.0,
+          "coverage_n": 3,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 3,
+          "mae_usd_2015": 43386784022.88853,
+          "rmse_usd_2015": 45844440932.179955,
+          "mape_pct": 11.215242525812963,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 3,
+          "mae_usd_2015": 59677069507.1852,
+          "rmse_usd_2015": 62196999601.40987,
+          "mape_pct": 15.461204064680775,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2021",
+      "cutoff_year": 2021,
+      "event_label": "Giai đoạn phục hồi sau đại dịch",
+      "horizon": 4,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2022,
+          "actual_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "actual_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "actual_usd_2015": 405213877699.26
+        },
+        {
+          "year": 2025,
+          "actual_usd_2015": 437707289646.96
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 332245562394.7703
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 353492135573.66174
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 376097393180.397
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 400148220914.56256
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 425737060677.4929
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 339227602423.4361,
+              "lower95_usd_2015": 331068611176.9415,
+              "upper95_usd_2015": 347587667211.52594
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 344757621990.73785,
+              "lower95_usd_2015": 326369338551.99945,
+              "upper95_usd_2015": 364181937090.18176
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 348687108155.57025,
+              "lower95_usd_2015": 317935487452.9596,
+              "upper95_usd_2015": 382413112697.535
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 350884578185.35547,
+              "lower95_usd_2015": 306254585862.1099,
+              "upper95_usd_2015": 402018428105.26666
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 333507528560.17413
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 338441925014.518
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 342279724941.3523
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 345146967122.56165
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 320711169498.9798
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 321934082507.9882
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 322713070056.1864
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 322873844548.998
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 4,
+          "mae_usd_2015": 63278642663.14719,
+          "rmse_usd_2015": 69635849457.97643,
+          "mape_pct": 15.550717314320671,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 4,
+          "mae_usd_2015": 6655502471.388962,
+          "rmse_usd_2015": 7511876063.730881,
+          "mape_pct": 1.6526821538764565,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 4,
+          "mae_usd_2015": 49634977369.14259,
+          "rmse_usd_2015": 55528423393.924774,
+          "mape_pct": 12.161435291155161,
+          "coverage_95_pct": 0.0,
+          "coverage_n": 4,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 4,
+          "mae_usd_2015": 55680168648.26599,
+          "rmse_usd_2015": 60976535648.91387,
+          "mape_pct": 13.698088337701938,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 4,
+          "mae_usd_2015": 73466163404.87941,
+          "rmse_usd_2015": 78727568855.07135,
+          "mape_pct": 18.154706603654866,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Đây là kiểm định ngoài mẫu tại một mốc cắt cố định; số điểm kiểm thử còn ít nên không đại diện mọi chế độ kinh tế."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "2021",
+      "cutoff_year": 2021,
+      "event_label": "Giai đoạn phục hồi sau đại dịch",
+      "horizon": 5,
+      "status": "evaluated",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2022,
+          "actual_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "actual_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "actual_usd_2015": 405213877699.26
+        },
+        {
+          "year": 2025,
+          "actual_usd_2015": 437707289646.96
+        },
+        {
+          "year": 2026,
+          "actual_usd_2015": null
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 332245562394.7703
+            },
+            {
+              "year": 2026,
+              "predicted_usd_2015": 332245562394.7703
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 353492135573.66174
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 376097393180.397
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 400148220914.56256
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 425737060677.4929
+            },
+            {
+              "year": 2026,
+              "predicted_usd_2015": 452962265882.49963
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 339227602423.4361,
+              "lower95_usd_2015": 331068611176.9415,
+              "upper95_usd_2015": 347587667211.52594
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 344757621990.73785,
+              "lower95_usd_2015": 326369338551.99945,
+              "upper95_usd_2015": 364181937090.18176
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 348687108155.57025,
+              "lower95_usd_2015": 317935487452.9596,
+              "upper95_usd_2015": 382413112697.535
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 350884578185.35547,
+              "lower95_usd_2015": 306254585862.1099,
+              "upper95_usd_2015": 402018428105.26666
+            },
+            {
+              "year": 2026,
+              "predicted_usd_2015": 351240437498.6374,
+              "lower95_usd_2015": 291798467677.801,
+              "upper95_usd_2015": 422791270687.7444
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 333507528560.17413
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 338441925014.518
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 342279724941.3523
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 345146967122.56165
+            },
+            {
+              "year": 2026,
+              "predicted_usd_2015": 347438875333.4708
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2022,
+              "predicted_usd_2015": 320711169498.9798
+            },
+            {
+              "year": 2023,
+              "predicted_usd_2015": 321934082507.9882
+            },
+            {
+              "year": 2024,
+              "predicted_usd_2015": 322713070056.1864
+            },
+            {
+              "year": 2025,
+              "predicted_usd_2015": 322873844548.998
+            },
+            {
+              "year": 2026,
+              "predicted_usd_2015": 322798138146.60803
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 4,
+          "mae_usd_2015": 63278642663.14719,
+          "rmse_usd_2015": 69635849457.97643,
+          "mape_pct": 15.550717314320671,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "Drift",
+          "n": 4,
+          "mae_usd_2015": 6655502471.388962,
+          "rmse_usd_2015": 7511876063.730881,
+          "mape_pct": 1.6526821538764565,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 4,
+          "mae_usd_2015": 49634977369.14259,
+          "rmse_usd_2015": 55528423393.924774,
+          "mape_pct": 12.161435291155161,
+          "coverage_95_pct": 0.0,
+          "coverage_n": 4,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "GRU",
+          "n": 4,
+          "mae_usd_2015": 55680168648.26599,
+          "rmse_usd_2015": 60976535648.91387,
+          "mape_pct": 13.698088337701938,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        },
+        {
+          "model": "LSTM",
+          "n": 4,
+          "mae_usd_2015": 73466163404.87941,
+          "rmse_usd_2015": 78727568855.07135,
+          "mape_pct": 18.154706603654866,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "evaluated"
+        }
+      ],
+      "notes": [
+        "Có 4/5 năm thực tế trong cửa sổ; các năm sau kỳ cuối nguồn chỉ là dự báo."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "LATEST",
+      "cutoff_year": 2025,
+      "event_label": "Dự báo tương lai trên toàn bộ dữ liệu hiện có",
+      "horizon": 1,
+      "status": "forecast_only",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        },
+        {
+          "year": 2022,
+          "value_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "value_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "value_usd_2015": 405213877699.26
+        },
+        {
+          "year": 2025,
+          "value_usd_2015": 437707289646.96
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2026,
+          "actual_usd_2015": null
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 437707289646.96014
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 466020911120.54333
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 473905257368.5452,
+              "lower95_usd_2015": 459280531822.57806,
+              "upper95_usd_2015": 488995673451.0699
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 424034894748.8746
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 401741584116.1632
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "Drift",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "GRU",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "LSTM",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        }
+      ],
+      "notes": [
+        "Mốc hiện tại dùng toàn bộ chuỗi quan sát để dự báo; chưa có giá trị thực tế để tính sai số."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "LATEST",
+      "cutoff_year": 2025,
+      "event_label": "Dự báo tương lai trên toàn bộ dữ liệu hiện có",
+      "horizon": 2,
+      "status": "forecast_only",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        },
+        {
+          "year": 2022,
+          "value_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "value_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "value_usd_2015": 405213877699.26
+        },
+        {
+          "year": 2025,
+          "value_usd_2015": 437707289646.96
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2026,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2027,
+          "actual_usd_2015": null
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 437707289646.96014
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 466020911120.54333
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 496166033188.04156
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 473905257368.5452,
+              "lower95_usd_2015": 459280531822.57806,
+              "upper95_usd_2015": 488995673451.0699
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 514300127544.66364,
+              "lower95_usd_2015": 480573239335.6893,
+              "upper95_usd_2015": 550393986893.8394
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 424034894748.8746
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 430936694746.93054
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 401741584116.1632
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 403782611053.3878
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "Drift",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "GRU",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "LSTM",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        }
+      ],
+      "notes": [
+        "Mốc hiện tại dùng toàn bộ chuỗi quan sát để dự báo; chưa có giá trị thực tế để tính sai số."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "LATEST",
+      "cutoff_year": 2025,
+      "event_label": "Dự báo tương lai trên toàn bộ dữ liệu hiện có",
+      "horizon": 3,
+      "status": "forecast_only",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        },
+        {
+          "year": 2022,
+          "value_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "value_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "value_usd_2015": 405213877699.26
+        },
+        {
+          "year": 2025,
+          "value_usd_2015": 437707289646.96
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2026,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2027,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2028,
+          "actual_usd_2015": null
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 437707289646.96014
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 466020911120.54333
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 496166033188.04156
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 528261128663.98474
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 473905257368.5452,
+              "lower95_usd_2015": 459280531822.57806,
+              "upper95_usd_2015": 488995673451.0699
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 514300127544.66364,
+              "lower95_usd_2015": 480573239335.6893,
+              "upper95_usd_2015": 550393986893.8394
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 559457936127.4124,
+              "lower95_usd_2015": 501174867881.57446,
+              "upper95_usd_2015": 624518910173.8892
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 424034894748.8746
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 430936694746.93054
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 436452068047.99866
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 401741584116.1632
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 403782611053.3878
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 405350307908.9314
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "Drift",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "GRU",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "LSTM",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        }
+      ],
+      "notes": [
+        "Mốc hiện tại dùng toàn bộ chuỗi quan sát để dự báo; chưa có giá trị thực tế để tính sai số."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "LATEST",
+      "cutoff_year": 2025,
+      "event_label": "Dự báo tương lai trên toàn bộ dữ liệu hiện có",
+      "horizon": 4,
+      "status": "forecast_only",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        },
+        {
+          "year": 2022,
+          "value_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "value_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "value_usd_2015": 405213877699.26
+        },
+        {
+          "year": 2025,
+          "value_usd_2015": 437707289646.96
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2026,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2027,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2028,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2029,
+          "actual_usd_2015": null
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 437707289646.96014
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 466020911120.54333
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 496166033188.04156
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 528261128663.98474
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 562432333919.1287
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 473905257368.5452,
+              "lower95_usd_2015": 459280531822.57806,
+              "upper95_usd_2015": 488995673451.0699
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 514300127544.66364,
+              "lower95_usd_2015": 480573239335.6893,
+              "upper95_usd_2015": 550393986893.8394
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 559457936127.4124,
+              "lower95_usd_2015": 501174867881.57446,
+              "upper95_usd_2015": 624518910173.8892
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 610030590530.6694,
+              "lower95_usd_2015": 521794139403.07837,
+              "upper95_usd_2015": 713188005156.4293
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 424034894748.8746
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 430936694746.93054
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 436452068047.99866
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 440975028485.6205
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 401741584116.1632
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 403782611053.3878
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 405350307908.9314
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 406237014632.2375
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "Drift",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "GRU",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "LSTM",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        }
+      ],
+      "notes": [
+        "Mốc hiện tại dùng toàn bộ chuỗi quan sát để dự báo; chưa có giá trị thực tế để tính sai số."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    },
+    {
+      "cutoff_key": "LATEST",
+      "cutoff_year": 2025,
+      "event_label": "Dự báo tương lai trên toàn bộ dữ liệu hiện có",
+      "horizon": 5,
+      "status": "forecast_only",
+      "history": [
+        {
+          "year": 1985,
+          "value_usd_2015": 35671286575.78
+        },
+        {
+          "year": 1986,
+          "value_usd_2015": 36666262766.86
+        },
+        {
+          "year": 1987,
+          "value_usd_2015": 37980187158.04
+        },
+        {
+          "year": 1988,
+          "value_usd_2015": 39930474201.5
+        },
+        {
+          "year": 1989,
+          "value_usd_2015": 42871159122.68
+        },
+        {
+          "year": 1990,
+          "value_usd_2015": 45057981854.81
+        },
+        {
+          "year": 1991,
+          "value_usd_2015": 47743817832.17
+        },
+        {
+          "year": 1992,
+          "value_usd_2015": 51871770980.84
+        },
+        {
+          "year": 1993,
+          "value_usd_2015": 56059239339.34
+        },
+        {
+          "year": 1994,
+          "value_usd_2015": 61014304826.64
+        },
+        {
+          "year": 1995,
+          "value_usd_2015": 66835362482.48
+        },
+        {
+          "year": 1996,
+          "value_usd_2015": 73077797034.13
+        },
+        {
+          "year": 1997,
+          "value_usd_2015": 79035160538.46
+        },
+        {
+          "year": 1998,
+          "value_usd_2015": 83591107164.25
+        },
+        {
+          "year": 1999,
+          "value_usd_2015": 87581401291.57
+        },
+        {
+          "year": 2000,
+          "value_usd_2015": 93525828108.84
+        },
+        {
+          "year": 2001,
+          "value_usd_2015": 99317782863.1
+        },
+        {
+          "year": 2002,
+          "value_usd_2015": 105595482130.71
+        },
+        {
+          "year": 2003,
+          "value_usd_2015": 112880581486.06
+        },
+        {
+          "year": 2004,
+          "value_usd_2015": 121387725604.57
+        },
+        {
+          "year": 2005,
+          "value_usd_2015": 130549157968.49
+        },
+        {
+          "year": 2006,
+          "value_usd_2015": 139658819217.11
+        },
+        {
+          "year": 2007,
+          "value_usd_2015": 149615800998.36
+        },
+        {
+          "year": 2008,
+          "value_usd_2015": 158086705343.27
+        },
+        {
+          "year": 2009,
+          "value_usd_2015": 166620063722.29
+        },
+        {
+          "year": 2010,
+          "value_usd_2015": 177322478338.4
+        },
+        {
+          "year": 2011,
+          "value_usd_2015": 188694468366.27
+        },
+        {
+          "year": 2012,
+          "value_usd_2015": 199081239731.69
+        },
+        {
+          "year": 2013,
+          "value_usd_2015": 210137237901.39
+        },
+        {
+          "year": 2014,
+          "value_usd_2015": 223632762207.56
+        },
+        {
+          "year": 2015,
+          "value_usd_2015": 239258328381.74
+        },
+        {
+          "year": 2016,
+          "value_usd_2015": 255264731908.12
+        },
+        {
+          "year": 2017,
+          "value_usd_2015": 272980590259.19
+        },
+        {
+          "year": 2018,
+          "value_usd_2015": 293358610036.84
+        },
+        {
+          "year": 2019,
+          "value_usd_2015": 314947640805.6
+        },
+        {
+          "year": 2020,
+          "value_usd_2015": 323972192107.07
+        },
+        {
+          "year": 2021,
+          "value_usd_2015": 332245562394.77
+        },
+        {
+          "year": 2022,
+          "value_usd_2015": 360611028653.68
+        },
+        {
+          "year": 2023,
+          "value_usd_2015": 378564624231.77
+        },
+        {
+          "year": 2024,
+          "value_usd_2015": 405213877699.26
+        },
+        {
+          "year": 2025,
+          "value_usd_2015": 437707289646.96
+        }
+      ],
+      "actuals": [
+        {
+          "year": 2026,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2027,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2028,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2029,
+          "actual_usd_2015": null
+        },
+        {
+          "year": 2030,
+          "actual_usd_2015": null
+        }
+      ],
+      "forecasts": {
+        "Naive": {
+          "model": "Naive",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 437707289646.96014
+            },
+            {
+              "year": 2030,
+              "predicted_usd_2015": 437707289646.96014
+            }
+          ]
+        },
+        "Drift": {
+          "model": "Drift",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 466020911120.54333
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 496166033188.04156
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 528261128663.98474
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 562432333919.1287
+            },
+            {
+              "year": 2030,
+              "predicted_usd_2015": 598813944606.7969
+            }
+          ]
+        },
+        "SARIMAX": {
+          "model": "SARIMAX",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 473905257368.5452,
+              "lower95_usd_2015": 459280531822.57806,
+              "upper95_usd_2015": 488995673451.0699
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 514300127544.66364,
+              "lower95_usd_2015": 480573239335.6893,
+              "upper95_usd_2015": 550393986893.8394
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 559457936127.4124,
+              "lower95_usd_2015": 501174867881.57446,
+              "upper95_usd_2015": 624518910173.8892
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 610030590530.6694,
+              "lower95_usd_2015": 521794139403.07837,
+              "upper95_usd_2015": 713188005156.4293
+            },
+            {
+              "year": 2030,
+              "predicted_usd_2015": 666770229561.4652,
+              "lower95_usd_2015": 542985500604.2265,
+              "upper95_usd_2015": 818774237129.2123
+            }
+          ]
+        },
+        "GRU": {
+          "model": "GRU",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 424034894748.8746
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 430936694746.93054
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 436452068047.99866
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 440975028485.6205
+            },
+            {
+              "year": 2030,
+              "predicted_usd_2015": 444438637901.0271
+            }
+          ]
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "points": [
+            {
+              "year": 2026,
+              "predicted_usd_2015": 401741584116.1632
+            },
+            {
+              "year": 2027,
+              "predicted_usd_2015": 403782611053.3878
+            },
+            {
+              "year": 2028,
+              "predicted_usd_2015": 405350307908.9314
+            },
+            {
+              "year": 2029,
+              "predicted_usd_2015": 406237014632.2375
+            },
+            {
+              "year": 2030,
+              "predicted_usd_2015": 406142595928.9108
+            }
+          ]
+        }
+      },
+      "metrics": [
+        {
+          "model": "Naive",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "Drift",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "SARIMAX",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "GRU",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        },
+        {
+          "model": "LSTM",
+          "n": 0,
+          "mae_usd_2015": null,
+          "rmse_usd_2015": null,
+          "mape_pct": null,
+          "coverage_95_pct": null,
+          "coverage_n": 0,
+          "covered_n": 0,
+          "status": "forecast_only"
+        }
+      ],
+      "notes": [
+        "Mốc hiện tại dùng toàn bộ chuỗi quan sát để dự báo; chưa có giá trị thực tế để tính sai số."
+      ],
+      "sarimax_coverage_note": "Khoảng 95% được lấy từ SARIMAX trên log GDP rồi biến đổi ngược. Tỷ lệ bao phủ thực nghiệm dùng riêng các điểm holdout có thực tế; n nhỏ nên chỉ mang tính mô tả.",
+      "warnings": []
+    }
+  ]
+}

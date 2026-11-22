@@ -1,0 +1,48 @@
+<button type="button" class="nav-link" data-page="model-arena"><span class="nav-icon">◎</span>Đấu trường kiểm định</button>
+<section id="model-arena" class="section page">
+  <div class="arena-intro">
+    <div>
+      <h2>Đấu trường kiểm định dự báo theo mốc lịch sử</h2>
+      <p>Đặt điểm cắt trong quá khứ, huấn luyện lại chỉ bằng lịch sử đến mốc đó và đối chiếu các dự báo với GDP thực đã công bố.</p>
+    </div>
+    <div class="arena-controls">
+      <label class="sub" for="arena-cutoff">Kịch bản</label>
+      <select id="arena-cutoff" class="select" aria-label="Chọn mốc cắt lịch sử">
+        <option value="2008">2008 · Khủng hoảng tài chính</option>
+        <option value="2019" selected>2019 · Trước cú sốc COVID-19</option>
+        <option value="2021">2021 · Giai đoạn phục hồi</option>
+        <option value="LATEST">Hiện tại · Dự báo tương lai</option>
+      </select>
+      <label class="sub" for="arena-horizon">Chân trời</label>
+      <select id="arena-horizon" class="select" aria-label="Chọn chân trời dự báo">
+        <option value="1">1 năm</option><option value="2">2 năm</option><option value="3" selected>3 năm</option>
+        <option value="4">4 năm</option><option value="5">5 năm</option>
+      </select>
+    </div>
+  </div>
+  <div class="arena-grid">
+    <article class="panel">
+      <div class="section-head"><div><div id="arena-scenario-title" class="panel-title">Đang chờ dữ liệu kiểm định</div><div id="arena-period-meta" class="panel-sub">GDP thực năm · USD cố định 2015</div></div><span id="arena-scenario-badge" class="arena-state">Chưa tải</span></div>
+      <div class="arena-toggles" aria-label="Bật hoặc tắt các mô hình trên biểu đồ">
+        <label class="arena-toggle"><input id="arena-model-Naive" type="checkbox" checked>Naive</label>
+        <label class="arena-toggle"><input id="arena-model-Drift" type="checkbox" checked>Drift</label>
+        <label class="arena-toggle"><input id="arena-model-SARIMAX" type="checkbox" checked>SARIMAX</label>
+        <label class="arena-toggle"><input id="arena-model-GRU" type="checkbox" checked>GRU</label>
+        <label class="arena-toggle"><input id="arena-model-LSTM" type="checkbox" checked>LSTM</label>
+      </div>
+      <div id="arena-status" class="arena-status" role="status" aria-live="polite">Chọn mục này để tải kết quả đã tiền tính.</div>
+      <div class="arena-chart-wrap"><canvas id="arena-chart" role="img" aria-label="GDP thực tế và các đường dự báo từ mốc cắt lịch sử"></canvas><div id="arena-tooltip" class="arena-tooltip"></div></div>
+      <div id="arena-legend" class="arena-legend" aria-label="Chú giải biểu đồ"></div>
+      <div id="arena-method-meta" class="footnote">World Bank WDI · NY.GDP.MKTP.KD · GDP thực hằng năm.</div>
+    </article>
+    <article class="panel">
+      <div class="section-head"><div><div class="panel-title">Bảng xếp hạng trên cửa sổ đang chọn</div><div class="panel-sub">Chỉ tính các năm có GDP thực tế để đối chiếu</div></div>
+        <select id="arena-rank-by" class="select" aria-label="Sắp xếp xếp hạng theo sai số"><option value="rmse">RMSE thấp nhất</option><option value="mae">MAE thấp nhất</option></select>
+      </div>
+      <div class="arena-table table-wrap"><table class="table"><thead><tr><th>#</th><th>Mô hình</th><th>n</th><th>MAE</th><th>RMSE</th><th>MAPE</th><th>Phủ 95%</th></tr></thead><tbody id="arena-scoreboard"></tbody></table></div>
+      <div class="arena-note"><strong>Đọc kết quả:</strong> MAE/RMSE hiển thị theo tỷ USD cố định 2015; MAPE theo phần trăm. “n” là số năm holdout có số thực tế. Cutoff hiện tại chưa có dữ liệu tương lai nên không xếp hạng mô hình.</div>
+      <div id="arena-caveat" class="arena-note">Các điểm kiểm thử tại mốc cắt lịch sử là kịch bản hữu hạn, không đại diện mọi cú sốc. Khoảng và độ phủ 95% của SARIMAX cần được đọc cùng số lượng điểm kiểm thử.</div>
+    </article>
+  </div>
+</section>
+
