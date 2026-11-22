@@ -1,6 +1,22 @@
 name: Tự động đồng bộ dữ liệu GDP
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/auto-refresh-data.yml'
+      - 'refresh_data.mjs'
+      - 'build_extended_data.mjs'
+      - 'refresh_expanded_data.mjs'
+      - 'data_paths.py'
+      - 'data_paths.mjs'
+      - 'requirements-analysis.txt'
+      - 'scripts/analyze_observed_data.py'
+      - 'scripts/analyze_expanded_data.py'
+      - 'scripts/validate_auto_refresh.py'
+      - 'scripts/record_auto_refresh.py'
+      - 'scripts/snapshot_data.py'
+      - 'scripts/build_dashboard.py'
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
