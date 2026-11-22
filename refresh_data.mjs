@@ -30,11 +30,20 @@ function fmtNumber(value, digits = 6) {
 
 async function fetchWdi(indicator, start = 1985, end = 2026) {
   const url = `https://api.worldbank.org/v2/country/VNM/indicator/${indicator}?date=${start}:${end}&format=json&per_page=1000`;
-  const response = await fetch(url, { signal: AbortSignal.timeout(25000) });
-  if (!response.ok) throw new Error(`World Bank ${indicator}: HTTP ${response.status}`);
-  const body = await response.json();
-  if (!Array.isArray(body) || !Array.isArray(body[1])) throw new Error(`World Bank returned an unexpected response for ${indicator}`);
-  return new Map(body[1].filter(x => x.value !== null).map(x => [Number(x.date), Number(x.value)]));
+  let lastError;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    try {
+      const response = await fetch(url, { signal: AbortSignal.timeout(90000) });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const body = await response.json();
+      if (!Array.isArray(body) || !Array.isArray(body[1])) throw new Error('unexpected API response');
+      return new Map(body[1].filter(x => x.value !== null).map(x => [Number(x.date), Number(x.value)]));
+    } catch (error) {
+      lastError = error;
+      if (attempt < 4) await new Promise(resolve => setTimeout(resolve, 1500 * attempt));
+    }
+  }
+  throw new Error(`World Bank ${indicator} failed after 4 attempts: ${lastError?.message ?? 'unknown error'}`);
 }
 
 function htmlAttrs(tag) {
@@ -60,7 +69,7 @@ function parseCsv(text) {
 }
 
 async function fetchPxWebCsv(tableUrl) {
-  const pageResponse = await fetch(tableUrl, { signal: AbortSignal.timeout(25000), headers: { 'user-agent': 'Mozilla/5.0 (compatible; data-refresh/1.0)' } });
+  const pageResponse = await fetch(tableUrl, { signal: AbortSignal.timeout(60000), headers: { 'user-agent': 'Mozilla/5.0 (compatible; data-refresh/1.0)' } });
   if (!pageResponse.ok) throw new Error(`NSO PXWeb page: HTTP ${pageResponse.status}`);
   const html = await pageResponse.text();
   const formFields = new URLSearchParams();
@@ -87,7 +96,7 @@ async function fetchPxWebCsv(tableUrl) {
     headers: { 'content-type': 'application/x-www-form-urlencoded', cookie, 'user-agent': 'Mozilla/5.0 (compatible; data-refresh/1.0)' },
     body: formFields.toString(),
     redirect: 'follow',
-    signal: AbortSignal.timeout(25000),
+    signal: AbortSignal.timeout(60000),
   });
   if (!response.ok) throw new Error(`NSO PXWeb CSV: HTTP ${response.status}`);
   const data = await response.text();
