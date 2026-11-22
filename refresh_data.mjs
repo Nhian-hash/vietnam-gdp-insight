@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { dataPath } from './data_paths.mjs';
@@ -100,7 +100,7 @@ async function main() {
     Object.values(wbIds).map(id => fetchWdi(id))
   );
   const years = [...gdpUsd.keys()].sort((a, b) => a - b);
-  if (!years.includes(2025)) throw new Error('World Bank has not returned the expected 2025 GDP observation');
+  if (years.length < 35 || years.at(-1) < 2025) throw new Error('World Bank GDP series is incomplete or older than 2025');
 
   const annualRows = [['Nam_Goc', 'Year', 'Date', 'GDP_USD', 'GDP_USD_Billion']];
   const sectorRows = [['nam', 'tong_gdp_usd', 'gdp_nong_lam_thuy_san', 'gdp_cong_nghiep_xay_dung', 'gdp_dich_vu']];
@@ -123,15 +123,8 @@ async function main() {
   await writeDataset('du_lieu_gdp_quoc_gia_co_cau_nganh.csv', csv(sectorRows));
   await writeDataset('du_lieu_gdp_thuc_va_tang_truong.csv', csv(realRows));
 
-  // Latest official quarterly GDP release available from NSO at refresh time.
-  // These are year-on-year growth estimates, not GDP level observations.
-  const quarterlyGdpRows = [
-    ['nam', 'quy', 'thoi_gian', 'tang_truong_gdp_so_voi_cung_ky_pct', 'nong_lam_thuy_san_yoy_pct', 'cong_nghiep_xay_dung_yoy_pct', 'dich_vu_yoy_pct', 'trang_thai'],
-    [2026, 'Q1', '2026-Q1', 8.15, '', '', '', 'uoc_tinh_chinh_thuc'],
-    [2026, 'Q2', '2026-Q2', 8.81, '', '', '', 'uoc_tinh_chinh_thuc'],
-    [2026, 'Q3', '2026-Q3', 9.95, 4.21, 12.50, 9.54, 'uoc_tinh_chinh_thuc']
-  ];
-  await writeDataset('du_lieu_tang_truong_gdp_quy.csv', csv(quarterlyGdpRows));
+  // Quarterly GDP is intentionally left untouched here. The World Bank annual
+  // refresh must never overwrite the separate NSO quarterly release series.
 
   // Compatibility output for the current notebook/Power BI import. Annual values
   // are placed at December endpoints; the resulting monthly values are estimates,
@@ -190,54 +183,44 @@ async function main() {
       if (Number.isFinite(value)) cpi.set(`${year}-${String(m).padStart(2, '0')}-01`, value);
     }
   }
-  const dec2025 = cpi.get('2025-12-01');
-  if (!dec2025) throw new Error('NSO base-2019 CPI table did not include Dec 2025');
-  const cumulativePct2026 = [0.05, 1.19, 2.44, 3.31, 3.61, 3.21, 3.08, 3.57, 4.20];
-  cumulativePct2026.forEach((pct, index) => {
-    const month = index + 1;
-    cpi.set(`2026-${String(month).padStart(2, '0')}-01`, dec2025 * (1 + pct / 100));
-  });
+  if (cpi.size < 60) throw new Error('NSO CPI source returned too few observed months');
+  const latestCpiPeriod = [...cpi.keys()].sort().at(-1);
+  const earliestCpiPeriod = [...cpi.keys()].sort()[0];
   const cpiRows = [['thoi_gian', 'chi_so_cpi'], ...[...cpi.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([date, value]) => [date, fmtNumber(value, 6)])];
   await writeDataset('du_lieu_lam_phat_cpi.csv', csv(cpiRows));
 
   const status = [
     ['tep', 'dong_moc_du_lieu', 'ghi_chu'],
-    ['GDP_Vietnam_Annual.csv', '1985-2025', 'GDP danh nghia USD hien hanh; so thuc 2025 moi nhat World Bank'],
-    ['GDP_Vietnam_Monthly.csv', '1985-01..2025-12', 'Noi suy natural cubic spline giua cac moc GDP nam gan vao thang 12; khong phai GDP quan sat theo thang'],
+    ['GDP_Vietnam_Annual.csv', `${years[0]}-${years.at(-1)}`, 'GDP danh nghia USD hien hanh; quan sat World Bank WDI'],
+    ['GDP_Vietnam_Monthly.csv', `${years[0]}-01..${years.at(-1)}-12`, 'Noi suy natural cubic spline giua cac moc GDP nam; khong phai GDP quan sat theo thang'],
     ['du_lieu_tang_truong_gdp_quy.csv', '2026-Q1..Q3', 'Tang truong GDP so voi cung ky theo uoc tinh chinh thuc NSO; khong phai quy mo GDP'],
-    ['du_lieu_gdp_quoc_gia_co_cau_nganh.csv', '1985-2025', 'GDP va gia tri gia tang nganh theo World Bank; sector co the trong o trong khi nguon khong co quan sat'],
-    ['du_lieu_gdp_thuc_va_tang_truong.csv', '1985-2025', 'GDP thuc USD co dinh nam 2015 va tang truong GDP thuc; dung lam muc tieu mo hinh uu tien'],
-    ['du_lieu_lam_phat_cpi.csv', '2020-01..2026-09', '2020-2025 chi so CPI goc 2019 tu PXWeb; 2026-01..09 suy ra tu ty le CPI cong don NSO lam tron den 0.01%']
+    ['du_lieu_gdp_quoc_gia_co_cau_nganh.csv', `${years[0]}-${years.at(-1)}`, 'GDP va gia tri gia tang nganh theo World Bank WDI; gia tri nganh de trong neu nguon khong co quan sat'],
+    ['du_lieu_gdp_thuc_va_tang_truong.csv', `${years[0]}-${Math.max(...gdpReal2015.keys())}`, 'GDP thuc USD co dinh nam 2015 va tang truong GDP thuc theo World Bank WDI'],
+    ['du_lieu_lam_phat_cpi.csv', `${earliestCpiPeriod}..${latestCpiPeriod}`, 'Chi so CPI quan sat theo NSO PXWeb; khong noi suy tu ty le cong don']
   ];
   await writeDataset('trang_thai_du_lieu.csv', csv(status));
+  const quarterSource = parseCsv(await readFile(await dataPath('du_lieu_tang_truong_gdp_quy.csv'), 'utf8'));
+  const quarterTimeColumn = quarterSource[0]?.indexOf('thoi_gian') ?? -1;
+  const latestQuarter = quarterTimeColumn < 0 ? null : quarterSource.slice(1).map(row => row[quarterTimeColumn]).filter(Boolean).sort().at(-1);
   await writeFile(path.join(OUT, 'refresh_manifest.json'), JSON.stringify({
     retrieved_at_utc: new Date().toISOString(),
-    data_cutoff: { annual_gdp: 2025, quarterly_gdp_growth: '2026-Q3', cpi: '2026-09' },
+    data_cutoff: { annual_gdp: years.at(-1), quarterly_gdp_growth: latestQuarter, cpi: latestCpiPeriod.slice(0, 7) },
     sources: {
       world_bank_api: 'https://api.worldbank.org/v2/country/VNM/indicator/{indicator}?date=1985:2026&format=json&per_page=1000',
       nso_quarterly_gdp_2026: 'https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/',
       nso_pxweb_cpi: pxUrl,
-      nso_cpi_2026_cumulative_changes: [
-        'https://www.nso.gov.vn/en/data-and-statistics/2026/02/consumer-price-index-gold-price-index-and-us-dollar-price-index-for-january-2026/',
-        'https://www.nso.gov.vn/en/data-and-statistics/2026/03/consumer-price-index-gold-price-index-and-us-dollar-price-index-for-february-and-the-first-two-months-of-2026/',
-        'https://www.nso.gov.vn/en/data-and-statistics/2026/04/consumer-price-index-gold-us-dollar-price-index-in-march-and-the-first-quarter-in-2026/',
-        'https://www.nso.gov.vn/en/data-and-statistics/2026/05/consumer-price-index-gold-price-index-and-usd-price-index-for-april-and-the-first-four-months-of-2026/',
-        'https://www.nso.gov.vn/en/data-and-statistics/2026/07/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-june-2026-q2-2026-and-the-first-six-months-of-2026/',
-        'https://www.nso.gov.vn/en/data-and-statistics/2026/08/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-july-and-the-first-seven-months-of-2026/',
-        'https://www.nso.gov.vn/en/data-and-statistics/2026/09/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-august-and-eight-months-of-2026/',
-        'https://www.nso.gov.vn/en/data-and-statistics/2026/10/consumer-price-index-gold-price-index-and-us-dollar-price-index-in-september-2026-q3-2026-and-the-nine-months-of-2026/',
-        'https://www.nso.gov.vn/en/cpi/'
-      ]
+
     },
     indicators: wbIds,
     notes: {
       quarterly_gdp_2026: 'NSO quarterly year-on-year estimates for Q1-Q3 2026, from the official Q3 and first-nine-months release; not GDP level observations.',
       sectors: 'World Bank NV.AGR.TOTL.CD, NV.IND.TOTL.CD, NV.SRV.TOTL.CD; definitions are broad value-added groups.',
       monthly_gdp: 'Cubic spline is only a compatibility series for the current dashboard; do not use it as observed monthly GDP in backtests.',
-      cpi_2026: '2026 monthly index values are reconstructed as Dec-2025 level times official cumulative CPI rate versus Dec-2025; rates are rounded in NSO press releases.'
+      cpi_monthly: 'Monthly index values are read directly from the NSO PXWeb E11.07 source. Values are not reconstructed from rounded cumulative rates.',
+      quarterly_gdp_refresh: 'Quarterly GDP growth is a separate NSO release series and is not rewritten by the annual World Bank updater.'
     }
   }, null, 2), 'utf8');
-  console.log(`Wrote ${years.length} annual rows (latest ${years.at(-1)}), ${monthIndex} monthly spline rows, and ${cpiRows.length - 1} CPI rows through 2026-09 to ${OUT}`);
+  console.log(`Wrote ${years.length} annual rows (latest ${years.at(-1)}), ${monthIndex} compatibility spline rows, and ${cpiRows.length - 1} observed CPI rows through ${latestCpiPeriod} to ${OUT}`);
 }
 
 await main();
