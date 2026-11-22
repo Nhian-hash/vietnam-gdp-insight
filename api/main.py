@@ -473,6 +473,29 @@ def dashboard() -> Response:
         html,
         count=1,
     )
+    # On narrow screens, keep navigation anchored to the left in a slide-out
+    # drawer instead of converting every page link into a horizontal top bar.
+    if 'id="mobile-nav-toggle"' not in html:
+        html = html.replace(
+            '<header class="topbar">',
+            '<header class="topbar"><button id="mobile-nav-toggle" class="mobile-nav-toggle" type="button" aria-label="Mở điều hướng bên trái" aria-expanded="false">☰</button>',
+            1,
+        )
+    if 'id="nav-backdrop"' not in html:
+        html = html.replace(
+            "</aside>",
+            '</aside><button id="nav-backdrop" class="nav-backdrop" type="button" aria-label="Đóng điều hướng"></button>',
+            1,
+        )
+    if 'id="vmest-left-nav-responsive"' not in html:
+        mobile_nav_css = '''<style id="vmest-left-nav-responsive">
+.mobile-nav-toggle{display:none;border:1px solid var(--line,#dbe3ee);background:var(--surface,#fff);border-radius:9px;width:38px;height:38px;align-items:center;justify-content:center;cursor:pointer;font-size:18px;flex:0 0 auto}.nav-backdrop{display:none}
+@media(max-width:740px){.app{display:block!important}.sidebar{position:fixed!important;top:0!important;bottom:0!important;left:0!important;width:min(260px,82vw)!important;height:100vh!important;height:100dvh!important;min-height:0!important;z-index:7!important;overflow-y:auto!important;transform:translateX(-105%);transition:transform .2s ease;box-shadow:var(--shadow,0 12px 32px rgba(20,35,60,.18));border-right:1px solid var(--line,#dbe3ee)!important;border-bottom:0!important;padding:18px 14px!important}.dark .sidebar{border-right-color:#3a374e!important}body.nav-open .sidebar{transform:translateX(0)}body.nav-open .nav-backdrop{display:block;position:fixed;inset:0;z-index:6;border:0;background:rgba(15,23,42,.42)}.mobile-nav-toggle{display:inline-flex!important}.nav-label{display:block!important}.nav{display:flex!important;flex-direction:column!important;align-items:stretch;overflow:visible!important;gap:0!important;padding:0!important}.nav .nav-link{display:flex!important;width:100%!important;flex:0 0 auto!important;white-space:normal!important;text-align:left!important;margin:3px 0!important;padding:10px 11px!important}.side-bottom{display:block!important}.topbar{height:58px;padding:0 15px;gap:10px}.top-actions .pill:first-child{display:none}.content{padding:17px 14px 35px}.welcome{align-items:start;flex-direction:column}.welcome-note{width:100%}.kpis{gap:9px}.kpi{padding:12px;min-height:105px}.kpi-value{font-size:21px}.grid-equal{grid-template-columns:1fr}.model-layout{grid-template-columns:1fr}.data-footer{grid-template-columns:1fr}.region-row{grid-template-columns:minmax(115px,1fr) 1.5fr 45px}}
+</style>'''
+        html = html.replace("</head>", mobile_nav_css + "\n</head>", 1)
+    if 'id="vmest-left-nav-behavior"' not in html:
+        mobile_nav_js = '''<script id="vmest-left-nav-behavior">(() => {const toggle=document.getElementById("mobile-nav-toggle"),backdrop=document.getElementById("nav-backdrop");if(!toggle||!backdrop)return;const setOpen=open=>{document.body.classList.toggle("nav-open",open);toggle.setAttribute("aria-expanded",String(open));};toggle.addEventListener("click",()=>setOpen(!document.body.classList.contains("nav-open")));backdrop.addEventListener("click",()=>setOpen(false));document.querySelectorAll(".nav-link").forEach(link=>link.addEventListener("click",()=>setOpen(false)));})();</script>'''
+        html = html.replace("</body>", mobile_nav_js + "\n</body>", 1)
     # Keep historical-cutoff evaluation inside Training Lab, not as another
     # top-level page. This also migrates a previously generated standalone page.
     html = re.sub(
