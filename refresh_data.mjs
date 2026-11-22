@@ -196,7 +196,105 @@ async function main() {
   const latestCpiPeriod = [...cpi.keys()].sort().at(-1);
   const earliestCpiPeriod = [...cpi.keys()].sort()[0];
   const cpiRows = [['thoi_gian', 'chi_so_cpi'], ...[...cpi.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([date, value]) => [date, fmtNumber(value, 6)])];
+
   await writeDataset('du_lieu_lam_phat_cpi.csv', csv(cpiRows));
+
+  // Current monthly CPI rates are published through NSO release pages; E11.07
+  // currently ends earlier, so keep published rates in a separate, unlinked series.
+  const cpiReleaseArchiveUrl = 'https://www.nso.gov.vn/en/cpi/';
+  const archiveResponse = await fetch(cpiReleaseArchiveUrl, {
+    headers: { 'user-agent': 'Mozilla/5.0 (compatible; V-MEST-data-refresh/1.0)' },
+    signal: AbortSignal.timeout(60000),
+  });
+  if (!archiveResponse.ok) throw new Error(`NSO CPI release archive: HTTP ${archiveResponse.status}`);
+  const archiveHtml = await archiveResponse.text();
+  const decodeHtml = value => value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&#(\\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/\s+/g, ' ')
+    .trim();
+  const releaseLinks = [...archiveHtml.matchAll(/<a\\b[^>]*href=["']([^"']+)["'][^>]*>([\\s\\S]*?)<\\/a>/gi)]
+    .map(match => ({ url: new URL(match[1], cpiReleaseArchiveUrl).toString(), text: decodeHtml(match[2]) }))
+    .filter(item => item.url.includes('/data-and-statistics/') && /consumer-price-index/i.test(item.url))
+    .map(item => {
+      const periodMatch = item.text.match(/Reference period:\\s*(\\d{1,2})\\/(20\\d{2})/i);
+      const issueMatch = item.text.match(/Date of issue:\\s*(\\d{1,2})\\/(\\d{1,2})\\/(20\\d{2})/i);
+      if (!periodMatch) return null;
+      const period = `${periodMatch[2]}-${periodMatch[1].padStart(2, '0')}-01`;
+      const issueDate = issueMatch ? `${issueMatch[3]}-${issueMatch[2].padStart(2, '0')}-${issueMatch[1].padStart(2, '0')}` : '';
+      return { ...item, period, issueDate };
+    })
+    .filter(Boolean);
+  const uniqueReleaseLinks = [...new Map(releaseLinks.map(item => [item.period, item])).values()]
+    .sort((a, b) => b.period.localeCompare(a.period))
+    .slice(0, 12);
+  if (!uniqueReleaseLinks.length) throw new Error('NSO CPI archive has no monthly CPI releases with reference periods');
+  const reportedReleases = [];
+  for (const item of uniqueReleaseLinks) {
+    const reportResponse = await fetch(item.url, {
+      headers: { 'user-agent': 'Mozilla/5.0 (compatible; V-MEST-data-refresh/1.0)' },
+      signal: AbortSignal.timeout(60000),
+    });
+    if (!reportResponse.ok) throw new Error(`NSO CPI release ${item.period}: HTTP ${reportResponse.status}`);
+    const reportHtml = await reportResponse.text();
+    const paragraphs = [...reportHtml.matchAll(/<p\\b[^>]*>([\\s\\S]*?)<\\/p>/gi)]
+      .map(match => decodeHtml(match[1]))
+      .filter(Boolean);
+    const summary = paragraphs.find(text => /consumer price index/i.test(text) && /%/.test(text));
+    if (!summary) throw new Error(`NSO CPI release ${item.period}: summary paragraph missing`);
+    const monthlySentence = summary.split(/(?<=[.!?])\\s+/).find(text => /previous month|month-on-month/i.test(text)) ?? summary;
+    const monthlyMatch = monthlySentence.match(/(\\d+(?:[.,]\\d+)?)\\s*%/);
+    const annualMatch =
+      summary.match(/(\\d+(?:[.,]\\d+)?)\\s*%\\s*(?:year[- ]on[- ]year|year on year)/i) ??
+      summary.match(/(\\d+(?:[.,]\\d+)?)\\s*%\\s+(?:over|compared (?:with|to))\\s+(?:the\\s+)?same period (?:last year|of the previous year)/i);
+    const decemberMatch = summary.match(/(\\d+(?:[.,]\\d+)?)\\s*%\\s+compared (?:with|to) December/i);
+    const averageSentence = paragraphs.find(text => /on average/i.test(text) && /consumer price index/i.test(text)) ?? '';
+    const averageMatch = averageSentence.match(/consumer price index[^.]*?(\\d+(?:[.,]\\d+)?)\\s*%/i);
+    const coreMatch = averageSentence.match(/core inflation[^.]*?(\\d+(?:[.,]\\d+)?)\\s*%/i);
+    if (!monthlyMatch || !annualMatch) throw new Error(`NSO CPI release ${item.period}: cannot parse official month-on-month or year-on-year rate`);
+    const toNumber = match => match ? Number(match[1].replace(',', '.')) : '';
+    const monthlyText = monthlySentence.toLowerCase();
+    const monthlySign = /decreas|fell|declin|drop|down/.test(monthlyText) ? -1 : 1;
+    reportedReleases.push([
+      item.period,
+      item.period.slice(0, 4),
+      item.period.slice(5, 7),
+      fmtNumber(monthlySign * toNumber(monthlyMatch), 6),
+      fmtNumber(toNumber(decemberMatch), 6),
+      fmtNumber(toNumber(annualMatch), 6),
+      fmtNumber(toNumber(averageMatch), 6),
+      fmtNumber(toNumber(coreMatch), 6),
+      'cong_bo_chinh_thuc_nso',
+      item.issueDate,
+      item.url,
+      'Các tốc độ do NSO công bố; không phải mức chỉ số CPI và không nối chuỗi qua đổi gốc.',
+    ]);
+  }
+  const releaseName = 'du_lieu_cpi_cong_bo_thang.csv';
+  let priorReleases = [];
+  try {
+    priorReleases = parseCsv(await readFile(await dataPath(releaseName), 'utf8'));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  const releaseHeader = [
+    'thoi_gian', 'nam', 'thang', 'cpi_thay_doi_so_voi_thang_truoc_pct',
+    'cpi_thay_doi_so_voi_thang_12_pct', 'cpi_thay_doi_cung_ky_pct',
+    'cpi_binh_quan_luy_ke_yoy_pct', 'lam_phat_co_ban_binh_quan_luy_ke_pct',
+    'trang_thai', 'ngay_cong_bo', 'nguon', 'ghi_chu',
+  ];
+  const releaseByPeriod = new Map();
+  for (const row of priorReleases.slice(1)) if (row[0]) releaseByPeriod.set(row[0], row);
+  for (const row of reportedReleases) releaseByPeriod.set(row[0], row);
+  const allReleases = [...releaseByPeriod.values()].sort((a, b) => a[0].localeCompare(b[0]));
+  await writeDataset(releaseName, csv([releaseHeader, ...allReleases]));
+  const latestReportedCpi = allReleases.at(-1);
+  const latestCpiReleaseUrl = latestReportedCpi?.[10] ?? '';
+
 
   const status = [
     ['tep', 'dong_moc_du_lieu', 'ghi_chu'],
@@ -213,11 +311,13 @@ async function main() {
   const latestQuarter = quarterTimeColumn < 0 ? null : quarterSource.slice(1).map(row => row[quarterTimeColumn]).filter(Boolean).sort().at(-1);
   await writeFile(path.join(OUT, 'refresh_manifest.json'), JSON.stringify({
     retrieved_at_utc: new Date().toISOString(),
-    data_cutoff: { annual_gdp: years.at(-1), quarterly_gdp_growth: latestQuarter, cpi: latestCpiPeriod.slice(0, 7) },
+    data_cutoff: { annual_gdp: years.at(-1), quarterly_gdp_growth: latestQuarter, cpi: latestCpiPeriod.slice(0, 7), cpi_official_release: latestReportedCpi?.[0]?.slice(0, 7) },
     sources: {
       world_bank_api: 'https://api.worldbank.org/v2/country/VNM/indicator/{indicator}?date=1985:2026&format=json&per_page=1000',
       nso_quarterly_gdp_2026: 'https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/',
       nso_pxweb_cpi: pxUrl,
+      nso_cpi_release_archive: cpiReleaseArchiveUrl,
+      nso_cpi_latest_release: latestCpiReleaseUrl,
 
     },
     indicators: wbIds,
@@ -225,11 +325,11 @@ async function main() {
       quarterly_gdp_2026: 'NSO quarterly year-on-year estimates for Q1-Q3 2026, from the official Q3 and first-nine-months release; not GDP level observations.',
       sectors: 'World Bank NV.AGR.TOTL.CD, NV.IND.TOTL.CD, NV.SRV.TOTL.CD; definitions are broad value-added groups.',
       monthly_gdp: 'Cubic spline is only a compatibility series for the current dashboard; do not use it as observed monthly GDP in backtests.',
-      cpi_monthly: 'Monthly index values are read directly from the NSO PXWeb E11.07 source. Values are not reconstructed from rounded cumulative rates.',
+      cpi_monthly: 'NSO PXWeb E11.07 index observations and monthly CPI release rates are stored separately. Release rates are copied as published; never converted into index levels or backfilled across base changes.',
       quarterly_gdp_refresh: 'Quarterly GDP growth is a separate NSO release series and is not rewritten by the annual World Bank updater.'
     }
   }, null, 2), 'utf8');
-  console.log(`Wrote ${years.length} annual rows (latest ${years.at(-1)}), ${monthIndex} compatibility spline rows, and ${cpiRows.length - 1} observed CPI rows through ${latestCpiPeriod} to ${OUT}`);
+  console.log(`Wrote ${years.length} annual rows (latest ${years.at(-1)}), ${monthIndex} compatibility spline rows, and ${cpiRows.length - 1} CPI index rows through ${latestCpiPeriod}, plus ${allReleases.length} official monthly release-rate rows through ${latestReportedCpi?.[0] ?? 'unknown'} to ${OUT}`);
 }
 
 await main();
