@@ -165,12 +165,13 @@ def _overview(data: Mapping[str, Any]) -> list[str]:
             )
 
     if len(growth_by_year) >= 2:
-        rank = 1 + sum(
-            1
-            for year, row in growth_by_year.items()
-            if year != latest_year
-            and (_number(row.get("tang_truong_gdp_thuc_pct")) or -math.inf) > latest_growth
-        )
+        rank = 1
+        for year, row in growth_by_year.items():
+            if year == latest_year:
+                continue
+            other_growth = _number(row.get("tang_truong_gdp_thuc_pct"))
+            if other_growth is not None and other_growth > latest_growth:
+                rank += 1
         first_year = min(growth_by_year)
         last_year = max(growth_by_year)
         count = len(growth_by_year)
