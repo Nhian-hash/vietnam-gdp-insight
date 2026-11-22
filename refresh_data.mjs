@@ -214,15 +214,15 @@ async function main() {
     .replace(/&amp;/gi, '&')
     .replace(/&quot;/gi, '"')
     .replace(/&#39;|&apos;/gi, "'")
-    .replace(/&#(\\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
     .replace(/\s+/g, ' ')
     .trim();
-  const releaseLinks = [...archiveHtml.matchAll(/<a\\b[^>]*href=["']([^"']+)["'][^>]*>([\\s\\S]*?)<\\/a>/gi)]
+  const releaseLinks = [...archiveHtml.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
     .map(match => ({ url: new URL(match[1], cpiReleaseArchiveUrl).toString(), text: decodeHtml(match[2]) }))
     .filter(item => item.url.includes('/data-and-statistics/') && /consumer-price-index/i.test(item.url))
     .map(item => {
-      const periodMatch = item.text.match(/Reference period:\\s*(\\d{1,2})\\/(20\\d{2})/i);
-      const issueMatch = item.text.match(/Date of issue:\\s*(\\d{1,2})\\/(\\d{1,2})\\/(20\\d{2})/i);
+      const periodMatch = item.text.match(/Reference period:\s*(\d{1,2})\/(20\d{2})/i);
+      const issueMatch = item.text.match(/Date of issue:\s*(\d{1,2})\/(\d{1,2})\/(20\d{2})/i);
       if (!periodMatch) return null;
       const period = `${periodMatch[2]}-${periodMatch[1].padStart(2, '0')}-01`;
       const issueDate = issueMatch ? `${issueMatch[3]}-${issueMatch[2].padStart(2, '0')}-${issueMatch[1].padStart(2, '0')}` : '';
@@ -241,20 +241,20 @@ async function main() {
     });
     if (!reportResponse.ok) throw new Error(`NSO CPI release ${item.period}: HTTP ${reportResponse.status}`);
     const reportHtml = await reportResponse.text();
-    const paragraphs = [...reportHtml.matchAll(/<p\\b[^>]*>([\\s\\S]*?)<\\/p>/gi)]
+    const paragraphs = [...reportHtml.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(match => decodeHtml(match[1]))
       .filter(Boolean);
     const summary = paragraphs.find(text => /consumer price index/i.test(text) && /%/.test(text));
     if (!summary) throw new Error(`NSO CPI release ${item.period}: summary paragraph missing`);
-    const monthlySentence = summary.split(/(?<=[.!?])\\s+/).find(text => /previous month|month-on-month/i.test(text)) ?? summary;
-    const monthlyMatch = monthlySentence.match(/(\\d+(?:[.,]\\d+)?)\\s*%/);
+    const monthlySentence = summary.split(/(?<=[.!?])\s+/).find(text => /previous month|month-on-month/i.test(text)) ?? summary;
+    const monthlyMatch = monthlySentence.match(/(\d+(?:[.,]\d+)?)\s*%/);
     const annualMatch =
-      summary.match(/(\\d+(?:[.,]\\d+)?)\\s*%\\s*(?:year[- ]on[- ]year|year on year)/i) ??
-      summary.match(/(\\d+(?:[.,]\\d+)?)\\s*%\\s+(?:over|compared (?:with|to))\\s+(?:the\\s+)?same period (?:last year|of the previous year)/i);
-    const decemberMatch = summary.match(/(\\d+(?:[.,]\\d+)?)\\s*%\\s+compared (?:with|to) December/i);
+      summary.match(/(\d+(?:[.,]\d+)?)\s*%\s*(?:year[- ]on[- ]year|year on year)/i) ??
+      summary.match(/(\d+(?:[.,]\d+)?)\s*%\s+(?:over|compared (?:with|to))\s+(?:the\s+)?same period (?:last year|of the previous year)/i);
+    const decemberMatch = summary.match(/(\d+(?:[.,]\d+)?)\s*%\s+compared (?:with|to) December/i);
     const averageSentence = paragraphs.find(text => /on average/i.test(text) && /consumer price index/i.test(text)) ?? '';
-    const averageMatch = averageSentence.match(/consumer price index[^.]*?(\\d+(?:[.,]\\d+)?)\\s*%/i);
-    const coreMatch = averageSentence.match(/core inflation[^.]*?(\\d+(?:[.,]\\d+)?)\\s*%/i);
+    const averageMatch = averageSentence.match(/consumer price index[^.]*?(\d+(?:[.,]\d+)?)\s*%/i);
+    const coreMatch = averageSentence.match(/core inflation[^.]*?(\d+(?:[.,]\d+)?)\s*%/i);
     if (!monthlyMatch || !annualMatch) throw new Error(`NSO CPI release ${item.period}: cannot parse official month-on-month or year-on-year rate`);
     const toNumber = match => match ? Number(match[1].replace(',', '.')) : '';
     const monthlyText = monthlySentence.toLowerCase();
