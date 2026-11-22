@@ -624,39 +624,84 @@ def dashboard() -> Response:
 })();
 </script>"""
     mobile_swipe_script = r"""<style>
+.mobile-menu-trigger,.mobile-nav-backdrop{display:none}
 @media(max-width:740px){
-  .nav{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;overscroll-behavior-x:contain}
-  .nav .nav-link{scroll-snap-align:center}
+  .sidebar{
+    position:fixed!important;inset:0 auto 0 0!important;width:min(84vw,290px)!important;height:100vh!important;height:100dvh!important;
+    min-height:0!important;padding:16px 12px!important;overflow:hidden!important;z-index:1001!important;
+    border-right:1px solid var(--line)!important;border-bottom:0!important;transform:translateX(-105%);
+    transition:transform .22s ease;box-shadow:0 16px 40px rgba(20,32,52,.22)
+  }
+  .sidebar.mobile-nav-open{transform:translateX(0)}
+  .sidebar .brand{flex:0 0 auto;padding:2px 8px 14px}
+  .sidebar .nav-label{display:block;padding:13px 10px 8px}
+  .sidebar .nav{
+    display:flex;flex:1 1 auto;flex-direction:column;align-items:stretch;width:100%;min-height:0;max-height:none;
+    overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;gap:4px;padding:0 3px 10px;
+    scroll-snap-type:none
+  }
+  .sidebar .nav .nav-link{
+    display:flex;flex:0 0 auto;justify-content:flex-start;width:100%;white-space:normal;
+    margin:0;padding:12px 11px;scroll-snap-align:none
+  }
+  .sidebar .side-bottom{display:block;position:static;flex:0 0 auto;margin-top:auto;padding:8px 10px}
+  .mobile-menu-trigger{
+    display:inline-grid;place-items:center;flex:0 0 40px;width:40px;height:40px;padding:0;
+    border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);
+    font-size:20px;cursor:pointer
+  }
+  .mobile-nav-backdrop{
+    position:fixed;inset:0;z-index:1000;border:0;padding:0;background:rgba(13,22,35,.42);cursor:pointer
+  }
+  .mobile-nav-backdrop.is-visible{display:block}
+  .topbar{justify-content:flex-start;gap:10px;padding:0 12px}
+  .top-title{min-width:0;flex:1}
+  .top-actions{margin-left:auto}
+  body.mobile-nav-open{overflow:hidden}
 }
+@media(prefers-reduced-motion:reduce){.sidebar{transition:none!important}}
 </style>
 <script>
 (() => {
-  const links = Array.from(document.querySelectorAll('.nav-link'));
-  const content = document.querySelector('.content');
-  if (!links.length || !content) return;
-  let start = null;
-  const excluded = 'button,a,input,select,textarea,canvas,.chart-wrap,.table-wrap,.nav,[data-no-page-swipe]';
-  content.addEventListener('touchstart', event => {
-    if (window.innerWidth > 740 || event.touches.length !== 1) { start = null; return; }
-    if (event.target.closest(excluded)) { start = null; return; }
-    const touch = event.touches[0];
-    if (touch.clientX < 24 || touch.clientX > window.innerWidth - 24) { start = null; return; }
-    start = { x: touch.clientX, y: touch.clientY };
-  }, { passive: true });
-  content.addEventListener('touchend', event => {
-    if (!start || window.innerWidth > 740 || event.changedTouches.length !== 1) { start = null; return; }
-    const touch = event.changedTouches[0];
-    const dx = touch.clientX - start.x;
-    const dy = touch.clientY - start.y;
-    start = null;
-    if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.35) return;
-    const current = links.findIndex(link => link.classList.contains('active'));
-    const next = current + (dx < 0 ? 1 : -1);
-    if (current >= 0 && next >= 0 && next < links.length) links[next].click();
-  }, { passive: true });
-  links.forEach(link => link.addEventListener('click', () => {
-    if (window.innerWidth <= 740) requestAnimationFrame(() => link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }));
+  const sidebar = document.querySelector('.sidebar');
+  const nav = sidebar?.querySelector('.nav');
+  const topbar = document.querySelector('.topbar');
+  if (!sidebar || !nav || !topbar) return;
+  sidebar.id = 'vmest-sidebar';
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'mobile-menu-trigger';
+  toggle.setAttribute('aria-label', 'Mở danh sách mục');
+  toggle.setAttribute('aria-controls', sidebar.id);
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.textContent = '☰';
+  topbar.insertBefore(toggle, topbar.firstChild);
+  const backdrop = document.createElement('button');
+  backdrop.type = 'button';
+  backdrop.className = 'mobile-nav-backdrop';
+  backdrop.setAttribute('aria-label', 'Đóng danh sách mục');
+  backdrop.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(backdrop);
+  const setOpen = open => {
+    sidebar.classList.toggle('mobile-nav-open', open);
+    backdrop.classList.toggle('is-visible', open && window.innerWidth <= 740);
+    document.body.classList.toggle('mobile-nav-open', open && window.innerWidth <= 740);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Đóng danh sách mục' : 'Mở danh sách mục');
+    if (open) sidebar.querySelector('.nav-link.active, .nav-link')?.focus({ preventScroll: true });
+    else toggle.focus({ preventScroll: true });
+  };
+  toggle.addEventListener('click', () => setOpen(!sidebar.classList.contains('mobile-nav-open')));
+  backdrop.addEventListener('click', () => setOpen(false));
+  sidebar.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => {
+    if (window.innerWidth <= 740) setOpen(false);
   }));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && sidebar.classList.contains('mobile-nav-open')) setOpen(false);
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 740) setOpen(false);
+  });
 })();
 </script>"""
     all_scripts = export_script + operations_script + mobile_swipe_script
