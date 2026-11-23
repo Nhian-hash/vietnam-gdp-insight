@@ -509,7 +509,13 @@ def dashboard() -> Response:
     # Version the logo URL so browsers load animation updates instead of stale cache.
     html = html.replace(
         'src="/assets/v-mest-logo.svg"',
-        'src="/assets/v-mest-logo.svg?v=vmest-frame-20261123"',
+        'src="/assets/v-mest-logo.svg?v=vmest-source-exact-20261123"',
+        1,
+    )
+    # Use the same original logo for the browser tab icon.
+    html = html.replace(
+        'href="assets/v-mest-logo.png"',
+        'href="/assets/v-mest-logo.svg?v=vmest-source-exact-20261123"',
         1,
     )
     # On narrow screens, keep navigation anchored to the left in a slide-out
