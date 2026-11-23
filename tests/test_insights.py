@@ -5,7 +5,7 @@ import re
 import unittest
 
 from api.insight_config import FORBIDDEN_CAUSAL_PHRASES
-from api.insights import generate_insights
+from api.insights import format_vi, generate_insights
 
 
 class InsightRulesTests(unittest.TestCase):
@@ -304,6 +304,107 @@ class InsightRulesTests(unittest.TestCase):
             },
         )
         self.assertEqual(statements, [])
+
+
+    def test_sector_sections_report_ytd_quarter_and_top_subsector(self) -> None:
+        broad = {
+            "agriculture": ("Nông, lâm, thủy sản", 4.02, 5.35, 10.65, 4.21, 5.14),
+            "industry": ("Công nghiệp và xây dựng", 11.21, 49.62, 38.35, 12.50, 51.57),
+            "services": ("Dịch vụ", 8.69, 45.03, 42.97, 9.54, 43.29),
+        }
+        subsectors = {
+            "agriculture": [("Nông nghiệp", 3.72), ("Lâm nghiệp", 3.99), ("Thủy sản", 4.99)],
+            "industry": [("Công nghiệp", 11.02), ("Công nghiệp chế biến, chế tạo", 11.36), ("Xây dựng", 12.22)],
+            "services": [
+                ("Vận tải, kho bãi", 11.03),
+                ("Bán buôn và bán lẻ", 9.85),
+                ("Tài chính, ngân hàng và bảo hiểm", 9.45),
+                ("Lưu trú và ăn uống", 8.83),
+            ],
+        }
+        rows: list[dict[str, object]] = []
+        for section, (label, ytd_growth, contribution, gdp_share, q3_growth, q3_contribution) in broad.items():
+            rows.extend(
+                [
+                    {
+                        "ky": "2026-9M",
+                        "ky_hien_thi": "9 tháng/2026",
+                        "khu_vuc_ma": section,
+                        "hoat_dong_kinh_te": label,
+                        "tang_truong_gdp_thuc_yoy_pct": ytd_growth,
+                        "ty_trong_dong_gop_tang_truong_pct": contribution,
+                        "ty_trong_gdp_9_thang_pct": gdp_share,
+                        "cap_phan_tich": "9m_broad",
+                        "trang_thai": "uoc_tinh",
+                    },
+                    {
+                        "ky": "2026-Q3",
+                        "ky_hien_thi": "Quý III/2026",
+                        "khu_vuc_ma": section,
+                        "hoat_dong_kinh_te": label,
+                        "tang_truong_gdp_thuc_yoy_pct": q3_growth,
+                        "ty_trong_dong_gop_tang_truong_pct": q3_contribution,
+                        "cap_phan_tich": "q3_broad",
+                        "trang_thai": "uoc_tinh",
+                    },
+                ]
+            )
+            rows.extend(
+                {
+                    "ky": "2026-9M",
+                    "ky_hien_thi": "9 tháng/2026",
+                    "khu_vuc_ma": section,
+                    "hoat_dong_kinh_te": activity,
+                    "tang_truong_gdp_thuc_yoy_pct": growth,
+                    "cap_phan_tich": "9m_subsector",
+                    "trang_thai": "uoc_tinh",
+                }
+                for activity, growth in subsectors[section]
+            )
+
+        for section, (label, ytd_growth, contribution, gdp_share, q3_growth, q3_contribution) in broad.items():
+            with self.subTest(section=section):
+                statements = generate_insights(
+                    section,
+                    {"sector_rows": rows, "source": "NSO/GSO"},
+                )
+                top_activity, top_growth = max(subsectors[section], key=lambda pair: pair[1])
+                self.assertEqual(len(statements), 3)
+                self.assertIn("9 tháng/2026", statements[0])
+                self.assertIn(f"tăng {format_vi(ytd_growth)}%", statements[0])
+                self.assertIn(f"tỷ trọng GDP là {format_vi(gdp_share)}%", statements[0])
+                self.assertIn(top_activity, statements[1])
+                self.assertIn(f"{format_vi(top_growth)}%", statements[1])
+                self.assertIn("Quý III/2026", statements[2])
+                self.assertIn(f"{format_vi(q3_growth)}%", statements[2])
+                self.assertTrue(all("trạng thái ước tính" in item for item in statements))
+                self.assertTrue(all("nguồn NSO/GSO" in item for item in statements))
+                self.assertEqual(statements, generate_insights(section, {"sector_rows": rows, "source": "NSO/GSO"}))
+                self.assert_no_causal_terms(statements)
+
+    def test_sector_rules_omit_missing_subsector_and_share_claims(self) -> None:
+        statements = generate_insights(
+            "agriculture",
+            {
+                "sector_rows": [
+                    {
+                        "ky": "2026-9M",
+                        "ky_hien_thi": "9 tháng/2026",
+                        "khu_vuc_ma": "agriculture",
+                        "tang_truong_gdp_thuc_yoy_pct": 4.02,
+                        "cap_phan_tich": "9m_broad",
+                        "trang_thai": "uoc_tinh",
+                    }
+                ]
+            },
+        )
+        self.assertEqual(len(statements), 1)
+        self.assertIn("4,02%", statements[0])
+        self.assertNotIn("tỷ trọng GDP", statements[0])
+        self.assertFalse(any("phân ngành" in item for item in statements))
+        self.assert_no_causal_terms(statements)
+        self.assertEqual(generate_insights("industry", {"sector_rows": []}), [])
+        self.assertEqual(generate_insights("services", {}), [])
 
 
 if __name__ == "__main__":
