@@ -807,7 +807,7 @@ def dashboard() -> Response:
 @media(prefers-reduced-motion:reduce){.panel,.chart-wrap,.chart-wrap canvas,.kpi,.fill{transition:none!important;animation:none!important}}
 </style>"""
     if "</head>" in html:
-        html = html.replace("</head>", visual_polish_css + "\\n</head>", 1)
+        html = html.replace("</head>", visual_polish_css + "\n</head>", 1)
     all_scripts = export_script + operations_script + insight_ui_script
     html, inserted = re.subn(r"</body\s*>", lambda match: all_scripts + match.group(0), html, count=1, flags=re.IGNORECASE)
     if not inserted:
