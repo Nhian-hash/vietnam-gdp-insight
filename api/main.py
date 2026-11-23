@@ -775,6 +775,39 @@ def dashboard() -> Response:
   setTimeout(loadActive,0);
 })();
 </script>'''
+    # Visual polish for charts and data tables; this is presentation-only.
+    visual_polish_css = """<style id="vmest-visual-polish">
+.panel{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.panel:has(.chart-wrap){position:relative;border-color:var(--line);box-shadow:0 8px 22px rgba(28,53,77,.075),inset 0 1px 0 rgba(255,255,255,.72)}
+.panel:has(.chart-wrap)::before{content:"";position:absolute;top:0;left:16px;right:16px;height:3px;border-radius:0 0 5px 5px;background:linear-gradient(90deg,#3285df 0%,#1fa67b 58%,#65c9b2 100%);opacity:.88;pointer-events:none}
+.chart-wrap{border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,rgba(50,133,223,.045),transparent 56%,rgba(31,166,123,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.68),0 7px 18px rgba(29,54,79,.055);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.chart-wrap canvas{transition:filter .22s ease}
+.table-wrap{border:1px solid var(--line);border-radius:12px;box-shadow:0 5px 16px rgba(29,54,79,.045)}
+.table-wrap .table,.table-wrap table{border-collapse:separate;border-spacing:0}
+.table-wrap .table th,.table-wrap table th{position:sticky;top:0;z-index:1;background:var(--surface,#fff);box-shadow:0 1px 0 var(--line);font-weight:700;letter-spacing:.01em}
+.table-wrap .table td,.table-wrap table td{font-variant-numeric:tabular-nums;transition:background-color .16s ease}
+.table-wrap .table tbody tr:nth-child(even),.table-wrap table tbody tr:nth-child(even){background:rgba(69,116,158,.035)}
+.table-wrap .table tbody tr:hover,.table-wrap table tbody tr:hover{background:rgba(48,137,218,.095)}
+.track{overflow:hidden;border-radius:999px}
+.fill{background:linear-gradient(90deg,#3285df 0%,#19a77b 100%);border-radius:inherit;box-shadow:0 0 12px rgba(36,151,139,.2);transition:width .55s cubic-bezier(.2,.75,.25,1),filter .2s ease}
+.kpi{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+@media(hover:hover){
+  .panel:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(28,53,77,.11)}
+  .chart-wrap:hover{transform:translateY(-1px);border-color:#9cc9dd;box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 11px 24px rgba(36,92,130,.11)}
+  .chart-wrap:hover canvas{filter:saturate(1.08) drop-shadow(0 2px 3px rgba(36,92,130,.12))}
+  .kpi:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(28,53,77,.1)}
+  .fill:hover{filter:brightness(1.08)}
+}
+.dark .panel:has(.chart-wrap){box-shadow:0 9px 24px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.025)}
+.dark .chart-wrap{background:linear-gradient(145deg,rgba(66,145,225,.09),transparent 56%,rgba(31,166,123,.06));box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 7px 18px rgba(0,0,0,.16)}
+.dark .table-wrap .table th,.dark .table-wrap table th{background:var(--surface,#202637)}
+.dark .table-wrap .table tbody tr:nth-child(even),.dark .table-wrap table tbody tr:nth-child(even){background:rgba(255,255,255,.025)}
+.dark .table-wrap .table tbody tr:hover,.dark .table-wrap table tbody tr:hover{background:rgba(70,151,222,.14)}
+@media(max-width:740px){.panel:has(.chart-wrap)::before{left:12px;right:12px}.chart-wrap{border-radius:11px}}
+@media(prefers-reduced-motion:reduce){.panel,.chart-wrap,.chart-wrap canvas,.kpi,.fill{transition:none!important;animation:none!important}}
+</style>"""
+    if "</head>" in html:
+        html = html.replace("</head>", visual_polish_css + "\\n</head>", 1)
     all_scripts = export_script + operations_script + insight_ui_script
     html, inserted = re.subn(r"</body\s*>", lambda match: all_scripts + match.group(0), html, count=1, flags=re.IGNORECASE)
     if not inserted:
