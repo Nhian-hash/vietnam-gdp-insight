@@ -502,7 +502,7 @@ def dashboard() -> Response:
     # Keep the brand image as a cached static asset instead of a large base64 blob.
     html = re.sub(
         r'<img src="data:image/png;base64,[^"]+"',
-        '<img src="/assets/v-mest-logo.png"',
+        '<img src="/assets/v-mest-logo.svg"',
         html,
         count=1,
     )
