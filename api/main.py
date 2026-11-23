@@ -465,6 +465,29 @@ def dashboard() -> Response:
         raise HTTPException(status_code=404, detail="Chưa có tệp dashboard.html hoặc index.html.")
 
     html = page.read_text(encoding="utf-8")
+    # Add strokes to the existing canvas marks; values and chart calculations stay untouched.
+    if "<!-- vmest-chart-outline-v1 -->" not in html:
+        chart_html = html
+        chart_html, line_strokes = re.subn(
+            r"c\.strokeStyle=s\.color;c\.lineWidth=s\.lineWidth\|\|2\.4;c\.setLineDash\(s\.dash\|\|\[\]\);c\.stroke\(\);c\.setLineDash\(\[\]\);if\(!s\.noPoints\)",
+            "c.lineJoin='round';c.lineCap='round';c.setLineDash(s.dash||[]);c.strokeStyle=css('--surface');c.lineWidth=(s.lineWidth||2.4)+3.2;c.stroke();c.strokeStyle=s.color;c.lineWidth=s.lineWidth||2.4;c.stroke();c.setLineDash([]);if(!s.noPoints)",
+            chart_html,
+            count=1,
+        )
+        chart_html, point_strokes = re.subn(
+            r"c\.arc\(x\(i\),y\(v\),2\.5,0,Math\.PI\*2\);c\.fillStyle=s\.color;c\.fill\(\)",
+            "c.arc(x(i),y(v),3.2,0,Math.PI*2);c.fillStyle=s.color;c.fill();c.strokeStyle=css('--surface');c.lineWidth=1.4;c.stroke()",
+            chart_html,
+            count=1,
+        )
+        chart_html, bar_strokes = re.subn(
+            r"c\.fillRect\(xx,yy,bw,Math\.max\(1,base-yy\)\)",
+            "const barHeight=Math.max(1,base-yy);c.fillRect(xx,yy,bw,barHeight);c.save();c.globalAlpha=.55;c.strokeStyle=css('--text');c.lineWidth=1;c.strokeRect(xx+.5,yy+.5,Math.max(0,bw-1),Math.max(0,barHeight-1));c.restore()",
+            chart_html,
+            count=1,
+        )
+        if line_strokes == 1 and point_strokes == 1 and bar_strokes == 1:
+            html = chart_html.replace("</head>", "<!-- vmest-chart-outline-v1 -->\n</head>", 1)
     html = html.replace(
         "Mở Training Lab để tải kết quả đã tiền tính.",
         "Kết quả kiểm định sẽ tự tải khi mục này xuất hiện trên màn hình.",
