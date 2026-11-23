@@ -780,8 +780,13 @@ def dashboard() -> Response:
 .panel{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .panel:has(.chart-wrap){position:relative;border-color:var(--line);box-shadow:0 8px 22px rgba(28,53,77,.075),inset 0 1px 0 rgba(255,255,255,.72)}
 .panel:has(.chart-wrap)::before{content:"";position:absolute;top:0;left:16px;right:16px;height:3px;border-radius:0 0 5px 5px;background:linear-gradient(90deg,#3285df 0%,#1fa67b 58%,#65c9b2 100%);opacity:.88;pointer-events:none}
-.chart-wrap{border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,rgba(50,133,223,.045),transparent 56%,rgba(31,166,123,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.68),0 7px 18px rgba(29,54,79,.055);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.chart-wrap{position:relative;overflow:hidden;isolation:isolate;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,rgba(50,133,223,.045),transparent 56%,rgba(31,166,123,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.68),0 7px 18px rgba(29,54,79,.055);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .chart-wrap canvas{transition:filter .22s ease}
+.chart-wrap::after{content:"";position:absolute;z-index:2;top:-35%;bottom:-35%;left:-42%;width:30%;transform:translateX(-140%) skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.26),transparent);opacity:0;pointer-events:none}
+.chart-wrap.vmest-chart-ready canvas{animation:vmest-chart-rise .72s cubic-bezier(.2,.75,.25,1) both}
+.chart-wrap.vmest-chart-ready::after{animation:vmest-chart-sheen 1.25s .12s ease-out both}
+@keyframes vmest-chart-rise{0%{opacity:0;transform:translateY(10px) scale(.99);filter:saturate(.78)}72%{opacity:1;transform:translateY(-1px) scale(1.003);filter:saturate(1.07)}100%{opacity:1;transform:none;filter:none}}
+@keyframes vmest-chart-sheen{0%{opacity:0;transform:translateX(-140%) skewX(-18deg)}16%{opacity:.42}74%{opacity:.2}100%{opacity:0;transform:translateX(590%) skewX(-18deg)}}
 .table-wrap{border:1px solid var(--line);border-radius:12px;box-shadow:0 5px 16px rgba(29,54,79,.045)}
 .table-wrap .table,.table-wrap table{border-collapse:separate;border-spacing:0}
 .table-wrap .table th,.table-wrap table th{position:sticky;top:0;z-index:1;background:var(--surface,#fff);box-shadow:0 1px 0 var(--line);font-weight:700;letter-spacing:.01em}
@@ -795,6 +800,8 @@ def dashboard() -> Response:
   .panel:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(28,53,77,.11)}
   .chart-wrap:hover{transform:translateY(-1px);border-color:#9cc9dd;box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 11px 24px rgba(36,92,130,.11)}
   .chart-wrap:hover canvas{filter:saturate(1.08) drop-shadow(0 2px 3px rgba(36,92,130,.12))}
+  .chart-wrap:hover::after{animation:vmest-chart-sheen .95s ease-out}
+  .chart-wrap:hover canvas{transform:scale(1.006)}
   .kpi:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(28,53,77,.1)}
   .fill:hover{filter:brightness(1.08)}
 }
@@ -804,11 +811,33 @@ def dashboard() -> Response:
 .dark .table-wrap .table tbody tr:nth-child(even),.dark .table-wrap table tbody tr:nth-child(even){background:rgba(255,255,255,.025)}
 .dark .table-wrap .table tbody tr:hover,.dark .table-wrap table tbody tr:hover{background:rgba(70,151,222,.14)}
 @media(max-width:740px){.panel:has(.chart-wrap)::before{left:12px;right:12px}.chart-wrap{border-radius:11px}}
-@media(prefers-reduced-motion:reduce){.panel,.chart-wrap,.chart-wrap canvas,.kpi,.fill{transition:none!important;animation:none!important}}
+@media(hover:none){.chart-wrap:active{transform:scale(.996);box-shadow:0 4px 12px rgba(36,92,130,.12)}}
+@media(prefers-reduced-motion:reduce){.panel,.chart-wrap,.chart-wrap canvas,.chart-wrap::after,.kpi,.fill{transition:none!important;animation:none!important;transform:none!important;filter:none!important;opacity:1!important}}
 </style>"""
     if "</head>" in html:
         html = html.replace("</head>", visual_polish_css + "\n</head>", 1)
-    all_scripts = export_script + operations_script + insight_ui_script
+    chart_motion_script = """<script id="vmest-chart-motion">
+(() => {
+  const charts = Array.from(document.querySelectorAll(".chart-wrap"));
+  if (!charts.length) return;
+  const reveal = (chart) => {
+    chart.classList.add("vmest-chart-ready");
+    observer && observer.unobserve(chart);
+  };
+  let observer = null;
+  if ("IntersectionObserver" in window) {
+    observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) reveal(entry.target);
+      }
+    }, { threshold: 0.12, rootMargin: "0px 0px -4% 0px" });
+    charts.forEach((chart) => observer.observe(chart));
+  } else {
+    charts.forEach(reveal);
+  }
+})();
+</script>"""
+    all_scripts = export_script + operations_script + insight_ui_script + chart_motion_script
     html, inserted = re.subn(r"</body\s*>", lambda match: all_scripts + match.group(0), html, count=1, flags=re.IGNORECASE)
     if not inserted:
         html += export_script
