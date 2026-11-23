@@ -727,7 +727,56 @@ def dashboard() -> Response:
   init();
 })();
 </script>"""
-    all_scripts = export_script + operations_script
+    insight_ui_script = r'''<style id="vmest-automated-insights-style">
+.vmest-insight-card{margin:12px 0 18px;padding:0 14px;border:1px solid var(--line,#dbe3ee);border-left:4px solid #16866f;border-radius:12px;background:var(--surface,#fff);box-shadow:0 5px 16px rgba(31,55,88,.06)}
+.vmest-insight-card>summary{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:13px 0;cursor:pointer;list-style:none}.vmest-insight-card>summary::-webkit-details-marker{display:none}
+.vmest-insight-title{font-weight:750;color:var(--text,#182334)}.vmest-insight-label,.vmest-insight-status{font-size:13px;color:var(--muted,#697789)}
+.vmest-insight-content{padding:0 0 12px;color:var(--text,#263445);line-height:1.65}.vmest-insight-content ul{margin:0;padding-left:20px}.vmest-insight-content li+li{margin-top:7px}
+.vmest-insight-error{color:#a6333d}.vmest-insight-retry{margin:8px 0 2px;border:1px solid var(--line,#dbe3ee);border-radius:8px;padding:7px 12px;background:var(--surface,#fff);color:var(--text,#182334);cursor:pointer}
+.dark .vmest-insight-card{background:#1b2939;border-color:#34465a}
+@media(max-width:740px){.vmest-insight-card{margin:10px 0 15px;padding:0 12px}}
+</style>
+<script id="vmest-automated-insights">
+(() => {
+  const pages = {overview:'overview',macro:'gdp-real-structure','macro-compare':'macro','growth-drivers':'growth-drivers',agriculture:'agriculture',industry:'industry',services:'services',trade:'trade','retail-fdi':'retail-fdi',regional:'regional',models:'models'};
+  const state = new WeakMap();
+  function mount(id) {
+    const page=document.getElementById(id), heading=page&&page.querySelector('h1,h2');
+    if(!page||!heading||page.querySelector('.vmest-insight-card')) return;
+    const card=document.createElement('details'); card.className='vmest-insight-card';
+    const summary=document.createElement('summary'), title=document.createElement('strong'), label=document.createElement('span'), content=document.createElement('div');
+    title.className='vmest-insight-title'; title.textContent='Nhận định nhanh';
+    label.className='vmest-insight-label'; label.textContent='Tự động tạo từ dữ liệu';
+    content.className='vmest-insight-content'; content.setAttribute('aria-live','polite');
+    summary.append(title,label); card.append(summary,content); heading.insertAdjacentElement('afterend',card);
+    state.set(page,{content,loading:false,loaded:false});
+  }
+  function status(content,text,error){content.replaceChildren();const p=document.createElement('p');p.className='vmest-insight-status'+(error?' vmest-insight-error':'');p.textContent=text;content.appendChild(p);}
+  async function load(id,force){
+    const page=document.getElementById(id), api=pages[id]; if(!page||!api)return; mount(id);
+    const entry=state.get(page); if(!entry||entry.loading||(entry.loaded&&!force))return;
+    entry.loading=true; status(entry.content,'Đang tải nhận định…',false);
+    const controller=new AbortController(), slow=setTimeout(()=>{if(entry.loading)status(entry.content,'Máy chủ đang khởi động, vui lòng chờ…',false);},5000), timeout=setTimeout(()=>controller.abort(),30000);
+    try{
+      const response=await fetch('/api/v1/insights/'+encodeURIComponent(api),{cache:'no-store',signal:controller.signal});
+      if(!response.ok)throw new Error('Máy chủ trả về lỗi '+response.status+'.');
+      const payload=await response.json(); entry.content.replaceChildren();
+      if(payload.insight_status!=='ready'||!Array.isArray(payload.statements)||!payload.statements.length){status(entry.content,'Chưa đủ dữ liệu để tạo nhận định cho mục này.',false);}
+      else{const list=document.createElement('ul');for(const text of payload.statements){const item=document.createElement('li');item.textContent=String(text);list.appendChild(item);}entry.content.appendChild(list);}
+      entry.loaded=true;
+    }catch(error){
+      status(entry.content,error&&error.name==='AbortError'?'Yêu cầu nhận định quá thời gian chờ.':'Không tải được nhận định. '+String(error&&error.message||'Lỗi kết nối.'),true);
+      const button=document.createElement('button');button.type='button';button.className='vmest-insight-retry';button.textContent='Thử lại';button.addEventListener('click',()=>load(id,true));entry.content.appendChild(button);
+    }finally{clearTimeout(slow);clearTimeout(timeout);entry.loading=false;}
+  }
+  function loadActive(){for(const id of Object.keys(pages)){const page=document.getElementById(id);if(page&&getComputedStyle(page).display!=='none'&&page.getBoundingClientRect().height>0)load(id,false);}}
+  for(const id of Object.keys(pages))mount(id);
+  document.addEventListener('click',event=>{const link=event.target&&event.target.closest?event.target.closest('[data-page]'):null;const id=link&&link.getAttribute('data-page');if(id&&pages[id])setTimeout(()=>load(id,false),80);},true);
+  new MutationObserver(loadActive).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class','style']});
+  setTimeout(loadActive,0);
+})();
+</script>'''
+    all_scripts = export_script + operations_script + insight_ui_script
     html, inserted = re.subn(r"</body\s*>", lambda match: all_scripts + match.group(0), html, count=1, flags=re.IGNORECASE)
     if not inserted:
         html += export_script
@@ -991,7 +1040,7 @@ def automated_insights(section_id: str) -> dict[str, Any]:
             "fx_rows": fx_rows,
             "fx_source": "IMF IFS",
         }
-        title = "Vĩ mô: CPI và tỷ giá"
+        title = "Vĩ mô và tương quan"
     elif section_id == "growth-drivers":
         file_names = ["du_lieu_dong_gop_gdp_theo_chi_tieu.csv"]
         _, contribution_rows = read_csv_rows(csv_path(file_names[0]))
@@ -1014,7 +1063,7 @@ def automated_insights(section_id: str) -> dict[str, Any]:
             "iip_source": "NSO",
         }
         title = "Thương mại và IIP"
-    else:  # Remaining supported IDs are the three broad GDP sectors.
+    elif section_id in {"agriculture", "industry", "services"}:
         file_names = ["du_lieu_gdp_nganh_chi_tiet_2026.csv"]
         _, sector_rows = read_csv_rows(csv_path(file_names[0]))
         rule_data = {
@@ -1022,6 +1071,42 @@ def automated_insights(section_id: str) -> dict[str, Any]:
             "source": SECTOR_SOURCE,
         }
         title = SECTORS[section_id]
+    elif section_id == "retail-fdi":
+        file_names = [
+            "du_lieu_ban_le_tieu_dung_thang_2026.csv",
+            "du_lieu_fdi_luy_ke_2026.csv",
+        ]
+        _, retail_rows = read_csv_rows(csv_path(file_names[0]))
+        _, fdi_rows = read_csv_rows(csv_path(file_names[1]))
+        rule_data = {
+            "retail_rows": retail_rows,
+            "retail_source": "NSO",
+            "fdi_rows": fdi_rows,
+            "fdi_source": "NSO",
+        }
+        title = "Bán lẻ và FDI"
+    elif section_id == "regional":
+        file_names = ["du_lieu_grdp_63_tinh_thanh.csv"]
+        _, grdp_rows = read_csv_rows(csv_path(file_names[0]))
+        rule_data = {
+            "grdp_rows": grdp_rows,
+            "source": "NSO PXWeb",
+        }
+        title = "GRDP địa phương"
+    else:  # Training Lab reads saved backtest artifacts; it never fits models on Render.
+        file_names = [
+            "so_sanh_hieu_qua_mo_hinh_theo_chan_troi.csv",
+            "so_sanh_hieu_qua_mo_hinh_gdp_quy.csv",
+        ]
+        _, annual_rows = read_csv_rows(csv_path(file_names[0]))
+        _, quarterly_rows = read_csv_rows(csv_path(file_names[1]))
+        rule_data = {
+            "annual_rows": annual_rows,
+            "quarterly_rows": quarterly_rows,
+            "source": "V-MEST backtest artifacts",
+        }
+        title = "Training Lab"
+
     statements = generate_insights(section_id, rule_data)
     manifest = read_manifest(VERSION_FILE)
     return {
