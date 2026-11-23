@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">V-MEST</title>
-  <desc id="desc">Biểu tượng V-MEST: chữ V kết hợp biểu đồ GDP chuyển động trên nền lưới dữ liệu.</desc>
+  <desc id="desc">Biểu tượng V-MEST: chữ V, các cột GDP và điểm dữ liệu chuyển động trên nền lưới.</desc>
   <style>
     .grid{fill:none;stroke:#8FA3B0;stroke-width:1;opacity:.10}
-    .bar{fill:#75B49A;opacity:.26;transform-box:fill-box;transform-origin:center bottom;animation:rise .7s cubic-bezier(.2,.75,.25,1) both}
+    .bar{fill:#75B49A;opacity:.28;transform-box:fill-box;transform-origin:center bottom;animation:rise .7s cubic-bezier(.2,.75,.25,1) both}
     .bar-1{animation-delay:.08s}.bar-2{animation-delay:.2s}.bar-3{animation-delay:.32s}
     .trend{fill:none;stroke:#75B49A;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:96;stroke-dashoffset:96;animation:draw 1.25s cubic-bezier(.45,0,.2,1) .2s forwards}
-    .pulse{fill:none;stroke:#A8D5C1;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-out 1.2s infinite}
+    .pulse{fill:none;stroke:#A8D5C1;stroke-width:2.5;transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out 1.2s infinite}
     @keyframes rise{from{transform:scaleY(.05)}to{transform:scaleY(1)}}
     @keyframes draw{to{stroke-dashoffset:0}}
-    @keyframes pulse{0%{transform:scale(.5);opacity:.85}100%{transform:scale(2.5);opacity:0}}
+    @keyframes pulse{0%{transform:scale(.45);opacity:.9}100%{transform:scale(3);opacity:0}}
     @media(prefers-reduced-motion:reduce){
       .bar{animation:none;transform:none}
       .trend{animation:none;stroke-dashoffset:0}
       .pulse{animation:none;opacity:0}
-      #traveler{display:none}
+      #traveler,#traveler-halo{display:none}
     }
   </style>
   <rect x="4" y="4" width="120" height="120" rx="22" fill="#183047"/>
@@ -33,7 +33,10 @@
   <circle cx="50" cy="90" r="4" fill="#183047" stroke="#F2F5F7" stroke-width="3"/>
   <circle cx="73" cy="66" r="4" fill="#183047" stroke="#75B49A" stroke-width="3"/>
   <circle class="pulse" cx="99" cy="33" r="5"/>
-  <circle id="traveler" r="3.2" fill="#E1F1E8">
+  <circle id="traveler-halo" r="9" fill="#75B49A" opacity=".28">
+    <animateMotion dur="3.4s" repeatCount="indefinite" path="M50 90 L73 66 L99 33"/>
+  </circle>
+  <circle id="traveler" r="4.8" fill="#EAF5EF">
     <animateMotion dur="3.4s" repeatCount="indefinite" path="M50 90 L73 66 L99 33"/>
   </circle>
 </svg>
