@@ -1,33 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">V-MEST</title>
-  <desc id="desc">Biểu tượng vuông V-MEST, kết hợp chữ V, biểu đồ GDP đi lên và ngôi sao Việt Nam.</desc>
-  <defs>
-    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#173d50"/>
-      <stop offset="1" stop-color="#0b2636"/>
-    </linearGradient>
-    <linearGradient id="growth" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#48c99b"/>
-      <stop offset="1" stop-color="#a3f0d3"/>
-    </linearGradient>
-    <linearGradient id="bars" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#138b68"/>
-      <stop offset="1" stop-color="#53c99a"/>
-    </linearGradient>
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="2.2" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
-  <rect x="4" y="4" width="120" height="120" rx="25" fill="url(#tile)" stroke="#52c9aa" stroke-width="2.5"/>
-  <rect x="10" y="10" width="108" height="108" rx="20" fill="none" stroke="#87d9ca" stroke-opacity=".18" stroke-width="1.4"/>
-  <path d="M25 96H103" stroke="#8bb3b8" stroke-opacity=".34" stroke-width="2" stroke-linecap="round"/>
-  <rect x="31" y="72" width="13" height="24" rx="3" fill="#35b789" opacity=".48"/>
-  <rect x="51" y="60" width="13" height="36" rx="3" fill="#35b789" opacity=".68"/>
-  <rect x="71" y="46" width="13" height="50" rx="3" fill="url(#bars)" opacity=".88"/>
-  <path d="M25 38 49 91 71 62 98 34" fill="none" stroke="url(#growth)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
-  <path d="m87 34 12-2-2 12" fill="none" stroke="#ffd166" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="49" cy="91" r="4.2" fill="#fff" stroke="#188d6e" stroke-width="2.8"/>
-  <circle cx="71" cy="62" r="4.2" fill="#fff" stroke="#188d6e" stroke-width="2.8"/>
-  <path d="m37 19 2.5 5.3 5.8.7-4.3 3.9 1.2 5.7-5.2-2.9-5.1 2.9 1.1-5.7-4.2-3.9 5.8-.7z" fill="#ffd166"/>
+  <desc id="desc">Biểu tượng vuông tối giản V-MEST với chữ V và đường xu hướng GDP.</desc>
+  <rect x="4" y="4" width="120" height="120" rx="22" fill="#183047"/>
+  <rect x="5" y="5" width="118" height="118" rx="21" fill="none" stroke="#526B7C" stroke-width="2"/>
+  <path d="M24 35 48 91 72 53" fill="none" stroke="#F2F5F7" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 91 72 68 98 34" fill="none" stroke="#75B49A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m85 34 13 0 0 13" fill="none" stroke="#75B49A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="48" cy="91" r="4" fill="#183047" stroke="#F2F5F7" stroke-width="3"/>
+  <circle cx="72" cy="68" r="4" fill="#183047" stroke="#75B49A" stroke-width="3"/>
+  <path d="M24 105H103" stroke="#8FA3B0" stroke-opacity=".48" stroke-width="2" stroke-linecap="round"/>
 </svg>
