@@ -964,7 +964,7 @@ def automated_insights(section_id: str) -> dict[str, Any]:
             "source": REAL_GDP_SOURCE,
         }
         title = "Tổng quan GDP Việt Nam"
-    else:
+    elif section_id == "gdp-real-structure":
         file_names = [
             "du_lieu_gdp_thuc_va_tang_truong.csv",
             "du_lieu_gdp_co_cau_3_nganh.csv",
@@ -978,7 +978,42 @@ def automated_insights(section_id: str) -> dict[str, Any]:
             "sector_source": SECTOR_SOURCE,
         }
         title = "GDP thực và cơ cấu"
-
+    elif section_id == "macro":
+        file_names = [
+            "du_lieu_cpi_cong_bo_thang.csv",
+            "du_lieu_ty_gia_usd_vnd.csv",
+        ]
+        _, cpi_rows = read_csv_rows(csv_path(file_names[0]))
+        _, fx_rows = read_csv_rows(csv_path(file_names[1]))
+        rule_data = {
+            "cpi_rows": cpi_rows,
+            "cpi_source": "NSO",
+            "fx_rows": fx_rows,
+            "fx_source": "IMF IFS",
+        }
+        title = "Vĩ mô: CPI và tỷ giá"
+    elif section_id == "growth-drivers":
+        file_names = ["du_lieu_dong_gop_gdp_theo_chi_tieu.csv"]
+        _, contribution_rows = read_csv_rows(csv_path(file_names[0]))
+        rule_data = {
+            "contribution_rows": contribution_rows,
+            "source": "NSO",
+        }
+        title = "Động lực GDP"
+    else:  # section_id == "trade", guarded by SUPPORTED_INSIGHT_SECTIONS above
+        file_names = [
+            "du_lieu_xuat_nhap_khau_thang_2026.csv",
+            "du_lieu_san_xuat_iip_thang_2026.csv",
+        ]
+        _, trade_rows = read_csv_rows(csv_path(file_names[0]))
+        _, iip_rows = read_csv_rows(csv_path(file_names[1]))
+        rule_data = {
+            "trade_rows": trade_rows,
+            "trade_source": "NSO",
+            "iip_rows": iip_rows,
+            "iip_source": "NSO",
+        }
+        title = "Thương mại và IIP"
     statements = generate_insights(section_id, rule_data)
     manifest = read_manifest(VERSION_FILE)
     return {
