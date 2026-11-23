@@ -1,12 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">V-MEST</title>
-  <desc id="desc">Biểu tượng vuông tối giản V-MEST với chữ V và đường xu hướng GDP.</desc>
+  <desc id="desc">Biểu tượng V-MEST: chữ V kết hợp biểu đồ GDP chuyển động trên nền lưới dữ liệu.</desc>
+  <style>
+    .grid{fill:none;stroke:#8FA3B0;stroke-width:1;opacity:.10}
+    .bar{fill:#75B49A;opacity:.26;transform-box:fill-box;transform-origin:center bottom;animation:rise .7s cubic-bezier(.2,.75,.25,1) both}
+    .bar-1{animation-delay:.08s}.bar-2{animation-delay:.2s}.bar-3{animation-delay:.32s}
+    .trend{fill:none;stroke:#75B49A;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:96;stroke-dashoffset:96;animation:draw 1.25s cubic-bezier(.45,0,.2,1) .2s forwards}
+    .pulse{fill:none;stroke:#A8D5C1;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-out 1.2s infinite}
+    @keyframes rise{from{transform:scaleY(.05)}to{transform:scaleY(1)}}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    @keyframes pulse{0%{transform:scale(.5);opacity:.85}100%{transform:scale(2.5);opacity:0}}
+    @media(prefers-reduced-motion:reduce){
+      .bar{animation:none;transform:none}
+      .trend{animation:none;stroke-dashoffset:0}
+      .pulse{animation:none;opacity:0}
+      #traveler{display:none}
+    }
+  </style>
   <rect x="4" y="4" width="120" height="120" rx="22" fill="#183047"/>
   <rect x="5" y="5" width="118" height="118" rx="21" fill="none" stroke="#526B7C" stroke-width="2"/>
-  <path d="M24 35 48 91 72 53" fill="none" stroke="#F2F5F7" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M48 91 72 68 98 34" fill="none" stroke="#75B49A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="m85 34 13 0 0 13" fill="none" stroke="#75B49A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="48" cy="91" r="4" fill="#183047" stroke="#F2F5F7" stroke-width="3"/>
-  <circle cx="72" cy="68" r="4" fill="#183047" stroke="#75B49A" stroke-width="3"/>
-  <path d="M24 105H103" stroke="#8FA3B0" stroke-opacity=".48" stroke-width="2" stroke-linecap="round"/>
+  <g class="grid">
+    <path d="M22 38H106M22 58H106M22 78H106"/>
+    <path d="M42 22V98M62 22V98M82 22V98"/>
+  </g>
+  <path d="M22 100H106" stroke="#8FA3B0" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
+  <rect class="bar bar-1" x="78" y="78" width="7" height="20" rx="2"/>
+  <rect class="bar bar-2" x="89" y="64" width="7" height="34" rx="2"/>
+  <rect class="bar bar-3" x="100" y="49" width="7" height="49" rx="2"/>
+  <path d="M25 33 50 91 75 43" fill="none" stroke="#F2F5F7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="trend" d="M50 90 73 66 99 33"/>
+  <path d="m87 34 12-1-1 12" fill="none" stroke="#A8D5C1" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="50" cy="90" r="4" fill="#183047" stroke="#F2F5F7" stroke-width="3"/>
+  <circle cx="73" cy="66" r="4" fill="#183047" stroke="#75B49A" stroke-width="3"/>
+  <circle class="pulse" cx="99" cy="33" r="5"/>
+  <circle id="traveler" r="3.2" fill="#E1F1E8">
+    <animateMotion dur="3.4s" repeatCount="indefinite" path="M50 90 L73 66 L99 33"/>
+  </circle>
 </svg>
