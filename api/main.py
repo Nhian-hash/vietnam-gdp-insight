@@ -1000,7 +1000,7 @@ def automated_insights(section_id: str) -> dict[str, Any]:
             "source": "NSO",
         }
         title = "Động lực GDP"
-    else:  # section_id == "trade", guarded by SUPPORTED_INSIGHT_SECTIONS above
+    elif section_id == "trade":
         file_names = [
             "du_lieu_xuat_nhap_khau_thang_2026.csv",
             "du_lieu_san_xuat_iip_thang_2026.csv",
@@ -1014,6 +1014,14 @@ def automated_insights(section_id: str) -> dict[str, Any]:
             "iip_source": "NSO",
         }
         title = "Thương mại và IIP"
+    else:  # Remaining supported IDs are the three broad GDP sectors.
+        file_names = ["du_lieu_gdp_nganh_chi_tiet_2026.csv"]
+        _, sector_rows = read_csv_rows(csv_path(file_names[0]))
+        rule_data = {
+            "sector_rows": sector_rows,
+            "source": SECTOR_SOURCE,
+        }
+        title = SECTORS[section_id]
     statements = generate_insights(section_id, rule_data)
     manifest = read_manifest(VERSION_FILE)
     return {
