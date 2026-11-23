@@ -407,5 +407,120 @@ class InsightRulesTests(unittest.TestCase):
         self.assertEqual(generate_insights("services", {}), [])
 
 
+    def test_retail_and_fdi_insights_keep_period_units_and_release_status(self) -> None:
+        statements = generate_insights(
+            "retail-fdi",
+            {
+                "retail_source": "NSO",
+                "retail_rows": [
+                    {
+                        "thoi_gian": "2026-09-01",
+                        "tong_muc_ban_le_vnd": 690_600_000_000_000,
+                        "tang_truong_danh_nghia_yoy_pct": 14.1,
+                        "tang_truong_thuc_yoy_luy_ke_pct": 7.8,
+                        "trang_thai": "uoc_tinh_chinh_thuc",
+                    }
+                ],
+                "fdi_source": "NSO",
+                "fdi_rows": [
+                    {
+                        "thoi_gian": "2026-09-30",
+                        "ky_bao_cao": "9_thang",
+                        "von_fdi_dang_ky_tong_hop_usd": 50_360_000_000,
+                        "von_fdi_thuc_hien_luy_ke_usd": 21_070_000_000,
+                        "tang_truong_dang_ky_yoy_pct": 76.4,
+                        "tang_truong_thuc_hien_yoy_pct": 12.1,
+                        "trang_thai": "uoc_tinh_luy_ke_chinh_thuc",
+                    }
+                ],
+            },
+        )
+        self.assertEqual(len(statements), 2)
+        self.assertIn("Tháng 09/2026", statements[0])
+        self.assertIn("690,60 nghìn tỷ VND", statements[0])
+        self.assertIn("+14,10%", statements[0])
+        self.assertIn("ước tính chính thức", statements[0])
+        self.assertIn("30/09/2026", statements[1])
+        self.assertIn("lũy kế 9 tháng/2026", statements[1])
+        self.assertIn("50,36 tỷ USD", statements[1])
+        self.assertIn("21,07 tỷ USD", statements[1])
+        self.assertIn("ước tính lũy kế chính thức", statements[1])
+        self.assertEqual(statements, generate_insights("retail-fdi", {
+            "retail_source": "NSO",
+            "retail_rows": [{"thoi_gian": "2026-09-01", "tong_muc_ban_le_vnd": 690_600_000_000_000,
+                             "tang_truong_danh_nghia_yoy_pct": 14.1, "tang_truong_thuc_yoy_luy_ke_pct": 7.8,
+                             "trang_thai": "uoc_tinh_chinh_thuc"}],
+            "fdi_source": "NSO",
+            "fdi_rows": [{"thoi_gian": "2026-09-30", "ky_bao_cao": "9_thang",
+                          "von_fdi_dang_ky_tong_hop_usd": 50_360_000_000, "von_fdi_thuc_hien_luy_ke_usd": 21_070_000_000,
+                          "tang_truong_dang_ky_yoy_pct": 76.4, "tang_truong_thuc_hien_yoy_pct": 12.1,
+                          "trang_thai": "uoc_tinh_luy_ke_chinh_thuc"}],
+        }))
+        self.assert_no_causal_terms(statements)
+
+    def test_regional_insights_require_complete_province_and_region_panels(self) -> None:
+        rows: list[dict[str, object]] = []
+        for index in range(63):
+            rows.append({
+                "ma_tinh": f"P{index:02d}", "ten_tinh": f"Tỉnh {index:02d}",
+                "loai_dia_ban": "tinh_thanh_63_truyen_thong", "nam": 2025,
+                "quy_mo_grdp_vnd": (index + 1) * 1_000_000_000_000,
+                "trang_thai": "uoc_tinh",
+            })
+        for index in range(6):
+            rows.append({
+                "ma_vung_kinh_te": f"R{index}", "ten_tinh": f"Vùng {index}",
+                "loai_dia_ban": "vung_thong_ke", "nam": 2025,
+                "quy_mo_grdp_vnd": (index + 1) * 100_000_000_000_000,
+                "trang_thai": "uoc_tinh",
+            })
+
+        statements = generate_insights("regional", {"grdp_rows": rows, "source": "NSO PXWeb"})
+
+        self.assertEqual(len(statements), 2)
+        self.assertIn("Năm 2025", statements[0])
+        self.assertIn("Tỉnh 62", statements[0])
+        self.assertIn("nhóm 5 đơn vị đầu chiếm", statements[0])
+        self.assertIn("trạng thái ước tính; nguồn NSO PXWeb", statements[0])
+        self.assertIn("Vùng 5", statements[1])
+        self.assertIn("năm 2025", statements[1])
+        self.assertIn("trạng thái ước tính", statements[1])
+        self.assert_no_causal_terms(statements)
+        self.assertEqual(generate_insights("regional", {"grdp_rows": rows[:-1]}), [])
+
+    def test_training_lab_uses_saved_backtest_scores_and_periods(self) -> None:
+        annual = [
+            {"chan_troi_nam": 1, "mo_hinh": "Drift_mean_log_change", "MAPE_pct": 1.0,
+             "so_diem_kiem_thu": 21, "nam_dau": 2005, "nam_cuoi": 2025},
+            {"chan_troi_nam": 1, "mo_hinh": "GRU_logGDP", "MAPE_pct": 7.2,
+             "so_diem_kiem_thu": 21, "nam_dau": 2005, "nam_cuoi": 2025},
+            {"chan_troi_nam": 1, "mo_hinh": "LSTM_logGDP", "MAPE_pct": 9.6,
+             "so_diem_kiem_thu": 21, "nam_dau": 2005, "nam_cuoi": 2025},
+        ]
+        quarterly = [
+            {"chan_troi_quy": 1, "mo_hinh": "SeasonalDrift", "MAPE_pct": 2.1,
+             "so_diem_kiem_thu": 32, "ky_dau": "2018-Q1", "ky_cuoi": "2025-Q4"},
+            {"chan_troi_quy": 1, "mo_hinh": "Naive_last_value", "MAPE_pct": 4.0,
+             "so_diem_kiem_thu": 32, "ky_dau": "2018-Q1", "ky_cuoi": "2025-Q4"},
+        ]
+        statements = generate_insights(
+            "models",
+            {"annual_rows": annual, "quarterly_rows": quarterly, "source": "V-MEST backtest artifacts"},
+        )
+
+        self.assertEqual(len(statements), 3)
+        self.assertIn("1 năm: Drift 1,00%", statements[0])
+        self.assertIn("2005–2025", statements[0])
+        self.assertIn("1 quý: Seasonal Drift 2,10%", statements[1])
+        self.assertIn("2018-Q1–2025-Q4", statements[1])
+        self.assertIn("GRU là 7,20%", statements[2])
+        self.assertIn("LSTM là 9,60%", statements[2])
+        self.assertIn("Drift 1,00%", statements[2])
+        self.assertIn("41 quan sát GDP năm 1985–2025", statements[2])
+        self.assertTrue(all("kết quả" in statement.lower() for statement in statements))
+        self.assert_no_causal_terms(statements)
+        self.assertEqual(generate_insights("models", {"annual_rows": None, "quarterly_rows": None}), [])
+
+
 if __name__ == "__main__":
     unittest.main()
