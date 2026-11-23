@@ -1,42 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">V-MEST</title>
-  <desc id="desc">Biểu tượng V-MEST: chữ V, các cột GDP và điểm dữ liệu chuyển động trên nền lưới.</desc>
+  <desc id="desc">Logo vuông V-MEST với biểu đồ GDP đỏ cam, các cột dữ liệu và ngôi sao Việt Nam chuyển động nhẹ.</desc>
+  <defs>
+    <linearGradient id="trend" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF5368"/>
+      <stop offset="1" stop-color="#FFB347"/>
+    </linearGradient>
+    <filter id="soft-glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="1.8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
   <style>
-    .grid{fill:none;stroke:#8FA3B0;stroke-width:1;opacity:.10}
-    .bar{fill:#75B49A;opacity:.28;transform-box:fill-box;transform-origin:center bottom;animation:rise .7s cubic-bezier(.2,.75,.25,1) both}
-    .bar-1{animation-delay:.08s}.bar-2{animation-delay:.2s}.bar-3{animation-delay:.32s}
-    .trend{fill:none;stroke:#75B49A;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:96;stroke-dashoffset:96;animation:draw 1.25s cubic-bezier(.45,0,.2,1) .2s forwards}
-    .pulse{fill:none;stroke:#A8D5C1;stroke-width:2.5;transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out 1.2s infinite}
-    @keyframes rise{from{transform:scaleY(.05)}to{transform:scaleY(1)}}
+    .grid{fill:none;stroke:#7186A0;stroke-width:1;opacity:.12}
+    .bar{fill:#61748E;opacity:.33;transform-box:fill-box;transform-origin:center bottom;animation:rise .65s cubic-bezier(.2,.75,.25,1) both}
+    .bar-1{animation-delay:.05s}.bar-2{animation-delay:.18s}.bar-3{animation-delay:.31s}.bar-4{animation-delay:.44s}
+    .trend-line{fill:none;stroke:url(#trend);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:150;stroke-dashoffset:150;filter:url(#soft-glow);animation:draw 1.25s cubic-bezier(.42,0,.2,1) .12s forwards, shimmer 2.8s ease-in-out 1.6s infinite}
+    .star{transform-box:fill-box;transform-origin:center;animation:twinkle 2.3s ease-in-out 1.25s infinite}
+    .star-ring{fill:none;stroke:#F2C75C;stroke-width:1.5;opacity:.35}
+    .star-pulse{fill:none;stroke:#F2C75C;stroke-width:1.7;transform-box:fill-box;transform-origin:center;animation:pulse 2.3s ease-out 1.25s infinite}
+    @keyframes rise{from{transform:scaleY(.04)}to{transform:scaleY(1)}}
     @keyframes draw{to{stroke-dashoffset:0}}
-    @keyframes pulse{0%{transform:scale(.45);opacity:.9}100%{transform:scale(3);opacity:0}}
+    @keyframes shimmer{0%,100%{opacity:.88}50%{opacity:1}}
+    @keyframes twinkle{0%,100%{transform:scale(1);opacity:.95}50%{transform:scale(1.12);opacity:1}}
+    @keyframes pulse{0%{transform:scale(.7);opacity:.65}100%{transform:scale(1.9);opacity:0}}
     @media(prefers-reduced-motion:reduce){
-      .bar{animation:none;transform:none}
-      .trend{animation:none;stroke-dashoffset:0}
-      .pulse{animation:none;opacity:0}
-      #traveler,#traveler-halo{display:none}
+      .bar,.star,.star-pulse{animation:none;transform:none}
+      .trend-line{animation:none;stroke-dashoffset:0}
+      .star-pulse{opacity:0}
     }
   </style>
-  <rect x="4" y="4" width="120" height="120" rx="22" fill="#183047"/>
-  <rect x="5" y="5" width="118" height="118" rx="21" fill="none" stroke="#526B7C" stroke-width="2"/>
+  <rect x="4" y="4" width="120" height="120" rx="22" fill="#0D1B33"/>
+  <rect x="5" y="5" width="118" height="118" rx="21" fill="none" stroke="#314661" stroke-width="2"/>
   <g class="grid">
-    <path d="M22 38H106M22 58H106M22 78H106"/>
-    <path d="M42 22V98M62 22V98M82 22V98"/>
+    <path d="M18 31H110M18 51H110M18 71H110"/>
+    <path d="M38 17V99M58 17V99M78 17V99"/>
   </g>
-  <path d="M22 100H106" stroke="#8FA3B0" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
-  <rect class="bar bar-1" x="78" y="78" width="7" height="20" rx="2"/>
-  <rect class="bar bar-2" x="89" y="64" width="7" height="34" rx="2"/>
-  <rect class="bar bar-3" x="100" y="49" width="7" height="49" rx="2"/>
-  <path d="M25 33 50 91 75 43" fill="none" stroke="#F2F5F7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="trend" d="M50 90 73 66 99 33"/>
-  <path d="m87 34 12-1-1 12" fill="none" stroke="#A8D5C1" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="50" cy="90" r="4" fill="#183047" stroke="#F2F5F7" stroke-width="3"/>
-  <circle cx="73" cy="66" r="4" fill="#183047" stroke="#75B49A" stroke-width="3"/>
-  <circle class="pulse" cx="99" cy="33" r="5"/>
-  <circle id="traveler-halo" r="9" fill="#75B49A" opacity=".28">
-    <animateMotion dur="3.4s" repeatCount="indefinite" path="M50 90 L73 66 L99 33"/>
-  </circle>
-  <circle id="traveler" r="4.8" fill="#EAF5EF">
-    <animateMotion dur="3.4s" repeatCount="indefinite" path="M50 90 L73 66 L99 33"/>
-  </circle>
+  <path d="M19 100H109" stroke="#7889A0" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/>
+  <rect class="bar bar-1" x="25" y="78" width="11" height="20" rx="3"/>
+  <rect class="bar bar-2" x="45" y="66" width="11" height="32" rx="3"/>
+  <rect class="bar bar-3" x="65" y="53" width="11" height="45" rx="3"/>
+  <rect class="bar bar-4" x="85" y="42" width="11" height="56" rx="3"/>
+  <path class="trend-line" d="M24 34 47 87 69 58 82 68 99 39"/>
+  <circle cx="47" cy="87" r="3.5" fill="#0D1B33" stroke="#FF8A58" stroke-width="2.5"/>
+  <circle cx="69" cy="58" r="3.5" fill="#0D1B33" stroke="#FF8A58" stroke-width="2.5"/>
+  <circle class="star-ring" cx="99" cy="27" r="12"/>
+  <circle class="star-pulse" cx="99" cy="27" r="12"/>
+  <path class="star" d="m99 15 3.3 7.7 8.4.7-6.4 5.5 2 8.1-7.3-4.3-7.3 4.3 2-8.1-6.4-5.5 8.4-.7z" fill="#F2C75C"/>
 </svg>
