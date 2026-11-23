@@ -7,7 +7,7 @@ from typing import Any
 
 from .insight_config import OVERVIEW_REFERENCE_YEARS
 
-SUPPORTED_INSIGHT_SECTIONS = frozenset({"overview", "gdp-real-structure", "macro", "growth-drivers", "trade", "agriculture", "industry", "services"})
+SUPPORTED_INSIGHT_SECTIONS = frozenset({"overview", "gdp-real-structure", "macro", "growth-drivers", "trade", "agriculture", "industry", "services", "retail-fdi", "regional", "models"})
 
 REAL_GDP_SOURCE = "World Bank WDI"
 SECTOR_SOURCE = "NSO/GSO"
@@ -27,6 +27,7 @@ _STATUS_LABELS = {
     "cong_bo_chinh_thuc_nso": "công bố chính thức NSO",
     "uoc_tinh_chinh_thuc": "ước tính chính thức",
     "uoc_tinh_luy_ke_chinh_thuc": "ước tính lũy kế chính thức",
+    "uoc_tinh_chinh_thuc": "ước tính chính thức",
     "theo_bang_nguon": "theo bảng nguồn",
     "IMF_observed": "quan sát IMF",
 }
@@ -628,6 +629,299 @@ def _sector_insights(section_id: str, data: Mapping[str, Any]) -> list[str]:
     return statements
 
 
+
+_REGIONAL_PROVINCE_TYPE = "tinh_thanh_63_truyen_thong"
+_REGIONAL_TYPE = "vung_thong_ke"
+_REGIONAL_EXPECTED_PROVINCES = 63
+_REGIONAL_EXPECTED_REGIONS = 6
+_MODEL_LABELS = {
+    "Drift_mean_log_change": "Drift",
+    "Linear_log_trend": "xu hướng log tuyến tính",
+    "Naive_last_value": "Naive",
+    "GRU_logGDP": "GRU",
+    "LSTM_logGDP": "LSTM",
+    "SeasonalDrift": "Seasonal Drift",
+    "ETS_DampedAdditive": "ETS xu hướng giảm tốc",
+    "LogTrendQuarterDummies": "Log trend + biến giả quý",
+    "SeasonalNaive": "Seasonal Naive",
+}
+
+
+def _retail_fdi(data: Mapping[str, Any]) -> list[str]:
+    statements: list[str] = []
+    retail_source = _source(data, "retail_source", "NSO")
+    retail_rows = _monthly_rows(
+        data.get("retail_rows"),
+        ("tong_muc_ban_le_vnd", "tang_truong_danh_nghia_yoy_pct", "tang_truong_thuc_yoy_luy_ke_pct"),
+    )
+    if retail_rows:
+        period = max(retail_rows)
+        row = retail_rows[period]
+        total = _number(row.get("tong_muc_ban_le_vnd"))
+        nominal_yoy = _number(row.get("tang_truong_danh_nghia_yoy_pct"))
+        real_ytd = _number(row.get("tang_truong_thuc_yoy_luy_ke_pct"))
+        if total is not None:
+            details: list[str] = []
+            if nominal_yoy is not None:
+                details.append(f"tăng danh nghĩa so với cùng kỳ {_format_signed_vi(nominal_yoy)}%")
+            if real_ytd is not None:
+                details.append(f"tăng thực lũy kế {_format_signed_vi(real_ytd)}%")
+            detail_text = f"; {'; '.join(details)}" if details else ""
+            statements.append(
+                f"Tháng {_month_label(period)}, tổng mức bán lẻ đạt "
+                f"{format_vi(total / 1_000_000_000_000)} nghìn tỷ VND giá hiện hành"
+                f"{detail_text} ({_status_clause(row, retail_source)})."
+            )
+
+    fdi_source = _source(data, "fdi_source", "NSO")
+    fdi_rows = _monthly_rows(
+        data.get("fdi_rows"),
+        (
+            "von_fdi_dang_ky_tong_hop_usd",
+            "von_fdi_thuc_hien_luy_ke_usd",
+            "tang_truong_dang_ky_yoy_pct",
+            "tang_truong_thuc_hien_yoy_pct",
+        ),
+    )
+    if fdi_rows:
+        period = max(fdi_rows)
+        row = fdi_rows[period]
+        registered = _number(row.get("von_fdi_dang_ky_tong_hop_usd"))
+        realized = _number(row.get("von_fdi_thuc_hien_luy_ke_usd"))
+        registered_growth = _number(row.get("tang_truong_dang_ky_yoy_pct"))
+        realized_growth = _number(row.get("tang_truong_thuc_hien_yoy_pct"))
+        date_label = _date_label(row.get("thoi_gian")) or _month_label(period)
+        period_name = str(row.get("ky_bao_cao") or "").strip()
+        if period_name == "9_thang":
+            period_name = f"lũy kế 9 tháng/{period[0]}"
+        elif period_name:
+            period_name = f"lũy kế {period_name}/{period[0]}"
+        else:
+            period_name = f"lũy kế đến {date_label}"
+        parts: list[str] = []
+        if registered is not None:
+            registered_text = f"vốn FDI đăng ký tổng hợp {format_vi(registered / 1_000_000_000)} tỷ USD"
+            if registered_growth is not None:
+                registered_text += f" ({_format_signed_vi(registered_growth)}% so với cùng kỳ)"
+            parts.append(registered_text)
+        if realized is not None:
+            realized_text = f"vốn FDI thực hiện {format_vi(realized / 1_000_000_000)} tỷ USD"
+            if realized_growth is not None:
+                realized_text += f" ({_format_signed_vi(realized_growth)}% so với cùng kỳ)"
+            parts.append(realized_text)
+        if parts:
+            statements.append(
+                f"Tại ngày {date_label}, {period_name} ghi nhận "
+                f"{' và '.join(parts)} ({_status_clause(row, fdi_source)})."
+            )
+    return statements
+
+
+def _regional(data: Mapping[str, Any]) -> list[str]:
+    rows = data.get("grdp_rows")
+    if not isinstance(rows, Sequence) or isinstance(rows, (str, bytes)):
+        return []
+
+    provinces_by_year: dict[int, list[dict[str, Any]]] = {}
+    regions_by_year: dict[int, list[dict[str, Any]]] = {}
+    for item in rows:
+        if not isinstance(item, Mapping):
+            continue
+        year = _year(item.get("nam"))
+        value = _number(item.get("quy_mo_grdp_vnd"))
+        if year is None or value is None:
+            continue
+        row = dict(item)
+        if row.get("loai_dia_ban") == _REGIONAL_PROVINCE_TYPE and str(row.get("ma_tinh") or "").strip():
+            provinces_by_year.setdefault(year, []).append(row)
+        elif row.get("loai_dia_ban") == _REGIONAL_TYPE and str(row.get("ma_vung_kinh_te") or "").strip():
+            regions_by_year.setdefault(year, []).append(row)
+
+    complete_years: list[int] = []
+    for year in set(provinces_by_year).intersection(regions_by_year):
+        province_rows = provinces_by_year[year]
+        region_rows = regions_by_year[year]
+        province_codes = {str(row.get("ma_tinh")).strip() for row in province_rows}
+        region_codes = {str(row.get("ma_vung_kinh_te")).strip() for row in region_rows}
+        if (
+            len(province_rows) == _REGIONAL_EXPECTED_PROVINCES
+            and len(province_codes) == _REGIONAL_EXPECTED_PROVINCES
+            and len(region_rows) == _REGIONAL_EXPECTED_REGIONS
+            and len(region_codes) == _REGIONAL_EXPECTED_REGIONS
+        ):
+            complete_years.append(year)
+    if not complete_years:
+        return []
+
+    year = max(complete_years)
+    source = _source(data, "source", "NSO PXWeb")
+    statements: list[str] = []
+    province_rows = provinces_by_year[year]
+    province_total = sum(
+        value for row in province_rows
+        if (value := _number(row.get("quy_mo_grdp_vnd"))) is not None
+    )
+    ranked_provinces = sorted(
+        province_rows,
+        key=lambda row: _number(row.get("quy_mo_grdp_vnd")) or -math.inf,
+        reverse=True,
+    )
+    if province_total > 0 and len(ranked_provinces) >= 5:
+        top_three = ranked_provinces[:3]
+        top_five = ranked_provinces[:5]
+        top_statuses = {_status_text(row) for row in top_five if _status_text(row)}
+        status_clause = (
+            f"trạng thái {_status_text(top_five[0])}; nguồn {source}"
+            if len(top_statuses) <= 1 and top_statuses
+            else _status_clause(top_five[0], source)
+        )
+        leaders = ", ".join(
+            f"{str(row.get('ten_tinh')).strip()} "
+            f"{format_vi((_number(row.get('quy_mo_grdp_vnd')) or 0) / 1000)}"
+            for row in top_three
+        )
+        top_five_share = sum(
+            _number(row.get("quy_mo_grdp_vnd")) or 0
+            for row in top_five
+        ) / province_total * 100
+        statements.append(
+            f"Năm {year}, ba tỉnh/thành có quy mô GRDP cao nhất trong phạm vi 63 đơn vị "
+            f"truyền thống là {leaders} nghìn tỷ VND; nhóm 5 đơn vị đầu chiếm "
+            f"{format_vi(top_five_share)}% tổng quy mô GRDP tỉnh/thành "
+            f"({status_clause})."
+        )
+
+    region_rows = regions_by_year[year]
+    region_total = sum(
+        value for row in region_rows
+        if (value := _number(row.get("quy_mo_grdp_vnd"))) is not None
+    )
+    if region_total > 0 and len(region_rows) == _REGIONAL_EXPECTED_REGIONS:
+        top_region = max(
+            region_rows,
+            key=lambda row: _number(row.get("quy_mo_grdp_vnd")) or -math.inf,
+        )
+        region_value = _number(top_region.get("quy_mo_grdp_vnd"))
+        if region_value is not None:
+            statements.append(
+                f"Trong 6 vùng thống kê năm {year}, {str(top_region.get('ten_tinh')).strip()} "
+                f"có tỷ trọng quy mô GRDP lớn nhất, đạt "
+                f"{format_vi(region_value / region_total * 100)}% tổng quy mô của 6 vùng "
+                f"({_status_clause(top_region, source)})."
+            )
+    return statements
+
+
+def _training_model_winners(
+    rows: Any,
+    horizon_column: str,
+    period_start_column: str,
+    period_end_column: str,
+) -> list[dict[str, Any]]:
+    """Find the lowest-MAPE model at each tested horizon without recomputing scores."""
+    if not isinstance(rows, Sequence) or isinstance(rows, (str, bytes)):
+        return []
+    groups: dict[int, list[dict[str, Any]]] = {}
+    for item in rows:
+        if not isinstance(item, Mapping):
+            continue
+        horizon = _year(item.get(horizon_column))
+        mape = _number(item.get("MAPE_pct"))
+        if horizon is None or horizon <= 0 or mape is None:
+            continue
+        groups.setdefault(horizon, []).append(dict(item))
+
+    winners: list[dict[str, Any]] = []
+    for horizon, candidates in sorted(groups.items()):
+        model_names = [str(row.get("mo_hinh") or "").strip() for row in candidates]
+        if len(model_names) != len(set(model_names)):
+            continue
+        winner = min(candidates, key=lambda row: (_number(row.get("MAPE_pct")) if _number(row.get("MAPE_pct")) is not None else math.inf))
+        winner["horizon"] = horizon
+        winner["period_start"] = winner.get(period_start_column)
+        winner["period_end"] = winner.get(period_end_column)
+        winners.append(winner)
+    return winners
+
+
+def _training_lab(data: Mapping[str, Any]) -> list[str]:
+    statements: list[str] = []
+    source = _source(data, "source", "V-MEST backtest artifacts")
+    annual = _training_model_winners(
+        data.get("annual_rows"),
+        "chan_troi_nam",
+        "nam_dau",
+        "nam_cuoi",
+    )
+    if annual:
+        details = "; ".join(
+            f"{row['horizon']} năm: "
+            f"{_MODEL_LABELS.get(str(row.get('mo_hinh')), str(row.get('mo_hinh')))} "
+            f"{format_vi(_number(row.get('MAPE_pct')) or 0)}% "
+            f"(n={row.get('so_diem_kiem_thu')}; {row.get('period_start')}–{row.get('period_end')})"
+            for row in annual
+        )
+        statements.append(
+            f"Backtest GDP năm theo expanding-window có MAPE thấp nhất theo chân trời là "
+            f"{details} (kết quả kiểm định ngoài mẫu; nguồn {source})."
+        )
+
+    quarterly = _training_model_winners(
+        data.get("quarterly_rows"),
+        "chan_troi_quy",
+        "ky_dau",
+        "ky_cuoi",
+    )
+    if quarterly:
+        details = "; ".join(
+            f"{row['horizon']} quý: "
+            f"{_MODEL_LABELS.get(str(row.get('mo_hinh')), str(row.get('mo_hinh')))} "
+            f"{format_vi(_number(row.get('MAPE_pct')) or 0)}% "
+            f"(n={row.get('so_diem_kiem_thu')}; {row.get('period_start')}–{row.get('period_end')})"
+            for row in quarterly
+        )
+        statements.append(
+            f"Backtest GDP quý theo expanding-window có MAPE thấp nhất theo chân trời là "
+            f"{details} (kết quả kiểm định ngoài mẫu; nguồn {source})."
+        )
+
+    annual_rows = data.get("annual_rows")
+    one_year = [
+        row for row in annual_rows
+        if isinstance(row, Mapping) and _number(row.get("chan_troi_nam")) == 1
+    ] if isinstance(annual_rows, Sequence) and not isinstance(annual_rows, (str, bytes)) else []
+    neural_by_model = {
+        str(row.get("mo_hinh")): row
+        for row in one_year
+        if str(row.get("mo_hinh")) in {"GRU_logGDP", "LSTM_logGDP"}
+        and _number(row.get("MAPE_pct")) is not None
+    }
+    drift = next(
+        (
+            row for row in one_year
+            if str(row.get("mo_hinh")) == "Drift_mean_log_change"
+            and _number(row.get("MAPE_pct")) is not None
+        ),
+        None,
+    )
+    if len(neural_by_model) == 2 and drift is not None:
+        gru = _number(neural_by_model["GRU_logGDP"].get("MAPE_pct"))
+        lstm = _number(neural_by_model["LSTM_logGDP"].get("MAPE_pct"))
+        drift_mape = _number(drift.get("MAPE_pct"))
+        start = drift.get("nam_dau")
+        end = drift.get("nam_cuoi")
+        sample_count = drift.get("so_diem_kiem_thu")
+        if gru is not None and lstm is not None and drift_mape is not None:
+            statements.append(
+                f"Ở chân trời 1 năm, MAPE của GRU là {format_vi(gru)}% và LSTM là "
+                f"{format_vi(lstm)}%, so với Drift {format_vi(drift_mape)}% "
+                f"({sample_count} origin kiểm thử, {start}–{end}); hai mạng nơ-ron "
+                f"chỉ mang tính thăm dò với chuỗi 41 quan sát GDP năm 1985–2025 "
+                f"(kết quả backtest; nguồn {source})."
+            )
+    return statements
+
+
 def generate_insights(section_id: str, data: Mapping[str, Any]) -> list[str]:
     """Generate deterministic, non-causal insight sentences from supplied rows."""
     if not isinstance(data, Mapping):
@@ -644,4 +938,10 @@ def generate_insights(section_id: str, data: Mapping[str, Any]) -> list[str]:
         return _trade(data)
     if section_id in _SECTOR_SECTION_LABELS:
         return _sector_insights(section_id, data)
+    if section_id == "retail-fdi":
+        return _retail_fdi(data)
+    if section_id == "regional":
+        return _regional(data)
+    if section_id == "models":
+        return _training_lab(data)
     raise ValueError(f"Unsupported insight section: {section_id}")
