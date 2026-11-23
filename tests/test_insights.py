@@ -1,4 +1,4 @@
-"""Unit tests for the first two V-MEST insight sections."""
+"""Unit tests for deterministic V-MEST insight rules."""
 from __future__ import annotations
 
 import re
@@ -132,6 +132,178 @@ class InsightRulesTests(unittest.TestCase):
     def test_unknown_section_is_rejected(self) -> None:
         with self.assertRaises(ValueError):
             generate_insights("not-a-section", {})
+
+
+    def test_macro_insights_report_cpi_peak_and_monthly_exchange_rate(self) -> None:
+        data = {
+            "cpi_source": "NSO",
+            "cpi_rows": [
+                {
+                    "thoi_gian": "2026-08-01",
+                    "cpi_thay_doi_cung_ky_pct": 4.89,
+                    "cpi_binh_quan_luy_ke_yoy_pct": 4.45,
+                    "ngay_cong_bo": "2026-09-03",
+                    "trang_thai": "cong_bo_chinh_thuc_nso",
+                },
+                {
+                    "thoi_gian": "2026-09-01",
+                    "cpi_thay_doi_cung_ky_pct": 5.08,
+                    "cpi_binh_quan_luy_ke_yoy_pct": 4.52,
+                    "ngay_cong_bo": "2026-10-03",
+                    "trang_thai": "cong_bo_chinh_thuc_nso",
+                },
+            ],
+            "fx_source": "IMF IFS",
+            "fx_rows": [
+                {
+                    "thoi_gian": "2026-07-01",
+                    "ty_gia_usd_vnd": 25246.96,
+                    "loai_ty_gia": "binh_quan_ky",
+                    "trang_thai": "IMF_observed",
+                },
+                {
+                    "thoi_gian": "2026-08-01",
+                    "ty_gia_usd_vnd": 25534.42,
+                    "loai_ty_gia": "binh_quan_ky",
+                    "trang_thai": "IMF_observed",
+                },
+            ],
+        }
+
+        statements = generate_insights("macro", data)
+
+        self.assertEqual(len(statements), 4)
+        self.assertIn("đến tháng 09/2026 tăng 4,52%", statements[0])
+        self.assertIn("CPI tháng 09/2026 tăng 5,08%", statements[1])
+        self.assertIn("từ 08/2026 đến 09/2026, mức cao nhất là 5,08%", statements[2])
+        self.assertIn("đạt 25.534,42 VND/USD tháng 08/2026", statements[3])
+        self.assertIn("+287,46 VND/USD (+1,14%) so với tháng 07/2026", statements[3])
+        self.assertTrue(all("công bố chính thức NSO" in item or "quan sát IMF" in item for item in statements))
+        self.assertEqual(statements, generate_insights("macro", data))
+        self.assert_no_causal_terms(statements)
+
+    def test_macro_omits_missing_metrics(self) -> None:
+        self.assertEqual(
+            generate_insights("macro", {"cpi_rows": [], "fx_rows": []}),
+            [],
+        )
+        statements = generate_insights(
+            "macro",
+            {
+                "cpi_rows": [{"thoi_gian": "2026-10-01", "cpi_thay_doi_cung_ky_pct": None}],
+                "fx_rows": [{"thoi_gian": "2026-08-01", "ty_gia_usd_vnd": 25534.42}],
+            },
+        )
+        self.assertEqual(len(statements), 1)
+        self.assertIn("tháng 08/2026", statements[0])
+        self.assert_no_causal_terms(statements)
+
+    def test_growth_drivers_select_largest_positive_and_negative_components(self) -> None:
+        data = {
+            "source": "NSO",
+            "contribution_rows": [
+                {
+                    "nam": 2025,
+                    "tang_truong_gdp_thuc_chi_tieu_pct": 8.02,
+                    "trang_thai": "uoc_tinh",
+                    "dong_gop_von_co_dinh_diem_pct": 2.95,
+                    "dong_gop_ton_kho_diem_pct": 0.18,
+                    "dong_gop_tieu_dung_nha_nuoc_diem_pct": 1.06,
+                    "dong_gop_tieu_dung_ho_gia_dinh_diem_pct": 3.99,
+                    "dong_gop_can_can_hang_hoa_dich_vu_diem_pct": -0.59,
+                    "dong_gop_chenh_lech_thong_ke_diem_pct": 0.43,
+                }
+            ],
+        }
+
+        statements = generate_insights("growth-drivers", data)
+
+        self.assertEqual(len(statements), 2)
+        self.assertIn("năm 2025 đạt 8,02%", statements[0])
+        self.assertIn("trạng thái ước tính", statements[0])
+        self.assertIn("tiêu dùng hộ gia đình (+3,99 điểm phần trăm)", statements[1])
+        self.assertIn("cán cân hàng hóa và dịch vụ (-0,59 điểm phần trăm)", statements[1])
+        self.assertIn("nguồn NSO", statements[1])
+        self.assertEqual(statements, generate_insights("growth-drivers", data))
+        self.assert_no_causal_terms(statements)
+
+    def test_growth_drivers_omit_missing_contributions(self) -> None:
+        statements = generate_insights(
+            "growth-drivers",
+            {
+                "contribution_rows": [
+                    {
+                        "nam": 2025,
+                        "tang_truong_gdp_thuc_chi_tieu_pct": 8.02,
+                        "trang_thai": "uoc_tinh",
+                    }
+                ]
+            },
+        )
+        self.assertEqual(len(statements), 1)
+        self.assertIn("8,02%", statements[0])
+        self.assert_no_causal_terms(statements)
+
+
+    def test_trade_and_iip_use_latest_period_source_units_and_status(self) -> None:
+        data = {
+            "trade_source": "NSO",
+            "trade_rows": [
+                {
+                    "thoi_gian": "2026-08-01",
+                    "kim_ngach_xuat_khau_usd": 54_776_335_197,
+                    "kim_ngach_nhap_khau_usd": 55_117_743_547,
+                    "can_can_thuong_mai_usd": -341_408_350,
+                    "trang_thai": "so_bo",
+                },
+                {
+                    "thoi_gian": "2026-09-01",
+                    "kim_ngach_xuat_khau_usd": 59_506_115_885,
+                    "kim_ngach_nhap_khau_usd": 58_206_560_939,
+                    "can_can_thuong_mai_usd": 1_299_554_946,
+                    "trang_thai": "so_bo",
+                },
+            ],
+            "iip_source": "NSO",
+            "iip_rows": [
+                {
+                    "thoi_gian": "2026-09-01",
+                    "chi_so_iip_toan_nganh_2015_100": 223.99,
+                    "tang_truong_mom_pct": 3.26,
+                    "tang_truong_yoy_pct": 16.65,
+                    "trang_thai": "so_bo",
+                }
+            ],
+        }
+
+        statements = generate_insights("trade", data)
+
+        self.assertEqual(len(statements), 2)
+        self.assertIn("Tháng 09/2026, xuất khẩu 59,51 tỷ USD", statements[0])
+        self.assertIn("nhập khẩu 58,21 tỷ USD", statements[0])
+        self.assertIn("thặng dư thương mại 1,30 tỷ USD", statements[0])
+        self.assertIn("trạng thái sơ bộ; nguồn NSO", statements[0])
+        self.assertIn("223,99 điểm (2015=100)", statements[1])
+        self.assertIn("so với tháng trước +3,26%", statements[1])
+        self.assertIn("so với cùng kỳ +16,65%", statements[1])
+        self.assertEqual(statements, generate_insights("trade", data))
+        self.assert_no_causal_terms(statements)
+
+    def test_trade_omits_rows_with_missing_values(self) -> None:
+        self.assertEqual(generate_insights("trade", {"trade_rows": [], "iip_rows": []}), [])
+        statements = generate_insights(
+            "trade",
+            {
+                "trade_rows": [{"thoi_gian": "2026-09-01", "trang_thai": "so_bo"}],
+                "iip_rows": [
+                    {
+                        "thoi_gian": "2026-09-01",
+                        "chi_so_iip_toan_nganh_2015_100": None,
+                    }
+                ],
+            },
+        )
+        self.assertEqual(statements, [])
 
 
 if __name__ == "__main__":
