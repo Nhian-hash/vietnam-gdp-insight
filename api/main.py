@@ -506,6 +506,12 @@ def dashboard() -> Response:
         html,
         count=1,
     )
+    # Version the logo URL so browsers load animation updates instead of stale cache.
+    html = html.replace(
+        'src="/assets/v-mest-logo.svg"',
+        'src="/assets/v-mest-logo.svg?v=vmest-motion-1"',
+        1,
+    )
     # On narrow screens, keep navigation anchored to the left in a slide-out
     # drawer instead of converting every page link into a horizontal top bar.
     if 'id="mobile-nav-toggle"' not in html:
