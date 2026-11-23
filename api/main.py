@@ -744,11 +744,10 @@ def dashboard() -> Response:
     const page=document.getElementById(id), heading=page&&page.querySelector('h1,h2');
     if(!page||!heading||page.querySelector('.vmest-insight-card')) return;
     const card=document.createElement('details'); card.className='vmest-insight-card';
-    const summary=document.createElement('summary'), title=document.createElement('strong'), label=document.createElement('span'), content=document.createElement('div');
+    const summary=document.createElement('summary'), title=document.createElement('strong'), content=document.createElement('div');
     title.className='vmest-insight-title'; title.textContent='Nhận định nhanh';
-    label.className='vmest-insight-label'; label.textContent='Tự động tạo từ dữ liệu';
     content.className='vmest-insight-content'; content.setAttribute('aria-live','polite');
-    summary.append(title,label); card.append(summary,content); heading.insertAdjacentElement('afterend',card);
+    summary.append(title); card.append(summary,content); heading.insertAdjacentElement('afterend',card);
     state.set(page,{content,loading:false,loaded:false});
   }
   function status(content,text,error){content.replaceChildren();const p=document.createElement('p');p.className='vmest-insight-status'+(error?' vmest-insight-error':'');p.textContent=text;content.appendChild(p);}
