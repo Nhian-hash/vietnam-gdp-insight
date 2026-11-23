@@ -833,9 +833,16 @@ def dashboard() -> Response:
 .dark .table-wrap .table th,.dark .table-wrap table th{background:var(--surface,#202637)}
 .dark .table-wrap .table tbody tr:nth-child(even),.dark .table-wrap table tbody tr:nth-child(even){background:rgba(255,255,255,.025)}
 .dark .table-wrap .table tbody tr:hover,.dark .table-wrap table tbody tr:hover{background:rgba(70,151,222,.14)}
+/* vmest-heading-fx */
+.top-title,.welcome h1,.section-head h2{animation:vmest-heading-in .42s cubic-bezier(.2,.75,.25,1) both}
+.top-title{text-shadow:0 1px 2px rgba(177,29,46,.17)}
+.welcome h1,.section-head h2{text-shadow:0 1px 2px rgba(24,39,57,.13)}
+.dark .top-title{text-shadow:0 1px 5px rgba(230,76,91,.24)}
+.dark .welcome h1,.dark .section-head h2{text-shadow:0 1px 5px rgba(0,0,0,.28)}
+@keyframes vmest-heading-in{from{opacity:.9;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:740px){.panel:has(.chart-wrap)::before{left:12px;right:12px}.chart-wrap{border-radius:11px}}
 @media(hover:none){.chart-wrap:active{transform:scale(.996);box-shadow:0 4px 12px rgba(36,92,130,.12)}}
-@media(prefers-reduced-motion:reduce){.panel,.chart-wrap,.chart-wrap canvas,.chart-wrap::after,.kpi,.fill{transition:none!important;animation:none!important;transform:none!important;filter:none!important;opacity:1!important}}
+@media(prefers-reduced-motion:reduce){.panel,.chart-wrap,.chart-wrap canvas,.chart-wrap::after,.kpi,.fill,.top-title,.welcome h1,.section-head h2{transition:none!important;animation:none!important;transform:none!important;filter:none!important;opacity:1!important}}
 </style>"""
     if "</head>" in html:
         html = html.replace("</head>", visual_polish_css + "\n</head>", 1)
