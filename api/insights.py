@@ -7,7 +7,7 @@ from typing import Any
 
 from .insight_config import OVERVIEW_REFERENCE_YEARS
 
-SUPPORTED_INSIGHT_SECTIONS = frozenset({"overview", "gdp-real-structure", "macro", "growth-drivers", "trade"})
+SUPPORTED_INSIGHT_SECTIONS = frozenset({"overview", "gdp-real-structure", "macro", "growth-drivers", "trade", "agriculture", "industry", "services"})
 
 REAL_GDP_SOURCE = "World Bank WDI"
 SECTOR_SOURCE = "NSO/GSO"
@@ -503,6 +503,131 @@ def _trade(data: Mapping[str, Any]) -> list[str]:
     return statements
 
 
+
+_SECTOR_SECTION_LABELS = {
+    "agriculture": "Nông, lâm, thủy sản",
+    "industry": "Công nghiệp và xây dựng",
+    "services": "Dịch vụ",
+}
+
+
+def _sector_year(row: Mapping[str, Any]) -> int | None:
+    """Read the year prefix used by the NSO quarterly and year-to-date data."""
+    period = str(row.get("ky") or "").strip()
+    try:
+        return int(period[:4])
+    except (TypeError, ValueError):
+        return None
+
+
+def _sector_period_order(row: Mapping[str, Any]) -> tuple[int, int]:
+    """Sort a sector period by year and quarter/YTD order for deterministic selection."""
+    period = str(row.get("ky") or "").strip().upper()
+    year = _sector_year(row) or 0
+    if "9M" in period:
+        return year, 9
+    if "Q" in period:
+        try:
+            return year, int(period.rsplit("Q", 1)[1])
+        except (TypeError, ValueError):
+            pass
+    return year, 0
+
+
+def _sector_insights(section_id: str, data: Mapping[str, Any]) -> list[str]:
+    """Describe official NSO sector growth, contribution shares and fastest sub-sector."""
+    area_label = _SECTOR_SECTION_LABELS.get(section_id)
+    rows = data.get("sector_rows")
+    if area_label is None or not isinstance(rows, Sequence) or isinstance(rows, (str, bytes)):
+        return []
+
+    sector_rows = [
+        dict(row)
+        for row in rows
+        if isinstance(row, Mapping) and row.get("khu_vuc_ma") == section_id
+    ]
+    if not sector_rows:
+        return []
+
+    source = _source(data, "source", SECTOR_SOURCE)
+    statements: list[str] = []
+    ytd_rows = [
+        row for row in sector_rows
+        if row.get("cap_phan_tich") == "9m_broad"
+        and _sector_year(row) is not None
+        and _number(row.get("tang_truong_gdp_thuc_yoy_pct")) is not None
+    ]
+    latest_ytd = max(ytd_rows, key=_sector_period_order) if ytd_rows else None
+
+    if latest_ytd is not None:
+        period_label = str(latest_ytd.get("ky_hien_thi") or latest_ytd.get("ky") or "").strip()
+        growth = _number(latest_ytd.get("tang_truong_gdp_thuc_yoy_pct"))
+        gdp_share = _number(latest_ytd.get("ty_trong_gdp_9_thang_pct"))
+        contribution_share = _number(latest_ytd.get("ty_trong_dong_gop_tang_truong_pct"))
+        details: list[str] = []
+        if gdp_share is not None:
+            details.append(f"tỷ trọng GDP là {format_vi(gdp_share)}%")
+        if contribution_share is not None:
+            details.append(
+                f"tỷ trọng đóng góp vào mức tăng tổng giá trị tăng thêm "
+                f"là {format_vi(contribution_share)}%"
+            )
+        detail_text = f"; {'; '.join(details)}" if details else ""
+        statements.append(
+            f"Trong {period_label}, khu vực {area_label} tăng {format_vi(growth)}% "
+            f"so với cùng kỳ{detail_text} "
+            f"({_status_clause(latest_ytd, source)})."
+        )
+
+        subsector_rows = [
+            row for row in sector_rows
+            if row.get("cap_phan_tich") == "9m_subsector"
+            and row.get("ky") == latest_ytd.get("ky")
+            and _number(row.get("tang_truong_gdp_thuc_yoy_pct")) is not None
+            and str(row.get("hoat_dong_kinh_te") or "").strip()
+        ]
+        if subsector_rows:
+            top = max(
+                subsector_rows,
+                key=lambda row: (
+                    _number(row.get("tang_truong_gdp_thuc_yoy_pct"))
+                    if _number(row.get("tang_truong_gdp_thuc_yoy_pct")) is not None
+                    else -math.inf
+                ),
+            )
+            top_growth = _number(top.get("tang_truong_gdp_thuc_yoy_pct"))
+            activity = str(top.get("hoat_dong_kinh_te")).strip()
+            statements.append(
+                f"Trong các phân ngành có số liệu của khu vực {area_label} "
+                f"trong {period_label}, {activity} có tốc độ tăng cao nhất, "
+                f"đạt {format_vi(top_growth)}% so với cùng kỳ "
+                f"({_status_clause(top, source)})."
+            )
+
+    quarter_rows = [
+        row for row in sector_rows
+        if row.get("cap_phan_tich") == "q3_broad"
+        and _sector_year(row) is not None
+        and _number(row.get("tang_truong_gdp_thuc_yoy_pct")) is not None
+    ]
+    latest_quarter = max(quarter_rows, key=_sector_period_order) if quarter_rows else None
+    if latest_quarter is not None:
+        period_label = str(latest_quarter.get("ky_hien_thi") or latest_quarter.get("ky") or "").strip()
+        growth = _number(latest_quarter.get("tang_truong_gdp_thuc_yoy_pct"))
+        contribution_share = _number(latest_quarter.get("ty_trong_dong_gop_tang_truong_pct"))
+        contribution_text = (
+            f"; tỷ trọng đóng góp vào mức tăng tổng giá trị tăng thêm "
+            f"là {format_vi(contribution_share)}%"
+            if contribution_share is not None else ""
+        )
+        statements.append(
+            f"Riêng {period_label}, khu vực {area_label} tăng {format_vi(growth)}% "
+            f"so với cùng kỳ{contribution_text} "
+            f"({_status_clause(latest_quarter, source)})."
+        )
+    return statements
+
+
 def generate_insights(section_id: str, data: Mapping[str, Any]) -> list[str]:
     """Generate deterministic, non-causal insight sentences from supplied rows."""
     if not isinstance(data, Mapping):
@@ -517,4 +642,6 @@ def generate_insights(section_id: str, data: Mapping[str, Any]) -> list[str]:
         return _growth_drivers(data)
     if section_id == "trade":
         return _trade(data)
+    if section_id in _SECTOR_SECTION_LABELS:
+        return _sector_insights(section_id, data)
     raise ValueError(f"Unsupported insight section: {section_id}")
