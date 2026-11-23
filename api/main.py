@@ -835,14 +835,14 @@ def dashboard() -> Response:
 .dark .table-wrap .table tbody tr:hover,.dark .table-wrap table tbody tr:hover{background:rgba(70,151,222,.14)}
 /* vmest-heading-fx */
 .top-title,.welcome h1,.section-head h2{animation:vmest-heading-in .42s cubic-bezier(.2,.75,.25,1) both}
-.top-title{text-shadow:0 2px 6px rgba(177,29,46,.28);background-image:linear-gradient(90deg,#bd2034,#ed805d);background-repeat:no-repeat;background-position:center calc(100% - 1px);background-size:44px 3px;padding-bottom:5px;animation:vmest-heading-in .42s cubic-bezier(.2,.75,.25,1) both,vmest-heading-underline .68s .08s ease-out both}
-.welcome h1{ text-shadow:0 2px 5px rgba(24,39,57,.2)}
-.section-head h2{position:relative;padding-bottom:7px;text-shadow:0 2px 5px rgba(24,39,57,.2)}
-.section-head h2::after{content:"";position:absolute;left:0;bottom:0;width:42px;height:3px;border-radius:999px;background:linear-gradient(90deg,#bd2034,#ed805d);box-shadow:0 1px 5px rgba(189,32,52,.25);transform-origin:left;animation:vmest-heading-rule .65s .1s cubic-bezier(.2,.75,.25,1) both}
-.dark .top-title{text-shadow:0 2px 7px rgba(236,79,98,.34)}
-.dark .welcome h1,.dark .section-head h2{text-shadow:0 2px 6px rgba(0,0,0,.36)}
+.top-title{font-weight:800;text-shadow:0 2px 5px rgba(150,15,32,.46),0 0 12px rgba(217,42,58,.22);background-image:linear-gradient(90deg,#b9152b 0%,#e43d51 52%,#f08a55 100%);background-repeat:no-repeat;background-position:center calc(100% - 1px);background-size:68px 4px;padding-bottom:7px;animation:vmest-heading-in .42s cubic-bezier(.2,.75,.25,1) both,vmest-heading-underline .72s .08s ease-out both}
+.welcome h1{text-shadow:0 2px 5px rgba(24,39,57,.24),0 4px 9px rgba(24,39,57,.12)}
+.section-head h2{position:relative;padding-bottom:8px;text-shadow:0 2px 5px rgba(24,39,57,.24),0 4px 9px rgba(24,39,57,.12)}
+.section-head h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:999px;background:linear-gradient(90deg,#b9152b 0%,#e43d51 58%,#f08a55 100%);box-shadow:0 2px 8px rgba(189,32,52,.4);transform-origin:left;animation:vmest-heading-rule .65s .1s cubic-bezier(.2,.75,.25,1) both}
+.dark .top-title{text-shadow:0 2px 7px rgba(236,79,98,.48),0 0 14px rgba(236,79,98,.25)}
+.dark .welcome h1,.dark .section-head h2{text-shadow:0 2px 7px rgba(0,0,0,.48),0 5px 12px rgba(0,0,0,.22)}
 @keyframes vmest-heading-in{from{opacity:.9;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
-@keyframes vmest-heading-underline{from{background-size:0 3px}to{background-size:44px 3px}}
+@keyframes vmest-heading-underline{from{background-size:0 4px}to{background-size:68px 4px}}
 @keyframes vmest-heading-rule{from{opacity:.35;transform:scaleX(.2)}to{opacity:1;transform:scaleX(1)}}
 @media(max-width:740px){.panel:has(.chart-wrap)::before{left:12px;right:12px}.chart-wrap{border-radius:11px}}
 @media(hover:none){.chart-wrap:active{transform:scale(.996);box-shadow:0 4px 12px rgba(36,92,130,.12)}}
