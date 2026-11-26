@@ -146,8 +146,21 @@
     }
 
     for (const item of series) {
+      // Add a subtle lower edge, then draw the original path on top.
       ctx.beginPath();
       let drawing = false;
+      item.values.forEach((value, index) => {
+        if (value == null || !Number.isFinite(value)) { drawing = false; return; }
+        drawing ? ctx.lineTo(x(index), y(value) + 1.6) : ctx.moveTo(x(index), y(value) + 1.6);
+        drawing = true;
+      });
+      ctx.strokeStyle = item.color; ctx.lineWidth = item.key === "actual" ? 4.2 : 3.5;
+      if (item.key !== "actual") ctx.setLineDash([5, 3]);
+      ctx.globalAlpha = 0.22;
+      ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+
+      ctx.beginPath();
+      drawing = false;
       item.values.forEach((value, index) => {
         if (value == null || !Number.isFinite(value)) { drawing = false; return; }
         drawing ? ctx.lineTo(x(index), y(value)) : ctx.moveTo(x(index), y(value));
@@ -158,8 +171,15 @@
       ctx.stroke(); ctx.setLineDash([]);
       item.values.forEach((value, index) => {
         if (value == null || !Number.isFinite(value)) return;
-        ctx.beginPath(); ctx.arc(x(index), y(value), item.key === "actual" ? 2.5 : 2, 0, Math.PI * 2);
-        ctx.fillStyle = item.color; ctx.fill();
+        ctx.beginPath(); ctx.arc(x(index) + 0.8, y(value) + 1.1, item.key === "actual" ? 3.1 : 2.6, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(15,39,64,.24)"; ctx.fill();
+        const radius = item.key === "actual" ? 2.5 : 2;
+        ctx.beginPath(); ctx.arc(x(index), y(value), radius, 0, Math.PI * 2);
+        const glow = ctx.createRadialGradient(x(index) - 0.8, y(value) - 0.8, 0.2, x(index), y(value), radius + 0.2);
+        glow.addColorStop(0, "rgba(255,255,255,.92)");
+        glow.addColorStop(0.42, item.color);
+        glow.addColorStop(1, item.color);
+        ctx.fillStyle = glow; ctx.fill();
       });
     }
     const tooltip = $("arena-tooltip");
