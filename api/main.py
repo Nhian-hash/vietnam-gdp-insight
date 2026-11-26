@@ -573,8 +573,10 @@ def dashboard() -> Response:
         html = html.replace("</head>", '<link rel="stylesheet" href="/assets/backtest-arena.css">\n</head>', 1)
     if "assets/backtest-arena.js" not in html:
         html = html.replace("</body>", '<script src="/assets/backtest-arena.js" defer></script>\n</body>', 1)
+    html = html.replace('href="assets/vmest-motion.css"', 'href="assets/vmest-motion.css?v=20261126-2"')
+    html = html.replace('href="/assets/vmest-motion.css"', 'href="/assets/vmest-motion.css?v=20261126-2"')
     if "assets/vmest-motion.css" not in html:
-        html = html.replace("</head>", '<link rel="stylesheet" href="/assets/vmest-motion.css">\n</head>', 1)
+        html = html.replace("</head>", '<link rel="stylesheet" href="/assets/vmest-motion.css?v=20261126-2">\n</head>', 1)
     if "assets/vmest-motion.js" not in html:
         html = html.replace("</body>", '<script src="/assets/vmest-motion.js" defer></script>\n</body>', 1)
     if 'id="project-info"' not in html:
