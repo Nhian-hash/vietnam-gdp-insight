@@ -587,3 +587,13 @@ body {
 @keyframes chart-reveal { 0% { opacity: .55; clip-path: inset(0 0 18% 0 round 12px); } 100% { opacity: 1; clip-path: inset(0 0 0 0 round 12px); } }
 @keyframes corner-draw { 0% { width: 0; opacity: 0; } 100% { width: 36px; opacity: 1; } }
 @keyframes line-draw { 0% { transform: scaleX(0); opacity: 0; } 100% { transform: scaleX(1); opacity: 1; } }
+
+/* Mark charts with extruded bars as a raised analysis plate. */
+.chart-wrap.depth-bars-ready {
+  border-color: #b9cbdc;
+  box-shadow: inset 0 0 0 3px #eef3f7, 0 8px 18px rgba(18,42,65,.075);
+}
+.chart-wrap.depth-bars-ready::before,
+.chart-wrap.depth-bars-ready::after { width: 48px; height: 4px; }
+.dark .chart-wrap.depth-bars-ready { border-color: #526981; box-shadow: inset 0 0 0 3px #1b3044, 0 9px 22px rgba(0,0,0,.2); }
+
