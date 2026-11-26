@@ -458,3 +458,92 @@ body {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
+/* Keep the profile card anchored while the full navigation list gets its own scroll area. */
+.sidebar .nav {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.sidebar > .brand,
+.sidebar > .nav-label,
+.sidebar > .side-bottom { flex: 0 0 auto; }
+@media (max-width: 740px) {
+  .app .sidebar { display: flex !important; flex-direction: column !important; overflow: hidden !important; }
+  .sidebar .nav {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  .sidebar > .side-bottom { flex: 0 0 auto !important; }
+}
+
+/* Give metric cards and plot frames a distinctive V-MEST signal-line treatment. */
+.kpi {
+  background:
+    radial-gradient(circle at 96% 0%, color-mix(in srgb, var(--kpi-accent) 12%, transparent), transparent 9rem),
+    linear-gradient(145deg, #fff 0%, #f8fbfd 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.92), 0 10px 28px rgba(24,48,75,.075);
+}
+.kpi::before {
+  height: 4px;
+  background: linear-gradient(90deg, var(--kpi-accent), color-mix(in srgb, var(--kpi-accent) 22%, white), var(--kpi-accent));
+  background-size: 220% 100%;
+  animation: metric-signal 7s ease-in-out infinite;
+}
+.kpi-value { text-shadow: 0 2px 14px color-mix(in srgb, var(--green) 15%, transparent); }
+.panel { overflow: hidden; }
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 54px;
+  height: 3px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, #e34e5b, #e7ad50 48%, #2dbb9b);
+  box-shadow: 0 2px 10px rgba(45,187,155,.18);
+}
+.chart-wrap {
+  position: relative;
+  overflow: hidden;
+  border-color: #d8e5ef;
+  border-radius: 15px;
+  background: radial-gradient(ellipse at 8% 0%, rgba(51,136,232,.055), transparent 42%), linear-gradient(180deg,#fbfdff,#f7fafc);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 5px 16px rgba(24,48,75,.045);
+}
+.chart-wrap::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: -35%;
+  width: 35%;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #2dbb9b 45%, #e34e5b 75%, transparent);
+  filter: drop-shadow(0 0 5px rgba(45,187,155,.35));
+  animation: chart-signal 8s ease-in-out infinite;
+}
+.dark .kpi { background: radial-gradient(circle at 96% 0%, color-mix(in srgb, var(--kpi-accent) 14%, transparent), transparent 9rem), linear-gradient(145deg,#142234,#101c2a); }
+.dark .chart-wrap { border-color: #34495f; background: radial-gradient(ellipse at 8% 0%,rgba(74,150,210,.1),transparent 42%),linear-gradient(180deg,#18283a,#142235); }
+
+/* Make section changes visible while keeping chart data and controls untouched. */
+.page.active { animation: page-enter .62s cubic-bezier(.18,.78,.22,1) both; }
+.page.active .panel,
+.page.active .kpi { animation: panel-enter .52s cubic-bezier(.18,.72,.24,1) both; }
+.page.active .chart-wrap { animation: chart-enter .6s cubic-bezier(.18,.72,.24,1) both; }
+.page.active .kpis .kpi:nth-child(2) { animation-delay: .06s; }
+.page.active .kpis .kpi:nth-child(3) { animation-delay: .12s; }
+.page.active .kpis .kpi:nth-child(4) { animation-delay: .18s; }
+@keyframes metric-signal { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+@keyframes chart-signal { 0%, 12% { transform: translateX(0); opacity: 0; } 24% { opacity: .85; } 72%, 100% { transform: translateX(390%); opacity: 0; } }
+@keyframes page-enter { 0% { opacity: 0; filter: blur(4px); transform: translateY(16px) scale(.992); } 100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); } }
+@keyframes panel-enter { 0% { opacity: 0; transform: translateY(11px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes chart-enter { 0% { opacity: .55; transform: scale(.986); } 100% { opacity: 1; transform: scale(1); } }
+
