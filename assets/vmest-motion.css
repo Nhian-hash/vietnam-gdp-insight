@@ -458,7 +458,7 @@ body {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-/* Keep the profile card anchored while the full navigation list gets its own scroll area. */
+/* Reserve a dedicated scroll area so the profile card never overlaps navigation. */
 .sidebar .nav {
   flex: 1 1 auto;
   min-height: 0;
@@ -483,71 +483,7 @@ body {
   .sidebar > .side-bottom { flex: 0 0 auto !important; }
 }
 
-/* Give metric cards and plot frames a distinctive V-MEST signal-line treatment. */
-.kpi {
-  background:
-    radial-gradient(circle at 96% 0%, color-mix(in srgb, var(--kpi-accent) 12%, transparent), transparent 9rem),
-    linear-gradient(145deg, #fff 0%, #f8fbfd 100%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.92), 0 10px 28px rgba(24,48,75,.075);
-}
-.kpi::before {
-  height: 4px;
-  background: linear-gradient(90deg, var(--kpi-accent), color-mix(in srgb, var(--kpi-accent) 22%, white), var(--kpi-accent));
-  background-size: 220% 100%;
-  animation: metric-signal 7s ease-in-out infinite;
-}
-.kpi-value { text-shadow: 0 2px 14px color-mix(in srgb, var(--green) 15%, transparent); }
-.panel { overflow: hidden; }
-.panel::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 20px;
-  width: 54px;
-  height: 3px;
-  border-radius: 0 0 4px 4px;
-  background: linear-gradient(90deg, #e34e5b, #e7ad50 48%, #2dbb9b);
-  box-shadow: 0 2px 10px rgba(45,187,155,.18);
-}
-.chart-wrap {
-  position: relative;
-  overflow: hidden;
-  border-color: #d8e5ef;
-  border-radius: 15px;
-  background: radial-gradient(ellipse at 8% 0%, rgba(51,136,232,.055), transparent 42%), linear-gradient(180deg,#fbfdff,#f7fafc);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 5px 16px rgba(24,48,75,.045);
-}
-.chart-wrap::before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: -35%;
-  width: 35%;
-  height: 2px;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent, #2dbb9b 45%, #e34e5b 75%, transparent);
-  filter: drop-shadow(0 0 5px rgba(45,187,155,.35));
-  animation: chart-signal 8s ease-in-out infinite;
-}
-.dark .kpi { background: radial-gradient(circle at 96% 0%, color-mix(in srgb, var(--kpi-accent) 14%, transparent), transparent 9rem), linear-gradient(145deg,#142234,#101c2a); }
-.dark .chart-wrap { border-color: #34495f; background: radial-gradient(ellipse at 8% 0%,rgba(74,150,210,.1),transparent 42%),linear-gradient(180deg,#18283a,#142235); }
-
-/* Make section changes visible while keeping chart data and controls untouched. */
-.page.active { animation: page-enter .62s cubic-bezier(.18,.78,.22,1) both; }
-.page.active .panel,
-.page.active .kpi { animation: panel-enter .52s cubic-bezier(.18,.72,.24,1) both; }
-.page.active .chart-wrap { animation: chart-enter .6s cubic-bezier(.18,.72,.24,1) both; }
-.page.active .kpis .kpi:nth-child(2) { animation-delay: .06s; }
-.page.active .kpis .kpi:nth-child(3) { animation-delay: .12s; }
-.page.active .kpis .kpi:nth-child(4) { animation-delay: .18s; }
-@keyframes metric-signal { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
-@keyframes chart-signal { 0%, 12% { transform: translateX(0); opacity: 0; } 24% { opacity: .85; } 72%, 100% { transform: translateX(390%); opacity: 0; } }
-@keyframes page-enter { 0% { opacity: 0; filter: blur(4px); transform: translateY(16px) scale(.992); } 100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); } }
-@keyframes panel-enter { 0% { opacity: 0; transform: translateY(11px); } 100% { opacity: 1; transform: translateY(0); } }
-@keyframes chart-enter { 0% { opacity: .55; transform: scale(.986); } 100% { opacity: 1; transform: scale(1); } }
-
-/* Replace the color sweeps with a crisp geometric identity and clearer motion. */
+/* V-MEST geometry: matte cards, angular marks, and restrained brand colors. */
 .kpi {
   overflow: hidden;
   border: 1px solid #d8e2ec;
@@ -571,23 +507,41 @@ body {
   bottom: -28px;
   width: 82px;
   height: 82px;
-  border: 1px solid color-mix(in srgb, var(--kpi-accent) 35%, transparent);
+  border: 1px solid var(--kpi-accent);
   border-radius: 13px;
+  opacity: .18;
   box-shadow: none;
   transform: rotate(45deg);
   animation: none;
-  transition: transform .42s cubic-bezier(.2,.7,.2,1), border-color .25s ease;
+  transition: transform .42s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
 }
-.kpi:hover::after { transform: rotate(135deg) scale(1.05); border-color: var(--kpi-accent); }
+.kpi:hover::after { transform: rotate(135deg) scale(1.05); opacity: .55; }
+.kpi-icon { transform: rotate(-8deg); transition: transform .3s ease; }
+.kpi:hover .kpi-icon { transform: rotate(0) scale(1.06); }
 .kpi-head { position: relative; z-index: 1; padding-left: 2px; font-weight: 650; letter-spacing: .015em; }
 .kpi-value { position: relative; z-index: 1; text-shadow: none; }
-.panel { border: 1px solid #d8e2ec; border-radius: 16px; background: #fff; box-shadow: 0 6px 18px rgba(18,42,65,.06); }
-.panel::before { left: 20px; top: 0; width: 34px; height: 3px; background: #bf3542; box-shadow: none; }
+.panel {
+  overflow: hidden;
+  border: 1px solid #d8e2ec;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(18,42,65,.06);
+}
+.panel::before {
+  left: 20px;
+  top: 0;
+  width: 34px;
+  height: 3px;
+  background: #bf3542;
+  box-shadow: none;
+}
 .panel:hover { transform: translateY(-3px); border-color: #b9cadb; box-shadow: 0 13px 28px rgba(18,42,65,.11); }
 .chart-wrap {
+  position: relative;
+  overflow: hidden;
   border: 1px solid #cbd8e5;
   border-radius: 12px;
-  background: #f9fbfd;
+  background: #f8fafc;
   box-shadow: inset 0 0 0 3px #f1f5f8, 0 4px 12px rgba(18,42,65,.035);
   transition: border-color .24s ease, box-shadow .24s ease;
 }
@@ -611,12 +565,16 @@ body {
   pointer-events: none;
 }
 .chart-wrap:hover { border-color: #7692ac; box-shadow: inset 0 0 0 3px #edf3f7, 0 8px 20px rgba(18,42,65,.075); }
+
+/* Page changes reveal the section, its cards, then the chart frame in sequence. */
 .page.active { animation: page-slide .56s cubic-bezier(.2,.72,.22,1) both; }
 .page.active .panel,
 .page.active .kpi { animation: panel-reveal .46s cubic-bezier(.18,.7,.24,1) both; }
 .page.active .kpis .kpi:nth-child(2) { animation-delay: .07s; }
 .page.active .kpis .kpi:nth-child(3) { animation-delay: .14s; }
 .page.active .kpis .kpi:nth-child(4) { animation-delay: .21s; }
+.page.active .kpi::after { animation: diamond-arrive .62s cubic-bezier(.2,.72,.22,1) .12s both; }
+.page.active .panel::before { animation: line-draw .38s ease-out both; transform-origin: left; }
 .page.active .chart-wrap { animation: chart-reveal .58s cubic-bezier(.18,.7,.24,1) both; }
 .page.active .chart-wrap::before,
 .page.active .chart-wrap::after { animation: corner-draw .42s ease-out both; }
@@ -625,6 +583,7 @@ body {
 .dark .chart-wrap { border-color: #46596e; background: #142235; box-shadow: inset 0 0 0 3px #192b3e; }
 @keyframes page-slide { 0% { opacity: 0; transform: translateX(20px); } 100% { opacity: 1; transform: translateX(0); } }
 @keyframes panel-reveal { 0% { opacity: 0; transform: translateY(12px) scale(.99); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
-@keyframes chart-reveal { 0% { opacity: .65; clip-path: inset(0 0 5% 0 round 12px); } 100% { opacity: 1; clip-path: inset(0 0 0 0 round 12px); } }
+@keyframes diamond-arrive { 0% { opacity: 0; transform: rotate(-30deg) scale(.45); } 75% { opacity: .45; transform: rotate(56deg) scale(1.08); } 100% { opacity: .18; transform: rotate(45deg) scale(1); } }
+@keyframes chart-reveal { 0% { opacity: .55; clip-path: inset(0 0 18% 0 round 12px); } 100% { opacity: 1; clip-path: inset(0 0 0 0 round 12px); } }
 @keyframes corner-draw { 0% { width: 0; opacity: 0; } 100% { width: 36px; opacity: 1; } }
-
+@keyframes line-draw { 0% { transform: scaleX(0); opacity: 0; } 100% { transform: scaleX(1); opacity: 1; } }
