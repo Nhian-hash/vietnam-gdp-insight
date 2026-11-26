@@ -597,3 +597,67 @@ body {
 .chart-wrap.depth-bars-ready::after { width: 48px; height: 4px; }
 .dark .chart-wrap.depth-bars-ready { border-color: #526981; box-shadow: inset 0 0 0 3px #1b3044, 0 9px 22px rgba(0,0,0,.2); }
 
+
+
+/* Line and scatter plots receive the same dimensional frame without changing their scales. */
+.chart-wrap.depth-lines-ready,
+.chart-wrap.depth-scatter-ready {
+  border-color: #9fb4c9;
+  box-shadow: inset 0 0 0 3px #eef3f7, 0 9px 21px rgba(18,42,65,.09);
+}
+.chart-wrap.depth-lines-ready::before,
+.chart-wrap.depth-lines-ready::after,
+.chart-wrap.depth-scatter-ready::before,
+.chart-wrap.depth-scatter-ready::after { width: 48px; height: 4px; }
+.chart-wrap.depth-lines-ready canvas,
+.chart-wrap.depth-scatter-ready canvas { animation: chart-surface-arrive .52s cubic-bezier(.2,.72,.22,1) both; }
+.dark .chart-wrap.depth-lines-ready,
+.dark .chart-wrap.depth-scatter-ready {
+  border-color: #526981;
+  box-shadow: inset 0 0 0 3px #1b3044, 0 9px 22px rgba(0,0,0,.2);
+}
+
+/* Horizontal comparison bars use a small solid side face and a moving width transition. */
+.track { position: relative; overflow: visible; }
+.fill {
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 2px 4px rgba(21,67,111,.2);
+  transition: width .68s cubic-bezier(.2,.72,.22,1), filter .24s ease;
+}
+.fill::before,
+.fill::after { content: ""; position: absolute; pointer-events: none; }
+.fill::before {
+  left: 2px; right: 3px; top: 1px; height: 2px;
+  border-radius: 99px; background: rgba(255,255,255,.48);
+}
+.fill::after {
+  top: 1px; right: -4px; bottom: -1px; width: 4px;
+  border-radius: 0 3px 3px 0; background: #2368a8;
+  transform: skewY(-32deg); transform-origin: left top; filter: brightness(.82);
+}
+.region-row:hover .fill { filter: brightness(1.07); }
+.dark .fill::after { background: #164d7d; }
+
+/* The custom historical backtest canvas shares the dimensional chart plate. */
+.arena-chart-wrap {
+  overflow: hidden;
+  border: 1px solid #cbd8e5;
+  border-radius: 12px;
+  background: #f8fafc;
+  box-shadow: inset 0 0 0 3px #f1f5f8, 0 7px 18px rgba(18,42,65,.07);
+}
+.arena-chart-wrap canvas { filter: drop-shadow(0 1px 1px rgba(16,39,64,.1)); }
+.dark .arena-chart-wrap {
+  border-color: #46596e; background: #142235;
+  box-shadow: inset 0 0 0 3px #192b3e, 0 8px 20px rgba(0,0,0,.2);
+}
+@keyframes chart-surface-arrive {
+  0% { opacity: .75; transform: translateY(5px) scale(.995); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fill, .chart-wrap.depth-lines-ready canvas, .chart-wrap.depth-scatter-ready canvas {
+    transition: none; animation: none;
+  }
+}
