@@ -547,3 +547,84 @@ body {
 @keyframes panel-enter { 0% { opacity: 0; transform: translateY(11px); } 100% { opacity: 1; transform: translateY(0); } }
 @keyframes chart-enter { 0% { opacity: .55; transform: scale(.986); } 100% { opacity: 1; transform: scale(1); } }
 
+/* Replace the color sweeps with a crisp geometric identity and clearer motion. */
+.kpi {
+  overflow: hidden;
+  border: 1px solid #d8e2ec;
+  border-left: 4px solid var(--kpi-accent);
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(18,42,65,.065);
+}
+.kpi::before {
+  top: 15px;
+  right: auto;
+  left: 15px;
+  width: 25px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--kpi-accent);
+  animation: none;
+}
+.kpi::after {
+  right: -26px;
+  bottom: -28px;
+  width: 82px;
+  height: 82px;
+  border: 1px solid color-mix(in srgb, var(--kpi-accent) 35%, transparent);
+  border-radius: 13px;
+  box-shadow: none;
+  transform: rotate(45deg);
+  animation: none;
+  transition: transform .42s cubic-bezier(.2,.7,.2,1), border-color .25s ease;
+}
+.kpi:hover::after { transform: rotate(135deg) scale(1.05); border-color: var(--kpi-accent); }
+.kpi-head { position: relative; z-index: 1; padding-left: 2px; font-weight: 650; letter-spacing: .015em; }
+.kpi-value { position: relative; z-index: 1; text-shadow: none; }
+.panel { border: 1px solid #d8e2ec; border-radius: 16px; background: #fff; box-shadow: 0 6px 18px rgba(18,42,65,.06); }
+.panel::before { left: 20px; top: 0; width: 34px; height: 3px; background: #bf3542; box-shadow: none; }
+.panel:hover { transform: translateY(-3px); border-color: #b9cadb; box-shadow: 0 13px 28px rgba(18,42,65,.11); }
+.chart-wrap {
+  border: 1px solid #cbd8e5;
+  border-radius: 12px;
+  background: #f9fbfd;
+  box-shadow: inset 0 0 0 3px #f1f5f8, 0 4px 12px rgba(18,42,65,.035);
+  transition: border-color .24s ease, box-shadow .24s ease;
+}
+.chart-wrap::before {
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 3px;
+  background: #bf3542;
+  filter: none;
+  animation: none;
+}
+.chart-wrap::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  height: 3px;
+  background: #16845a;
+  pointer-events: none;
+}
+.chart-wrap:hover { border-color: #7692ac; box-shadow: inset 0 0 0 3px #edf3f7, 0 8px 20px rgba(18,42,65,.075); }
+.page.active { animation: page-slide .56s cubic-bezier(.2,.72,.22,1) both; }
+.page.active .panel,
+.page.active .kpi { animation: panel-reveal .46s cubic-bezier(.18,.7,.24,1) both; }
+.page.active .kpis .kpi:nth-child(2) { animation-delay: .07s; }
+.page.active .kpis .kpi:nth-child(3) { animation-delay: .14s; }
+.page.active .kpis .kpi:nth-child(4) { animation-delay: .21s; }
+.page.active .chart-wrap { animation: chart-reveal .58s cubic-bezier(.18,.7,.24,1) both; }
+.page.active .chart-wrap::before,
+.page.active .chart-wrap::after { animation: corner-draw .42s ease-out both; }
+.dark .kpi { border-color: #35475a; border-left-color: var(--kpi-accent); background: #172638; box-shadow: 0 7px 20px rgba(0,0,0,.18); }
+.dark .panel { border-color: #35475a; background: #1b2838; box-shadow: 0 7px 20px rgba(0,0,0,.16); }
+.dark .chart-wrap { border-color: #46596e; background: #142235; box-shadow: inset 0 0 0 3px #192b3e; }
+@keyframes page-slide { 0% { opacity: 0; transform: translateX(20px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes panel-reveal { 0% { opacity: 0; transform: translateY(12px) scale(.99); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes chart-reveal { 0% { opacity: .65; clip-path: inset(0 0 5% 0 round 12px); } 100% { opacity: 1; clip-path: inset(0 0 0 0 round 12px); } }
+@keyframes corner-draw { 0% { width: 0; opacity: 0; } 100% { width: 36px; opacity: 1; } }
+
