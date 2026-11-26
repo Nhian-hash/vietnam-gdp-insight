@@ -633,11 +633,11 @@ body {
 }
 .fill::after {
   top: 1px; right: -4px; bottom: -1px; width: 4px;
-  border-radius: 0 3px 3px 0; background: #2368a8;
+  border-radius: 0 3px 3px 0; background: inherit;
   transform: skewY(-32deg); transform-origin: left top; filter: brightness(.82);
 }
 .region-row:hover .fill { filter: brightness(1.07); }
-.dark .fill::after { background: #164d7d; }
+.dark .fill::after { background: inherit; filter: brightness(.68); }
 
 /* The custom historical backtest canvas shares the dimensional chart plate. */
 .arena-chart-wrap {
