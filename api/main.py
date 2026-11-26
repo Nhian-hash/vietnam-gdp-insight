@@ -573,16 +573,16 @@ def dashboard() -> Response:
         html = html.replace("</head>", '<link rel="stylesheet" href="/assets/backtest-arena.css">\n</head>', 1)
     if "assets/backtest-arena.js" not in html:
         html = html.replace("</body>", '<script src="/assets/backtest-arena.js" defer></script>\n</body>', 1)
-    html = html.replace('href="assets/vmest-motion.css"', 'href="assets/vmest-motion.css?v=20261126-2"')
-    html = html.replace('href="/assets/vmest-motion.css"', 'href="/assets/vmest-motion.css?v=20261126-2"')
+    html = html.replace('href="assets/vmest-motion.css"', 'href="assets/vmest-motion.css?v=20261126-3"')
+    html = html.replace('href="/assets/vmest-motion.css"', 'href="/assets/vmest-motion.css?v=20261126-3"')
     if "assets/vmest-motion.css" not in html:
-        html = html.replace("</head>", '<link rel="stylesheet" href="/assets/vmest-motion.css?v=20261126-2">\n</head>', 1)
+        html = html.replace("</head>", '<link rel="stylesheet" href="/assets/vmest-motion.css?v=20261126-3">\n</head>', 1)
     if "assets/vmest-motion.js" not in html:
         html = html.replace("</body>", '<script src="/assets/vmest-motion.js" defer></script>\n</body>', 1)
-    html = html.replace('src="assets/chart-depth.js"', 'src="assets/chart-depth.js?v=20261126-2"')
-    html = html.replace('src="/assets/chart-depth.js"', 'src="/assets/chart-depth.js?v=20261126-2"')
+    html = html.replace('src="assets/chart-depth.js"', 'src="assets/chart-depth.js?v=20261126-3"')
+    html = html.replace('src="/assets/chart-depth.js"', 'src="/assets/chart-depth.js?v=20261126-3"')
     if "assets/chart-depth.js" not in html:
-        html = html.replace("</body>", '<script src="/assets/chart-depth.js?v=20261126-2" defer></script>\n</body>', 1)
+        html = html.replace("</body>", '<script src="/assets/chart-depth.js?v=20261126-3" defer></script>\n</body>', 1)
     if 'id="project-info"' not in html:
         nav_item, info_section = _project_info_markup()
         html = html.replace("</nav>", nav_item + "</nav>", 1)
