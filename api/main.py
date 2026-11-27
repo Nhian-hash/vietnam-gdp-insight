@@ -576,11 +576,12 @@ def dashboard() -> Response:
     html = html.replace('src="/assets/backtest-arena.js"', 'src="/assets/backtest-arena.js?v=20261126-2"')
     if "assets/backtest-arena.js" not in html:
         html = html.replace("</body>", '<script src="/assets/backtest-arena.js?v=20261126-2" defer></script>\n</body>', 1)
-    html = html.replace("vmest-motion.css?v=20261127-2", "vmest-motion.css?v=20261127-3")
-    html = html.replace('href="assets/vmest-motion.css"', 'href="assets/vmest-motion.css?v=20261127-3"')
-    html = html.replace('href="/assets/vmest-motion.css"', 'href="/assets/vmest-motion.css?v=20261127-3"')
+    for old_version in ("20261127-2", "20261127-3"):
+        html = html.replace(f"vmest-motion.css?v={old_version}", "vmest-motion.css?v=20261127-4")
+    html = html.replace('href="assets/vmest-motion.css"', 'href="assets/vmest-motion.css?v=20261127-4"')
+    html = html.replace('href="/assets/vmest-motion.css"', 'href="/assets/vmest-motion.css?v=20261127-4"')
     if "assets/vmest-motion.css" not in html:
-        html = html.replace("</head>", '<link rel="stylesheet" href="/assets/vmest-motion.css?v=20261127-3">\n</head>', 1)
+        html = html.replace("</head>", '<link rel="stylesheet" href="/assets/vmest-motion.css?v=20261127-4">\n</head>', 1)
     if "assets/vmest-motion.js" not in html:
         html = html.replace("</body>", '<script src="/assets/vmest-motion.js" defer></script>\n</body>', 1)
     html = html.replace('src="assets/chart-depth.js"', 'src="assets/chart-depth.js?v=20261126-3"')
