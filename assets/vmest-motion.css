@@ -869,3 +869,39 @@ body {
 .dark .panel > .section-head:first-child .panel-title,
 .dark .panel > .panel-title:first-child { color: #f1f5f8; }
 .dark .panel > .section-head:first-child .panel-sub { color: #b6c4d1; }
+
+/* Stronger title separation: a clearer blue-grey surface, while keeping content cards calm. */
+.page > .section-head {
+  border-color: #8ea8b9;
+  background: radial-gradient(ellipse at 100% 0%,rgba(27,150,130,.22),transparent 45%),linear-gradient(105deg,#c5d9e4 0%,#d4e0e9 62%,#e9d9d7 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72),0 8px 20px rgba(22,48,70,.15),0 2px 5px rgba(22,48,70,.07);
+}
+.page > .section-head h2 { color: #132b3f; }
+.page > .section-head .sub { color: #425e72; }
+.panel > .section-head:first-child,
+.panel > .panel-title:first-child {
+  border-color: #9db3c1;
+  border-bottom-color: #8ea7b7;
+  background: linear-gradient(105deg,#cadde7 0%,#d9e4ec 68%,#e9d9d7 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.68),0 3px 7px rgba(21,47,70,.07);
+}
+.panel > .section-head:first-child .panel-title,
+.panel > .panel-title:first-child { color: #142c40; }
+.panel > .section-head:first-child .panel-sub { color: #435e71; }
+.dark .page > .section-head {
+  border-color: #617d91;
+  background: radial-gradient(ellipse at 100% 0%,rgba(50,190,159,.22),transparent 45%),linear-gradient(105deg,#294a5e 0%,#304559 68%,#49383f 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07),0 8px 22px rgba(0,0,0,.3);
+}
+.dark .page > .section-head h2 { color: #f4f7fa; }
+.dark .page > .section-head .sub { color: #c3d0db; }
+.dark .panel > .section-head:first-child,
+.dark .panel > .panel-title:first-child {
+  border-color: #627c90;
+  border-bottom-color: #7893a6;
+  background: linear-gradient(105deg,#2a4a5e 0%,#304559 68%,#49383f 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07),0 3px 8px rgba(0,0,0,.2);
+}
+.dark .panel > .section-head:first-child .panel-title,
+.dark .panel > .panel-title:first-child { color: #f4f7fa; }
+.dark .panel > .section-head:first-child .panel-sub { color: #c2cfda; }
