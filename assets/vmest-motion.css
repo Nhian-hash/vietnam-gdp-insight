@@ -727,7 +727,7 @@ body {
 .data-box b { margin-bottom: 3px; font-size: 15px; line-height: 1.25; overflow-wrap: anywhere; }
 .data-box span { font-size: 10.5px; line-height: 1.4; }
 .footnote { margin-top: 8px; line-height: 1.5; }
-.grid-equal, .grid-main { align-content: start; }
+.grid-equal, .grid-main { align-content: start; align-items: start; }
 @media (max-width: 390px) {
   #overview .data-footer { grid-template-columns: 1fr; }
   .data-box { min-height: 70px; }
