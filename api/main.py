@@ -580,7 +580,7 @@ def dashboard() -> Response:
     html = html.replace('href="assets/vmest-motion.css"', 'href="assets/vmest-motion.css?v=20261127-3"')
     html = html.replace('href="/assets/vmest-motion.css"', 'href="/assets/vmest-motion.css?v=20261127-3"')
     if "assets/vmest-motion.css" not in html:
-        html = html.replace("</head>", '<link rel="stylesheet" href="/assets/vmest-motion.css?v=20261127-3">\\n</head>', 1)
+        html = html.replace("</head>", '<link rel="stylesheet" href="/assets/vmest-motion.css?v=20261127-3">\n</head>', 1)
     if "assets/vmest-motion.js" not in html:
         html = html.replace("</body>", '<script src="/assets/vmest-motion.js" defer></script>\n</body>', 1)
     html = html.replace('src="assets/chart-depth.js"', 'src="assets/chart-depth.js?v=20261126-3"')
