@@ -826,3 +826,46 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .page > .section-head { animation: none; }
 }
+
+/* Extra title contrast requested after live review. */
+.page > .section-head {
+  border-color: #9fb6c5;
+  background: radial-gradient(ellipse at 100% 0%,rgba(27,150,130,.18),transparent 45%),linear-gradient(105deg,#d8e8ef 0%,#e1eaf1 62%,#f0e3de 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8),0 7px 18px rgba(22,48,70,.12),0 2px 5px rgba(22,48,70,.06);
+}
+.page > .section-head::before,
+.panel > .section-head:first-child::before,
+.panel > .panel-title:first-child::before { width: 5px; }
+.page > .section-head::after {
+  border-color: rgba(24,140,117,.19);
+  box-shadow: 0 0 0 12px rgba(24,140,117,.06),0 0 0 26px rgba(24,140,117,.04);
+}
+.page > .section-head h2 { color: #142b3e; }
+.page > .section-head .sub { color: #50697d; }
+.panel > .section-head:first-child,
+.panel > .panel-title:first-child {
+  border: 1px solid #b4c7d4;
+  border-bottom-color: #aabfce;
+  background: linear-gradient(105deg,#dbe8f0 0%,#e4ebf2 68%,#eee2df 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.76),0 2px 5px rgba(21,47,70,.045);
+}
+.panel > .section-head:first-child .panel-title,
+.panel > .panel-title:first-child { color: #172d42; }
+.panel > .section-head:first-child .panel-sub { color: #506a7e; }
+.dark .page > .section-head {
+  border-color: #557188;
+  background: radial-gradient(ellipse at 100% 0%,rgba(50,190,159,.19),transparent 45%),linear-gradient(105deg,#203c50,#26384a 68%,#3b303d);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06),0 8px 20px rgba(0,0,0,.26);
+}
+.dark .page > .section-head h2 { color: #f3f7fa; }
+.dark .page > .section-head .sub { color: #b7c6d3; }
+.dark .panel > .section-head:first-child,
+.dark .panel > .panel-title:first-child {
+  border-color: #4d657b;
+  border-bottom-color: #607c91;
+  background: linear-gradient(105deg,#223d52 0%,#26384a 68%,#3b303d 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055),0 2px 6px rgba(0,0,0,.14);
+}
+.dark .panel > .section-head:first-child .panel-title,
+.dark .panel > .panel-title:first-child { color: #f1f5f8; }
+.dark .panel > .section-head:first-child .panel-sub { color: #b6c4d1; }
