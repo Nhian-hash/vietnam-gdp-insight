@@ -709,3 +709,26 @@ body {
 .dark .kpi-head, .dark .kpi-foot { color: #bdcad8; }
 .dark .kpi:hover { border-color: var(--kpi-accent); box-shadow: 0 16px 30px rgba(0,0,0,.34), 0 0 0 2px color-mix(in srgb, var(--kpi-accent) 18%, transparent); }
 .dark .welcome-note { border-color: #53677d; box-shadow: 0 12px 28px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.08); }
+
+
+/* Compact overview coverage cards and avoid tall single-column stacks. */
+#overview .data-footer {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.data-box {
+  min-width: 0;
+  min-height: 82px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 12px;
+}
+.data-box b { margin-bottom: 3px; font-size: 15px; line-height: 1.25; overflow-wrap: anywhere; }
+.data-box span { font-size: 10.5px; line-height: 1.4; }
+.footnote { margin-top: 8px; line-height: 1.5; }
+.grid-equal, .grid-main { align-content: start; }
+@media (max-width: 390px) {
+  #overview .data-footer { grid-template-columns: 1fr; }
+  .data-box { min-height: 70px; }
+}
