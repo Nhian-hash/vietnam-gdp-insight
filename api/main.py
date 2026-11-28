@@ -465,6 +465,8 @@ def dashboard() -> Response:
         raise HTTPException(status_code=404, detail="Chưa có tệp dashboard.html hoặc index.html.")
 
     html = page.read_text(encoding="utf-8")
+    html = re.sub(r'<span id="version-pill" class="pill">.*?</span>', "", html, count=1)
+    html = html.replace("$('version-pill').textContent=`Version ${D.version.id};", "")
     # Add strokes to the existing canvas marks; values and chart calculations stay untouched.
     if "<!-- vmest-chart-outline-v1 -->" not in html:
         chart_html = html
